@@ -56,11 +56,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\DashboardRepository.cs" />
+    <Compile Include="DataAccess\LopRepository.cs" />
+    <Compile Include="DataAccess\SinhVienRepository.cs" />
+    <Compile Include="Models\Lop.cs" />
+    <Compile Include="Models\SinhVien.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
+    <Compile Include="Models\ThongKeTongQuan.cs" />
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\QuanLySinhVienViewModel.cs" />
+    <Compile Include="Views\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuanLySinhVienView.xaml.cs">
+      <DependentUpon>QuanLySinhVienView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -79,7 +94,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuanLySinhVienView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

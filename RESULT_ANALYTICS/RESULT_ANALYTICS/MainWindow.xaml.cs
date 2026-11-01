@@ -13,27 +13,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RESULT_ANALYTICS.ViewModels;
 
 namespace RESULT_ANALYTICS
 {
     public partial class MainWindow : Window
     {
+        private readonly MainViewModel viewModel;
+
         // Ham khoi tao
         public MainWindow()
         {
             InitializeComponent();
+
+            viewModel = new MainViewModel();
+
+            DataContext = viewModel;
         }
 
-        // Hien thi thong tin tai khoan
-        public void HienThiTaiKhoan(
-            string tenDangNhap,
-            string vaiTro)
+        // Nhan thong tin dang nhap tu LoginWindow
+        public void HienThiTaiKhoan(string tenDangNhap, string vaiTro)
         {
-            txtNguoiDung.Text =
-                "Người đăng nhập: " + tenDangNhap;
-
-            txtVaiTro.Text =
-                "Vai trò: " + vaiTro;
+            viewModel.GanTaiKhoan(tenDangNhap, vaiTro);
         }
     }
 }
