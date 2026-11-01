@@ -1,0 +1,1245 @@
+TÀI LIỆU TỔNG HỢP TOÀN BỘ PHẦN SQL SERVER
+DỰ ÁN: STUDENT RESULT ANALYTICS
+Ngày tổng hợp: 01/11/2026
+============================================================
+
+MỤC ĐÍCH
+- Lưu lại trình tự đã thực hiện từ lúc tạo bảng đầu tiên đến khi sao lưu database.
+- Có đầy đủ code SQL từng phần để tra cứu, học tập hoặc khôi phục quy trình.
+- Chuẩn bị trước khi bắt đầu lập trình ứng dụng WPF.
+
+THÔNG TIN HỆ THỐNG ĐÃ SỬ DỤNG
+- SQL Server: SQL Server 2025 Express (phiên bản 17.x)
+- Instance: .\SQLEXPRESS
+- Phần mềm quản trị: SQL Server Management Studio (SSMS) 22
+- Database: StudentResultAnalyticsDB
+- Lưu trữ dữ liệu SQL Server: cấu hình tại ổ D:
+- Tên dự án WPF đã mở trong Visual Studio: RESULT_ANALYTICS
+- Phần kết nối WPF chưa được thực hiện trong tài liệu này.
+
+LƯU Ý RẤT QUAN TRỌNG
+1) Database, 7 bảng và 4 VIEW ĐÃ TẠO XONG. KHÔNG chạy lại lệnh CREATE TABLE
+   trên database đang dùng vì sẽ báo lỗi đối tượng đã tồn tại.
+2) Các đoạn CREATE TABLE trong tài liệu nhằm GHI CHÉP hoặc dùng khi dựng
+   database trống mới. Tuyệt đối không DROP TABLE/DROP DATABASE chỉ để làm theo tài liệu.
+3) Các đoạn INSERT dữ liệu mẫu có WHERE NOT EXISTS để hạn chế chèn trùng.
+4) Các câu SELECT chỉ đọc dữ liệu, không sửa hoặc xóa dữ liệu.
+5) Các câu CREATE OR ALTER VIEW có thể chạy lại để cập nhật định nghĩa VIEW.
+6) Mỗi phần SQL dưới đây là một khối riêng biệt. Chỉ sao chép nội dung nằm
+   GIỮA hai dòng [BẮT ĐẦU SQL] và [KẾT THÚC SQL] vào New Query trong SSMS.
+7) Các ngưỡng xếp loại (5, 6.5, 8) và tỷ trọng điểm (10%, 30%, 60%)
+   là QUY ƯỚC MẪU của đồ án, có thể điều chỉnh theo quy chế trường.
+
+MỤC LỤC
+00. Tạo database (đã thực hiện bằng giao diện SSMS)
+01. Tạo bảng Lop
+02. Tạo bảng SinhVien
+03. Tạo bảng MonHoc
+04. Tạo bảng HocKy
+05. Tạo bảng KetQua
+06. Tạo bảng TaiKhoan
+07. Tạo bảng LichSuNhapDuLieu
+08. Kiểm tra 7 bảng và 5 khóa ngoại
+09. Nhập dữ liệu mẫu Lop, SinhVien, MonHoc, HocKy
+10. Nhập điểm mẫu vào KetQua
+11. Truy vấn tính điểm trung bình theo tín chỉ
+12. Truy vấn thống kê đạt/trượt theo môn
+13. Truy vấn phân loại học lực, cảnh báo
+14. Truy vấn phát hiện dữ liệu thiếu điểm
+15. VIEW vw_SinhVienThieuDiem
+16. VIEW vw_DiemTrungBinhHocKy
+17. VIEW vw_ThongKeDatTruot
+18. VIEW vw_PhanLoaiHocLuc
+19. Sao lưu database .bak và kiểm tra
+20. Kết quả đã đạt và bước tiếp theo
+
+============================================================
+00. TẠO DATABASE STUDENTRESULTANALYTICSDB
+============================================================
+THAO TÁC ĐÃ LÀM TRONG SSMS
+  Object Explorer -> Databases -> nhấp phải -> New Database...
+  Database name: StudentResultAnalyticsDB
+  Giữ mặc định cấu hình file dữ liệu / log (đã được cấu hình ở ổ D:)
+  Nhấn OK. Database đã xuất hiện trong Object Explorer.
+
+Lệnh SQL TƯƠNG ĐƯƠNG để tham khảo nếu cần tạo một database TRỐNG:
+[BẮT ĐẦU SQL]
+CREATE DATABASE StudentResultAnalyticsDB;
+GO
+[KẾT THÚC SQL]
+
+KHÔNG chạy câu lệnh CREATE DATABASE ở trên trên database đã tồn tại.
+
+============================================================
+01. TẠO BẢNG DBO.LOP
+============================================================
+Chức năng: Lưu thông tin lớp học.
+Cột:
+  MaLop    VARCHAR(20)   Khóa chính
+  TenLop   NVARCHAR(100) Tên lớp, bắt buộc
+  KhoaHoc  NVARCHAR(20)  Khóa học, có thể NULL
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE TABLE dbo.Lop
+(
+    MaLop VARCHAR(20) NOT NULL PRIMARY KEY,
+    TenLop NVARCHAR(100) NOT NULL,
+    KhoaHoc NVARCHAR(20) NULL
+);
+GO
+[KẾT THÚC SQL]
+
+Kết quả đã kiểm tra: dbo.Lop xuất hiện dưới Tables.
+
+============================================================
+02. TẠO BẢNG DBO.SINHVIEN
+============================================================
+Chức năng: Lưu thông tin sinh viên; liên kết mỗi sinh viên tới lớp học.
+Cột:
+  MaSV       VARCHAR(20)   Khóa chính
+  HoTen      NVARCHAR(100) Họ tên, bắt buộc
+  NgaySinh   DATE          Ngày sinh
+  GioiTinh   NVARCHAR(10)  Giới tính
+  Email      VARCHAR(100)  Email
+  MaLop      VARCHAR(20)   Khóa ngoại tới Lop(MaLop)
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE TABLE dbo.SinhVien
+(
+    MaSV VARCHAR(20) NOT NULL PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    NgaySinh DATE NULL,
+    GioiTinh NVARCHAR(10) NULL,
+    Email VARCHAR(100) NULL,
+    MaLop VARCHAR(20) NOT NULL,
+
+    CONSTRAINT FK_SinhVien_Lop
+    FOREIGN KEY (MaLop)
+    REFERENCES dbo.Lop(MaLop)
+);
+GO
+[KẾT THÚC SQL]
+
+============================================================
+03. TẠO BẢNG DBO.MONHOC
+============================================================
+Chức năng: Quản lý môn học và số tín chỉ để tính điểm trung bình có trọng số.
+Cột:
+  MaMonHoc   VARCHAR(20)    Khóa chính
+  TenMonHoc  NVARCHAR(150)  Tên môn
+  SoTinChi   INT            Số tín chỉ, từ 1 tới 10
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE TABLE dbo.MonHoc
+(
+    MaMonHoc VARCHAR(20) NOT NULL PRIMARY KEY,
+    TenMonHoc NVARCHAR(150) NOT NULL,
+    SoTinChi INT NOT NULL,
+
+    CONSTRAINT CK_MonHoc_SoTinChi
+    CHECK (SoTinChi BETWEEN 1 AND 10)
+);
+GO
+[KẾT THÚC SQL]
+
+============================================================
+04. TẠO BẢNG DBO.HOCKY
+============================================================
+Chức năng: Quản lý các học kỳ/năm học để thống kê kết quả theo thời gian.
+Cột:
+  MaHocKy      VARCHAR(20)    Khóa chính
+  TenHocKy     NVARCHAR(50)   Tên học kỳ
+  NamHoc       VARCHAR(9)     Năm học (vd. 2025-2026)
+  NgayBatDau   DATE           Có thể NULL
+  NgayKetThuc  DATE           Có thể NULL
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE TABLE dbo.HocKy
+(
+    MaHocKy VARCHAR(20) NOT NULL PRIMARY KEY,
+    TenHocKy NVARCHAR(50) NOT NULL,
+    NamHoc VARCHAR(9) NOT NULL,
+    NgayBatDau DATE NULL,
+    NgayKetThuc DATE NULL,
+
+    CONSTRAINT CK_HocKy_Ngay
+    CHECK (
+        NgayBatDau IS NULL
+        OR NgayKetThuc IS NULL
+        OR NgayKetThuc >= NgayBatDau
+    )
+);
+GO
+[KẾT THÚC SQL]
+
+============================================================
+05. TẠO BẢNG DBO.KETQUA
+============================================================
+Chức năng: Lưu điểm từng sinh viên cho từng môn trong từng học kỳ.
+Cột:
+  MaKetQua       INT IDENTITY(1,1)   Khóa chính tự tăng
+  MaSV           VARCHAR(20)         FK SinhVien
+  MaMonHoc       VARCHAR(20)         FK MonHoc
+  MaHocKy        VARCHAR(20)         FK HocKy
+  DiemChuyenCan  DECIMAL(4,2)        Điểm 0..10 hoặc NULL
+  DiemGiuaKy     DECIMAL(4,2)        Điểm 0..10 hoặc NULL
+  DiemCuoiKy     DECIMAL(4,2)        Điểm 0..10 hoặc NULL
+  DiemTongKet    DECIMAL(4,2)        Cột tự động tính, PERSISTED
+
+Công thức: DiemTongKet = 0.1*DiemChuyenCan
+                          + 0.3*DiemGiuaKy
+                          + 0.6*DiemCuoiKy
+Nếu một thành phần điểm là NULL thì điểm tổng kết cũng là NULL.
+Khóa UNIQUE (MaSV, MaMonHoc, MaHocKy) ngăn nhập hai kết quả trùng bộ ba.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE TABLE dbo.KetQua
+(
+    MaKetQua INT IDENTITY(1,1) PRIMARY KEY,
+
+    MaSV VARCHAR(20) NOT NULL,
+    MaMonHoc VARCHAR(20) NOT NULL,
+    MaHocKy VARCHAR(20) NOT NULL,
+
+    DiemChuyenCan DECIMAL(4,2) NULL,
+    DiemGiuaKy DECIMAL(4,2) NULL,
+    DiemCuoiKy DECIMAL(4,2) NULL,
+
+    DiemTongKet AS
+    CAST(ROUND(
+        DiemChuyenCan * 0.1 +
+        DiemGiuaKy * 0.3 +
+        DiemCuoiKy * 0.6, 2
+    ) AS DECIMAL(4,2)) PERSISTED,
+
+    CONSTRAINT FK_KetQua_SinhVien
+        FOREIGN KEY (MaSV)
+        REFERENCES dbo.SinhVien(MaSV),
+
+    CONSTRAINT FK_KetQua_MonHoc
+        FOREIGN KEY (MaMonHoc)
+        REFERENCES dbo.MonHoc(MaMonHoc),
+
+    CONSTRAINT FK_KetQua_HocKy
+        FOREIGN KEY (MaHocKy)
+        REFERENCES dbo.HocKy(MaHocKy),
+
+    CONSTRAINT UQ_KetQua
+        UNIQUE (MaSV, MaMonHoc, MaHocKy),
+
+    CONSTRAINT CK_KetQua_Diem
+        CHECK (
+            (DiemChuyenCan BETWEEN 0 AND 10
+                OR DiemChuyenCan IS NULL)
+            AND
+            (DiemGiuaKy BETWEEN 0 AND 10
+                OR DiemGiuaKy IS NULL)
+            AND
+            (DiemCuoiKy BETWEEN 0 AND 10
+                OR DiemCuoiKy IS NULL)
+        )
+);
+GO
+[KẾT THÚC SQL]
+
+============================================================
+06. TẠO BẢNG DBO.TAIKHOAN
+============================================================
+Chức năng: Chuẩn bị chức năng đăng nhập và phân quyền trong WPF.
+Cột:
+  MaTaiKhoan   INT IDENTITY(1,1)  Khóa chính
+  TenDangNhap  VARCHAR(50)        Không trùng
+  MatKhauHash  NVARCHAR(255)      Dự kiến lưu chuỗi hash mật khẩu
+  VaiTro       VARCHAR(20)        Admin / NhanVien
+  TrangThai    BIT                1 hoạt động, 0 khóa
+  NgayTao      DATETIME2(0)       UTC mặc định
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE TABLE dbo.TaiKhoan
+(
+    MaTaiKhoan INT IDENTITY(1,1) PRIMARY KEY,
+
+    TenDangNhap VARCHAR(50) NOT NULL,
+    MatKhauHash NVARCHAR(255) NOT NULL,
+
+    VaiTro VARCHAR(20) NOT NULL
+        DEFAULT 'NhanVien',
+
+    TrangThai BIT NOT NULL
+        DEFAULT 1,
+
+    NgayTao DATETIME2(0) NOT NULL
+        DEFAULT SYSUTCDATETIME(),
+
+    CONSTRAINT UQ_TaiKhoan_TenDangNhap
+        UNIQUE (TenDangNhap),
+
+    CONSTRAINT CK_TaiKhoan_VaiTro
+        CHECK (VaiTro IN ('Admin', 'NhanVien'))
+);
+GO
+[KẾT THÚC SQL]
+
+Ghi chú bảo mật: Đã chèn 2 tài khoản mẫu sử dụng thuật toán băm chuẩn công nghiệp PBKDF2-SHA256 (600.000 vòng lặp) kèm muối (salt) ngẫu nhiên:
+- admin (Mật khẩu: admin123 | Vai trò: Admin)
+- nhanvien (Mật khẩu: 123456 | Vai trò: NhanVien)
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- 1. TAI KHOAN ADMIN (Mat khau: admin123)
+IF NOT EXISTS (SELECT 1 FROM dbo.TaiKhoan WHERE TenDangNhap = 'admin')
+BEGIN
+    INSERT INTO dbo.TaiKhoan (TenDangNhap, MatKhauHash, VaiTro, TrangThai)
+    VALUES
+    (
+        'admin',
+        'PBKDF2-SHA256$600000$+SlNkxL/iA6i+JQ5grKB9Q==$hFQLHQb4OcUclNzSbWl2hpOOIQXwsfTqyoNa5nTFYB4=',
+        'Admin',
+        1
+    );
+END;
+GO
+
+-- 2. TAI KHOAN NHAN VIEN (Mat khau: 123456)
+IF NOT EXISTS (SELECT 1 FROM dbo.TaiKhoan WHERE TenDangNhap = 'nhanvien')
+BEGIN
+    INSERT INTO dbo.TaiKhoan (TenDangNhap, MatKhauHash, VaiTro, TrangThai)
+    VALUES
+    (
+        'nhanvien',
+        'PBKDF2-SHA256$600000$Wdo7uTYp+8QwuwRFa2IRHA==$aIdeScqltg+OXd+L3ovYN16WoZlT952IsDvgm/HeYYY=',
+        'NhanVien',
+        1
+    );
+END;
+GO
+
+-- KIEM TRA TAI KHOAN
+SELECT
+    MaTaiKhoan,
+    TenDangNhap,
+    VaiTro,
+    TrangThai,
+    NgayTao
+FROM dbo.TaiKhoan;
+GO
+[KẾT THÚC SQL]
+
+============================================================
+07. TẠO BẢNG DBO.LICHSUNHAPDULIEU
+============================================================
+Chức năng: Theo dõi việc nhập dữ liệu CSV/XLS/XLSX trong ứng dụng tương lai.
+Cột:
+  MaLichSu, TenFile, LoaiFile, ThoiGianNhap,
+  TongSoDong, SoDongThanhCong, SoDongLoi,
+  TrangThai, GhiChu, MaTaiKhoan (FK, cho phép NULL).
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE TABLE dbo.LichSuNhapDuLieu
+(
+    MaLichSu INT IDENTITY(1,1) PRIMARY KEY,
+
+    TenFile NVARCHAR(255) NOT NULL,
+    LoaiFile VARCHAR(10) NOT NULL,
+
+    ThoiGianNhap DATETIME2(0) NOT NULL
+        DEFAULT SYSDATETIME(),
+
+    TongSoDong INT NOT NULL DEFAULT 0,
+    SoDongThanhCong INT NOT NULL DEFAULT 0,
+    SoDongLoi INT NOT NULL DEFAULT 0,
+
+    TrangThai VARCHAR(20) NOT NULL
+        DEFAULT 'ThanhCong',
+
+    GhiChu NVARCHAR(500) NULL,
+    MaTaiKhoan INT NULL,
+
+    CONSTRAINT FK_LichSuNhap_TaiKhoan
+        FOREIGN KEY (MaTaiKhoan)
+        REFERENCES dbo.TaiKhoan(MaTaiKhoan),
+
+    CONSTRAINT CK_LichSuNhap_LoaiFile
+        CHECK (LoaiFile IN ('CSV', 'XLS', 'XLSX')),
+
+    CONSTRAINT CK_LichSuNhap_TrangThai
+        CHECK (TrangThai IN
+            ('ThanhCong', 'MotPhan', 'Loi')),
+
+    CONSTRAINT CK_LichSuNhap_SoDong
+        CHECK (
+            TongSoDong >= 0
+            AND SoDongThanhCong >= 0
+            AND SoDongLoi >= 0
+            AND SoDongThanhCong + SoDongLoi <= TongSoDong
+        )
+);
+GO
+[KẾT THÚC SQL]
+
+============================================================
+08. KIỂM TRA 7 BẢNG VÀ 5 KHÓA NGOẠI
+============================================================
+Thao tác: New Query -> dán code -> Execute/F5 -> xem hai bảng Results.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- Kiểm tra danh sách các bảng
+SELECT
+    name AS TenBang
+FROM sys.tables
+ORDER BY name;
+
+-- Kiểm tra các khóa ngoại
+SELECT
+    fk.name AS TenKhoaNgoai,
+    OBJECT_NAME(fk.parent_object_id) AS BangCon,
+    OBJECT_NAME(fk.referenced_object_id) AS BangCha
+FROM sys.foreign_keys AS fk
+ORDER BY BangCon;
+[KẾT THÚC SQL]
+
+Kết quả ĐÃ XÁC NHẬN qua ảnh SSMS:
+  Đủ 7 bảng: HocKy, KetQua, LichSuNhapDuLieu, Lop, MonHoc,
+              SinhVien, TaiKhoan.
+  Đủ 5 quan hệ:
+  - FK_SinhVien_Lop: SinhVien -> Lop
+  - FK_KetQua_SinhVien: KetQua -> SinhVien
+  - FK_KetQua_MonHoc: KetQua -> MonHoc
+  - FK_KetQua_HocKy: KetQua -> HocKy
+  - FK_LichSuNhap_TaiKhoan: LichSuNhapDuLieu -> TaiKhoan
+
+============================================================
+09. NHẬP DỮ LIỆU MẪU VÀO 4 BẢNG
+============================================================
+Đã nhập thành công: 2 lớp, 3 sinh viên, 3 môn học, 2 học kỳ.
+Dùng N'...' cho chuỗi tiếng Việt Unicode.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- 1. THEM LOP
+INSERT INTO dbo.Lop (MaLop, TenLop, KhoaHoc)
+SELECT 'CNTT01', N'Công nghệ thông tin 01', N'K18'
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.Lop WHERE MaLop = 'CNTT01');
+
+INSERT INTO dbo.Lop (MaLop, TenLop, KhoaHoc)
+SELECT 'CNTT02', N'Công nghệ thông tin 02', N'K18'
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.Lop WHERE MaLop = 'CNTT02');
+
+-- 2. THEM SINH VIEN
+INSERT INTO dbo.SinhVien
+    (MaSV, HoTen, NgaySinh, GioiTinh, Email, MaLop)
+SELECT
+    'SV001', N'Nguyễn Văn An', '2005-05-12',
+    N'Nam', 'sv001@example.com', 'CNTT01'
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.SinhVien WHERE MaSV = 'SV001');
+
+INSERT INTO dbo.SinhVien
+    (MaSV, HoTen, NgaySinh, GioiTinh, Email, MaLop)
+SELECT
+    'SV002', N'Trần Thị Bình', '2005-08-20',
+    N'Nữ', 'sv002@example.com', 'CNTT01'
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.SinhVien WHERE MaSV = 'SV002');
+
+INSERT INTO dbo.SinhVien
+    (MaSV, HoTen, NgaySinh, GioiTinh, Email, MaLop)
+SELECT
+    'SV003', N'Lê Minh Cường', '2005-02-15',
+    N'Nam', 'sv003@example.com', 'CNTT02'
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.SinhVien WHERE MaSV = 'SV003');
+
+-- 3. THEM MON HOC
+INSERT INTO dbo.MonHoc (MaMonHoc, TenMonHoc, SoTinChi)
+SELECT 'MH001', N'Lập trình C#', 3
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.MonHoc WHERE MaMonHoc = 'MH001');
+
+INSERT INTO dbo.MonHoc (MaMonHoc, TenMonHoc, SoTinChi)
+SELECT 'MH002', N'Cơ sở dữ liệu', 3
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.MonHoc WHERE MaMonHoc = 'MH002');
+
+INSERT INTO dbo.MonHoc (MaMonHoc, TenMonHoc, SoTinChi)
+SELECT 'MH003', N'Cấu trúc dữ liệu', 2
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.MonHoc WHERE MaMonHoc = 'MH003');
+
+-- 4. THEM HOC KY
+INSERT INTO dbo.HocKy
+    (MaHocKy, TenHocKy, NamHoc, NgayBatDau, NgayKetThuc)
+SELECT
+    'HK1_2025_2026', N'Học kỳ 1', '2025-2026',
+    '2025-09-01', '2026-01-15'
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.HocKy
+     WHERE MaHocKy = 'HK1_2025_2026');
+
+INSERT INTO dbo.HocKy
+    (MaHocKy, TenHocKy, NamHoc, NgayBatDau, NgayKetThuc)
+SELECT
+    'HK2_2025_2026', N'Học kỳ 2', '2025-2026',
+    '2026-02-01', '2026-06-30'
+WHERE NOT EXISTS
+    (SELECT 1 FROM dbo.HocKy
+     WHERE MaHocKy = 'HK2_2025_2026');
+GO
+
+-- 5. KIEM TRA DU LIEU
+SELECT * FROM dbo.Lop;
+SELECT * FROM dbo.SinhVien;
+SELECT * FROM dbo.MonHoc;
+SELECT * FROM dbo.HocKy;
+[KẾT THÚC SQL]
+
+============================================================
+10. NHẬP 9 KẾT QUẢ HỌC TẬP MẪU
+============================================================
+Đã thực hiện 9 dòng cho 3 sinh viên x 3 môn trong HK1 2025-2026.
+Riêng SV003 - MH003 thiếu DiemGiuaKy (NULL) để thử cảnh báo.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- NHAP DU LIEU KET QUA HOC TAP
+INSERT INTO dbo.KetQua
+    (MaSV, MaMonHoc, MaHocKy,
+     DiemChuyenCan, DiemGiuaKy, DiemCuoiKy)
+
+SELECT
+    d.MaSV, d.MaMonHoc, d.MaHocKy,
+    d.DiemChuyenCan, d.DiemGiuaKy, d.DiemCuoiKy
+FROM (VALUES
+    ('SV001', 'MH001', 'HK1_2025_2026', 9.0, 8.0, 9.0),
+    ('SV001', 'MH002', 'HK1_2025_2026', 8.0, 7.0, 8.0),
+    ('SV001', 'MH003', 'HK1_2025_2026', 9.0, 9.0, 9.0),
+
+    ('SV002', 'MH001', 'HK1_2025_2026', 7.0, 6.0, 7.0),
+    ('SV002', 'MH002', 'HK1_2025_2026', 6.0, 5.0, 6.0),
+    ('SV002', 'MH003', 'HK1_2025_2026', 8.0, 7.0, 8.0),
+
+    ('SV003', 'MH001', 'HK1_2025_2026', 5.0, 4.0, 4.0),
+    ('SV003', 'MH002', 'HK1_2025_2026', 6.0, 4.0, 5.0),
+    ('SV003', 'MH003', 'HK1_2025_2026', 5.0, NULL, 6.0)
+) AS d
+    (MaSV, MaMonHoc, MaHocKy,
+     DiemChuyenCan, DiemGiuaKy, DiemCuoiKy)
+
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM dbo.KetQua AS k
+    WHERE k.MaSV = d.MaSV
+      AND k.MaMonHoc = d.MaMonHoc
+      AND k.MaHocKy = d.MaHocKy
+);
+GO
+
+-- KIEM TRA KET QUA
+SELECT
+    sv.MaSV,
+    sv.HoTen,
+    mh.TenMonHoc,
+    mh.SoTinChi,
+    k.DiemChuyenCan,
+    k.DiemGiuaKy,
+    k.DiemCuoiKy,
+    k.DiemTongKet
+FROM dbo.KetQua AS k
+JOIN dbo.SinhVien AS sv ON k.MaSV = sv.MaSV
+JOIN dbo.MonHoc AS mh ON k.MaMonHoc = mh.MaMonHoc
+ORDER BY sv.MaSV, mh.MaMonHoc;
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN
+  SV001: MH001=8.70 | MH002=7.70 | MH003=9.00
+  SV002: MH001=6.70 | MH002=5.70 | MH003=7.70
+  SV003: MH001=4.10 | MH002=4.80 | MH003=NULL (thiếu điểm giữa kỳ)
+
+============================================================
+11. TRUY VẤN TÍNH ĐIỂM TRUNG BÌNH THEO SỐ TÍN CHỈ
+============================================================
+Công thức hệ 10:
+  Điểm TB = SUM(DiemTongKet * SoTinChi) / SUM(SoTinChi có điểm)
+Bỏ môn còn NULL khi tính điểm TẠM TÍNH; đếm riêng môn thiếu điểm.
+Đây KHÔNG phải GPA hệ 4.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- TINH DIEM TRUNG BINH THEO TIN CHI
+SELECT
+    sv.MaSV,
+    sv.HoTen,
+    k.MaHocKy,
+
+    COUNT(*) AS TongSoMon,
+
+    SUM(CASE
+        WHEN k.DiemTongKet IS NULL THEN 1
+        ELSE 0
+    END) AS SoMonThieuDiem,
+
+    SUM(CASE
+        WHEN k.DiemTongKet IS NOT NULL
+        THEN mh.SoTinChi
+        ELSE 0
+    END) AS SoTinChiDaCoDiem,
+
+    CAST(
+        SUM(CASE
+            WHEN k.DiemTongKet IS NOT NULL
+            THEN k.DiemTongKet * mh.SoTinChi
+            ELSE 0
+        END) * 1.0
+        /
+        NULLIF(SUM(CASE
+            WHEN k.DiemTongKet IS NOT NULL
+            THEN mh.SoTinChi
+            ELSE 0
+        END), 0)
+        AS DECIMAL(5,2)
+    ) AS DiemTrungBinhTamTinh
+
+FROM dbo.KetQua AS k
+JOIN dbo.SinhVien AS sv
+    ON k.MaSV = sv.MaSV
+JOIN dbo.MonHoc AS mh
+    ON k.MaMonHoc = mh.MaMonHoc
+
+WHERE k.MaHocKy = 'HK1_2025_2026'
+
+GROUP BY sv.MaSV, sv.HoTen, k.MaHocKy
+ORDER BY sv.MaSV;
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN QUA ẢNH SSMS
+  SV001 - Nguyễn Văn An: 8.40 | 8 tín chỉ có điểm | 0 môn thiếu
+  SV002 - Trần Thị Bình: 6.58 | 8 tín chỉ có điểm | 0 môn thiếu
+  SV003 - Lê Minh Cường: 4.45 | 6 tín chỉ có điểm | 1 môn thiếu
+  Điểm 4.45 là TẠM TÍNH, chưa phải điểm TB học kỳ hoàn chỉnh.
+
+============================================================
+12. TRUY VẤN THỐNG KÊ ĐẠT/TRƯỢT THEO MÔN
+============================================================
+Quy ước mẫu: >= 5.0 đạt; < 5.0 trượt; NULL chưa đủ điểm.
+Tỷ lệ đạt tính trên số dòng ĐÃ CÓ điểm tổng kết, không bao gồm NULL.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- THONG KE TY LE DAT / TRUOT THEO MON HOC
+SELECT
+    mh.MaMonHoc,
+    mh.TenMonHoc,
+
+    COUNT(k.MaKetQua) AS TongSinhVien,
+
+    SUM(CASE
+        WHEN k.DiemTongKet >= 5 THEN 1
+        ELSE 0
+    END) AS SoSinhVienDat,
+
+    SUM(CASE
+        WHEN k.DiemTongKet < 5 THEN 1
+        ELSE 0
+    END) AS SoSinhVienTruot,
+
+    SUM(CASE
+        WHEN k.DiemTongKet IS NULL THEN 1
+        ELSE 0
+    END) AS SoSinhVienThieuDiem,
+
+    CAST(
+        100.0 * SUM(CASE
+            WHEN k.DiemTongKet >= 5 THEN 1
+            ELSE 0
+        END)
+        /
+        NULLIF(COUNT(k.DiemTongKet), 0)
+        AS DECIMAL(5,2)
+    ) AS TyLeDat
+
+FROM dbo.MonHoc AS mh
+LEFT JOIN dbo.KetQua AS k
+    ON mh.MaMonHoc = k.MaMonHoc
+
+GROUP BY mh.MaMonHoc, mh.TenMonHoc
+ORDER BY mh.MaMonHoc;
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN
+  MH001 - Lập trình C#:       tổng 3 | đạt 2 | trượt 1 | thiếu 0 | 66.67%
+  MH002 - Cơ sở dữ liệu:     tổng 3 | đạt 2 | trượt 1 | thiếu 0 | 66.67%
+  MH003 - Cấu trúc dữ liệu:  tổng 3 | đạt 2 | trượt 0 | thiếu 1 | 100.00%
+  Tỷ lệ 100% ở MH003 là 2/2 sinh viên đã có điểm, KHÔNG phải 3/3.
+
+============================================================
+13. TRUY VẤN PHÂN LOẠI HỌC LỰC VÀ CẢNH BÁO
+============================================================
+Quy ước xếp loại mẫu theo hệ 10:
+  >= 8.0: Giỏi | >= 6.5: Khá | >= 5.0: Trung bình | còn lại: Yếu
+  Nếu còn môn thiếu điểm: Chưa đủ điểm, không xếp loại chính thức.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- PHAN LOAI HOC LUC VA CANH BAO SINH VIEN
+WITH TongHop AS
+(
+    SELECT
+        sv.MaSV,
+        sv.HoTen,
+        k.MaHocKy,
+
+        COUNT(*) AS TongSoMon,
+
+        SUM(CASE
+            WHEN k.DiemTongKet IS NULL THEN 1
+            ELSE 0
+        END) AS SoMonThieuDiem,
+
+        CAST(
+            SUM(CASE
+                WHEN k.DiemTongKet IS NOT NULL
+                THEN k.DiemTongKet * mh.SoTinChi
+                ELSE 0
+            END)
+            /
+            NULLIF(SUM(CASE
+                WHEN k.DiemTongKet IS NOT NULL
+                THEN mh.SoTinChi
+                ELSE 0
+            END), 0)
+            AS DECIMAL(5,2)
+        ) AS DiemTrungBinh
+
+    FROM dbo.KetQua AS k
+    JOIN dbo.SinhVien AS sv
+        ON k.MaSV = sv.MaSV
+    JOIN dbo.MonHoc AS mh
+        ON k.MaMonHoc = mh.MaMonHoc
+
+    WHERE k.MaHocKy = 'HK1_2025_2026'
+
+    GROUP BY sv.MaSV, sv.HoTen, k.MaHocKy
+)
+
+SELECT
+    MaSV,
+    HoTen,
+    MaHocKy,
+    TongSoMon,
+    SoMonThieuDiem,
+    DiemTrungBinh,
+
+    CASE
+        WHEN SoMonThieuDiem > 0
+            THEN N'Chưa đủ điểm'
+        WHEN DiemTrungBinh >= 8
+            THEN N'Giỏi'
+        WHEN DiemTrungBinh >= 6.5
+            THEN N'Khá'
+        WHEN DiemTrungBinh >= 5
+            THEN N'Trung bình'
+        ELSE N'Yếu'
+    END AS XepLoai,
+
+    CASE
+        WHEN SoMonThieuDiem > 0
+            THEN N'Cần bổ sung điểm'
+        WHEN DiemTrungBinh < 5
+            THEN N'Cảnh báo học tập'
+        ELSE N'Bình thường'
+    END AS CanhBao
+
+FROM TongHop
+ORDER BY MaSV;
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN
+  SV001: 8.40 | Giỏi         | Bình thường
+  SV002: 6.58 | Khá          | Bình thường
+  SV003: 4.45 | Chưa đủ điểm | Cần bổ sung điểm
+
+============================================================
+14. TRUY VẤN KIỂM TRA SINH VIÊN THIẾU ĐIỂM
+============================================================
+Truy vấn tìm thành phần điểm bị NULL trong các kết quả ĐÃ tồn tại.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- KIEM TRA SINH VIEN THIEU DIEM
+SELECT
+    sv.MaSV,
+    sv.HoTen,
+    mh.MaMonHoc,
+    mh.TenMonHoc,
+    hk.TenHocKy,
+    hk.NamHoc,
+
+    k.DiemChuyenCan,
+    k.DiemGiuaKy,
+    k.DiemCuoiKy,
+
+    CONCAT_WS(N', ',
+        CASE
+            WHEN k.DiemChuyenCan IS NULL
+            THEN N'Thiếu điểm chuyên cần'
+        END,
+        CASE
+            WHEN k.DiemGiuaKy IS NULL
+            THEN N'Thiếu điểm giữa kỳ'
+        END,
+        CASE
+            WHEN k.DiemCuoiKy IS NULL
+            THEN N'Thiếu điểm cuối kỳ'
+        END
+    ) AS NoiDungCanhBao
+
+FROM dbo.KetQua AS k
+JOIN dbo.SinhVien AS sv
+    ON k.MaSV = sv.MaSV
+JOIN dbo.MonHoc AS mh
+    ON k.MaMonHoc = mh.MaMonHoc
+JOIN dbo.HocKy AS hk
+    ON k.MaHocKy = hk.MaHocKy
+
+WHERE
+    k.DiemChuyenCan IS NULL
+    OR k.DiemGiuaKy IS NULL
+    OR k.DiemCuoiKy IS NULL
+
+ORDER BY sv.MaSV, mh.MaMonHoc;
+GO
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN
+  SV003 | Lê Minh Cường | MH003 - Cấu trúc dữ liệu
+  Chuyên cần 5.00 | giữa kỳ NULL | cuối kỳ 6.00
+  Nội dung cảnh báo: Thiếu điểm giữa kỳ.
+
+============================================================
+15. TẠO VIEW DBO.VW_SINHVIENTHIEUDIEM
+============================================================
+VIEW là câu truy vấn có tên để WPF gọi ngắn gọn bằng SELECT.
+CREATE OR ALTER VIEW có thể chạy lại. GO phải đặt trước/sau lệnh VIEW.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+CREATE OR ALTER VIEW dbo.vw_SinhVienThieuDiem
+AS
+SELECT
+    sv.MaSV,
+    sv.HoTen,
+    mh.MaMonHoc,
+    mh.TenMonHoc,
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc,
+
+    k.DiemChuyenCan,
+    k.DiemGiuaKy,
+    k.DiemCuoiKy,
+
+    CONCAT_WS(N', ',
+        CASE
+            WHEN k.DiemChuyenCan IS NULL
+            THEN N'Thiếu điểm chuyên cần'
+        END,
+        CASE
+            WHEN k.DiemGiuaKy IS NULL
+            THEN N'Thiếu điểm giữa kỳ'
+        END,
+        CASE
+            WHEN k.DiemCuoiKy IS NULL
+            THEN N'Thiếu điểm cuối kỳ'
+        END
+    ) AS NoiDungCanhBao
+
+FROM dbo.KetQua AS k
+JOIN dbo.SinhVien AS sv
+    ON k.MaSV = sv.MaSV
+JOIN dbo.MonHoc AS mh
+    ON k.MaMonHoc = mh.MaMonHoc
+JOIN dbo.HocKy AS hk
+    ON k.MaHocKy = hk.MaHocKy
+
+WHERE
+    k.DiemChuyenCan IS NULL
+    OR k.DiemGiuaKy IS NULL
+    OR k.DiemCuoiKy IS NULL;
+GO
+
+-- KIEM TRA VIEW
+SELECT * FROM dbo.vw_SinhVienThieuDiem;
+GO
+[KẾT THÚC SQL]
+
+Đã xác nhận VIEW hoạt động, trả về SV003 thiếu điểm giữa kỳ.
+
+============================================================
+16. TẠO VIEW DBO.VW_DIEMTRUNGBINHHOCKY
+============================================================
+Tổng hợp số môn, tín chỉ, điểm trung bình tạm tính, trạng thái theo học kỳ.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- VIEW TINH DIEM TRUNG BINH THEO TIN CHI
+CREATE OR ALTER VIEW dbo.vw_DiemTrungBinhHocKy
+AS
+SELECT
+    sv.MaSV,
+    sv.HoTen,
+    sv.MaLop,
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc,
+
+    COUNT(*) AS TongSoMon,
+
+    SUM(mh.SoTinChi) AS TongSoTinChi,
+
+    SUM(CASE
+        WHEN k.DiemTongKet IS NULL THEN 1
+        ELSE 0
+    END) AS SoMonThieuDiem,
+
+    SUM(CASE
+        WHEN k.DiemTongKet IS NOT NULL
+        THEN mh.SoTinChi
+        ELSE 0
+    END) AS SoTinChiDaCoDiem,
+
+    CAST(
+        SUM(CASE
+            WHEN k.DiemTongKet IS NOT NULL
+            THEN k.DiemTongKet * mh.SoTinChi
+            ELSE 0
+        END)
+        /
+        NULLIF(
+            SUM(CASE
+                WHEN k.DiemTongKet IS NOT NULL
+                THEN mh.SoTinChi
+                ELSE 0
+            END), 0
+        )
+        AS DECIMAL(5,2)
+    ) AS DiemTrungBinhTamTinh,
+
+    CASE
+        WHEN SUM(CASE
+            WHEN k.DiemTongKet IS NULL THEN 1
+            ELSE 0
+        END) > 0
+        THEN N'Chưa đủ điểm'
+        ELSE N'Đủ điểm'
+    END AS TrangThai
+
+FROM dbo.KetQua AS k
+JOIN dbo.SinhVien AS sv
+    ON k.MaSV = sv.MaSV
+JOIN dbo.MonHoc AS mh
+    ON k.MaMonHoc = mh.MaMonHoc
+JOIN dbo.HocKy AS hk
+    ON k.MaHocKy = hk.MaHocKy
+
+GROUP BY
+    sv.MaSV,
+    sv.HoTen,
+    sv.MaLop,
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc;
+GO
+
+-- KIEM TRA VIEW
+SELECT *
+FROM dbo.vw_DiemTrungBinhHocKy
+WHERE MaHocKy = 'HK1_2025_2026'
+ORDER BY MaSV;
+GO
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN
+  SV001: 8.40 | 0 môn thiếu | Đủ điểm
+  SV002: 6.58 | 0 môn thiếu | Đủ điểm
+  SV003: 4.45 | 1 môn thiếu | Chưa đủ điểm
+
+============================================================
+17. TẠO VIEW DBO.VW_THONGKEDATTRUOT
+============================================================
+Thống kê đạt/trượt và thiếu điểm THEO MÔN VÀ HỌC KỲ.
+Không tính những môn chưa có dòng kết quả trong KetQua.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- VIEW THONG KE DAT / TRUOT THEO MON VA HOC KY
+CREATE OR ALTER VIEW dbo.vw_ThongKeDatTruot
+AS
+SELECT
+    mh.MaMonHoc,
+    mh.TenMonHoc,
+    mh.SoTinChi,
+
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc,
+
+    COUNT(k.MaKetQua) AS TongSinhVien,
+
+    SUM(CASE
+        WHEN k.DiemTongKet >= 5 THEN 1
+        ELSE 0
+    END) AS SoSinhVienDat,
+
+    SUM(CASE
+        WHEN k.DiemTongKet < 5 THEN 1
+        ELSE 0
+    END) AS SoSinhVienTruot,
+
+    SUM(CASE
+        WHEN k.DiemTongKet IS NULL THEN 1
+        ELSE 0
+    END) AS SoSinhVienThieuDiem,
+
+    CAST(
+        100.0 * SUM(CASE
+            WHEN k.DiemTongKet >= 5 THEN 1
+            ELSE 0
+        END)
+        /
+        NULLIF(COUNT(k.DiemTongKet), 0)
+        AS DECIMAL(5,2)
+    ) AS TyLeDat
+
+FROM dbo.KetQua AS k
+JOIN dbo.MonHoc AS mh
+    ON k.MaMonHoc = mh.MaMonHoc
+JOIN dbo.HocKy AS hk
+    ON k.MaHocKy = hk.MaHocKy
+
+GROUP BY
+    mh.MaMonHoc,
+    mh.TenMonHoc,
+    mh.SoTinChi,
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc;
+GO
+
+-- KIEM TRA VIEW
+SELECT *
+FROM dbo.vw_ThongKeDatTruot
+WHERE MaHocKy = 'HK1_2025_2026'
+ORDER BY MaMonHoc;
+GO
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN
+  Lập trình C#:      3 tổng | 2 đạt | 1 trượt | 0 thiếu | 66.67%
+  Cơ sở dữ liệu:    3 tổng | 2 đạt | 1 trượt | 0 thiếu | 66.67%
+  Cấu trúc dữ liệu: 3 tổng | 2 đạt | 0 trượt | 1 thiếu | 100.00%
+
+============================================================
+18. TẠO VIEW DBO.VW_PHANLOAIHOCLUC
+============================================================
+VIEW phân loại học lực dùng VIEW vw_DiemTrungBinhHocKy đã tạo.
+
+[BẮT ĐẦU SQL]
+USE StudentResultAnalyticsDB;
+GO
+
+-- VIEW PHAN LOAI HOC LUC SINH VIEN
+CREATE OR ALTER VIEW dbo.vw_PhanLoaiHocLuc
+AS
+SELECT
+    d.MaSV,
+    d.HoTen,
+    d.MaLop,
+    d.MaHocKy,
+    d.TenHocKy,
+    d.NamHoc,
+    d.TongSoMon,
+    d.SoMonThieuDiem,
+    d.DiemTrungBinhTamTinh AS DiemTrungBinh,
+
+    CASE
+        WHEN d.SoMonThieuDiem > 0
+             OR d.DiemTrungBinhTamTinh IS NULL
+            THEN N'Chưa đủ điểm'
+
+        WHEN d.DiemTrungBinhTamTinh >= 8
+            THEN N'Giỏi'
+
+        WHEN d.DiemTrungBinhTamTinh >= 6.5
+            THEN N'Khá'
+
+        WHEN d.DiemTrungBinhTamTinh >= 5
+            THEN N'Trung bình'
+
+        ELSE N'Yếu'
+    END AS XepLoai,
+
+    CASE
+        WHEN d.SoMonThieuDiem > 0
+             OR d.DiemTrungBinhTamTinh IS NULL
+            THEN N'Cần bổ sung điểm'
+
+        WHEN d.DiemTrungBinhTamTinh < 5
+            THEN N'Cảnh báo học tập'
+
+        ELSE N'Bình thường'
+    END AS CanhBao
+
+FROM dbo.vw_DiemTrungBinhHocKy AS d;
+GO
+
+-- KIEM TRA VIEW
+SELECT *
+FROM dbo.vw_PhanLoaiHocLuc
+WHERE MaHocKy = 'HK1_2025_2026'
+ORDER BY MaSV;
+GO
+[KẾT THÚC SQL]
+
+KẾT QUẢ ĐÃ XÁC NHẬN
+  SV001 - Nguyễn Văn An: 8.40, Giỏi, Bình thường
+  SV002 - Trần Thị Bình: 6.58, Khá, Bình thường
+  SV003 - Lê Minh Cường: 4.45 (tạm tính), Chưa đủ điểm,
+                             Cần bổ sung điểm
+
+Trong ảnh cuối phần VIEW có dấu gạch đỏ và Error List của IntelliSense
+('The multi-part identifier d.MaSV could not be bound'). Tuy nhiên,
+Query executed successfully và VIEW hiện trong Object Explorer, trả về
+3 bản ghi đúng. Có thể làm mới IntelliSense bằng Ctrl+Shift+R;
+nên kiểm tra lại định nghĩa SQL nếu lỗi thực thi xuất hiện về sau.
+
+============================================================
+19. SAO LƯU DATABASE THÀNH FILE .BAK
+============================================================
+CÁC BƯỚC ĐÃ THỰC HIỆN TRONG SSMS
+  1. Nhấp phải StudentResultAnalyticsDB.
+  2. Chọn Tasks -> Back Up...
+  3. Backup type: Full
+  4. Backup component: Database
+  5. Back up to: Disk
+  6. Giữ đường dẫn trên ổ D:, nhấn OK.
+
+ĐƯỜNG DẪN FILE ĐÃ THẤY TRÊN MÁY
+D:\UD\SQL2025\Microsoft SQL Server\MSSQL17.SQLEXPRESS\MSSQL\Backup\StudentResultAnalyticsDB.bak
+
+Ảnh File Explorer đã xác nhận file tồn tại:
+  File: StudentResultAnalyticsDB.bak
+  Loại: BAK File
+  Kích thước: 5.620 KB (xấp xỉ 5,5 MB)
+  Thời điểm hiển thị: 01/11/2026 11:02 AM
+
+LỆNH TÙY CHỌN ĐỂ KIỂM TRA TÍNH ĐỌC ĐƯỢC CỦA BỘ SAO LƯU
+[BẮT ĐẦU SQL]
+RESTORE VERIFYONLY
+FROM DISK = N'D:\UD\SQL2025\Microsoft SQL Server\MSSQL17.SQLEXPRESS\MSSQL\Backup\StudentResultAnalyticsDB.bak';
+GO
+[KẾT THÚC SQL]
+
+GHI CHÚ:
+- Lệnh RESTORE VERIFYONLY không khôi phục dữ liệu và không ghi đè database.
+- Sự xuất hiện của file .bak là đã xác nhận; kết quả VERIFYONLY chưa được
+  người dùng gửi ảnh xác nhận trong quá trình trao đổi.
+- Verify thành công vẫn không thay thế được một lần thử RESTORE thực tế.
+- Bản sao lưu chỉ phản ánh dữ liệu ở THỜI ĐIỂM sao lưu. Khi có thêm dữ liệu,
+  cần sao lưu lại. Nên giữ thêm bản sao ở nơi khác ngoài ổ D:.
+
+============================================================
+20. TỔNG KẾT TIẾN ĐỘ ĐẾN TRƯỚC KHI LẬP TRÌNH WPF
+============================================================
+ĐÃ HOÀN THÀNH / XÁC NHẬN QUA ẢNH
+[x] SQL Server 2025 Express và SSMS kết nối qua .\SQLEXPRESS
+[x] Database StudentResultAnalyticsDB
+[x] 7 bảng: Lop, SinhVien, MonHoc, HocKy, KetQua,
+             TaiKhoan, LichSuNhapDuLieu
+[x] 2 tài khoản mẫu (admin / nhanvien) với mật khẩu mã hóa PBKDF2-SHA256
+[x] 5 quan hệ khóa ngoại
+[x] 2 lớp, 3 sinh viên, 3 môn học, 2 học kỳ
+[x] 9 bản ghi kết quả học tập
+[x] Tính điểm tổng kết 10% / 30% / 60%
+[x] Tính điểm TB có trọng số tín chỉ (hệ 10)
+[x] Thống kê tỷ lệ đạt/trượt
+[x] Phân loại học lực và cảnh báo
+[x] Phát hiện dữ liệu thiếu điểm
+[x] 4 VIEW: vw_SinhVienThieuDiem, vw_DiemTrungBinhHocKy,
+             vw_ThongKeDatTruot, vw_PhanLoaiHocLuc
+[x] File sao lưu .bak đã xuất hiện trên ổ D:
+
+CHƯA THỰC HIỆN / DỰ KIẾN LÀM TIẾP
+[ ] Kiểm tra backup bằng RESTORE VERIFYONLY (nếu muốn)
+[ ] Cấu hình App.config của ứng dụng WPF
+[ ] Tạo DatabaseHelper.cs và kết nối ADO.NET
+[ ] Thử mở kết nối SQL Server từ C#
+[ ] Thiết kế giao diện đăng nhập và phân quyền
+[ ] Quản lý lớp, sinh viên, môn học, học kỳ, điểm
+[ ] Dashboard thống kê, biểu đồ, cảnh báo thiếu điểm
+[ ] Nhập CSV/Excel và lưu LichSuNhapDuLieu
+[ ] Kiểm thử và đóng gói ứng dụng
+
+THÔNG TIN ỨNG DỤNG Ở THỜI ĐIỂM CHUYỂN TIẾP
+  Visual Studio: đã mở solution/project RESULT_ANALYTICS.
+  Có MainWindow.xaml, MainWindow.xaml.cs, App.xaml, App.config.
+  Chưa có bằng chứng đã thêm cấu hình kết nối hay viết lớp truy cập dữ liệu.
+
+HẠN CHẾ CẦN BIẾT KHI PHÁT TRIỂN TIẾP
+- Các VIEW hiện thống kê bản ghi đã có trong KetQua; không tự xác định
+  một sinh viên chưa có bản ghi kết quả cho môn chưa đăng ký.
+- Điểm 4.45 của SV003 chỉ là tạm tính vì đang thiếu điểm giữa kỳ MH003.
+- Bảng TaiKhoan đã có 2 tài khoản mẫu (admin, nhanvien) sẵn sàng cho màn hình Login trong WPF.
+- Bảng LichSuNhapDuLieu đã có cấu trúc nhưng chưa có lịch sử nhập thật.
+- Quy tắc phân loại điểm và ngưỡng đậu/trượt cần xác nhận theo quy chế
+  thực tế nếu sử dụng cho dữ liệu của một trường học cụ thể.
+
+KẾT THÚC TÀI LIỆU
+============================================================
+Tài liệu tổng hợp từ các bước SQL và ảnh kết quả đã trao đổi trong dự án.

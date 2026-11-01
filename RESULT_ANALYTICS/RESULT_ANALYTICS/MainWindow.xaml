@@ -1,10 +1,109 @@
 ﻿<Window x:Class="RESULT_ANALYTICS.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RESULT_ANALYTICS"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid/>
+        Title="Student Result Analytics"
+        Height="580"
+        Width="900"
+        MinHeight="480"
+        MinWidth="760"
+        WindowStartupLocation="CenterScreen"
+        Background="#F4F6F8">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- THANH TIEU DE -->
+        <Border Grid.Row="0"
+                Background="#1E4E79">
+
+            <StackPanel Margin="25,12"
+                        VerticalAlignment="Center">
+
+                <TextBlock Text="STUDENT RESULT ANALYTICS"
+                           Foreground="White"
+                           FontSize="23"
+                           FontWeight="Bold"/>
+
+                <TextBlock Text="Hệ thống quản lý và phân tích kết quả học tập"
+                           Foreground="#DCE9F5"
+                           FontSize="13"
+                           Margin="0,5,0,0"/>
+
+            </StackPanel>
+
+        </Border>
+
+        <!-- NOI DUNG -->
+        <Grid Grid.Row="1" Margin="25">
+
+            <StackPanel>
+
+                <Border Background="White"
+                        CornerRadius="8"
+                        Padding="20"
+                        Margin="0,0,0,20">
+
+                    <StackPanel>
+
+                        <TextBlock Text="ĐĂNG NHẬP THÀNH CÔNG"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="#1E4E79"/>
+
+                        <TextBlock x:Name="txtNguoiDung"
+                                   FontSize="15"
+                                   Margin="0,15,0,0"/>
+
+                        <TextBlock x:Name="txtVaiTro"
+                                   FontSize="15"
+                                   Margin="0,8,0,0"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <TextBlock Text="CÁC CHỨC NĂNG HỆ THỐNG"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="#1E4E79"
+                           Margin="0,0,0,15"/>
+
+                <Border Background="White"
+                        CornerRadius="8"
+                        Padding="20">
+
+                    <StackPanel>
+
+                        <TextBlock Text="1. Quản lý lớp và sinh viên"
+                                   FontSize="15"
+                                   Margin="0,0,0,12"/>
+
+                        <TextBlock Text="2. Quản lý môn học và học kỳ"
+                                   FontSize="15"
+                                   Margin="0,0,0,12"/>
+
+                        <TextBlock Text="3. Nhập và quản lý điểm"
+                                   FontSize="15"
+                                   Margin="0,0,0,12"/>
+
+                        <TextBlock Text="4. Phân tích kết quả học tập"
+                                   FontSize="15"
+                                   Margin="0,0,0,12"/>
+
+                        <TextBlock Text="5. Thống kê và cảnh báo"
+                                   FontSize="15"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
 </Window>

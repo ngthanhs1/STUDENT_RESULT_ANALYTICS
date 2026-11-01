@@ -1,0 +1,56 @@
+# RESULT_ANALYTICS - Bộ khởi tạo WPF MVVM (.NET Framework 4.7.2)
+
+**LƯU Ý**: Đây là bộ mã nguồn tạo trong môi trường riêng; chưa được build và chạy trên SQL Server máy bạn. KHÔNG thay file .csproj của dự án gốc khi chưa sao lưu.
+
+## 1. Có gì trong ZIP
+- `RESULT_ANALYTICS.sln`: solution mẫu có thể mở độc lập trong Visual Studio trên Windows.
+- `RESULT_ANALYTICS/RESULT_ANALYTICS.csproj`: project mẫu WPF .NET Framework 4.7.2, có sẵn Reference `System.Configuration` và `System.Data`.
+- `App.config`: chuỗi kết nối `StudentDB` tới `.\SQLEXPRESS` và `StudentResultAnalyticsDB`.
+- `Models`: 7 lớp tương ứng 7 bảng.
+- `DataAccess`: `DatabaseHelper`, `TaiKhoanRepository` và `PhanTichRepository` dùng ADO.NET, tham số hóa tên đăng nhập.
+- `Services`: `AuthService`.
+- `ViewModels`: `LoginViewModel`, `MainViewModel`.
+- `Views`: `LoginWindow.xaml` và code-behind (chỉ đọc PasswordBox và chuyển cho VM).
+- `Helpers`: `PasswordHasher` (PBKDF2-HMAC-SHA256), `RelayCommand`, `BindableBase`.
+- `MainWindow`: ba DataGrid đọc dữ liệu qua các VIEW sau khi đăng nhập.
+
+## 2. Cách A: Mở bản mẫu riêng (dễ kiểm thử nhất)
+1. Giải nén toàn bộ ZIP sang ổ D, ví dụ `D:\DuAn\RESULT_ANALYTICS_MVVM_NET472`.
+2. Mở file `RESULT_ANALYTICS.sln` trong Visual Studio trên Windows.
+3. Đảm bảo đã cài .NET Framework 4.7.2 Developer Pack/Targeting Pack.
+4. Nhấn Ctrl+Shift+B để Build; sau đó F5 để chạy.
+5. Bấm `KIỂM TRA SQL`. Nếu thành công, thử `admin / admin123` hoặc `nhanvien / 123456`.
+6. Chỉ dùng 2 mật khẩu thử nghiệm trên máy cá nhân. Đổi mật khẩu trước khi triển khai thật.
+
+## 3. Cách B: Thêm mã vào dự án RESULT_ANALYTICS hiện có
+1. Sao chép toàn bộ thư mục dự án gốc thành 1 bản dự phòng trước khi sửa.
+2. Giữ nguyên `.csproj` và `App.config` gốc của bạn; bảo đảm trong App.config có tên connection string `StudentDB`.
+3. Trong Visual Studio, thêm Reference `System.Configuration` và `System.Data` nếu chưa có: References -> Add Reference... -> Assemblies -> Framework.
+4. Tạo các thư mục `Models`, `DataAccess`, `Services`, `ViewModels`, `Views`, `Helpers`.
+5. Thêm các file `.cs` từ ZIP bằng Add -> Existing Item (có thể copy file vào folder trước, sau đó Include In Project trong VS). Với Views, tốt nhất Add -> New Item -> Window (WPF) tên `LoginWindow.xaml`, rồi chép nội dung XAML và code-behind đúng như ZIP, đảm bảo namespace là `RESULT_ANALYTICS.Views`.
+6. Xóa hoặc loại khỏi dự án `Data/DatabaseHelper.cs` cũ để chỉ sử dụng `DataAccess/DatabaseHelper.cs`. Chỉnh mọi `using RESULT_ANALYTICS.Data` cũ sang `using RESULT_ANALYTICS.DataAccess` nếu còn file tham chiếu.
+7. Thay `App.xaml` và `MainWindow.xaml` / `.xaml.cs` bằng nội dung tương ứng trong ZIP; trong App.xaml đổi StartupUri từ `MainWindow.xaml` sang `Views/LoginWindow.xaml`.
+8. Không cần tạo SQL hay chèn lại tài khoản; chúng đã tồn tại theo ảnh bạn gửi. Sau đó Ctrl+Shift+B -> F5.
+9. Nếu không thấy class mới trong Solution Explorer, nhấp Show All Files rồi Include In Project, hoặc Add -> Existing Item.
+
+## 4. Kiểm tra tài khoản
+Trong SSMS có thể chạy `SQL/KiemTraTaiKhoan.sql` để xem tên tài khoản, vai trò và trạng thái. Mã nguồn sử dụng format mật khẩu đã tạo trong SSMS:
+`PBKDF2-SHA256$600000$<salt base64>$<hash base64>`.
+Đã tính lại và xác nhận cặp hash trong trao đổi trước khớp với `admin123` và `123456`.
+
+## 5. Lỗi thường gặp
+- **ConfigurationManager gạch đỏ**: chưa thêm `System.Configuration` reference.
+- **Không kết nối SQL**: kiểm tra dịch vụ SQL Server (SQLEXPRESS), instance `.\SQLEXPRESS`, database `StudentResultAnalyticsDB`, Windows Authentication.
+- **Không thấy LoginWindow**: kiểm tra `App.xaml` StartupUri, namespace và Build Action Page.
+- **Hai DatabaseHelper**: loại class cũ trong `Data` hoặc đổi namespace/using cho thống nhất.
+- **Đăng nhập thất bại**: kiểm tra `TrangThai=1`, mật khẩu có định dạng PBKDF2 trên và role `Admin` hoặc `NhanVien`.
+- **WPF không chạy trên Linux**: bản mẫu phải được biên dịch bằng Visual Studio Windows có WPF/.NET Framework targeting pack.
+
+## 6. Các bước đã được hiện thực hóa
+- Bước 1: App.config / System.Configuration trong .csproj.
+- Bước 2: Cấu trúc thư mục MVVM cùng 7 model; repo đọc dữ liệu và account.
+- Bước 3: DatabaseHelper, PasswordHasher và AuthService.
+- Bước 4: nút KIỂM TRA SQL trong LoginWindow; thực hiện conn.Open() qua DatabaseHelper.
+- Bước 5: LoginWindow kiểm tra PBKDF2, chuyển sang MainWindow có 3 DataGrid lấy từ VIEW.
+
+**Chưa triển khai**: CRUD 7 bảng, upload CSV/Excel, đổi mật khẩu, chức năng phân quyền chi tiết, lịch sử nhập, dashboard chart. Chúng thuộc giai đoạn xây dựng tiếp theo, không phải các bước chuẩn bị này.

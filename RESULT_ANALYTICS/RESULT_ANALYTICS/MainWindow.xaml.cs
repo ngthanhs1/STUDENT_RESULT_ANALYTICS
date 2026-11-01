@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,24 @@ using System.Windows.Shapes;
 
 namespace RESULT_ANALYTICS
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        // Ham khoi tao
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        // Hien thi thong tin tai khoan
+        public void HienThiTaiKhoan(
+            string tenDangNhap,
+            string vaiTro)
+        {
+            txtNguoiDung.Text =
+                "Người đăng nhập: " + tenDangNhap;
+
+            txtVaiTro.Text =
+                "Vai trò: " + vaiTro;
         }
     }
 }
