@@ -70,8 +70,13 @@ namespace RESULT_ANALYTICS.ViewModels
             QuanLyLopSinhVienCommand =
                 new RelayCommand(p => MoQuanLySinhVien());
 
-            MonHocHocKyCommand =
-                new RelayCommand(p => MoTrang("Quản lý môn học và học kỳ"));
+
+            MonHocHocKyCommand = new RelayCommand(p =>
+            {
+                TenTrang = "Quản lý môn học và học kỳ";
+                NoiDungHienTai = "Quản lý môn học và học kỳ";
+            });
+
 
             NhapDiemCommand =
                 new RelayCommand(p => MoTrang("Nhập và quản lý điểm"));

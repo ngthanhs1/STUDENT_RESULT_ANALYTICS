@@ -41,6 +41,12 @@
             <views:QuanLySinhVienView/>
         </DataTemplate>
 
+        <!-- GIAO DIEN QUAN LY MON HOC VA HOC KY -->
+        <DataTemplate x:Key="MonHocHocKyTemplate">
+            <views:QuanLyMonHocHocKyView/>
+        </DataTemplate>
+
+
 
         <!-- CAC TRANG CHUA PHAT TRIEN -->
         <DataTemplate x:Key="PlaceholderTemplate">
@@ -143,6 +149,12 @@
                             <DataTrigger Binding="{Binding TenTrang}" Value="Quản lý lớp và sinh viên">
                                 <Setter Property="ContentTemplate" Value="{StaticResource SinhVienTemplate}"/>
                             </DataTrigger>
+
+                            <!-- CHUYEN SANG GIAO DIEN MON HOC VA HOC KY -->
+                            <DataTrigger Binding="{Binding TenTrang}" Value="Quản lý môn học và học kỳ">
+                                <Setter Property="ContentTemplate" Value="{StaticResource MonHocHocKyTemplate}"/>
+                            </DataTrigger>
+
                         </Style.Triggers>
                     </Style>
                 </ContentControl.Style>
