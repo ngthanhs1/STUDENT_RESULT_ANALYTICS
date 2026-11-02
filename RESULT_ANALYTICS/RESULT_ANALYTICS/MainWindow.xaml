@@ -47,6 +47,23 @@
         </DataTemplate>
 
 
+        <!-- GIAO DIEN NHAP VA QUAN LY DIEM -->
+        <DataTemplate x:Key="QuanLyDiemTemplate">
+            <views:QuanLyDiemView/>
+        </DataTemplate>
+
+        <!-- GIAO DIEN PHAN TICH HOC LUC -->
+        <DataTemplate x:Key="PhanTichTemplate">
+            <views:PhanTichView/>
+        </DataTemplate>
+
+        <!-- GIAO DIEN THONG KE VA CANH BAO -->
+        <DataTemplate x:Key="ThongKeCanhBaoTemplate">
+            <views:ThongKeCanhBaoView/>
+        </DataTemplate>
+
+
+
 
         <!-- CAC TRANG CHUA PHAT TRIEN -->
         <DataTemplate x:Key="PlaceholderTemplate">
@@ -154,6 +171,23 @@
                             <DataTrigger Binding="{Binding TenTrang}" Value="Quản lý môn học và học kỳ">
                                 <Setter Property="ContentTemplate" Value="{StaticResource MonHocHocKyTemplate}"/>
                             </DataTrigger>
+
+                            <!-- CHUYEN SANG GIAO DIEN NHAP VA QUAN LY DIEM -->
+                            <DataTrigger Binding="{Binding TenTrang}" Value="Nhập và quản lý điểm">
+                                <Setter Property="ContentTemplate" Value="{StaticResource QuanLyDiemTemplate}"/>
+                            </DataTrigger>
+
+                            <!-- CHUYEN SANG GIAO DIEN PHAN TICH HOC LUC -->
+                            <DataTrigger Binding="{Binding TenTrang}" Value="Phân tích học lực">
+                                <Setter Property="ContentTemplate" Value="{StaticResource PhanTichTemplate}"/>
+                            </DataTrigger>
+
+                            <!-- CHUYEN SANG GIAO DIEN THONG KE VA CANH BAO -->
+                            <DataTrigger Binding="{Binding TenTrang}" Value="Thống kê và cảnh báo">
+                                <Setter Property="ContentTemplate" Value="{StaticResource ThongKeCanhBaoTemplate}"/>
+                            </DataTrigger>
+
+
 
                         </Style.Triggers>
                     </Style>

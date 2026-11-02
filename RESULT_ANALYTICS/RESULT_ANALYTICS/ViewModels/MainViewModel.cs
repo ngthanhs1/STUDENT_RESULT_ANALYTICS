@@ -78,14 +78,27 @@ namespace RESULT_ANALYTICS.ViewModels
             });
 
 
-            NhapDiemCommand =
-                new RelayCommand(p => MoTrang("Nhập và quản lý điểm"));
+            NhapDiemCommand = new RelayCommand(p =>
+            {
+                TenTrang = "Nhập và quản lý điểm";
+                NoiDungHienTai = "Nhập và quản lý điểm";
+            });
 
-            PhanTichCommand =
-                new RelayCommand(p => MoTrang("Phân tích kết quả học tập"));
 
-            CanhBaoCommand =
-                new RelayCommand(p => MoTrang("Thống kê và cảnh báo"));
+            PhanTichCommand = new RelayCommand(p =>
+            {
+                TenTrang = "Phân tích học lực";
+                NoiDungHienTai = "Phân tích học lực";
+            });
+
+
+
+            CanhBaoCommand = new RelayCommand(p =>
+            {
+                TenTrang = "Thống kê và cảnh báo";
+                NoiDungHienTai = "Thống kê và cảnh báo";
+            });
+
 
             HeThongCommand =
                 new RelayCommand(p => MoTrang("Phân quyền và nhập dữ liệu"));

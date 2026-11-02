@@ -58,32 +58,52 @@
     </ApplicationDefinition>
     <Compile Include="DataAccess\DashboardRepository.cs" />
     <Compile Include="DataAccess\HocKyRepository.cs" />
+    <Compile Include="DataAccess\KetQuaRepository.cs" />
     <Compile Include="DataAccess\LopRepository.cs" />
     <Compile Include="DataAccess\MonHocRepository.cs" />
+    <Compile Include="DataAccess\PhanTichRepository.cs" />
     <Compile Include="DataAccess\SinhVienRepository.cs" />
+    <Compile Include="DataAccess\ThongKeCanhBaoRepository.cs" />
+    <Compile Include="Models\DiemTrungBinhHocKy.cs" />
     <Compile Include="Models\HocKy.cs" />
+    <Compile Include="Models\KetQua.cs" />
     <Compile Include="Models\Lop.cs" />
     <Compile Include="Models\MonHoc.cs" />
+    <Compile Include="Models\PhanLoaiHocLuc.cs" />
     <Compile Include="Models\SinhVien.cs" />
+    <Compile Include="Models\SinhVienThieuDiem.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
+    <Compile Include="Models\ThongKeDatTruot.cs" />
     <Compile Include="Models\ThongKeTongQuan.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PhanTichViewModel.cs" />
+    <Compile Include="ViewModels\QuanLyDiemViewModel.cs" />
     <Compile Include="ViewModels\QuanLyMonHocHocKyViewModel.cs" />
     <Compile Include="ViewModels\QuanLySinhVienViewModel.cs" />
+    <Compile Include="ViewModels\ThongKeCanhBaoViewModel.cs" />
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PhanTichView.xaml.cs">
+      <DependentUpon>PhanTichView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuanLyDiemView.xaml.cs">
+      <DependentUpon>QuanLyDiemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QuanLyMonHocHocKyView.xaml.cs">
       <DependentUpon>QuanLyMonHocHocKyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QuanLySinhVienView.xaml.cs">
       <DependentUpon>QuanLySinhVienView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThongKeCanhBaoView.xaml.cs">
+      <DependentUpon>ThongKeCanhBaoView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -110,11 +130,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PhanTichView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuanLyDiemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\QuanLyMonHocHocKyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\QuanLySinhVienView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThongKeCanhBaoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
