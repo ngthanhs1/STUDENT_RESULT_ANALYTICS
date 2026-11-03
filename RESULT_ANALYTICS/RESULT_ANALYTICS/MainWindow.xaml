@@ -62,6 +62,11 @@
             <views:ThongKeCanhBaoView/>
         </DataTemplate>
 
+        <!-- GIAO DIEN HE THONG VA IMPORT -->
+        <DataTemplate x:Key="HeThongImportTemplate">
+            <views:HeThongImportView/>
+        </DataTemplate>
+
 
 
 
@@ -185,6 +190,11 @@
                             <!-- CHUYEN SANG GIAO DIEN THONG KE VA CANH BAO -->
                             <DataTrigger Binding="{Binding TenTrang}" Value="Thống kê và cảnh báo">
                                 <Setter Property="ContentTemplate" Value="{StaticResource ThongKeCanhBaoTemplate}"/>
+                            </DataTrigger>
+
+                            <!-- CHUYEN SANG GIAO DIEN HE THONG VA IMPORT -->
+                            <DataTrigger Binding="{Binding TenTrang}" Value="Hệ thống và Import">
+                                <Setter Property="ContentTemplate" Value="{StaticResource HeThongImportTemplate}"/>
                             </DataTrigger>
 
 

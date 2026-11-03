@@ -100,18 +100,28 @@ namespace RESULT_ANALYTICS.ViewModels
             });
 
 
-            HeThongCommand =
-                new RelayCommand(p => MoTrang("Phân quyền và nhập dữ liệu"));
+
+            HeThongCommand = new RelayCommand(p =>
+            {
+                TenTrang = "Hệ thống và Import";
+                NoiDungHienTai = "Hệ thống và Import";
+            });
+
 
             MoTrangChu();
         }
 
         // Gan thong tin nguoi dang nhap
+
         public void GanTaiKhoan(string tenDangNhap, string vaiTro)
         {
             TenDangNhap = tenDangNhap;
             VaiTro = vaiTro;
+
+            // Luu phien dang nhap cho cac chuc nang he thong
+            PhienDangNhap.KhoiTao(tenDangNhap, vaiTro);
         }
+
 
         // Mo Dashboard
         private void MoTrangChu()
