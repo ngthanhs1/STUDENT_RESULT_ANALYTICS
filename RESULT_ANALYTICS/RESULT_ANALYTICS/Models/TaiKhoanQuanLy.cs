@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,12 +14,20 @@ namespace RESULT_ANALYTICS.Models
         public bool TrangThai { get; set; }
         public DateTime NgayTao { get; set; }
 
-        // Hien thi trang thai trong DataGrid
+        // Hien thi trang thai trong DataGrid (khong dung icon emoji)
         public string TrangThaiHienThi
         {
             get
             {
-                return TrangThai ? "Hoạt động" : "Đã khóa";
+                return TrangThai ? "Mở khóa (Hoạt động)" : "Đã khóa";
+            }
+        }
+
+        public string VaiTroHienThi
+        {
+            get
+            {
+                return VaiTro == "Admin" ? "Admin" : "Nhân viên";
             }
         }
     }

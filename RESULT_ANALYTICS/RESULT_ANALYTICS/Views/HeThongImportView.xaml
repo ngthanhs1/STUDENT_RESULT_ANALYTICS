@@ -1,217 +1,168 @@
-﻿<UserControl x:Class="RESULT_ANALYTICS.Views.HeThongImportView"
+<UserControl x:Class="RESULT_ANALYTICS.Views.HeThongImportView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Background="#F4F6F8">
+             Background="#F1F5F9">
 
+    <!-- DINH DANG GIAO DIEN CO DIEN GON GANG -->
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolConverter"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <Style x:Key="ClassicBtn" TargetType="Button">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="11.5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Margin="3">
+    <Grid Margin="2,0,2,4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- HANG 0: TIEU DE -->
+            <RowDefinition Height="Auto"/> <!-- HANG 1: KHU VUC IMPORT FILE -->
+            <RowDefinition Height="*"/>    <!-- HANG 2: BANG LICH SU IMPORT CUNG TRANG -->
+        </Grid.RowDefinitions>
 
-            <!-- ==================================== -->
-            <!-- TIEU DE -->
-            <!-- ==================================== -->
+        <!-- HANG 0: TIEU DE -->
+        <TextBlock Grid.Row="0" Text="NHẬP ĐIỂM THI TỪ FILE &amp; LỊCH SỬ IMPORT" FontSize="16" FontWeight="Bold" Foreground="#174A78" Margin="0,0,0,6"/>
 
-            <TextBlock Text="HỆ THỐNG VÀ IMPORT DỮ LIỆU" FontSize="23" FontWeight="Bold" Foreground="#174A78"/>
-            <TextBlock Text="Quản lý tài khoản, nhập điểm từ CSV/Excel và theo dõi lịch sử Import" FontSize="12" Foreground="#64748B" Margin="0,5,0,0" TextWrapping="Wrap"/>
+        <!-- HANG 1: KHU VUC IMPORT FILE & KET QUA -->
+        <Border Grid.Row="1" Background="White" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="4" Padding="12,10" Margin="0,0,0,8">
+            <StackPanel>
+                <Grid Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-            <!-- ==================================== -->
-            <!-- THONG TIN DANG NHAP -->
-            <!-- ==================================== -->
+                    <TextBox Grid.Column="0" Height="28" Padding="8,3" Text="{Binding DuongDanFile}" IsReadOnly="True" Background="#F8FAFC" BorderBrush="#CBD5E1" FontSize="12" VerticalContentAlignment="Center" Margin="0,0,8,0"/>
+                    <Button Grid.Column="1" Content="📁 CHỌN FILE..." Command="{Binding ChonFileCommand}" Background="#1976D2" Style="{StaticResource ClassicBtn}" MinWidth="105" Margin="0,0,6,0"/>
+                    <Button Grid.Column="2" Content="⚡ THỰC HIỆN IMPORT" Command="{Binding ImportFileCommand}" Background="#2E7D32" Style="{StaticResource ClassicBtn}" MinWidth="135"/>
+                </Grid>
 
-            <Border Background="#E3F2FD" CornerRadius="8" Padding="15" Margin="0,18,0,15">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Tài khoản đang đăng nhập: " FontWeight="SemiBold" Foreground="#174A78"/>
-                    <TextBlock Text="{Binding TenDangNhap}" FontWeight="Bold" Foreground="#174A78"/>
-                    <TextBlock Text="   |   Vai trò: " Foreground="#174A78"/>
-                    <TextBlock Text="{Binding VaiTro}" FontWeight="Bold" Foreground="#174A78"/>
+                <TextBlock Text="• Hỗ trợ file Excel (.xlsx) hoặc CSV (.csv). Định dạng 6 cột: MaSV, MaMonHoc, MaHocKy, DiemChuyenCan, DiemGiuaKy, DiemCuoiKy (Tối đa 5.000 dòng, thang điểm 0-10)" FontSize="11" Foreground="#64748B" Margin="0,0,0,8"/>
+
+                <!-- 4 THE KET QUA IMPORT NẰM TRÊN 1 HÀNG -->
+                <Grid Margin="0,0,0,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="#E3F2FD" CornerRadius="4" Padding="10,5" Margin="0,0,4,0" BorderBrush="#BBDEFB" BorderThickness="1" MinHeight="52">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="TỔNG DÒNG" FontSize="10" Foreground="#1762A5" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding TongSoDong}" FontSize="18" FontWeight="Bold" Foreground="#174A78" Margin="0,1,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="#E8F5E9" CornerRadius="4" Padding="10,5" Margin="2,0,4,0" BorderBrush="#C8E6C9" BorderThickness="1" MinHeight="52">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="THÀNH CÔNG" FontSize="10" Foreground="#287D3C" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding SoDongThanh}" FontSize="18" FontWeight="Bold" Foreground="#287D3C" Margin="0,1,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="2" Background="#FDE8E8" CornerRadius="4" Padding="10,5" Margin="2,0,4,0" BorderBrush="#FFCDD2" BorderThickness="1" MinHeight="52">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="DÒNG LỖI" FontSize="10" Foreground="#C62828" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding SoDongLoi}" FontSize="18" FontWeight="Bold" Foreground="#C62828" Margin="0,1,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="3" Background="#FEF3C7" CornerRadius="4" Padding="10,5" Margin="2,0,0,0" BorderBrush="#FDE68A" BorderThickness="1" MinHeight="52">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="TRẠNG THÁI" FontSize="10" Foreground="#B45309" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding TrangThaiImport}" FontSize="13" FontWeight="Bold" Foreground="#B45309" Margin="0,2,0,0" TextTrimming="CharacterEllipsis"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                    <TextBlock Text="{Binding ThongBaoImport}" Foreground="#1976D2" FontSize="11.5" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding ThongBaoLichSu}" Foreground="#C46A12" FontSize="11.5" Margin="10,0,0,0" VerticalAlignment="Center"/>
                 </StackPanel>
-            </Border>
 
-            <!-- ==================================== -->
-            <!-- QUAN LY TAI KHOAN - CHI ADMIN -->
-            <!-- ==================================== -->
-
-            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15" BorderBrush="#DDE5EF" BorderThickness="1" Visibility="{Binding LaAdmin, Converter={StaticResource BoolConverter}}">
-
-                <StackPanel DataContext="{Binding TaiKhoanVM}">
-
-                    <TextBlock Text="QUẢN LÝ TÀI KHOẢN" FontSize="17" FontWeight="Bold" Foreground="#174A78"/>
-                    <TextBlock Text="Chỉ quản trị viên được thêm tài khoản, thay đổi vai trò, trạng thái và mật khẩu." FontSize="12" Foreground="#64748B" Margin="0,5,0,15" TextWrapping="Wrap"/>
-
-                    <!-- FORM TAI KHOAN -->
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên đăng nhập (*)" FontWeight="SemiBold" FontSize="12"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Vai trò (*)" FontWeight="SemiBold" FontSize="12"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Trạng thái" FontWeight="SemiBold" FontSize="12"/>
-
-                        <TextBox Grid.Row="1" Grid.Column="0" Height="35" Padding="8,5" Margin="0,7,12,0" Text="{Binding TenDangNhapNhap, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" Height="35" Margin="0,7,12,0" ItemsSource="{Binding DanhSachVaiTro}" SelectedItem="{Binding VaiTroNhap, Mode=TwoWay}"/>
-                        <CheckBox Grid.Row="1" Grid.Column="2" Content="Tài khoản hoạt động" IsChecked="{Binding TrangThaiNhap, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,7,0,0"/>
-
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Mật khẩu tài khoản mới (*)" FontWeight="SemiBold" FontSize="12" Margin="0,18,0,0"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Mật khẩu đặt lại" FontWeight="SemiBold" FontSize="12" Margin="0,18,0,0"/>
-
-                        <PasswordBox x:Name="MatKhauThemBox" Grid.Row="3" Grid.Column="0" Height="35" Padding="8,5" Margin="0,7,12,0"/>
-                        <PasswordBox x:Name="MatKhauDatLaiBox" Grid.Row="3" Grid.Column="1" Height="35" Padding="8,5" Margin="0,7,12,0"/>
-                    </Grid>
-
-                    <!-- CAC NUT QUAN LY TAI KHOAN -->
-
-                    <WrapPanel Margin="0,20,0,0">
-                        <Button Content="THÊM TÀI KHOẢN" Width="155" Height="38" Margin="0,0,8,8" Background="#27813C" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="ThemTaiKhoan_Click"/>
-                        <Button Content="CẬP NHẬT" Width="125" Height="38" Margin="0,0,8,8" Background="#1976D2" Foreground="White" FontWeight="Bold" BorderThickness="0" Command="{Binding CapNhatTaiKhoanCommand}"/>
-                        <Button Content="ĐẶT LẠI MẬT KHẨU" Width="165" Height="38" Margin="0,0,8,8" Background="#D97706" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="DatLaiMatKhau_Click"/>
-                        <Button Content="LÀM TRỐNG" Width="115" Height="38" Margin="0,0,8,8" Background="#64748B" Foreground="White" FontWeight="Bold" BorderThickness="0" Command="{Binding LamTrongCommand}"/>
-                        <Button Content="LÀM MỚI" Width="110" Height="38" Margin="0,0,8,8" Background="#00889A" Foreground="White" FontWeight="Bold" BorderThickness="0" Command="{Binding LamMoiCommand}"/>
-                    </WrapPanel>
-
-                    <TextBlock Text="{Binding ThongBao}" Foreground="#1976D2" FontSize="12" Margin="0,8,0,0" TextWrapping="Wrap"/>
-
-                    <TextBlock Text="Chọn tài khoản trong bảng để cập nhật vai trò, khóa/mở khóa hoặc đặt lại mật khẩu. Tên đăng nhập chỉ được sử dụng khi thêm mới." Foreground="#64748B" FontSize="12" Margin="0,12,0,10" TextWrapping="Wrap"/>
-
-                    <!-- DANH SACH TAI KHOAN -->
-
-                    <TextBlock Text="DANH SÁCH TÀI KHOẢN" FontSize="15" FontWeight="Bold" Foreground="#174A78" Margin="0,8,0,12"/>
-
-                    <DataGrid ItemsSource="{Binding DanhSachTaiKhoan}" SelectedItem="{Binding TaiKhoanDuocChon, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" AlternatingRowBackground="#EEF3F9" GridLinesVisibility="Horizontal" RowHeight="32" ColumnHeaderHeight="35" Height="230" HorizontalScrollBarVisibility="Auto">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã TK" Binding="{Binding MaTaiKhoan}" Width="80"/>
-                            <DataGridTextColumn Header="Tên đăng nhập" Binding="{Binding TenDangNhap}" Width="170"/>
-                            <DataGridTextColumn Header="Vai trò" Binding="{Binding VaiTro}" Width="120"/>
-                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThaiHienThi}" Width="140"/>
-                            <DataGridTextColumn Header="Ngày tạo" Binding="{Binding NgayTao, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="170"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                </StackPanel>
-            </Border>
-
-            <!-- ==================================== -->
-            <!-- IMPORT CSV / EXCEL -->
-            <!-- ==================================== -->
-
-            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15" BorderBrush="#DDE5EF" BorderThickness="1">
-
-                <StackPanel>
-
-                    <TextBlock Text="IMPORT ĐIỂM SINH VIÊN" FontSize="17" FontWeight="Bold" Foreground="#174A78"/>
-                    <TextBlock Text="Nhập kết quả học tập từ file CSV hoặc Excel (.xlsx)" FontSize="12" Foreground="#64748B" Margin="0,5,0,15"/>
-
-                    <TextBlock Text="File đã chọn" FontWeight="SemiBold" FontSize="12"/>
-
-                    <TextBox Height="36" Margin="0,7,0,0" Padding="8,5" Text="{Binding DuongDanFile}" IsReadOnly="True" Background="#F8FAFC"/>
-
-                    <WrapPanel Margin="0,15,0,0">
-                        <Button Content="CHỌN FILE CSV / EXCEL" Width="190" Height="40" Margin="0,0,10,8" Background="#1976D2" Foreground="White" FontWeight="Bold" BorderThickness="0" Command="{Binding ChonFileCommand}"/>
-                        <Button Content="THỰC HIỆN IMPORT" Width="180" Height="40" Margin="0,0,10,8" Background="#27813C" Foreground="White" FontWeight="Bold" BorderThickness="0" Command="{Binding ImportFileCommand}"/>
-                    </WrapPanel>
-
-                    <TextBlock Text="File gồm 6 cột: MaSV, MaMonHoc, MaHocKy, DiemChuyenCan, DiemGiuaKy, DiemCuoiKy." FontSize="12" Foreground="#64748B" Margin="0,10,0,0" TextWrapping="Wrap"/>
-                    <TextBlock Text="Giới hạn 5000 dòng, tối đa 5 MB. Dòng đã tồn tại không bị ghi đè; ô điểm trống tương ứng NULL." FontSize="12" Foreground="#64748B" Margin="0,5,0,0" TextWrapping="Wrap"/>
-
-                    <!-- KET QUA IMPORT -->
-
-                    <TextBlock Text="KẾT QUẢ IMPORT GẦN NHẤT" FontSize="15" FontWeight="Bold" Foreground="#174A78" Margin="0,25,0,12"/>
-
-                    <WrapPanel>
-
-                        <Border Width="185" Height="100" Background="#E3F2FD" CornerRadius="8" Padding="15" Margin="0,0,12,10">
-                            <StackPanel>
-                                <TextBlock Text="TỔNG SỐ DÒNG" FontSize="11" Foreground="#1762A5" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding TongSoDong}" FontSize="28" FontWeight="Bold" Foreground="#174A78" Margin="0,8,0,0"/>
-                            </StackPanel>
-                        </Border>
-
-                        <Border Width="185" Height="100" Background="#E7F5E9" CornerRadius="8" Padding="15" Margin="0,0,12,10">
-                            <StackPanel>
-                                <TextBlock Text="DÒNG THÀNH CÔNG" FontSize="11" Foreground="#287D3C" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding SoDongThanh}" FontSize="28" FontWeight="Bold" Foreground="#287D3C" Margin="0,8,0,0"/>
-                            </StackPanel>
-                        </Border>
-
-                        <Border Width="185" Height="100" Background="#FDE8E8" CornerRadius="8" Padding="15" Margin="0,0,12,10">
-                            <StackPanel>
-                                <TextBlock Text="DÒNG LỖI" FontSize="11" Foreground="#C62828" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding SoDongLoi}" FontSize="28" FontWeight="Bold" Foreground="#C62828" Margin="0,8,0,0"/>
-                            </StackPanel>
-                        </Border>
-
-                    </WrapPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBlock Text="Trạng thái: " FontWeight="SemiBold" Foreground="#174A78"/>
-                        <TextBlock Text="{Binding TrangThaiImport}" Foreground="#1976D2" FontWeight="Bold"/>
-                    </StackPanel>
-
-                    <TextBlock Text="{Binding ThongBaoImport}" Foreground="#1976D2" FontSize="12" Margin="0,10,0,0" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding ThongBaoLichSu}" Foreground="#C46A12" FontSize="12" Margin="0,5,0,0" TextWrapping="Wrap"/>
-
-                    <!-- DANH SACH LOI -->
-
-                    <TextBlock Text="CHI TIẾT DÒNG LỖI" FontSize="15" FontWeight="Bold" Foreground="#174A78" Margin="0,22,0,10"/>
-
-                    <Border BorderBrush="#E2E8F0" BorderThickness="1" Background="#FFF9F2" CornerRadius="5" Padding="10">
-                        <ScrollViewer Height="120" VerticalScrollBarVisibility="Auto">
+                <!-- CHI TIET DONG LOI (NEU CO) -->
+                <Border BorderBrush="#FED7AA" BorderThickness="1" Background="#FFF7ED" CornerRadius="3" Padding="8,5" Margin="0,6,0,0"
+                        Visibility="{Binding CoLoi, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">
+                    <StackPanel>
+                        <TextBlock Text="Chi tiết các dòng không hợp lệ:" FontSize="11" FontWeight="Bold" Foreground="#C2410C" Margin="0,0,0,3"/>
+                        <ScrollViewer MaxHeight="70" VerticalScrollBarVisibility="Auto">
                             <ItemsControl ItemsSource="{Binding DanhSachLoi}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding}" Foreground="#B45309" FontSize="12" Margin="0,3,0,3" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding}" Foreground="#9A3412" FontSize="11" Margin="0,1,0,1" TextWrapping="Wrap"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </ScrollViewer>
-                    </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-                </StackPanel>
-            </Border>
+        <!-- HANG 2: BANG LICH SU IMPORT CUNG TREN 1 TRANG -->
+        <Border Grid.Row="2" Background="White" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="4" Padding="12,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <!-- ==================================== -->
-            <!-- LICH SU IMPORT -->
-            <!-- ==================================== -->
+                <Grid Grid.Row="0" Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="LỊCH SỬ CÁC LẦN IMPORT ĐIỂM (SQL SERVER)" FontSize="12.5" FontWeight="Bold" Foreground="#174A78" VerticalAlignment="Center"/>
+                        <TextBlock Text="(Hiển thị 100 lần import gần nhất)" FontSize="11" Foreground="#64748B" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
 
-            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,20" BorderBrush="#DDE5EF" BorderThickness="1">
+                    <Button HorizontalAlignment="Right" Content="🔄 LÀM MỚI LỊCH SỬ" Command="{Binding LamMoiLichSuCommand}" Background="#0284C7" Style="{StaticResource ClassicBtn}" MinWidth="125"/>
+                </Grid>
 
-                <StackPanel>
+                <DataGrid Grid.Row="1" ItemsSource="{Binding DanhSachLichSu}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          HeadersVisibility="Column"
+                          AlternatingRowBackground="#F8FAFC"
+                          GridLinesVisibility="Horizontal"
+                          RowHeight="27"
+                          ColumnHeaderHeight="30"
+                          BorderBrush="#CBD5E1"
+                          FontSize="11.5"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã" Binding="{Binding MaLichSu}" Width="55"/>
+                        <DataGridTextColumn Header="Tên file" Binding="{Binding TenFile}" MinWidth="180" Width="*"/>
+                        <DataGridTextColumn Header="Loại file" Binding="{Binding LoaiFile}" Width="75"/>
+                        <DataGridTextColumn Header="Thời gian nạp" Binding="{Binding ThoiGianNhap, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" Width="150"/>
+                        <DataGridTextColumn Header="Tổng dòng" Binding="{Binding TongSoDong}" Width="85"/>
+                        <DataGridTextColumn Header="Thành công" Binding="{Binding SoDongThanh}" Width="90"/>
+                        <DataGridTextColumn Header="Dòng lỗi" Binding="{Binding SoDongLoi}" Width="75"/>
+                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="105"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
 
-                    <TextBlock Text="LỊCH SỬ IMPORT DỮ LIỆU" FontSize="17" FontWeight="Bold" Foreground="#174A78"/>
-                    <TextBlock Text="Hiển thị 100 lần Import gần nhất được lưu trong SQL Server" FontSize="12" Foreground="#64748B" Margin="0,5,0,12"/>
-
-                    <Button Content="LÀM MỚI LỊCH SỬ" Width="160" Height="38" HorizontalAlignment="Left" Margin="0,0,0,15" Background="#00889A" Foreground="White" FontWeight="Bold" BorderThickness="0" Command="{Binding LamMoiLichSuCommand}"/>
-
-                    <DataGrid ItemsSource="{Binding DanhSachLichSu}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#EEF3F9" GridLinesVisibility="Horizontal" RowHeight="32" ColumnHeaderHeight="35" Height="270" HorizontalScrollBarVisibility="Auto">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã" Binding="{Binding MaLichSu}" Width="60"/>
-                            <DataGridTextColumn Header="Tên file" Binding="{Binding TenFile}" Width="200"/>
-                            <DataGridTextColumn Header="Loại file" Binding="{Binding LoaiFile}" Width="90"/>
-                            <DataGridTextColumn Header="Thời gian Import" Binding="{Binding ThoiGianNhap, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" Width="170"/>
-                            <DataGridTextColumn Header="Tổng dòng" Binding="{Binding TongSoDong}" Width="95"/>
-                            <DataGridTextColumn Header="Thành công" Binding="{Binding SoDongThanh}" Width="105"/>
-                            <DataGridTextColumn Header="Dòng lỗi" Binding="{Binding SoDongLoi}" Width="90"/>
-                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="115"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                </StackPanel>
-            </Border>
-
-        </StackPanel>
-    </ScrollViewer>
-
+    </Grid>
 </UserControl>

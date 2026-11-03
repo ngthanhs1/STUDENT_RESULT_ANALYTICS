@@ -129,6 +129,14 @@ namespace RESULT_ANALYTICS.ViewModels
 
         public ICommand LocDuLieuCommand { get; private set; }
         public ICommand LamMoiCommand { get; private set; }
+        public ICommand ChuyenTrangThaiBieuDoCommand { get; private set; }
+
+        private bool hienThiBieuDo = true;
+        public bool HienThiBieuDo
+        {
+            get { return hienThiBieuDo; }
+            set { SetProperty(ref hienThiBieuDo, value); }
+        }
 
         // =========================================
         // 5. HAM KHOI TAO
@@ -166,6 +174,9 @@ namespace RESULT_ANALYTICS.ViewModels
 
             LamMoiCommand =
                 new RelayCommand(p => LamMoi());
+
+            ChuyenTrangThaiBieuDoCommand =
+                new RelayCommand(p => HienThiBieuDo = !HienThiBieuDo);
 
             try
             {
@@ -344,7 +355,7 @@ namespace RESULT_ANALYTICS.ViewModels
             foreach (ThongKeDatTruot item in thongKe)
             {
                 double tyLeChieuRong = lonNhat > 0
-                    ? 260.0 / lonNhat
+                    ? 85.0 / lonNhat
                     : 0;
 
                 BieuDoThongKeDatTruot bieuDo =

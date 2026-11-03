@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
@@ -11,6 +10,12 @@ using RESULT_ANALYTICS.Models;
 
 namespace RESULT_ANALYTICS.ViewModels
 {
+    internal class TyLeDiemOption
+    {
+        public string MaTyLe { get; set; }
+        public string TenHienThi { get; set; }
+    }
+
     internal class QuanLyDiemViewModel : BindableBase
     {
         private readonly KetQuaRepository ketQuaRepository;
@@ -23,6 +28,7 @@ namespace RESULT_ANALYTICS.ViewModels
         public ObservableCollection<SinhVien> DanhSachSinhVien { get; private set; }
         public ObservableCollection<MonHoc> DanhSachMonHoc { get; private set; }
         public ObservableCollection<HocKy> DanhSachHocKy { get; private set; }
+        public ObservableCollection<TyLeDiemOption> DanhSachTyLeDiem { get; private set; }
 
         // Ket qua dang duoc chon
         private KetQua ketQuaDuocChon;
@@ -37,6 +43,8 @@ namespace RESULT_ANALYTICS.ViewModels
                     MaSVNhap = value.MaSV;
                     MaMonHocNhap = value.MaMonHoc;
                     MaHocKyNhap = value.MaHocKy;
+
+                    TyLeDiemNhap = string.IsNullOrWhiteSpace(value.TyLeDiem) ? "10-30-60" : value.TyLeDiem;
 
                     DiemChuyenCanNhap = ChuyenThanhChuoi(value.DiemChuyenCan);
                     DiemGiuaKyNhap = ChuyenThanhChuoi(value.DiemGiuaKy);
@@ -75,6 +83,27 @@ namespace RESULT_ANALYTICS.ViewModels
             get { return maHocKyNhap; }
             set { SetProperty(ref maHocKyNhap, value); }
         }
+
+        // Ty le tinh diem (10-30-60 hoac 10-40-50)
+        private string tyLeDiemNhap = "10-30-60";
+        public string TyLeDiemNhap
+        {
+            get { return tyLeDiemNhap; }
+            set
+            {
+                if (SetProperty(ref tyLeDiemNhap, value))
+                {
+                    OnPropertyChanged(nameof(NhanChuyenCan));
+                    OnPropertyChanged(nameof(NhanGiuaKy));
+                    OnPropertyChanged(nameof(NhanCuoiKy));
+                }
+            }
+        }
+
+        // Nhan dong cho cac cot diem
+        public string NhanChuyenCan => "Điểm chuyên cần (10%)";
+        public string NhanGiuaKy => TyLeDiemNhap == "10-40-50" ? "Điểm giữa kỳ / TH (40%)" : "Điểm giữa kỳ (30%)";
+        public string NhanCuoiKy => TyLeDiemNhap == "10-40-50" ? "Điểm thi cuối kỳ (50%)" : "Điểm thi cuối kỳ (60%)";
 
         private string diemChuyenCanNhap;
         public string DiemChuyenCanNhap
@@ -123,6 +152,12 @@ namespace RESULT_ANALYTICS.ViewModels
             DanhSachSinhVien = new ObservableCollection<SinhVien>();
             DanhSachMonHoc = new ObservableCollection<MonHoc>();
             DanhSachHocKy = new ObservableCollection<HocKy>();
+
+            DanhSachTyLeDiem = new ObservableCollection<TyLeDiemOption>
+            {
+                new TyLeDiemOption { MaTyLe = "10-30-60", TenHienThi = "10% - 30% - 60% (Môn lý thuyết)" },
+                new TyLeDiemOption { MaTyLe = "10-40-50", TenHienThi = "10% - 40% - 50% (Môn có thực hành)" }
+            };
 
             ThemDiemCommand = new RelayCommand(p => ThemDiem());
             SuaDiemCommand = new RelayCommand(p => SuaDiem());
@@ -229,9 +264,10 @@ namespace RESULT_ANALYTICS.ViewModels
                 MaSV = MaSVNhap.Trim(),
                 MaMonHoc = MaMonHocNhap.Trim(),
                 MaHocKy = MaHocKyNhap.Trim(),
-                DiemChuyenCan = DocDiem(DiemChuyenCanNhap, "Điểm chuyên cần"),
-                DiemGiuaKy = DocDiem(DiemGiuaKyNhap, "Điểm giữa kỳ"),
-                DiemCuoiKy = DocDiem(DiemCuoiKyNhap, "Điểm cuối kỳ")
+                TyLeDiem = string.IsNullOrWhiteSpace(TyLeDiemNhap) ? "10-30-60" : TyLeDiemNhap,
+                DiemChuyenCan = DocDiem(DiemChuyenCanNhap, NhanChuyenCan),
+                DiemGiuaKy = DocDiem(DiemGiuaKyNhap, NhanGiuaKy),
+                DiemCuoiKy = DocDiem(DiemCuoiKyNhap, NhanCuoiKy)
             };
         }
 
@@ -345,6 +381,7 @@ namespace RESULT_ANALYTICS.ViewModels
             MaSVNhap = null;
             MaMonHocNhap = null;
             MaHocKyNhap = null;
+            TyLeDiemNhap = "10-30-60";
 
             DiemChuyenCanNhap = "";
             DiemGiuaKyNhap = "";

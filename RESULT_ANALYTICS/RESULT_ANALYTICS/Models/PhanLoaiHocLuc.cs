@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using RESULT_ANALYTICS.Helpers;
 
 namespace RESULT_ANALYTICS.Models
 {
@@ -25,6 +20,10 @@ namespace RESULT_ANALYTICS.Models
 
         // Ket qua phan tich
         public decimal? DiemTrungBinh { get; set; }
+        public decimal? DiemTrungBinhHe4 { get; set; }
+
+        public string DiemChu => GpaHelper.QuyDoiDiemChu(DiemTrungBinh);
+
         public string XepLoai { get; set; }
         public string CanhBao { get; set; }
     }

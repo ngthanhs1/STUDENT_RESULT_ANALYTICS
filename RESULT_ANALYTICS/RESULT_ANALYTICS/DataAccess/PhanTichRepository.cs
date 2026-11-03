@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,6 +30,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     SoMonThieuDiem,
                     SoTinChiDaCoDiem,
                     DiemTrungBinhTamTinh,
+                    DiemTrungBinhHe4,
                     TrangThai
                 FROM dbo.vw_DiemTrungBinhHocKy
                 WHERE (@MaLop IS NULL OR MaLop = @MaLop)
@@ -75,6 +75,9 @@ namespace RESULT_ANALYTICS.DataAccess
                             item.DiemTrungBinhTamTinh = DocSoThapPhan(
                                 reader, "DiemTrungBinhTamTinh");
 
+                            item.DiemTrungBinhHe4 = DocSoThapPhan(
+                                reader, "DiemTrungBinhHe4");
+
                             item.TrangThai = DocChuoi(reader, "TrangThai");
 
                             danhSach.Add(item);
@@ -106,6 +109,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     TongSoMon,
                     SoMonThieuDiem,
                     DiemTrungBinh,
+                    DiemTrungBinhHe4,
                     XepLoai,
                     CanhBao
                 FROM dbo.vw_PhanLoaiHocLuc
@@ -144,6 +148,9 @@ namespace RESULT_ANALYTICS.DataAccess
 
                             item.DiemTrungBinh = DocSoThapPhan(
                                 reader, "DiemTrungBinh");
+
+                            item.DiemTrungBinhHe4 = DocSoThapPhan(
+                                reader, "DiemTrungBinhHe4");
 
                             item.XepLoai = DocChuoi(reader, "XepLoai");
                             item.CanhBao = DocChuoi(reader, "CanhBao");

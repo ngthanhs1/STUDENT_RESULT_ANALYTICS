@@ -104,13 +104,17 @@ namespace RESULT_ANALYTICS.DataAccess
                 throw new ArgumentException(
                     "Loại file phải là CSV hoặc XLSX!");
 
+
             string trangThai = (lichSu.TrangThai ?? "").Trim();
 
             if (trangThai != "ThanhCong" &&
                 trangThai != "MotPhan" &&
-                trangThai != "ThatBai")
+                trangThai != "Loi")
+            {
                 throw new ArgumentException(
                     "Trạng thái Import không hợp lệ!");
+            }
+
 
 
 

@@ -1,0 +1,62 @@
+                                                                                                                                                                                                                                                                
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- VIEW TINH DIEM TRUNG BINH THEO TIN CHI
+
+CREATE   VIEW dbo.vw_DiemTrungBinhHocKy
+AS
+SELECT
+    sv.MaSV,
+    sv.HoTen,
+    sv.MaLop,
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc,
+
+    COUNT(*) AS TongSoMon,
+
+    SUM(mh.SoTinChi) AS TongS
+
+(1 rows affected)
+                                                                                                                                                                                                                                                                
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE   VIEW dbo.vw_SinhVienThieuDiem
+AS
+SELECT
+    sv.MaSV,
+    sv.HoTen,
+    mh.MaMonHoc,
+    mh.TenMonHoc,
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc,
+
+    k.DiemChuyenCan,
+    k.DiemGiuaKy,
+    k.DiemCuoiKy,
+
+    CONCAT_WS(N', ',
+
+(1 rows affected)
+                                                                                                                                                                                                                                                                
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- VIEW THONG KE DAT / TRUOT THEO MON VA HOC KY
+
+CREATE   VIEW dbo.vw_ThongKeDatTruot
+AS
+SELECT
+    mh.MaMonHoc,
+    mh.TenMonHoc,
+    mh.SoTinChi,
+
+    hk.MaHocKy,
+    hk.TenHocKy,
+    hk.NamHoc,
+
+    COUNT(k.MaKetQua) AS TongSinhVien,
+
+ 
+
+(1 rows affected)

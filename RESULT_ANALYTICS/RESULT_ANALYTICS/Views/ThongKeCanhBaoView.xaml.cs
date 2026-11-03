@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel;
 using System.Windows.Controls;
-using RESULT_ANALYTICS.ViewModels;
 
 namespace RESULT_ANALYTICS.Views
 {
@@ -10,12 +7,7 @@ namespace RESULT_ANALYTICS.Views
         public ThongKeCanhBaoView()
         {
             InitializeComponent();
-
-            // Khoi tao ViewModel khi chay ung dung
-            if (!DesignerProperties.GetIsInDesignMode(this))
-            {
-                DataContext = new ThongKeCanhBaoViewModel();
-            }
+            // DataContext duoc truyen tu MainWindow.NoiDungHienTai thong qua ContentControl DataTemplate
         }
     }
 }

@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
@@ -15,7 +14,7 @@ namespace RESULT_ANALYTICS.ViewModels
         private readonly QuanLyTaiKhoanRepository repository;
 
         // =====================================
-        // 1. DANH SACH TAI KHOAN
+        // 1. DANH SACH TAI KHOAN & KPI
         // =====================================
 
         public ObservableCollection<TaiKhoanQuanLy> DanhSachTaiKhoan
@@ -25,6 +24,37 @@ namespace RESULT_ANALYTICS.ViewModels
         }
 
         public string[] DanhSachVaiTro { get; private set; }
+
+        public int TongTaiKhoan
+        {
+            get { return DanhSachTaiKhoan.Count; }
+        }
+
+        public int SoTaiKhoanHoatDong
+        {
+            get
+            {
+                int count = 0;
+                foreach (var tk in DanhSachTaiKhoan)
+                {
+                    if (tk.TrangThai) count++;
+                }
+                return count;
+            }
+        }
+
+        public int SoTaiKhoanBiKhoa
+        {
+            get
+            {
+                int count = 0;
+                foreach (var tk in DanhSachTaiKhoan)
+                {
+                    if (!tk.TrangThai) count++;
+                }
+                return count;
+            }
+        }
 
         // =====================================
         // 2. TAI KHOAN DUOC CHON
@@ -50,7 +80,7 @@ namespace RESULT_ANALYTICS.ViewModels
         }
 
         // =====================================
-        // 3. THONG TIN NHAP
+        // 3. THONG TIN NHAP & TRANG THAI KHOA / MO
         // =====================================
 
         private string tenDangNhapNhap;
@@ -74,7 +104,50 @@ namespace RESULT_ANALYTICS.ViewModels
         public bool TrangThaiNhap
         {
             get { return trangThaiNhap; }
-            set { SetProperty(ref trangThaiNhap, value); }
+            set
+            {
+                if (SetProperty(ref trangThaiNhap, value))
+                {
+                    OnPropertyChanged(nameof(TrangThaiMoKhoa));
+                    OnPropertyChanged(nameof(TrangThaiKhoa));
+                    OnPropertyChanged(nameof(ChuThichTrangThai));
+                }
+            }
+        }
+
+        // Ho tro chon truc tiep bang 2 nut Mo khoa / Khoa (Segmented control)
+        public bool TrangThaiMoKhoa
+        {
+            get { return trangThaiNhap; }
+            set
+            {
+                if (value)
+                {
+                    TrangThaiNhap = true;
+                }
+            }
+        }
+
+        public bool TrangThaiKhoa
+        {
+            get { return !trangThaiNhap; }
+            set
+            {
+                if (value)
+                {
+                    TrangThaiNhap = false;
+                }
+            }
+        }
+
+        public string ChuThichTrangThai
+        {
+            get
+            {
+                return trangThaiNhap
+                    ? "Trạng thái: Đang MỞ KHÓA (Tài khoản được phép đăng nhập bình thường)"
+                    : "Trạng thái: Đang BỊ KHÓA (Tài khoản bị chặn đăng nhập vào hệ thống)";
+            }
         }
 
         private string thongBao;
@@ -101,6 +174,7 @@ namespace RESULT_ANALYTICS.ViewModels
         public ICommand ThemTaiKhoanCommand { get; private set; }
         public ICommand CapNhatTaiKhoanCommand { get; private set; }
         public ICommand DoiMatKhauCommand { get; private set; }
+        public ICommand ChuyenTrangThaiKhoaNhanhCommand { get; private set; }
         public ICommand LamTrongCommand { get; private set; }
         public ICommand LamMoiCommand { get; private set; }
 
@@ -125,8 +199,6 @@ namespace RESULT_ANALYTICS.ViewModels
             TrangThaiNhap = true;
             ThongBao = "";
 
-            // Mat khau se duoc truyen tu PasswordBox
-            // qua CommandParameter khi lam giao dien
             ThemTaiKhoanCommand =
                 new RelayCommand(p => ThemTaiKhoan(p as string));
 
@@ -135,6 +207,9 @@ namespace RESULT_ANALYTICS.ViewModels
 
             DoiMatKhauCommand =
                 new RelayCommand(p => DoiMatKhau(p as string));
+
+            ChuyenTrangThaiKhoaNhanhCommand =
+                new RelayCommand(p => ChuyenTrangThaiKhoaNhanh());
 
             LamTrongCommand =
                 new RelayCommand(p => LamTrong());
@@ -186,6 +261,15 @@ namespace RESULT_ANALYTICS.ViewModels
             {
                 DanhSachTaiKhoan.Add(tk);
             }
+
+            CapNhatKpi();
+        }
+
+        private void CapNhatKpi()
+        {
+            OnPropertyChanged(nameof(TongTaiKhoan));
+            OnPropertyChanged(nameof(SoTaiKhoanHoatDong));
+            OnPropertyChanged(nameof(SoTaiKhoanBiKhoa));
         }
 
         // =====================================
@@ -203,11 +287,10 @@ namespace RESULT_ANALYTICS.ViewModels
                         "Vui lòng nhập tên đăng nhập!");
 
                 if (string.IsNullOrEmpty(matKhau) ||
-                    matKhau.Length < 8)
+                    matKhau.Length < 6)
                     throw new ArgumentException(
-                        "Mật khẩu phải có ít nhất 8 ký tự!");
+                        "Mật khẩu phải có ít nhất 6 ký tự!");
 
-                // Su dung PasswordHasher hien co
                 string matKhauHash =
                     PasswordHasher.HashPassword(matKhau);
 
@@ -218,6 +301,16 @@ namespace RESULT_ANALYTICS.ViewModels
 
                 if (thanhCong)
                 {
+                    if (!TrangThaiNhap)
+                    {
+                        TaiKhoanQuanLy vuaThem = repository.LayDanhSach()
+                            .Find(x => x.TenDangNhap.Equals(TenDangNhapNhap.Trim(), StringComparison.OrdinalIgnoreCase));
+                        if (vuaThem != null)
+                        {
+                            repository.CapNhat(vuaThem.MaTaiKhoan, VaiTroNhap, false);
+                        }
+                    }
+
                     LamTrong();
                     TaiDanhSach();
                     ThongBao = "Thêm tài khoản thành công!";
@@ -245,10 +338,8 @@ namespace RESULT_ANALYTICS.ViewModels
 
                 if (TaiKhoanDuocChon == null)
                     throw new ArgumentException(
-                        "Vui lòng chọn tài khoản cần sửa!");
+                        "Vui lòng chọn tài khoản cần sửa trong bảng bên dưới!");
 
-                // Khong cho tai khoan dang su dung
-                // tu khoa minh hoac tu ha quyen
                 bool laTaiKhoanHienTai =
                     string.Equals(
                         TaiKhoanDuocChon.TenDangNhap,
@@ -291,7 +382,57 @@ namespace RESULT_ANALYTICS.ViewModels
         }
 
         // =====================================
-        // 11. DAT LAI MAT KHAU
+        // 11. CHUYEN TRANG THAI KHOA / MO NHANH
+        // =====================================
+
+        private void ChuyenTrangThaiKhoaNhanh()
+        {
+            try
+            {
+                KiemTraQuyen();
+
+                if (TaiKhoanDuocChon == null)
+                    throw new ArgumentException("Vui lòng chọn một tài khoản trong bảng để Khóa/Mở khóa!");
+
+                bool laTaiKhoanHienTai =
+                    string.Equals(
+                        TaiKhoanDuocChon.TenDangNhap,
+                        PhienDangNhap.TenDangNhap,
+                        StringComparison.OrdinalIgnoreCase);
+
+                bool trangThaiMoi = !TaiKhoanDuocChon.TrangThai;
+
+                if (laTaiKhoanHienTai && !trangThaiMoi)
+                {
+                    throw new InvalidOperationException("Không thể tự khóa tài khoản đang đăng nhập!");
+                }
+
+                bool thanhCong = repository.CapNhat(
+                    TaiKhoanDuocChon.MaTaiKhoan,
+                    TaiKhoanDuocChon.VaiTro,
+                    trangThaiMoi);
+
+                if (thanhCong)
+                {
+                    ThongBao = trangThaiMoi
+                        ? $"Đã mở khóa tài khoản '{TaiKhoanDuocChon.TenDangNhap}' thành công!"
+                        : $"Đã khóa tài khoản '{TaiKhoanDuocChon.TenDangNhap}' thành công!";
+                    LamTrong();
+                    TaiDanhSach();
+                }
+                else
+                {
+                    ThongBao = "Không tìm thấy tài khoản!";
+                }
+            }
+            catch (Exception ex)
+            {
+                BaoLoi(ex);
+            }
+        }
+
+        // =====================================
+        // 12. DAT LAI MAT KHAU
         // =====================================
 
         private void DoiMatKhau(string matKhauMoi)
@@ -302,12 +443,12 @@ namespace RESULT_ANALYTICS.ViewModels
 
                 if (TaiKhoanDuocChon == null)
                     throw new ArgumentException(
-                        "Vui lòng chọn tài khoản cần đặt lại mật khẩu!");
+                        "Vui lòng chọn tài khoản cần đặt lại mật khẩu trong bảng!");
 
                 if (string.IsNullOrEmpty(matKhauMoi) ||
-                    matKhauMoi.Length < 8)
+                    matKhauMoi.Length < 6)
                     throw new ArgumentException(
-                        "Mật khẩu mới phải có ít nhất 8 ký tự!");
+                        "Mật khẩu mới phải có ít nhất 6 ký tự!");
 
                 string hashMoi =
                     PasswordHasher.HashPassword(matKhauMoi);
@@ -317,7 +458,7 @@ namespace RESULT_ANALYTICS.ViewModels
                     hashMoi);
 
                 ThongBao = thanhCong
-                    ? "Đặt lại mật khẩu thành công!"
+                    ? $"Đặt lại mật khẩu cho tài khoản '{TaiKhoanDuocChon.TenDangNhap}' thành công!"
                     : "Không tìm thấy tài khoản!";
             }
             catch (Exception ex)
@@ -327,7 +468,7 @@ namespace RESULT_ANALYTICS.ViewModels
         }
 
         // =====================================
-        // 12. LAM TRONG
+        // 13. LAM TRONG
         // =====================================
 
         private void LamTrong()
@@ -340,7 +481,7 @@ namespace RESULT_ANALYTICS.ViewModels
         }
 
         // =====================================
-        // 13. LAM MOI
+        // 14. LAM MOI
         // =====================================
 
         private void LamMoi()
@@ -361,7 +502,7 @@ namespace RESULT_ANALYTICS.ViewModels
         }
 
         // =====================================
-        // 14. XU LY LOI
+        // 15. XU LY LOI
         // =====================================
 
         private void BaoLoi(Exception ex)

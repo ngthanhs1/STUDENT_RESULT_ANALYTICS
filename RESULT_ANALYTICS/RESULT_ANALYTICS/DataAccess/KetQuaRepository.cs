@@ -1,9 +1,5 @@
-﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using RESULT_ANALYTICS.Models;
@@ -26,6 +22,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     mh.TenMonHoc,
                     kq.MaHocKy,
                     hk.TenHocKy,
+                    ISNULL(kq.TyLeDiem, '10-30-60') AS TyLeDiem,
                     kq.DiemChuyenCan,
                     kq.DiemGiuaKy,
                     kq.DiemCuoiKy,
@@ -58,6 +55,7 @@ namespace RESULT_ANALYTICS.DataAccess
                             ketQua.TenMonHoc = reader["TenMonHoc"].ToString();
                             ketQua.MaHocKy = reader["MaHocKy"].ToString();
                             ketQua.TenHocKy = reader["TenHocKy"].ToString();
+                            ketQua.TyLeDiem = reader["TyLeDiem"] != DBNull.Value ? reader["TyLeDiem"].ToString() : "10-30-60";
 
                             ketQua.DiemChuyenCan = DocDiem(reader, "DiemChuyenCan");
                             ketQua.DiemGiuaKy = DocDiem(reader, "DiemGiuaKy");
@@ -95,6 +93,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     MaSV,
                     MaMonHoc,
                     MaHocKy,
+                    TyLeDiem,
                     DiemChuyenCan,
                     DiemGiuaKy,
                     DiemCuoiKy
@@ -104,6 +103,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     @MaSV,
                     @MaMonHoc,
                     @MaHocKy,
+                    @TyLeDiem,
                     @DiemChuyenCan,
                     @DiemGiuaKy,
                     @DiemCuoiKy
@@ -133,6 +133,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     MaSV = @MaSV,
                     MaMonHoc = @MaMonHoc,
                     MaHocKy = @MaHocKy,
+                    TyLeDiem = @TyLeDiem,
                     DiemChuyenCan = @DiemChuyenCan,
                     DiemGiuaKy = @DiemGiuaKy,
                     DiemCuoiKy = @DiemCuoiKy
@@ -191,6 +192,9 @@ namespace RESULT_ANALYTICS.DataAccess
 
             cmd.Parameters.Add("@MaHocKy", SqlDbType.VarChar, 20)
                 .Value = ketQua.MaHocKy.Trim();
+
+            cmd.Parameters.Add("@TyLeDiem", SqlDbType.VarChar, 20)
+                .Value = string.IsNullOrWhiteSpace(ketQua.TyLeDiem) ? "10-30-60" : ketQua.TyLeDiem.Trim();
 
             GanDiem(cmd, "@DiemChuyenCan", ketQua.DiemChuyenCan);
             GanDiem(cmd, "@DiemGiuaKy", ketQua.DiemGiuaKy);

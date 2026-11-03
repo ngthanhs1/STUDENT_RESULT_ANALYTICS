@@ -1,159 +1,323 @@
-﻿<UserControl x:Class="RESULT_ANALYTICS.Views.PhanTichView"
+<UserControl x:Class="RESULT_ANALYTICS.Views.PhanTichView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Background="#F4F6F8">
+             Background="#F1F5F9">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Margin="3">
+    <!-- DINH DANG GIAO DIEN CO DIEN GON GANG -->
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
-            <!-- TIEU DE -->
-            <TextBlock Text="PHÂN TÍCH KẾT QUẢ HỌC TẬP" FontSize="23" FontWeight="Bold" Foreground="#174A78"/>
-            <TextBlock Text="Phân tích điểm trung bình, phân loại học lực và theo dõi tình trạng thiếu điểm" FontSize="12" Foreground="#64748B" Margin="0,5,0,0" TextWrapping="Wrap"/>
+        <Style x:Key="ClassicBtn" TargetType="Button">
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="MinWidth" Value="75"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="11.5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-            <!-- BO LOC -->
-            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,20,0,15" BorderBrush="#DDE5EF" BorderThickness="1">
-                <StackPanel>
-                    <TextBlock Text="BỘ LỌC PHÂN TÍCH" FontSize="16" FontWeight="Bold" Foreground="#174A78"/>
+        <Style x:Key="OutlineSmallBtn" TargetType="Button">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#1E4E79"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-                    <Grid Margin="0,15,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+        <Style x:Key="ClassicTab" TargetType="TabItem">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="14,6"/>
+            <Setter Property="Margin" Value="0,0,2,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="tabBorder" Background="#E2E8F0" CornerRadius="4,4,0,0" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}" BorderBrush="#CBD5E1" BorderThickness="1,1,1,0">
+                            <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="tabBorder" Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="#174A78"/>
+                                <Setter TargetName="tabBorder" Property="BorderThickness" Value="1,2,1,0"/>
+                                <Setter TargetName="tabBorder" Property="BorderBrush" Value="#1E4E79"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Foreground" Value="#64748B"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="2,0,2,4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- HANG 0: TIEU DE -->
+            <RowDefinition Height="Auto"/> <!-- HANG 1: BO LOC GIAO DIEN -->
+            <RowDefinition Height="Auto"/> <!-- HANG 2: 5 THE CHI SO DONG DEU -->
+            <RowDefinition Height="*"/>    <!-- HANG 3: TAB DU LIEU CHI TIET -->
+        </Grid.RowDefinitions>
+
+        <!-- HANG 0: TIEU DE -->
+        <TextBlock Grid.Row="0" Text="PHÂN TÍCH KẾT QUẢ HỌC TẬP &amp; HỌC LỰC" FontSize="16" FontWeight="Bold" Foreground="#174A78" Margin="0,0,0,6"/>
+
+        <!-- HANG 1: THANH BO LOC GON GANG TREN 1 HANG -->
+        <Border Grid.Row="1" Background="White" CornerRadius="4" Padding="10,6" Margin="0,0,0,6" BorderBrush="#CBD5E1" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/> <!-- "Lớp sinh hoạt:" -->
+                    <ColumnDefinition Width="200"/> <!-- ComboBox Lop -->
+                    <ColumnDefinition Width="Auto"/> <!-- "Học kỳ xét:" -->
+                    <ColumnDefinition Width="170"/> <!-- ComboBox Hoc ky -->
+                    <ColumnDefinition Width="Auto"/> <!-- Button Loc -->
+                    <ColumnDefinition Width="Auto"/> <!-- Button Lam moi -->
+                    <ColumnDefinition Width="*"/>    <!-- Thong bao -->
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Lớp sinh hoạt:" FontWeight="SemiBold" FontSize="11.5" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                <ComboBox Grid.Column="1" Height="27" Margin="0,0,12,0" ItemsSource="{Binding DanhSachLopLoc}" DisplayMemberPath="TenHienThi" SelectedValuePath="Ma" SelectedValue="{Binding MaLopLoc, Mode=TwoWay}" FontSize="11.5"/>
+
+                <TextBlock Grid.Column="2" Text="Học kỳ xét:" FontWeight="SemiBold" FontSize="11.5" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                <ComboBox Grid.Column="3" Height="27" Margin="0,0,12,0" ItemsSource="{Binding DanhSachHocKyLoc}" DisplayMemberPath="TenHienThi" SelectedValuePath="Ma" SelectedValue="{Binding MaHocKyLoc, Mode=TwoWay}" FontSize="11.5"/>
+
+                <Button Grid.Column="4" Content="LỌC DỮ LIỆU" Command="{Binding LocDuLieuCommand}" Background="#1976D2" Style="{StaticResource ClassicBtn}" MinWidth="85" Margin="0,0,6,0"/>
+                <Button Grid.Column="5" Content="LÀM MỚI" Command="{Binding LamMoiCommand}" Background="#0284C7" Style="{StaticResource ClassicBtn}" MinWidth="75" Margin="0,0,10,0"/>
+
+                <TextBlock Grid.Column="6" Text="{Binding ThongBao}" Foreground="#1976D2" FontSize="11.5" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+            </Grid>
+        </Border>
+
+        <!-- HANG 2: 5 THE THONG KE NẰM GỌN TREN 1 HANG (UNIFORMGRID) -->
+        <UniformGrid Grid.Row="2" Columns="5" Margin="0,0,0,6">
+            <!-- 1. TONG SINH VIEN -->
+            <Border Background="#E3F2FD" CornerRadius="4" Padding="10,5" Margin="0,0,4,0" BorderBrush="#BBDEFB" BorderThickness="1" MinHeight="58">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="👥 TỔNG SINH VIÊN" FontSize="10" FontWeight="SemiBold" Foreground="#1762A5"/>
+                    <TextBlock Text="{Binding TongSinhVien}" FontSize="18" FontWeight="Bold" Foreground="#174A78" Margin="0,1,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- 2. KET QUA DU DIEM -->
+            <Border Background="#E8F5E9" CornerRadius="4" Padding="10,5" Margin="2,0,4,0" BorderBrush="#C8E6C9" BorderThickness="1" MinHeight="58">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="✅ KẾT QUẢ ĐỦ ĐIỂM" FontSize="10" FontWeight="SemiBold" Foreground="#2E7D32"/>
+                    <TextBlock Text="{Binding SoKetQuaDuDiem}" FontSize="18" FontWeight="Bold" Foreground="#2E7D32" Margin="0,1,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- 3. KET QUA THIEU DIEM -->
+            <Border Background="#FFF3E0" CornerRadius="4" Padding="10,5" Margin="2,0,4,0" BorderBrush="#FFE0B2" BorderThickness="1" MinHeight="58">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="⏳ KẾT QUẢ THIẾU ĐIỂM" FontSize="10" FontWeight="SemiBold" Foreground="#C46A12"/>
+                    <TextBlock Text="{Binding SoKetQuaThieuDiem}" FontSize="18" FontWeight="Bold" Foreground="#C46A12" Margin="0,1,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- 4. DIEM TRUNG BINH 10 -->
+            <Border Background="#F1E7F8" CornerRadius="4" Padding="10,5" Margin="2,0,4,0" BorderBrush="#E1BEE7" BorderThickness="1" MinHeight="58">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="📈 ĐIỂM TRUNG BÌNH (10)" FontSize="10" FontWeight="SemiBold" Foreground="#803DB0"/>
+                    <TextBlock Text="{Binding DiemTrungBinhChung}" FontSize="18" FontWeight="Bold" Foreground="#803DB0" Margin="0,1,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- 5. GPA HE 4.0 -->
+            <Border Background="#EEF2FF" CornerRadius="4" Padding="10,5" Margin="2,0,0,0" BorderBrush="#C7D2FE" BorderThickness="1" MinHeight="58">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="🎓 GPA HỆ 4.0" FontSize="10" FontWeight="SemiBold" Foreground="#4338CA"/>
+                    <TextBlock Text="{Binding GpaHe4Chung}" FontSize="18" FontWeight="Bold" Foreground="#3730A3" Margin="0,1,0,0"/>
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <!-- HANG 3: TABCONTROL CHIA 2 MỤC THÔNG MINH, KHÔNG CẦN CUỘN TRANG DÀI -->
+        <TabControl Grid.Row="3" Background="Transparent" BorderThickness="0" Margin="0,2,0,0">
+            <!-- TAB 1: BANG DIEM TRUNG BINH & BIEU DO PHAN BO -->
+            <TabItem Style="{StaticResource ClassicTab}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📊 Bảng điểm trung bình theo học kỳ" VerticalAlignment="Center"/>
+                        <Border Background="#1E4E79" CornerRadius="7" Padding="5,1" Margin="6,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding DanhSachDiemTrungBinh.Count}" Foreground="White" FontSize="10.5" FontWeight="Bold"/>
+                        </Border>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Border Background="White" CornerRadius="0,4,4,4" Padding="10" BorderBrush="#CBD5E1" BorderThickness="1">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/> <!-- BIEU DO THU GON -->
+                            <RowDefinition Height="*"/>    <!-- BANG DIEM TRUNG BINH -->
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Chọn lớp học" FontWeight="SemiBold" FontSize="12"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Chọn học kỳ" FontWeight="SemiBold" FontSize="12"/>
+                        <!-- KHUNG BIỂU ĐỒ PHÂN BỐ THU GỌN -->
+                        <Border Grid.Row="0" Background="#F8FAFC" CornerRadius="4" Padding="10,6" Margin="0,0,0,8" BorderBrush="#E2E8F0" BorderThickness="1">
+                            <StackPanel>
+                                <Grid Margin="0,0,0,4">
+                                    <TextBlock Text="BIỂU ĐỒ PHÂN BỐ HỌC LỰC" FontSize="12" FontWeight="Bold" Foreground="#174A78" VerticalAlignment="Center"/>
+                                    <!-- NUT AN / HIEN BIEU DO -->
+                                    <Button HorizontalAlignment="Right" Content="Ẩn / Hiện biểu đồ" Command="{Binding ChuyenTrangThaiBieuDoCommand}" Style="{StaticResource OutlineSmallBtn}"/>
+                                </Grid>
 
-                        <ComboBox Grid.Row="1" Grid.Column="0" Height="36" Margin="0,7,12,0" ItemsSource="{Binding DanhSachLopLoc}" DisplayMemberPath="TenHienThi" SelectedValuePath="Ma" SelectedValue="{Binding MaLopLoc, Mode=TwoWay}"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" Height="36" Margin="0,7,0,0" ItemsSource="{Binding DanhSachHocKyLoc}" DisplayMemberPath="TenHienThi" SelectedValuePath="Ma" SelectedValue="{Binding MaHocKyLoc, Mode=TwoWay}"/>
+                                <!-- NOI DUNG BIEU DO NẰM NGANG GỌN GÀNG -->
+                                <WrapPanel Visibility="{Binding HienThiBieuDo, Converter={StaticResource BoolToVis}}" Margin="0,4,0,0">
+                                    <ItemsControl ItemsSource="{Binding DanhSachThongKe}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Width="280" Margin="0,2,14,2" Padding="4,2">
+                                                    <Grid VerticalAlignment="Center">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="75"/>
+                                                            <ColumnDefinition Width="110"/>
+                                                            <ColumnDefinition Width="30"/>
+                                                            <ColumnDefinition Width="50"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <TextBlock Grid.Column="0" Text="{Binding XepLoai}" FontWeight="SemiBold" FontSize="11" VerticalAlignment="Center"/>
+
+                                                        <Border Grid.Column="1" Background="#E2E8F0" Height="10" CornerRadius="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="105">
+                                                            <Border Width="{Binding ChieuRongCot}" MaxWidth="105" Height="10" Background="#2563EB" CornerRadius="2" HorizontalAlignment="Left"/>
+                                                        </Border>
+
+                                                        <TextBlock Grid.Column="2" Text="{Binding SoLuong}" FontWeight="Bold" FontSize="11" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                                        <TextBlock Grid.Column="3" Text="{Binding TyLe}" Foreground="#64748B" FontSize="10.5" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- BANG DIEM TRUNG BINH THEO HOC KY -->
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding DanhSachDiemTrungBinh}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  SelectionMode="Single"
+                                  SelectionUnit="FullRow"
+                                  HeadersVisibility="Column"
+                                  AlternatingRowBackground="#F8FAFC"
+                                  GridLinesVisibility="Horizontal"
+                                  RowHeight="27"
+                                  ColumnHeaderHeight="30"
+                                  BorderBrush="#CBD5E1"
+                                  FontSize="11.5"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã SV" Binding="{Binding MaSV}" Width="80"/>
+                                <DataGridTextColumn Header="Họ tên sinh viên" Binding="{Binding HoTen}" Width="150"/>
+                                <DataGridTextColumn Header="Lớp" Binding="{Binding MaLop}" Width="80"/>
+                                <DataGridTextColumn Header="Học kỳ" Binding="{Binding TenHocKy}" Width="95"/>
+                                <DataGridTextColumn Header="Năm học" Binding="{Binding NamHoc}" Width="90"/>
+                                <DataGridTextColumn Header="Tổng môn" Binding="{Binding TongSoMon}" Width="75"/>
+                                <DataGridTextColumn Header="Tổng TC" Binding="{Binding TongSoTinChi}" Width="75"/>
+                                <DataGridTextColumn Header="Môn thiếu" Binding="{Binding SoMonThieuDiem}" Width="80"/>
+                                <DataGridTextColumn Header="TC đã có" Binding="{Binding SoTinChiDaCoDiem}" Width="75"/>
+                                <DataGridTextColumn Header="Điểm TB (10)" Binding="{Binding DiemTrungBinhTamTinh, StringFormat={}{0:0.00}}" Width="95"/>
+                                <DataGridTextColumn Header="GPA (Hệ 4)" Binding="{Binding DiemTrungBinhHe4, StringFormat={}{0:0.00}}" Width="90"/>
+                                <DataGridTextColumn Header="Điểm chữ" Binding="{Binding DiemChu}" Width="75"/>
+                                <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="105"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
-
-                    <WrapPanel Margin="0,18,0,0">
-                        <Button Content="LỌC DỮ LIỆU" Width="135" Height="38" Background="#1976D2" Foreground="White" FontWeight="Bold" BorderThickness="0" Margin="0,0,10,5" Command="{Binding LocDuLieuCommand}"/>
-                        <Button Content="LÀM MỚI" Width="125" Height="38" Background="#00889A" Foreground="White" FontWeight="Bold" BorderThickness="0" Margin="0,0,10,5" Command="{Binding LamMoiCommand}"/>
-                    </WrapPanel>
-
-                    <TextBlock Text="{Binding ThongBao}" Foreground="#1976D2" Margin="0,10,0,0" FontSize="12" TextWrapping="Wrap"/>
-                </StackPanel>
-            </Border>
-
-            <!-- CAC THE THONG KE -->
-            <TextBlock Text="THỐNG KÊ TỔNG QUAN" FontSize="16" FontWeight="Bold" Foreground="#174A78" Margin="0,5,0,12"/>
-
-            <WrapPanel Margin="0,0,0,15">
-
-                <Border Width="190" Height="105" Background="#E3F2FD" CornerRadius="8" Padding="15" Margin="0,0,12,10">
-                    <StackPanel>
-                        <TextBlock Text="TỔNG SINH VIÊN" Foreground="#1762A5" FontSize="11" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TongSinhVien}" Foreground="#174A78" FontSize="30" FontWeight="Bold" Margin="0,8,0,0"/>
-                    </StackPanel>
                 </Border>
+            </TabItem>
 
-                <Border Width="190" Height="105" Background="#E7F5E9" CornerRadius="8" Padding="15" Margin="0,0,12,10">
-                    <StackPanel>
-                        <TextBlock Text="KẾT QUẢ ĐỦ ĐIỂM" Foreground="#287D3C" FontSize="11" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding SoKetQuaDuDiem}" Foreground="#287D3C" FontSize="30" FontWeight="Bold" Margin="0,8,0,0"/>
+            <!-- TAB 2: BANG PHAN LOAI HOC LUC (VIEW SQL) -->
+            <TabItem Style="{StaticResource ClassicTab}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🏆 Bảng phân loại học lực (View SQL)" VerticalAlignment="Center"/>
+                        <Border Background="#1E4E79" CornerRadius="7" Padding="5,1" Margin="6,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding DanhSachPhanLoai.Count}" Foreground="White" FontSize="10.5" FontWeight="Bold"/>
+                        </Border>
                     </StackPanel>
+                </TabItem.Header>
+
+                <Border Background="White" CornerRadius="0,4,4,4" Padding="10" BorderBrush="#CBD5E1" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- GHI CHU TIÊU CHUẨN XẾP LOẠI -->
+                        <Grid Grid.Row="0" Margin="0,0,0,8">
+                            <TextBlock Text="KẾT QUẢ XẾP LOẠI HỌC LỰC THEO QUY CHẾ ĐÀO TẠO TÍN CHỈ" FontSize="12.5" FontWeight="Bold" Foreground="#174A78" VerticalAlignment="Center"/>
+                            <TextBlock Text="* Xuất sắc (≥3.60) | Giỏi (3.20-3.59) | Khá (2.50-3.19) | TB (2.00-2.49) | Yếu (1.00-1.99)" Foreground="#64748B" FontSize="11" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <!-- BANG PHAN LOAI -->
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding DanhSachPhanLoai}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  SelectionMode="Single"
+                                  SelectionUnit="FullRow"
+                                  HeadersVisibility="Column"
+                                  AlternatingRowBackground="#F8FAFC"
+                                  GridLinesVisibility="Horizontal"
+                                  RowHeight="27"
+                                  ColumnHeaderHeight="30"
+                                  BorderBrush="#CBD5E1"
+                                  FontSize="11.5"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã SV" Binding="{Binding MaSV}" Width="80"/>
+                                <DataGridTextColumn Header="Họ tên sinh viên" Binding="{Binding HoTen}" Width="150"/>
+                                <DataGridTextColumn Header="Lớp" Binding="{Binding MaLop}" Width="80"/>
+                                <DataGridTextColumn Header="Học kỳ" Binding="{Binding TenHocKy}" Width="95"/>
+                                <DataGridTextColumn Header="Năm học" Binding="{Binding NamHoc}" Width="90"/>
+                                <DataGridTextColumn Header="Tổng môn" Binding="{Binding TongSoMon}" Width="75"/>
+                                <DataGridTextColumn Header="Môn thiếu" Binding="{Binding SoMonThieuDiem}" Width="80"/>
+                                <DataGridTextColumn Header="Điểm TB (10)" Binding="{Binding DiemTrungBinh, StringFormat={}{0:0.00}}" Width="95"/>
+                                <DataGridTextColumn Header="GPA (Hệ 4)" Binding="{Binding DiemTrungBinhHe4, StringFormat={}{0:0.00}}" Width="90"/>
+                                <DataGridTextColumn Header="Xếp loại" Binding="{Binding XepLoai}" Width="110"/>
+                                <DataGridTextColumn Header="Cảnh báo" Binding="{Binding CanhBao}" Width="*" MinWidth="160"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </Border>
+            </TabItem>
+        </TabControl>
 
-                <Border Width="190" Height="105" Background="#FFF0E0" CornerRadius="8" Padding="15" Margin="0,0,12,10">
-                    <StackPanel>
-                        <TextBlock Text="KẾT QUẢ THIẾU ĐIỂM" Foreground="#C46A12" FontSize="11" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding SoKetQuaThieuDiem}" Foreground="#C46A12" FontSize="30" FontWeight="Bold" Margin="0,8,0,0"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Width="190" Height="105" Background="#F1E7F8" CornerRadius="8" Padding="15" Margin="0,0,12,10">
-                    <StackPanel>
-                        <TextBlock Text="ĐIỂM TRUNG BÌNH" Foreground="#803DB0" FontSize="11" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding DiemTrungBinhChung}" Foreground="#803DB0" FontSize="30" FontWeight="Bold" Margin="0,8,0,0"/>
-                    </StackPanel>
-                </Border>
-
-            </WrapPanel>
-
-            <!-- BIEU DO PHAN BO HOC LUC -->
-            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15" BorderBrush="#DDE5EF" BorderThickness="1">
-                <StackPanel>
-                    <TextBlock Text="BIỂU ĐỒ PHÂN BỐ HỌC LỰC" FontSize="16" FontWeight="Bold" Foreground="#174A78"/>
-                    <TextBlock Text="Thống kê theo kết quả đã đủ điểm của lớp và học kỳ đang lọc" FontSize="12" Foreground="#64748B" Margin="0,5,0,15" TextWrapping="Wrap"/>
-
-                    <ItemsControl ItemsSource="{Binding DanhSachThongKe}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="0,5,0,5" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding XepLoai}" Width="120" FontWeight="SemiBold" FontSize="12" VerticalAlignment="Center"/>
-                                    <Border Background="#E8EEF5" Width="240" Height="22" CornerRadius="4" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Grid HorizontalAlignment="Left">
-                                            <Border Width="{Binding ChieuRongCot}" Height="22" Background="#2476C9" CornerRadius="4" HorizontalAlignment="Left"/>
-                                        </Grid>
-                                    </Border>
-                                    <TextBlock Text="{Binding SoLuong}" Width="45" Margin="12,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding TyLe}" Foreground="#64748B" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                    <TextBlock Text="Lưu ý: Kết quả chưa đủ điểm không được tính vào các nhóm xếp loại chính thức." FontSize="12" Foreground="#64748B" Margin="0,15,0,0" TextWrapping="Wrap"/>
-                </StackPanel>
-            </Border>
-
-            <!-- BANG DIEM TRUNG BINH -->
-            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15" BorderBrush="#DDE5EF" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock Text="BẢNG ĐIỂM TRUNG BÌNH THEO HỌC KỲ" FontSize="16" FontWeight="Bold" Foreground="#174A78" Margin="0,0,0,15"/>
-
-                    <DataGrid ItemsSource="{Binding DanhSachDiemTrungBinh}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" AlternatingRowBackground="#EEF3F9" GridLinesVisibility="Horizontal" RowHeight="32" ColumnHeaderHeight="35" Height="260" HorizontalScrollBarVisibility="Auto">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã SV" Binding="{Binding MaSV}" Width="90"/>
-                            <DataGridTextColumn Header="Họ tên sinh viên" Binding="{Binding HoTen}" Width="170"/>
-                            <DataGridTextColumn Header="Lớp" Binding="{Binding MaLop}" Width="90"/>
-                            <DataGridTextColumn Header="Học kỳ" Binding="{Binding TenHocKy}" Width="105"/>
-                            <DataGridTextColumn Header="Năm học" Binding="{Binding NamHoc}" Width="100"/>
-                            <DataGridTextColumn Header="Tổng môn" Binding="{Binding TongSoMon}" Width="90"/>
-                            <DataGridTextColumn Header="Tổng tín chỉ" Binding="{Binding TongSoTinChi}" Width="100"/>
-                            <DataGridTextColumn Header="Môn thiếu điểm" Binding="{Binding SoMonThieuDiem}" Width="115"/>
-                            <DataGridTextColumn Header="TC đã có điểm" Binding="{Binding SoTinChiDaCoDiem}" Width="115"/>
-                            <DataGridTextColumn Header="Điểm TB tạm tính" Binding="{Binding DiemTrungBinhTamTinh, StringFormat={}{0:0.00}}" Width="135"/>
-                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="125"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                    <TextBlock Text="Bảng này hiển thị cả sinh viên đủ điểm và sinh viên chưa đủ điểm." FontSize="12" Foreground="#64748B" Margin="0,10,0,0" TextWrapping="Wrap"/>
-                </StackPanel>
-            </Border>
-
-            <!-- BANG PHAN LOAI HOC LUC -->
-            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,20" BorderBrush="#DDE5EF" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock Text="BẢNG PHÂN LOẠI HỌC LỰC" FontSize="16" FontWeight="Bold" Foreground="#174A78" Margin="0,0,0,15"/>
-
-                    <DataGrid ItemsSource="{Binding DanhSachPhanLoai}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" AlternatingRowBackground="#EEF3F9" GridLinesVisibility="Horizontal" RowHeight="32" ColumnHeaderHeight="35" Height="260" HorizontalScrollBarVisibility="Auto">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã SV" Binding="{Binding MaSV}" Width="90"/>
-                            <DataGridTextColumn Header="Họ tên sinh viên" Binding="{Binding HoTen}" Width="175"/>
-                            <DataGridTextColumn Header="Lớp" Binding="{Binding MaLop}" Width="90"/>
-                            <DataGridTextColumn Header="Học kỳ" Binding="{Binding TenHocKy}" Width="110"/>
-                            <DataGridTextColumn Header="Năm học" Binding="{Binding NamHoc}" Width="105"/>
-                            <DataGridTextColumn Header="Tổng môn" Binding="{Binding TongSoMon}" Width="90"/>
-                            <DataGridTextColumn Header="Môn thiếu" Binding="{Binding SoMonThieuDiem}" Width="100"/>
-                            <DataGridTextColumn Header="Điểm TB" Binding="{Binding DiemTrungBinh, StringFormat={}{0:0.00}}" Width="100"/>
-                            <DataGridTextColumn Header="Xếp loại" Binding="{Binding XepLoai}" Width="135"/>
-                            <DataGridTextColumn Header="Cảnh báo" Binding="{Binding CanhBao}" Width="190"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                    <TextBlock Text="Kết quả xếp loại và cảnh báo được lấy trực tiếp từ VIEW trong SQL Server." FontSize="12" Foreground="#64748B" Margin="0,10,0,0" TextWrapping="Wrap"/>
-                </StackPanel>
-            </Border>
-
-        </StackPanel>
-    </ScrollViewer>
+    </Grid>
 </UserControl>

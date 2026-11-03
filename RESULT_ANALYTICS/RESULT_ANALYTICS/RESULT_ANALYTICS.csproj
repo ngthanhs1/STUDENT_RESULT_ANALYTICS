@@ -153,6 +153,9 @@
     <Compile Include="Views\ThongKeCanhBaoView.xaml.cs">
       <DependentUpon>ThongKeCanhBaoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuanLyTaiKhoanView.xaml.cs">
+      <DependentUpon>QuanLyTaiKhoanView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,6 +167,7 @@
     <Compile Include="DataAccess\DatabaseHelper.cs" />
     <Compile Include="DataAccess\TaiKhoanRepository.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
+    <Compile Include="Helpers\GpaHelper.cs" />
     <Compile Include="Helpers\PasswordHasher.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -202,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\QuanLyTaiKhoanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -234,4 +242,8 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Resource Include="Assets\bg_login.jpg" />
+    <Resource Include="Assets\paper_plane.png" />
+  </ItemGroup>
 </Project>

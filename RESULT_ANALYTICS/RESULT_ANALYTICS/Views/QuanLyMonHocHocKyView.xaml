@@ -1,168 +1,208 @@
-﻿<UserControl x:Class="RESULT_ANALYTICS.Views.QuanLyMonHocHocKyView"
+<UserControl x:Class="RESULT_ANALYTICS.Views.QuanLyMonHocHocKyView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Background="#F4F6F8">
+             Background="#F1F5F9">
 
-    <!-- DINH DANG GIAO DIEN -->
+    <!-- DINH DANG GIAO DIEN CO DIEN GON GANG -->
     <UserControl.Resources>
-        <Style x:Key="ActionButtonStyle" TargetType="Button">
-            <Setter Property="Height" Value="38"/>
-            <Setter Property="MinWidth" Value="105"/>
-            <Setter Property="Margin" Value="0,0,8,8"/>
-            <Setter Property="Padding" Value="12,0"/>
+        <Style x:Key="ClassicBtn" TargetType="Button">
+            <Setter Property="Height" Value="29"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="Margin" Value="0,0,6,6"/>
+            <Setter Property="Padding" Value="10,0"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="11.5"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        <Style x:Key="FormTextBoxStyle" TargetType="TextBox">
-            <Setter Property="Height" Value="34"/>
-            <Setter Property="Padding" Value="8,5"/>
-            <Setter Property="FontSize" Value="13"/>
+        <Style x:Key="ClassicTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Padding" Value="6,3"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="BorderBrush" Value="#CBD5E1"/>
         </Style>
+
+        <Style x:Key="ClassicTab" TargetType="TabItem">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="14,5"/>
+            <Setter Property="Margin" Value="0,0,2,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="tabBorder" Background="#E2E8F0" CornerRadius="4,4,0,0" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}" BorderBrush="#CBD5E1" BorderThickness="1,1,1,0">
+                            <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="tabBorder" Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="#174A78"/>
+                                <Setter TargetName="tabBorder" Property="BorderThickness" Value="1,2,1,0"/>
+                                <Setter TargetName="tabBorder" Property="BorderBrush" Value="#1E4E79"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Foreground" Value="#64748B"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Margin="3,0,8,20">
+    <Grid Margin="2,0,2,4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <!-- TIEU DE -->
-            <TextBlock Text="QUẢN LÝ MÔN HỌC VÀ HỌC KỲ" FontSize="23" FontWeight="Bold" Foreground="#1E4E79" Margin="0,0,0,5"/>
-            <TextBlock Text="Quản lý danh mục môn học và thông tin học kỳ từ SQL Server" FontSize="13" Foreground="#64748B" Margin="0,0,0,20"/>
+        <!-- TIEU DE -->
+        <TextBlock Grid.Row="0" Text="CHƯƠNG TRÌNH ĐÀO TẠO VÀ HỌC PHẦN" FontSize="17" FontWeight="Bold" Foreground="#174A78" Margin="0,0,0,8"/>
 
-            <!-- PHAN 1: QUAN LY MON HOC -->
-            <Border Background="White" CornerRadius="10" Padding="20" BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,0,18">
-                <StackPanel>
+        <!-- TAB CHUYEN DOI -->
+        <TabControl Grid.Row="1" Background="Transparent" BorderThickness="0">
 
-                    <TextBlock Text="THÔNG TIN MÔN HỌC" FontSize="17" FontWeight="Bold" Foreground="#1E4E79" Margin="0,0,0,15"/>
-
-                    <!-- FORM NHAP MON HOC -->
-                    <Grid Margin="0,0,0,12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
-                            <TextBlock Text="Mã môn học (*)" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <TextBox Text="{Binding MaMonHocNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DangSuaMonHoc}" Style="{StaticResource FormTextBoxStyle}"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Column="1" Margin="0,0,12,0">
-                            <TextBlock Text="Tên môn học (*)" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <TextBox Text="{Binding TenMonHocNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FormTextBoxStyle}"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Column="2">
-                            <TextBlock Text="Số tín chỉ (*)" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <TextBox Text="{Binding SoTinChiNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FormTextBoxStyle}"/>
-                        </StackPanel>
-                    </Grid>
-
-                    <!-- CAC NUT MON HOC -->
-                    <WrapPanel Margin="0,8,0,12">
-                        <Button Content="THÊM MÔN" Command="{Binding ThemMonHocCommand}" Background="#2E7D32" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="SỬA MÔN" Command="{Binding SuaMonHocCommand}" Background="#1976D2" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="XÓA MÔN" Command="{Binding XoaMonHocCommand}" Background="#D32F2F" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="LÀM TRỐNG" Command="{Binding LamTrongMonHocCommand}" Background="#64748B" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="LÀM MỚI" Command="{Binding LamMoiMonHocCommand}" Background="#00838F" Style="{StaticResource ActionButtonStyle}"/>
-                    </WrapPanel>
-
-                    <TextBlock Text="{Binding ThongBaoMonHoc}" FontSize="12" Foreground="#2563EB" TextWrapping="Wrap" Margin="0,0,0,12"/>
-
-                    <!-- DANH SACH MON HOC -->
-                    <TextBlock Text="DANH SÁCH MÔN HỌC" FontSize="15" FontWeight="Bold" Foreground="#1E4E79" Margin="0,6,0,12"/>
-
-                    <DataGrid ItemsSource="{Binding DanhSachMonHoc}" SelectedItem="{Binding MonHocDuocChon, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" HeadersVisibility="Column" RowHeight="35" ColumnHeaderHeight="39" Height="210" GridLinesVisibility="Horizontal" AlternatingRowBackground="#F1F5F9" BorderBrush="#CBD5E1">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã môn học" Binding="{Binding MaMonHoc}" Width="150"/>
-                            <DataGridTextColumn Header="Tên môn học" Binding="{Binding TenMonHoc}" Width="*"/>
-                            <DataGridTextColumn Header="Số tín chỉ" Binding="{Binding SoTinChi}" Width="130"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                    <TextBlock Text="Chọn một môn học trong danh sách để sửa hoặc xóa." FontSize="12" Foreground="#64748B" Margin="0,10,0,0"/>
-
-                </StackPanel>
-            </Border>
-
-            <!-- PHAN 2: QUAN LY HOC KY -->
-            <Border Background="White" CornerRadius="10" Padding="20" BorderBrush="#E2E8F0" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock Text="THÔNG TIN HỌC KỲ" FontSize="17" FontWeight="Bold" Foreground="#1E4E79" Margin="0,0,0,15"/>
-
-                    <!-- FORM NHAP HOC KY -->
-                    <Grid Margin="0,0,0,12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
+            <!-- TAB 1: DANH MUC HOC PHAN / MON HOC -->
+            <TabItem Header="Danh mục Môn học" Style="{StaticResource ClassicTab}">
+                <Border Background="White" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="0,4,4,4" Padding="12">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,12,12">
-                            <TextBlock Text="Mã học kỳ (*)" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <TextBox Text="{Binding MaHocKyNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DangSuaHocKy}" Style="{StaticResource FormTextBoxStyle}"/>
-                        </StackPanel>
+                        <!-- FORM NHAP MON HOC -->
+                        <Grid Grid.Row="0" Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,12,12">
-                            <TextBlock Text="Tên học kỳ (*)" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <TextBox Text="{Binding TenHocKyNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FormTextBoxStyle}"/>
-                        </StackPanel>
+                            <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                                <TextBlock Text="Mã môn học (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <TextBox Text="{Binding MaMonHocNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DangSuaMonHoc}" Style="{StaticResource ClassicTextBox}"/>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,0,12">
-                            <TextBlock Text="Năm học (*)" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <TextBox Text="{Binding NamHocNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FormTextBoxStyle}"/>
-                        </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="0,0,8,0">
+                                <TextBlock Text="Tên môn học (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <TextBox Text="{Binding TenMonHocNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ClassicTextBox}"/>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,12,12">
-                            <TextBlock Text="Ngày bắt đầu" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <DatePicker SelectedDate="{Binding NgayBatDauNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Short" Language="vi-VN" Height="34" BorderBrush="#CBD5E1"/>
-                        </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Số tín chỉ (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <TextBox Text="{Binding SoTinChiNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ClassicTextBox}"/>
+                            </StackPanel>
+                        </Grid>
 
-                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,12,12">
-                            <TextBlock Text="Ngày kết thúc" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                            <DatePicker SelectedDate="{Binding NgayKetThucNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Short" Language="vi-VN" Height="34" BorderBrush="#CBD5E1"/>
-                        </StackPanel>
+                        <!-- THANH NUT BAM MON HOC -->
+                        <WrapPanel Grid.Row="1" Margin="0,8,0,8">
+                            <Button Content="THÊM MÔN" Command="{Binding ThemMonHocCommand}" Background="#2E7D32" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="CẬP NHẬT" Command="{Binding SuaMonHocCommand}" Background="#1976D2" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="XÓA MÔN" Command="{Binding XoaMonHocCommand}" Background="#D32F2F" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="LÀM TRỐNG" Command="{Binding LamTrongMonHocCommand}" Background="#64748B" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="LÀM MỚI" Command="{Binding LamMoiMonHocCommand}" Background="#0284C7" Style="{StaticResource ClassicBtn}"/>
+                            <TextBlock Text="{Binding ThongBaoMonHoc}" FontSize="11.5" Foreground="#1976D2" VerticalAlignment="Center" Margin="10,0,0,6" TextWrapping="Wrap"/>
+                        </WrapPanel>
+
+                        <!-- BANG DANH SACH MON HOC -->
+                        <DataGrid Grid.Row="2" ItemsSource="{Binding DanhSachMonHoc}" SelectedItem="{Binding MonHocDuocChon, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" HeadersVisibility="Column" RowHeight="28" ColumnHeaderHeight="32" GridLinesVisibility="Horizontal" AlternatingRowBackground="#F8FAFC" BorderBrush="#CBD5E1" FontSize="12">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã học phần" Binding="{Binding MaMonHoc}" Width="150"/>
+                                <DataGridTextColumn Header="Tên môn học / học phần" Binding="{Binding TenMonHoc}" Width="*"/>
+                                <DataGridTextColumn Header="Số tín chỉ" Binding="{Binding SoTinChi}" Width="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
                     </Grid>
+                </Border>
+            </TabItem>
 
-                    <!-- CAC NUT HOC KY -->
-                    <WrapPanel Margin="0,8,0,12">
-                        <Button Content="THÊM HỌC KỲ" Command="{Binding ThemHocKyCommand}" Background="#2E7D32" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="SỬA HỌC KỲ" Command="{Binding SuaHocKyCommand}" Background="#1976D2" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="XÓA HỌC KỲ" Command="{Binding XoaHocKyCommand}" Background="#D32F2F" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="LÀM TRỐNG" Command="{Binding LamTrongHocKyCommand}" Background="#64748B" Style="{StaticResource ActionButtonStyle}"/>
-                        <Button Content="LÀM MỚI" Command="{Binding LamMoiHocKyCommand}" Background="#00838F" Style="{StaticResource ActionButtonStyle}"/>
-                    </WrapPanel>
+            <!-- TAB 2: DANH MUC HOC KY -->
+            <TabItem Header="Danh mục Học kỳ" Style="{StaticResource ClassicTab}">
+                <Border Background="White" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="0,4,4,4" Padding="12">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Text="{Binding ThongBaoHocKy}" FontSize="12" Foreground="#2563EB" TextWrapping="Wrap" Margin="0,0,0,12"/>
+                        <!-- FORM NHAP HOC KY -->
+                        <Grid Grid.Row="0" Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <!-- DANH SACH HOC KY -->
-                    <TextBlock Text="DANH SÁCH HỌC KỲ" FontSize="15" FontWeight="Bold" Foreground="#1E4E79" Margin="0,6,0,12"/>
+                            <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                                <TextBlock Text="Mã học kỳ (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <TextBox Text="{Binding MaHocKyNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DangSuaHocKy}" Style="{StaticResource ClassicTextBox}"/>
+                            </StackPanel>
 
-                    <DataGrid ItemsSource="{Binding DanhSachHocKy}" SelectedItem="{Binding HocKyDuocChon, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" HeadersVisibility="Column" RowHeight="35" ColumnHeaderHeight="39" Height="210" GridLinesVisibility="Horizontal" AlternatingRowBackground="#F1F5F9" BorderBrush="#CBD5E1">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã học kỳ" Binding="{Binding MaHocKy}" Width="145"/>
-                            <DataGridTextColumn Header="Tên học kỳ" Binding="{Binding TenHocKy}" Width="*"/>
-                            <DataGridTextColumn Header="Năm học" Binding="{Binding NamHoc}" Width="115"/>
-                            <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding NgayBatDau, StringFormat=dd/MM/yyyy}" Width="120"/>
-                            <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding NgayKetThuc, StringFormat=dd/MM/yyyy}" Width="120"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            <StackPanel Grid.Column="1" Margin="0,0,8,0">
+                                <TextBlock Text="Tên học kỳ (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <TextBox Text="{Binding TenHocKyNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ClassicTextBox}"/>
+                            </StackPanel>
 
-                    <TextBlock Text="Chọn một học kỳ trong danh sách để sửa hoặc xóa." FontSize="12" Foreground="#64748B" Margin="0,10,0,0"/>
+                            <StackPanel Grid.Column="2" Margin="0,0,8,0">
+                                <TextBlock Text="Năm học (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <TextBox Text="{Binding NamHocNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ClassicTextBox}"/>
+                            </StackPanel>
 
-                </StackPanel>
-            </Border>
+                            <StackPanel Grid.Column="3" Margin="0,0,8,0">
+                                <TextBlock Text="Ngày bắt đầu" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <DatePicker SelectedDate="{Binding NgayBatDauNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="28" BorderBrush="#CBD5E1" FontSize="12"/>
+                            </StackPanel>
 
-        </StackPanel>
-    </ScrollViewer>
+                            <StackPanel Grid.Column="4">
+                                <TextBlock Text="Ngày kết thúc" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <DatePicker SelectedDate="{Binding NgayKetThucNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="28" BorderBrush="#CBD5E1" FontSize="12"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- THANH NUT BAM HOC KY -->
+                        <WrapPanel Grid.Row="1" Margin="0,8,0,8">
+                            <Button Content="THÊM HỌC KỲ" Command="{Binding ThemHocKyCommand}" Background="#2E7D32" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="CẬP NHẬT" Command="{Binding SuaHocKyCommand}" Background="#1976D2" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="XÓA HỌC KỲ" Command="{Binding XoaHocKyCommand}" Background="#D32F2F" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="LÀM TRỐNG" Command="{Binding LamTrongHocKyCommand}" Background="#64748B" Style="{StaticResource ClassicBtn}"/>
+                            <Button Content="LÀM MỚI" Command="{Binding LamMoiHocKyCommand}" Background="#0284C7" Style="{StaticResource ClassicBtn}"/>
+                            <TextBlock Text="{Binding ThongBaoHocKy}" FontSize="11.5" Foreground="#1976D2" VerticalAlignment="Center" Margin="10,0,0,6" TextWrapping="Wrap"/>
+                        </WrapPanel>
+
+                        <!-- BANG DANH SACH HOC KY -->
+                        <DataGrid Grid.Row="2" ItemsSource="{Binding DanhSachHocKy}" SelectedItem="{Binding HocKyDuocChon, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" HeadersVisibility="Column" RowHeight="28" ColumnHeaderHeight="32" GridLinesVisibility="Horizontal" AlternatingRowBackground="#F8FAFC" BorderBrush="#CBD5E1" FontSize="12">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã học kỳ" Binding="{Binding MaHocKy}" Width="150"/>
+                                <DataGridTextColumn Header="Tên học kỳ" Binding="{Binding TenHocKy}" Width="*"/>
+                                <DataGridTextColumn Header="Năm học" Binding="{Binding NamHoc}" Width="120"/>
+                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding NgayBatDau, StringFormat=dd/MM/yyyy}" Width="120"/>
+                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding NgayKetThuc, StringFormat=dd/MM/yyyy}" Width="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </Border>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
 </UserControl>

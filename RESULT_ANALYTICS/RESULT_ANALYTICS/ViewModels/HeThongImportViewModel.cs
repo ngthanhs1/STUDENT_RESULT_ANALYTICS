@@ -42,6 +42,13 @@ namespace RESULT_ANALYTICS.ViewModels
             get { return PhienDangNhap.VaiTro; }
         }
 
+        private int tabDuocChon;
+        public int TabDuocChon
+        {
+            get { return tabDuocChon; }
+            set { SetProperty(ref tabDuocChon, value); }
+        }
+
         // ============================================
         // 2. DANH SACH LICH SU VA LOI IMPORT
         // ============================================
@@ -111,7 +118,18 @@ namespace RESULT_ANALYTICS.ViewModels
         public int SoDongLoi
         {
             get { return soDongLoi; }
-            set { SetProperty(ref soDongLoi, value); }
+            set
+            {
+                if (SetProperty(ref soDongLoi, value))
+                {
+                    OnPropertyChanged(nameof(CoLoi));
+                }
+            }
+        }
+
+        public bool CoLoi
+        {
+            get { return soDongLoi > 0; }
         }
 
         private string trangThaiImport;
@@ -420,6 +438,7 @@ namespace RESULT_ANALYTICS.ViewModels
             ThongBaoLichSu = "";
 
             DanhSachLoi.Clear();
+            OnPropertyChanged(nameof(CoLoi));
         }
 
         // ============================================

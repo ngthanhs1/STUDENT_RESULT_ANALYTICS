@@ -30,6 +30,7 @@ namespace RESULT_ANALYTICS.Services
             DanhSachLoi = new List<string>();
         }
 
+
         public string TrangThai
         {
             get
@@ -40,9 +41,10 @@ namespace RESULT_ANALYTICS.Services
                 if (SoDongThanh > 0)
                     return "MotPhan";
 
-                return "ThatBai";
+                return "Loi";
             }
         }
+
     }
 
     internal class ImportService

@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +12,8 @@ namespace RESULT_ANALYTICS.Models
         public int TongLop { get; set; }
         public int TongMonHoc { get; set; }
         public int SoSinhVienThieuDiem { get; set; }
+        public decimal DiemTBChung { get; set; }
+        public decimal TyLeDatChung { get; set; }
     }
 
     internal class CanhBaoThieuDiem
@@ -23,5 +24,14 @@ namespace RESULT_ANALYTICS.Models
         public string TenMonHoc { get; set; }
         public string MaHocKy { get; set; }
         public string NoiDungCanhBao { get; set; }
+    }
+
+    internal class PhanBoHocLucDashboard
+    {
+        public string XepLoai { get; set; }
+        public int SoLuong { get; set; }
+        public string TyLe { get; set; }
+        public double ChieuRongBar { get; set; }
+        public string MauSac { get; set; }
     }
 }

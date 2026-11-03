@@ -1,4 +1,5 @@
-﻿
+using RESULT_ANALYTICS.Helpers;
+
 namespace RESULT_ANALYTICS.Models
 {
     internal class DiemTrungBinhHocKy
@@ -19,8 +20,14 @@ namespace RESULT_ANALYTICS.Models
         public int SoMonThieuDiem { get; set; }
         public int SoTinChiDaCoDiem { get; set; }
 
-        // Diem trung binh tam tinh
+        // Diem trung binh thang 10
         public decimal? DiemTrungBinhTamTinh { get; set; }
+
+        // Diem trung binh GPA he 4.0
+        public decimal? DiemTrungBinhHe4 { get; set; }
+
+        // Diem chu tuong ung
+        public string DiemChu => GpaHelper.QuyDoiDiemChu(DiemTrungBinhTamTinh);
 
         // Du diem hay chua du diem
         public string TrangThai { get; set; }

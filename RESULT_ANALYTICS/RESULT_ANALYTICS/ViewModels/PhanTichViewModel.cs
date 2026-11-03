@@ -91,6 +91,20 @@ namespace RESULT_ANALYTICS.ViewModels
             set { SetProperty(ref diemTrungBinhChung, value); }
         }
 
+        private string gpaHe4Chung;
+        public string GpaHe4Chung
+        {
+            get { return gpaHe4Chung; }
+            set { SetProperty(ref gpaHe4Chung, value); }
+        }
+
+        private bool hienThiBieuDo = true;
+        public bool HienThiBieuDo
+        {
+            get { return hienThiBieuDo; }
+            set { SetProperty(ref hienThiBieuDo, value); }
+        }
+
         private string thongBao;
         public string ThongBao
         {
@@ -104,6 +118,7 @@ namespace RESULT_ANALYTICS.ViewModels
 
         public ICommand LocDuLieuCommand { get; private set; }
         public ICommand LamMoiCommand { get; private set; }
+        public ICommand ChuyenTrangThaiBieuDoCommand { get; private set; }
 
         // =========================================
         // 5. HAM KHOI TAO
@@ -134,6 +149,8 @@ namespace RESULT_ANALYTICS.ViewModels
 
             LocDuLieuCommand = new RelayCommand(p => LocDuLieu());
             LamMoiCommand = new RelayCommand(p => LamMoi());
+            ChuyenTrangThaiBieuDoCommand = new RelayCommand(p => HienThiBieuDo = !HienThiBieuDo);
+            GpaHe4Chung = "--";
 
             try
             {
@@ -310,10 +327,18 @@ namespace RESULT_ANALYTICS.ViewModels
             SoKetQuaDuDiem = duDiem;
             SoKetQuaThieuDiem = thieuDiem;
 
-            DiemTrungBinhChung = duDiem > 0
-                ? (tongDiem / duDiem).ToString(
-                    "0.00", CultureInfo.CurrentCulture)
-                : "--";
+            if (duDiem > 0)
+            {
+                decimal dtb = tongDiem / duDiem;
+                DiemTrungBinhChung = dtb.ToString("0.00", CultureInfo.CurrentCulture);
+                decimal? he4 = GpaHelper.QuyDoiDiemHe4(dtb);
+                GpaHe4Chung = he4.HasValue ? he4.Value.ToString("0.00", CultureInfo.CurrentCulture) : "--";
+            }
+            else
+            {
+                DiemTrungBinhChung = "--";
+                GpaHe4Chung = "--";
+            }
 
             // Tim so luong lon nhat de ve bieu do
             int lonNhat = 0;
