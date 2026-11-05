@@ -1016,86 +1016,78 @@ Cơ sở dữ liệu được thiết kế đạt chuẩn hóa dạng 3 (3NF - T
 
 ```mermaid
 erDiagram
-    Khoa ||--o{ Lop : "thuoc_khoa"
-    Lop ||--o{ SinhVien : "quan_ly"
-    SinhVien ||--o{ DiemHocPhan : "co_diem"
-    MonHoc ||--o{ DiemHocPhan : "thuoc_mon"
-    NienKhoa ||--o{ DiemHocPhan : "tai_hoc_ky"
-    TaiKhoan ||--o{ LogHeThong : "thuc_hien"
-
-    Khoa {
-        nvarchar MaKhoa PK "Mã khoa (CNTT, DTVT...)"
-        nvarchar TenKhoa "Tên khoa đào tạo"
-        nvarchar VanPhong "Địa điểm văn phòng khoa"
-        nvarchar TruongKhoa "Họ tên trưởng khoa"
-    }
+    Lop ||--o{ SinhVien : "co_sinh_vien"
+    SinhVien ||--o{ KetQua : "thuoc_sinh_vien"
+    MonHoc ||--o{ KetQua : "thuoc_mon_hoc"
+    HocKy ||--o{ KetQua : "thuoc_hoc_ky"
+    TaiKhoan ||--o{ LichSuNhapDuLieu : "thuc_hien_nhap"
 
     Lop {
         nvarchar MaLop PK "Mã lớp sinh hoạt (CNTT01, KTPM01...)"
-        nvarchar TenLop "Tên lớp học"
+        nvarchar TenLop "Tên lớp sinh hoạt"
         nvarchar KhoaHoc "Khóa đào tạo (K16, K17...)"
-        nvarchar Khoa FK "Tên hoặc mã khoa trực thuộc"
+        nvarchar Khoa "Khoa trực thuộc (Công nghệ thông tin)"
     }
 
     SinhVien {
         nvarchar MaSV PK "Mã sinh viên (22020224, 23010168...)"
         nvarchar HoTen "Họ và tên đầy đủ của sinh viên"
-        date NgaySinh "Ngày tháng năm sinh"
+        date NgaySinh "Ngày sinh"
         nvarchar GioiTinh "Giới tính (Nam / Nữ)"
         nvarchar Email "Email: [MaSV]@st.phenikaa-uni.edu.vn"
-        nvarchar MaLop FK "Khóa ngoại tham chiếu Lop(MaLop)"
+        nvarchar MaLop FK "Tham chiếu Lop(MaLop)"
     }
 
     MonHoc {
-        nvarchar MaMon PK "Mã học phần (NET01, CSDL01...)"
-        nvarchar TenMon "Tên học phần đào tạo"
-        int SoTinChi "Số tín chỉ học phần (2, 3, 4)"
-        decimal HeSoChuyenCan "Trọng số chuyên cần (0.10)"
-        decimal HeSoGiuaKy "Trọng số giữa kỳ (0.40)"
-        decimal HeSoCuoiKy "Trọng số cuối kỳ (0.50)"
+        nvarchar MaMonHoc PK "Mã học phần (NET01, CSDL01...)"
+        nvarchar TenMonHoc "Tên môn học"
+        int SoTinChi "Số tín chỉ (2, 3, 4)"
     }
 
-    NienKhoa {
-        nvarchar MaNienKhoa PK "Mã niên khóa (2025-2026_HK1...)"
-        nvarchar TenNienKhoa "Tên hiển thị: 2025-2026"
-        int HocKy "Học kỳ (1, 2, 3)"
-        bit IsActive "Trạng thái học kỳ đang kích hoạt"
+    HocKy {
+        nvarchar MaHocKy PK "Mã học kỳ (2025-2026_HK1...)"
+        nvarchar TenHocKy "Tên học kỳ: Học kỳ 1, Học kỳ 2"
+        nvarchar NamHoc "Năm học: 2025-2026"
+        datetime NgayBatDau "Thời điểm bắt đầu học kỳ"
+        datetime NgayKetThuc "Thời điểm kết thúc học kỳ"
     }
 
-    DiemHocPhan {
-        int Id PK "Khóa chính tự tăng (Identity)"
-        nvarchar MaSV FK "Mã sinh viên tham chiếu SinhVien"
-        nvarchar MaMon FK "Mã môn học tham chiếu MonHoc"
-        nvarchar MaNienKhoa FK "Niên khóa tham chiếu NienKhoa"
-        decimal DiemChuyenCan "Điểm chuyên cần (0.0 - 10.0)"
-        decimal DiemGiuaKy "Điểm giữa kỳ (0.0 - 10.0)"
-        decimal DiemCuoiKy "Điểm thi cuối kỳ (0.0 - 10.0)"
-        decimal DiemTongKet "Điểm tổng kết môn học thang 10"
-        nvarchar DiemChu "Điểm chữ: A+, A, B+, B, C+, C, D+, D, F"
-        decimal DiemHe4 "Điểm thang 4: 4.0, 3.7, 3.5, 3.0..."
-        nvarchar TrangThai "Trạng thái: Đạt / Trượt"
+    KetQua {
+        int MaKetQua PK "Khóa chính tự tăng"
+        nvarchar MaSV FK "Tham chiếu SinhVien(MaSV)"
+        nvarchar MaMonHoc FK "Tham chiếu MonHoc(MaMonHoc)"
+        nvarchar MaHocKy FK "Tham chiếu HocKy(MaHocKy)"
+        decimal DiemChuyenCan "Điểm chuyên cần (10%)"
+        decimal DiemGiuaKy "Điểm giữa kỳ (40%)"
+        decimal DiemCuoiKy "Điểm thi kết thúc (50%)"
+        nvarchar TyLeDiem "Tỷ lệ điểm: 10-40-50"
+        decimal DiemTongKet "Điểm tổng kết môn thang 10"
     }
 
     TaiKhoan {
-        int Id PK "Khóa chính tự tăng"
-        nvarchar TenDangNhap UK "Tên đăng nhập (admin, gv01...)"
-        nvarchar MatKhau "Mật khẩu bảo mật"
-        nvarchar HoTen "Họ tên người sở hữu tài khoản"
-        nvarchar Email "Địa chỉ thư điện tử liên hệ"
-        nvarchar VaiTro "Vai trò: Admin / NhanVien / SinhVien"
-        bit TrangThai "Trạng thái kích hoạt (1: Active, 0: Locked)"
-        datetime NgayTao "Thời điểm tạo tài khoản"
+        int MaTaiKhoan PK "Khóa chính tự tăng"
+        nvarchar TenDangNhap UK "Tên đăng nhập (admin, nhanvien)"
+        nvarchar MatKhauHash "Mật khẩu đã băm an toàn"
+        nvarchar VaiTro "Vai trò: Admin, NhanVien"
+        bit TrangThai "Trạng thái (1: Active, 0: Locked)"
+        datetime NgayTao "Ngày tạo tài khoản"
     }
 
-    LogHeThong {
-        int Id PK "Khóa chính tự tăng"
-        nvarchar TenDangNhap "Người thực hiện thao tác"
-        nvarchar HanhDong "Hành động (LOGIN, INSERT, UPDATE...)"
-        nvarchar ChiTiet "Chi tiết mô tả nghiệp vụ"
-        datetime ThoiGian "Dấu thời gian phát sinh sự kiện"
+    LichSuNhapDuLieu {
+        int MaLichSu PK "Khóa chính tự tăng"
+        nvarchar TenFile "Tên tệp Excel/CSV đã nạp"
+        nvarchar LoaiFile "Loại file (.xlsx, .csv)"
+        datetime ThoiGianNhap "Thời điểm nạp"
+        int TongSoDong "Tổng số dòng dữ liệu"
+        int SoDongThanhCong "Số dòng nạp thành công"
+        int SoDongLoi "Số dòng lỗi"
+        nvarchar TrangThai "Trạng thái xử lý"
+        nvarchar GhiChu "Ghi chú kết quả"
+        int MaTaiKhoan FK "Tham chiếu TaiKhoan(MaTaiKhoan)"
     }
 ```
-*Hình 2.15. Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD) chuẩn hóa 3NF*
+*Hình 2.15. Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD) chuẩn hóa 3NF trích xuất trực tiếp từ SQL Server*
+
 
 #### 2.6.2 Từ điển dữ liệu chi tiết cho 8 bảng Cơ sở dữ liệu
 
