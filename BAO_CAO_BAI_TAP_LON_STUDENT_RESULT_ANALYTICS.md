@@ -213,40 +213,41 @@ Mỗi học phần có trọng số số tín chỉ nhất định (thường t�
 
 Nếu CPA của sinh viên rơi xuống dưới ngưỡng quy định ($< 2.0$), sinh viên sẽ bị xử lý kỷ luật học vụ ở các mức: Cảnh báo học vụ lần 1, Cảnh báo học vụ lần 2 và Buộc thôi học. Do đó, việc tính toán chuẩn xác, giám sát liên tục và đưa ra cảnh báo sớm là nhiệm vụ then chốt của các cơ quan quản lý đào tạo.
 
-### 1.2 Khảo sát đối tượng sử dụng và Phân quyền hệ thống
-Hệ thống Student Result Analytics được thiết kế hướng tới phục vụ 3 nhóm đối tượng người dùng chính trong môi trường đại học:
+### 1.2 Khảo sát đối tượng sử dụng và Mô hình phân quyền thực tế
+Hệ thống Student Result Analytics được xây dựng dưới dạng **Ứng dụng phần mềm nghiệp vụ nội bộ (Internal Desktop Management Application) chuyên dụng cho Phòng Đào tạo và Ban Khảo thí** của trường đại học.
 
-1. **Quản trị viên hệ thống (Admin / Cán bộ Phòng Đào tạo)**:
-   - Là nhóm người dùng có quyền hạn tối cao trong hệ thống.
-   - Chịu trách nhiệm quản lý danh mục dùng chung: Quản lý danh sách các Khoa đào tạo (Khoa CNTT, Điện - Điện tử, Kinh tế...), danh mục các Lớp sinh hoạt, danh mục Môn học (Số tín chỉ, loại môn), và cấu hình các Niên khóa/Học kỳ.
-   - Quản lý hồ sơ sinh viên toàn trường: Tiếp nhận sinh viên mới, cập nhật thông tin, cấp phát tài khoản.
-   - Quản trị tài khoản người dùng, phân quyền truy cập, thiết lập trạng thái tài khoản và giám sát nhật ký kiểm toán hệ thống (Audit Logs).
-   - Có toàn quyền tra cứu, xuất báo cáo và can thiệp điều chỉnh dữ liệu khi có sai sót được phê duyệt.
+Trong quy trình vận hành thực tế tại các trường đại học (như Đại học Phenikaa), giảng viên bộ môn và sinh viên không sử dụng chung phần mềm quản trị nội bộ này (vì giảng viên tuyệt đối không được phép can thiệp vào hồ sơ sinh viên hay cấu hình môn học). Thay vào đó, toàn bộ nghiệp vụ quản lý sinh viên, tiếp nhận bảng điểm thi từ giảng viên, tính toán điểm tích lũy và rà soát học vụ đều do đội ngũ cán bộ Phòng Đào tạo phụ trách.
 
-2. **Cố vấn học tập & Giảng viên bộ môn (Advisor / Lecturer)**:
-   - **Giảng viên bộ môn**: Có quyền truy cập vào sổ điểm của các lớp học phần mà mình được phân công giảng dạy; thực hiện nhập điểm chuyên cần, giữa kỳ, thi kết thúc học phần trực tiếp hoặc nhập file bảng điểm Excel; xem danh sách sinh viên nợ điểm để đôn đốc.
-   - **Cố vấn học tập (CVHT)**: Có quyền theo dõi danh sách sinh viên thuộc lớp sinh hoạt do mình phụ trách; tra cứu bảng điểm tổng hợp, theo dõi chỉ số GPA/CPA từng kỳ; nhận diện danh sách sinh viên bị cảnh báo học vụ để tổ chức gặp gỡ, tư vấn học tập và tháo gỡ khó khăn cho sinh viên.
+Hệ thống phân định 2 nhóm người dùng nghiệp vụ cốt lõi (khớp chính xác với cấu trúc mã nguồn `Admin` và `NhanVien` trong hệ thống):
 
-3. **Sinh viên (Student)**:
-   - Đăng nhập bằng tài khoản cá nhân (Mã sinh viên).
-   - Tra cứu tiến độ học tập cá nhân: Xem bảng điểm chi tiết từng học phần, lịch sử điểm thi, điểm tổng kết môn học.
-   - Xem điểm GPA học kỳ, CPA tích lũy, số tín chỉ đã đạt và trạng thái cảnh báo học vụ của bản thân.
-   - Thực hiện đổi mật khẩu cá nhân để bảo mật thông tin.
+1. **Quản trị viên hệ thống (Admin / Lãnh đạo Phòng Đào tạo)**:
+   - Là người có quyền hạn cao nhất trong hệ thống.
+   - Sở hữu toàn quyền truy cập tất cả các phân hệ nghiệp vụ đào tạo, khảo thí, tra cứu GPA và thống kê cảnh báo học vụ.
+   - **Độc quyền phân hệ Quản trị hệ thống & Phân quyền cán bộ**: Quản lý danh sách tài khoản, tạo mới tài khoản cán bộ giáo vụ, đặt lại mật khẩu mặc định, khóa/mở khóa tài khoản nghi vấn và giám sát nhật ký kiểm toán hệ thống (Audit Logs).
 
-*Bảng 1.1. Ma trận phân quyền chức năng theo 3 nhóm đối tượng sử dụng*
+2. **Cán bộ Giáo vụ & Khảo thí (NhanVien / Academic Staff)**:
+   - Là các cán bộ, chuyên viên công tác tại Phòng Đào tạo và Ban Khảo thí của nhà trường.
+   - **Quản lý Hồ sơ Sinh viên**: Tiếp nhận hồ sơ trúng tuyển nhập học của sinh viên, cấp mã sinh viên, tự động sinh email trường (@st.phenikaa-uni.edu.vn), xếp lớp sinh hoạt và phân khoa đào tạo.
+   - **Quản lý Khoa và Lớp sinh hoạt**: Cập nhật danh mục khoa và các lớp sinh hoạt khóa mới.
+   - **Quản lý Môn học & Niên khóa**: Cấu hình danh mục học phần đào tạo theo chương trình khung, quy định số tín chỉ và tỷ lệ điểm thành phần; kích hoạt niên khóa và học kỳ làm việc.
+   - **Khảo thí & Nhập điểm**: Tiếp nhận bảng điểm từ giảng viên các khoa/bộ môn nộp về sau kỳ thi; thực hiện nhập trực tiếp vào Sổ điểm điện tử hoặc sử dụng tính năng nạp bảng điểm hàng loạt từ tệp Excel/CSV có cơ chế tự động kiểm tra lỗi.
+   - **Tra cứu GPA/CPA & Cảnh báo học vụ**: Tra cứu bảng điểm tích lũy toàn khóa có tính trọng số số tín chỉ, trích xuất danh sách sinh viên có nguy cơ bị cảnh cáo học vụ (CPA < 2.0) để báo cáo Hội đồng đào tạo nhà trường.
+   - *Giới hạn quyền hạn*: Để đảm bảo tính an toàn dữ liệu, tài khoản Nhân viên không được phép truy cập vào màn hình "Quản trị & Phân quyền cán bộ" (chức năng này tự động ẩn khỏi thanh menu khi đăng nhập với vai trò Nhân viên).
 
-| Mã CN | Tên phân hệ chức năng | Admin (Đào tạo) | Giảng viên / CVHT | Sinh viên |
-| :---: | :--- | :---: | :---: | :---: |
-| **CN01** | Đăng nhập, Đổi mật khẩu, Xem/Ẩn mật khẩu | ✓ | ✓ | ✓ |
-| **CN02** | Xem Bàn làm việc Dashboard (KPIs, Biểu đồ học lực) | ✓ (Toàn trường) | ✓ (Theo lớp/khoa) | ✗ |
-| **CN03** | Quản lý Hồ sơ Sinh viên (CRUD, Tự sinh Email) | ✓ | Xem hồ sơ | Xem cá nhân |
-| **CN04** | Quản lý Danh mục Khoa & Lớp học | ✓ | Xem danh mục | ✗ |
-| **CN05** | Quản lý Danh mục Môn học & Niên khóa | ✓ | Xem danh mục | ✗ |
-| **CN06** | Quản lý Sổ điểm học phần & Nhập điểm thành phần | ✓ | ✓ (Môn phụ trách) | ✗ |
-| **CN07** | Nhập điểm hàng loạt từ File ngoại vi (Excel/CSV) | ✓ | ✓ (Môn phụ trách) | ✗ |
-| **CN08** | Tra cứu kết quả học tập & Báo cáo GPA/CPA | ✓ (Toàn trường) | ✓ (Lớp phụ trách) | ✓ (Chỉ bản thân) |
-| **CN09** | Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ | ✓ (Toàn trường) | ✓ (Lớp phụ trách) | ✗ |
-| **CN10** | Quản trị tài khoản, Phân quyền & Giám sát Log | ✓ | ✗ | ✗ |
+*Bảng 1.1. Ma trận phân quyền chức năng giữa Quản trị viên (Admin) và Cán bộ Đào tạo (NhanVien)*
+
+| Mã CN | Tên phân hệ chức năng | Admin (Lãnh đạo Đào tạo) | NhanVien (Cán bộ Đào tạo & Khảo thí) | Ghi chú quyền hạn |
+| :---: | :--- | :---: | :---: | :--- |
+| **CN01** | Đăng nhập, Hiện/Ẩn mật khẩu, Đổi mật khẩu | ✓ | ✓ | Toàn quyền sử dụng |
+| **CN02** | Bàn làm việc Dashboard & Đồng bộ số liệu | ✓ | ✓ | Theo dõi toàn cảnh KPI đào tạo |
+| **CN03** | Quản lý Hồ sơ Sinh viên (CRUD, Tự sinh Email) | ✓ | ✓ | Độc quyền của Phòng Đào tạo |
+| **CN04** | Quản lý Danh mục Khoa & Lớp sinh hoạt | ✓ | ✓ | Độc quyền của Phòng Đào tạo |
+| **CN05** | Quản lý Môn học, Tín chỉ & Niên khóa | ✓ | ✓ | Độc quyền của Phòng Đào tạo |
+| **CN06** | Quản lý Sổ điểm học phần & Điểm thành phần | ✓ | ✓ | Nhập điểm từ bảng điểm giảng viên gửi |
+| **CN07** | Nhập điểm từ File ngoại vi (Excel/CSV) | ✓ | ✓ | Nạp bảng điểm thi định kỳ |
+| **CN08** | Tra cứu kết quả học tập & Báo cáo GPA/CPA | ✓ | ✓ | Tra cứu theo kỳ và toàn khóa |
+| **CN09** | Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ | ✓ | ✓ | Rà soát danh sách CPA < 2.0 |
+| **CN10** | Quản trị tài khoản & Phân quyền cán bộ | ✓ | **✗ (Ẩn khỏi Menu)** | **Độc quyền của Admin** |
 
 ### 1.3 Khảo sát các quy trình nghiệp vụ hiện tại và Vấn đề cần giải quyết
 Qua quá trình khảo sát thực tế công tác giáo vụ tại các khoa đào tạo, nhóm nghiên cứu đã tổng hợp các tồn tại và điểm nghẽn nghiệp vụ lớn nhất của phương thức quản lý truyền thống:
@@ -308,19 +309,17 @@ Từ các yêu cầu thu thập được ở Chương 1, hệ thống được p
 
 | STT | Tác nhân (Actor) | Bản chất | Vai trò và Quyền hạn trong hệ thống |
 | :---: | :--- | :---: | :--- |
-| 1 | **Admin (Quản trị viên)** | Người dùng | Cán bộ quản lý đào tạo, sở hữu toàn quyền quản trị danh mục (Khoa, Lớp, Môn học, Niên khóa), quản lý hồ sơ sinh viên, quản lý người dùng và cấu hình hệ thống. |
-| 2 | **Lecturer / Advisor (Giảng viên / CVHT)** | Người dùng | Giảng viên phụ trách giảng dạy các lớp học phần và Cố vấn học tập quản lý lớp sinh hoạt; có quyền nhập điểm, xem sổ điểm, tra cứu GPA/CPA và rà soát cảnh báo học vụ. |
-| 3 | **Student (Sinh viên)** | Người dùng | Người học trong trường đại học; có quyền đăng nhập để tra cứu tiến độ học tập, xem bảng điểm học kỳ, điểm tích lũy và đổi mật khẩu cá nhân. |
-| 4 | **Somee SQL Cloud DB** | Hệ thống | Máy chủ cơ sở dữ liệu trên đám mây tiếp nhận kết nối TCP/IP, thực thi câu lệnh SQL và lưu trữ dữ liệu an toàn. |
+| 1 | **Admin (Quản trị viên / Trưởng phòng Đào tạo)** | Người dùng | Lãnh đạo Phòng Đào tạo và quản trị hệ thống; sở hữu toàn quyền quản trị danh mục (Khoa, Lớp, Môn học, Niên khóa), quản lý hồ sơ sinh viên, điểm số, tra cứu, thống kê và **độc quyền quản trị tài khoản, phân quyền cán bộ**. |
+| 2 | **NhanVien (Cán bộ Phòng Đào tạo & Khảo thí)** | Người dùng | Cán bộ nghiệp vụ tại Phòng Đào tạo; thực hiện tiếp nhận hồ sơ sinh viên, tự sinh email trường, quản lý khoa/lớp/môn học, nhập điểm sổ học phần từ bảng điểm giảng viên gửi về, nạp file Excel điểm thi, tra cứu GPA/CPA và rà soát cảnh báo học vụ. |
+| 3 | **Somee SQL Cloud DB** | Hệ thống | Máy chủ cơ sở dữ liệu điện toán đám mây lưu trữ dữ liệu tập trung, đảm bảo tính nhất quán và phục vụ kết nối đồng thời từ các máy trạm của cán bộ. |
 
 #### 2.2.2 Sơ đồ Use Case tổng quát
 ```mermaid
 flowchart LR
     Admin([Quản trị viên - Admin])
-    Lecturer([Giảng viên / CVHT])
-    Student([Sinh viên])
+    Staff([Cán bộ Đào tạo - NhanVien])
 
-    subgraph System ["Hệ thống Quản lý Đào tạo & Kết quả Học tập (Student Result Analytics)"]
+    subgraph System ["Hệ thống Quản lý Đào tạo & Khảo thí (Student Result Analytics)"]
         UC01((UC01: Đăng nhập & Xác thực))
         UC02((UC02: Bàn làm việc Dashboard))
         UC03((UC03: Quản lý Hồ sơ Sinh viên))
@@ -344,15 +343,15 @@ flowchart LR
     Admin --> UC09
     Admin --> UC10
 
-    Lecturer --> UC01
-    Lecturer --> UC02
-    Lecturer --> UC06
-    Lecturer --> UC07
-    Lecturer --> UC08
-    Lecturer --> UC09
-
-    Student --> UC01
-    Student --> UC08
+    Staff --> UC01
+    Staff --> UC02
+    Staff --> UC03
+    Staff --> UC04
+    Staff --> UC05
+    Staff --> UC06
+    Staff --> UC07
+    Staff --> UC08
+    Staff --> UC09
 ```
 *Hình 2.1. Sơ đồ Use Case tổng quát hệ thống Student Result Analytics*
 
@@ -389,7 +388,7 @@ flowchart TD
 ```
 *Hình 2.2. Sơ đồ Use Case phân hệ Quản trị viên (Admin)*
 
-#### 2.2.4 Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên
+#### 2.2.4 Sơ đồ Use Case phân hệ Cán bộ Đào tạo (NhanVien)
 ```mermaid
 flowchart TD
     Lecturer([Cố vấn học tập / Giảng viên])
@@ -455,7 +454,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC01** |
 | **Tên Use Case** | **Đăng nhập hệ thống & Xác thực người dùng** |
-| **Actor** | Admin, Giảng viên / CVHT, Sinh viên |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Xác thực danh tính người dùng và phân quyền điều hướng giao diện phù hợp với vai trò được cấp. |
 | **Mô tả** | Người dùng nhập Tên đăng nhập và Mật khẩu. Người dùng có thể nhấn nút con mắt để xem/ẩn mật khẩu trước khi gửi. Hệ thống kiểm tra trong cơ sở dữ liệu Somee Cloud, nếu hợp lệ sẽ cấp quyền truy cập và lưu phiên làm việc. |
 | **Tiền điều kiện** | Hệ thống đang ở màn hình Đăng nhập (LoginWindow). Thiết bị có kết nối mạng tới Somee SQL Server. |
@@ -475,7 +474,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC02** |
 | **Tên Use Case** | **Bàn làm việc Dashboard & Đồng bộ dữ liệu** |
-| **Actor** | Admin, Giảng viên / Cố vấn học tập |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Cung cấp cái nhìn toàn cảnh về các chỉ số đo lường học vụ (KPIs), phân bố học lực sinh viên và phát hiện nhanh các nguy cơ đào tạo. |
 | **Mô tả** | Hệ thống tổng hợp dữ liệu từ cơ sở dữ liệu Somee Cloud và hiển thị 6 thẻ chỉ số KPIs, biểu đồ phân loại học lực tròn (LiveCharts2), bảng tổng hợp kết quả môn học và danh sách cảnh báo học vụ rút gọn; cho phép đồng bộ số liệu thời gian thực. |
 | **Tiền điều kiện** | Người dùng đã đăng nhập thành công với vai trò Admin hoặc Giảng viên/CVHT. |
@@ -495,7 +494,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC03** |
 | **Tên Use Case** | **Quản lý Hồ sơ Sinh viên & Tự động tạo Email trường** |
-| **Actor** | Admin (Quản trị viên) |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Quản lý vòng đời hồ sơ sinh viên, lưu trữ thông tin nhân thân, phân lớp, phân khoa và chuẩn hóa tài khoản thư điện tử sinh viên. |
 | **Mô tả** | Quản trị viên thực hiện các thao tác Thêm mới, Sửa, Xóa hồ sơ sinh viên, tìm kiếm theo tên hoặc mã, và lọc theo Khoa/Lớp. Đặc biệt, khi nhập Mã sinh viên, hệ thống tự động sinh định dạng email chuẩn của trường. |
 | **Tiền điều kiện** | Người dùng đã đăng nhập với vai trò Admin và mở màn hình "Hồ sơ Sinh viên & Lớp học". |
@@ -515,7 +514,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC04** |
 | **Tên Use Case** | **Quản lý Khoa và Lớp sinh hoạt** |
-| **Actor** | Admin (Quản trị viên) |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Quản lý cơ cấu tổ chức đào tạo của nhà trường, phân cấp các khoa đào tạo và danh mục lớp sinh hoạt trực thuộc. |
 | **Mô tả** | Cung cấp giao diện để thêm mới, chỉnh sửa thông tin Khoa đào tạo (Khoa CNTT, Khoa Điện - Điện tử...) và danh mục Lớp sinh hoạt (Mã lớp, Tên lớp, Khóa học, Khoa trực thuộc). |
 | **Tiền điều kiện** | Người dùng đăng nhập quyền Admin và chuyển sang tab "Danh mục Lớp học & Khoa". |
@@ -535,7 +534,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC05** |
 | **Tên Use Case** | **Quản lý Môn học & Niên khóa đào tạo** |
-| **Actor** | Admin (Quản trị viên) |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Quản lý chương trình khung đào tạo tín chỉ, số lượng tín chỉ của từng học phần, tỷ lệ điểm thành phần và danh mục niên khóa học kỳ. |
 | **Mô tả** | Quản trị viên thêm mới, chỉnh sửa, xóa môn học (Mã môn, Tên môn, Số tín chỉ 2/3/4 tín, Tỷ lệ chuyên cần 10%, Giữa kỳ 40%, Cuối kỳ 50%) và kích hoạt niên khóa áp dụng. |
 | **Tiền điều kiện** | Đăng nhập với quyền Admin, mở màn hình "Học phần & Niên khóa". |
@@ -555,7 +554,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC06** |
 | **Tên Use Case** | **Quản lý Sổ điểm học phần & Điểm thành phần** |
-| **Actor** | Admin, Giảng viên bộ môn |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo & Khảo thí) |
 | **Mục đích** | Quản lý bảng ghi nhận điểm số học phần chi tiết của sinh viên, hỗ trợ nhập điểm trực tiếp và tự động tổng hợp kết quả môn học. |
 | **Mô tả** | Người dùng chọn Môn học, Niên khóa và Lớp sinh hoạt; hệ thống nạp danh sách sinh viên cùng các cột điểm Chuyên cần, Giữa kỳ, Cuối kỳ. Người dùng có thể sửa điểm trực tiếp; hệ thống tự động kiểm tra biên điểm $0 \le Điểm \le 10$, tính điểm tổng kết môn học thang 10, quy đổi điểm chữ, điểm hệ 4 và trạng thái Đạt/Trượt. |
 | **Tiền điều kiện** | Đã đăng nhập hệ thống, môn học và sinh viên đã tồn tại trong CSDL. |
@@ -575,7 +574,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC07** |
 | **Tên Use Case** | **Nhập điểm học phần từ File ngoại vi (Excel/CSV)** |
-| **Actor** | Admin, Giảng viên bộ môn |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo & Khảo thí) |
 | **Mục đích** | Tự động hóa quá trình nạp bảng điểm học phần số lượng lớn từ các tệp Excel/CSV do giảng viên nộp về, giảm thiểu sai sót do nhập liệu thủ công. |
 | **Mô tả** | Người dùng chọn tệp bảng tính Excel (`.xlsx`) hoặc tệp văn bản CSV (`.csv`) từ máy tính cá nhân. Hệ thống tự động phân tích cấu trúc, kiểm tra hợp lệ từng dòng, tính toán điểm tổng kết/quy đổi và nạp đồng loạt (Bulk Insert) vào cơ sở dữ liệu. |
 | **Tiền điều kiện** | Đã đăng nhập hệ thống, tệp Excel/CSV được định dạng theo đúng mẫu cột quy định (Mã SV, Mã Môn, Niên khóa, Điểm CC, Điểm GK, Điểm CK). |
@@ -595,7 +594,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC08** |
 | **Tên Use Case** | **Tra cứu kết quả học tập & Tính GPA/CPA tích lũy** |
-| **Actor** | Admin, Giảng viên / CVHT, Sinh viên |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Cung cấp công cụ tra cứu bảng điểm tổng hợp của sinh viên theo từng học kỳ hoặc toàn khóa; tính điểm trung bình GPA/CPA có trọng số tín chỉ và xếp loại học lực. |
 | **Mô tả** | Người dùng nhập Mã sinh viên hoặc chọn từ danh sách, chọn Học kỳ xét hoặc chọn "Tất cả học kỳ"; hệ thống tính toán điểm GPA học kỳ, CPA tích lũy toàn khóa, tổng số tín chỉ tích lũy và hiển thị bảng chi tiết kết quả từng môn học. |
 | **Tiền điều kiện** | Đã đăng nhập vào hệ thống; sinh viên đã có dữ liệu điểm học phần. |
@@ -615,7 +614,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC09** |
 | **Tên Use Case** | **Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ** |
-| **Actor** | Admin, Cố vấn học tập |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Rà soát toàn diện kết quả học tập để phát hiện các môn học có tỷ lệ trượt cao và tự động lập danh sách sinh viên có nguy cơ bị cảnh cáo học vụ. |
 | **Mô tả** | Hệ thống cung cấp bộ lọc linh hoạt theo Niên khóa, Học kỳ, Khoa và Lớp học; tính toán tỷ lệ Đạt/Trượt của từng môn học; lọc danh sách sinh viên có điểm $CPA < 2.0$, sinh viên nợ nhiều môn hoặc sinh viên còn thiếu điểm thành phần. |
 | **Tiền điều kiện** | Đăng nhập với quyền Admin hoặc Giảng viên/CVHT. |
@@ -635,7 +634,7 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC10** |
 | **Tên Use Case** | **Quản trị người dùng & Phân quyền hệ thống** |
-| **Actor** | Admin (Quản trị viên) |
+| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Quản lý vòng đời tài khoản truy cập hệ thống, gán quyền hạn và đảm bảo an ninh thông tin. |
 | **Mô tả** | Admin tạo tài khoản mới cho cán bộ/giảng viên/sinh viên, cập nhật thông tin, cấp lại mật khẩu mặc định, khóa tài khoản nghi vấn và giám sát nhật ký truy cập hệ thống. |
 | **Tiền điều kiện** | Đăng nhập với quyền Admin cao nhất, mở màn hình "Quản trị & Phân quyền". |
