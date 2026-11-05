@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +20,7 @@ namespace RESULT_ANALYTICS.ViewModels
         // Danh sach du lieu
         public ObservableCollection<SinhVien> DanhSachSinhVien { get; private set; }
         public ObservableCollection<Lop> DanhSachLop { get; private set; }
+        public ObservableCollection<string> DanhSachGoiYKhoa { get; private set; }
 
         // Cac bien luu du lieu
         private SinhVien sinhVienDuocChon;
@@ -32,12 +33,14 @@ namespace RESULT_ANALYTICS.ViewModels
         private string tuKhoa;
         private string thongBao;
         private bool dangSua;
+        private bool dangNapDuLieu = false;
 
         // Du lieu form quan ly lop
         private Lop lopDuocChon;
         private string maLopNhap;
         private string tenLopNhap;
         private string khoaHocNhap;
+        private string khoaNhap;
 
         // Sinh vien dang duoc chon
         public SinhVien SinhVienDuocChon
@@ -49,6 +52,7 @@ namespace RESULT_ANALYTICS.ViewModels
                 {
                     if (value != null)
                     {
+                        dangNapDuLieu = true;
                         MaSV = value.MaSV;
                         HoTen = value.HoTen;
                         NgaySinh = value.NgaySinh;
@@ -56,6 +60,7 @@ namespace RESULT_ANALYTICS.ViewModels
                         Email = value.Email;
                         MaLop = value.MaLop;
                         DangSua = true;
+                        dangNapDuLieu = false;
                     }
                 }
             }
@@ -65,7 +70,28 @@ namespace RESULT_ANALYTICS.ViewModels
         public string MaSV
         {
             get { return maSV; }
-            set { SetProperty(ref maSV, value); }
+            set
+            {
+                if (SetProperty(ref maSV, value))
+                {
+                    if (!dangNapDuLieu && !DangSua)
+                    {
+                        CapNhatEmailTheoMaSV(value);
+                    }
+                }
+            }
+        }
+
+        private void CapNhatEmailTheoMaSV(string maMoi)
+        {
+            if (string.IsNullOrWhiteSpace(maMoi))
+            {
+                Email = "";
+                return;
+            }
+
+            string maTrim = maMoi.Trim();
+            Email = $"{maTrim}@st.phenikaa-uni.edu.vn";
         }
 
         public string HoTen
@@ -132,6 +158,19 @@ namespace RESULT_ANALYTICS.ViewModels
 
             DanhSachSinhVien = new ObservableCollection<SinhVien>();
             DanhSachLop = new ObservableCollection<Lop>();
+            DanhSachGoiYKhoa = new ObservableCollection<string>
+            {
+                "Khoa Công nghệ thông tin",
+                "Khoa Khoa học máy tính",
+                "Khoa Hệ thống thông tin",
+                "Khoa Kỹ thuật Ô tô & Năng lượng",
+                "Khoa Điện - Điện tử",
+                "Khoa Kinh tế và Kinh doanh",
+                "Khoa Ngoại ngữ",
+                "Khoa Khoa học và Kỹ thuật Vật liệu",
+                "Khoa Dược",
+                "Khoa Điều dưỡng"
+            };
 
             ThemCommand = new RelayCommand(p => ThemSinhVien());
             SuaCommand = new RelayCommand(p => SuaSinhVien());
@@ -202,6 +241,35 @@ namespace RESULT_ANALYTICS.ViewModels
             };
         }
 
+        // Kiem tra rang buoc phan dau email phai khop MaSV
+        private void KiemTraEmailKhopMaSV(string maSV, string email)
+        {
+            if (string.IsNullOrWhiteSpace(maSV))
+            {
+                throw new ArgumentException("Mã sinh viên không được để trống!");
+            }
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentException($"Email liên hệ không được để trống!\nĐịnh dạng chuẩn: {maSV.Trim()}@st.phenikaa-uni.edu.vn");
+            }
+
+            string emailTrim = email.Trim();
+            int atIndex = emailTrim.IndexOf('@');
+            if (atIndex <= 0 || atIndex == emailTrim.Length - 1 || !emailTrim.Substring(atIndex + 1).Contains("."))
+            {
+                throw new ArgumentException(
+                    $"Email '{emailTrim}' không đúng định dạng!\nEmail phải có dạng: {maSV.Trim()}@st.phenikaa-uni.edu.vn");
+            }
+
+            string phanDauEmail = emailTrim.Substring(0, atIndex).Trim();
+            if (!string.Equals(phanDauEmail, maSV.Trim(), StringComparison.OrdinalIgnoreCase))
+            {
+                throw new ArgumentException(
+                    $"Phần đầu của email ('{phanDauEmail}') không khớp với Mã sinh viên ('{maSV.Trim()}')!\nEmail sinh viên bắt buộc phải có dạng: {maSV.Trim()}@st.phenikaa-uni.edu.vn");
+            }
+        }
+
         // Them sinh vien
         private void ThemSinhVien()
         {
@@ -212,6 +280,21 @@ namespace RESULT_ANALYTICS.ViewModels
                     ThongBao = "Hãy nhấn Làm trống trước khi thêm sinh viên mới.";
                     return;
                 }
+
+                if (string.IsNullOrWhiteSpace(MaSV))
+                {
+                    ThongBao = "Mã sinh viên không được để trống!";
+                    return;
+                }
+
+                // Neu de trong Email, tu dong dien theo MaSV
+                if (string.IsNullOrWhiteSpace(Email))
+                {
+                    Email = $"{MaSV.Trim()}@st.phenikaa-uni.edu.vn";
+                }
+
+                // Kiem tra rang buoc phan dau email phai khop MaSV
+                KiemTraEmailKhopMaSV(MaSV, Email);
 
                 SinhVien sv = LayDuLieuForm();
 
@@ -242,6 +325,15 @@ namespace RESULT_ANALYTICS.ViewModels
                     ThongBao = "Vui lòng chọn sinh viên cần sửa!";
                     return;
                 }
+
+                // Neu de trong Email, tu dong dien theo MaSV
+                if (string.IsNullOrWhiteSpace(Email))
+                {
+                    Email = $"{SinhVienDuocChon.MaSV.Trim()}@st.phenikaa-uni.edu.vn";
+                }
+
+                // Kiem tra rang buoc phan dau email phai khop MaSV
+                KiemTraEmailKhopMaSV(SinhVienDuocChon.MaSV, Email);
 
                 SinhVien sv = LayDuLieuForm();
 
@@ -339,6 +431,7 @@ namespace RESULT_ANALYTICS.ViewModels
         // Xoa trang form nhap
         private void XoaTrangForm()
         {
+            dangNapDuLieu = true;
             SinhVienDuocChon = null;
             DangSua = false;
 
@@ -348,6 +441,7 @@ namespace RESULT_ANALYTICS.ViewModels
             GioiTinh = "";
             Email = "";
             MaLop = null;
+            dangNapDuLieu = false;
         }
 
         // Thong bao loi
@@ -385,6 +479,7 @@ namespace RESULT_ANALYTICS.ViewModels
                         MaLopNhap = value.MaLop;
                         TenLopNhap = value.TenLop;
                         KhoaHocNhap = value.KhoaHoc;
+                        KhoaNhap = value.Khoa;
                     }
                 }
             }
@@ -408,6 +503,12 @@ namespace RESULT_ANALYTICS.ViewModels
             set { SetProperty(ref khoaHocNhap, value); }
         }
 
+        public string KhoaNhap
+        {
+            get { return khoaNhap; }
+            set { SetProperty(ref khoaNhap, value); }
+        }
+
         public bool DangSuaLop
         {
             get { return LopDuocChon != null; }
@@ -428,7 +529,8 @@ namespace RESULT_ANALYTICS.ViewModels
             {
                 MaLop = MaLopNhap,
                 TenLop = TenLopNhap,
-                KhoaHoc = KhoaHocNhap
+                KhoaHoc = KhoaHocNhap,
+                Khoa = KhoaNhap
             };
         }
 
@@ -585,6 +687,7 @@ namespace RESULT_ANALYTICS.ViewModels
             MaLopNhap = "";
             TenLopNhap = "";
             KhoaHocNhap = "";
+            KhoaNhap = "";
         }
 
     }

@@ -20,6 +20,8 @@ namespace RESULT_ANALYTICS.Models
         // Thong tin hoc ky
         public string MaHocKy { get; set; }
         public string TenHocKy { get; set; }
+        public string NamHoc { get; set; }
+        public string HocKyHienThi => string.IsNullOrWhiteSpace(NamHoc) ? TenHocKy : $"{TenHocKy} ({NamHoc})";
 
         // Ty le tinh diem: 10-30-60 (Ly thuyet) hoac 10-40-50 (Co thuc hanh)
         public string TyLeDiem { get; set; } = "10-30-60";

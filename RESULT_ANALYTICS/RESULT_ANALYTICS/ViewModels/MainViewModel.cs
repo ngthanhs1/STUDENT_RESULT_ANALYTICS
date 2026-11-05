@@ -1,12 +1,14 @@
 using System.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RESULT_ANALYTICS.DataAccess;
 using RESULT_ANALYTICS.Helpers;
+using RESULT_ANALYTICS.Models;
 
 namespace RESULT_ANALYTICS.ViewModels
 {
@@ -110,9 +112,24 @@ namespace RESULT_ANALYTICS.ViewModels
         }
 
         // ===============================================
-        // THONG TIN DONG: NIEN KHOA & TRANG THAI KET NOI
+        // BO LOC HOC KY TOAN HE THONG & TRANG THAI KET NOI
         // ===============================================
-        private string nienKhoaHienThi = "Niên khóa: 2025 - 2026";
+        public ObservableCollection<MucChonHocKy> DanhSachHocKyHeThong { get; } = new ObservableCollection<MucChonHocKy>();
+
+        private string maHocKyToanHeThong = "";
+        public string MaHocKyToanHeThong
+        {
+            get { return maHocKyToanHeThong; }
+            set
+            {
+                if (SetProperty(ref maHocKyToanHeThong, value))
+                {
+                    DongBoHocKyToanHeThong(value);
+                }
+            }
+        }
+
+        private string nienKhoaHienThi = "Niên khóa: Tất cả học kỳ (Toàn khóa)";
         public string NienKhoaHienThi
         {
             get { return nienKhoaHienThi; }
@@ -204,6 +221,13 @@ namespace RESULT_ANALYTICS.ViewModels
                 else if (muc == "ImportDiem") ImportDiemCommand?.Execute(null);
                 else if (muc == "PhanTich") PhanTichCommand?.Execute(null);
             };
+            dashboard.YeuCauDoiHocKy += (maHocKy) =>
+            {
+                if (MaHocKyToanHeThong != maHocKy)
+                {
+                    MaHocKyToanHeThong = maHocKy;
+                }
+            };
             quanLySinhVien = new QuanLySinhVienViewModel();
             quanLyMonHoc = new QuanLyMonHocHocKyViewModel();
             quanLyDiem = new QuanLyDiemViewModel();
@@ -235,6 +259,8 @@ namespace RESULT_ANALYTICS.ViewModels
                 MucDangChon = "MonHocHocKy";
                 DangODashboard = false;
                 NoiDungHienTai = quanLyMonHoc;
+                quanLyMonHoc?.LamMoiMonHocCommand?.Execute(null);
+                quanLyMonHoc?.LamMoiHocKyCommand?.Execute(null);
             });
 
             // 3. KHAO THI & DIEM SO
@@ -245,6 +271,11 @@ namespace RESULT_ANALYTICS.ViewModels
                 MucDangChon = "NhapDiem";
                 DangODashboard = false;
                 NoiDungHienTai = quanLyDiem;
+                if (quanLyDiem != null)
+                {
+                    quanLyDiem.MaHocKyLocBang = MaHocKyToanHeThong;
+                    quanLyDiem.LamMoiCommand?.Execute(null);
+                }
             });
 
             ImportDiemCommand = new RelayCommand(p =>
@@ -254,6 +285,7 @@ namespace RESULT_ANALYTICS.ViewModels
                 MucDangChon = "ImportDiem";
                 DangODashboard = false;
                 NoiDungHienTai = heThongImport;
+                heThongImport?.LamMoiLichSuCommand?.Execute(null);
             });
 
             // 4. HOC VU & BAO CAO
@@ -264,6 +296,11 @@ namespace RESULT_ANALYTICS.ViewModels
                 MucDangChon = "PhanTich";
                 DangODashboard = false;
                 NoiDungHienTai = phanTich;
+                if (phanTich != null)
+                {
+                    phanTich.MaHocKyLoc = MaHocKyToanHeThong;
+                    phanTich.LamMoiCommand?.Execute(null);
+                }
             });
 
             CanhBaoCommand = new RelayCommand(p =>
@@ -273,6 +310,11 @@ namespace RESULT_ANALYTICS.ViewModels
                 MucDangChon = "CanhBao";
                 DangODashboard = false;
                 NoiDungHienTai = thongKeCanhBao;
+                if (thongKeCanhBao != null)
+                {
+                    thongKeCanhBao.MaHocKyLoc = MaHocKyToanHeThong;
+                    thongKeCanhBao.LamMoiCommand?.Execute(null);
+                }
             });
 
             // 5. QUAN TRI HE THONG (CHI DANG CHO ADMIN)
@@ -331,24 +373,73 @@ namespace RESULT_ANALYTICS.ViewModels
                 DangTrucTuyen = DatabaseHelper.TestConnection();
 
                 var hocKyRepo = new HocKyRepository();
-                var danhSachHocKy = hocKyRepo.LayDanhSach();
-                if (danhSachHocKy != null && danhSachHocKy.Count > 0)
+                var danhSachHocKy = hocKyRepo.LayDanhSachMucChon(kemMucTatCa: true);
+
+                DanhSachHocKyHeThong.Clear();
+                foreach (var hk in danhSachHocKy)
                 {
-                    var hkMoi = danhSachHocKy.OrderByDescending(x => x.MaHocKy).FirstOrDefault();
-                    if (hkMoi != null)
-                    {
-                        NienKhoaHienThi = $"Niên khóa: {hkMoi.NamHoc} ({hkMoi.TenHocKy})";
-                    }
+                    DanhSachHocKyHeThong.Add(hk);
+                }
+
+                if (string.IsNullOrEmpty(MaHocKyToanHeThong))
+                {
+                    NienKhoaHienThi = "Niên khóa: Tất cả học kỳ (Toàn khóa)";
                 }
                 else
                 {
-                    NienKhoaHienThi = "Niên khóa: 2025 - 2026";
+                    var chon = DanhSachHocKyHeThong.FirstOrDefault(x => x.MaHocKy == MaHocKyToanHeThong);
+                    NienKhoaHienThi = chon != null ? $"Niên khóa: {chon.TenHienThi}" : $"Niên khóa: {MaHocKyToanHeThong}";
                 }
             }
             catch
             {
                 DangTrucTuyen = false;
                 NienKhoaHienThi = "Niên khóa: 2025 - 2026";
+            }
+        }
+
+        private void DongBoHocKyToanHeThong(string maHocKy)
+        {
+            if (string.IsNullOrEmpty(maHocKy))
+            {
+                NienKhoaHienThi = "Niên khóa: Tất cả học kỳ (Toàn khóa)";
+            }
+            else
+            {
+                var chon = DanhSachHocKyHeThong.FirstOrDefault(x => x.MaHocKy == maHocKy);
+                NienKhoaHienThi = chon != null ? $"Niên khóa: {chon.TenHienThi}" : $"Niên khóa: {maHocKy}";
+            }
+
+            // 1. Dong bo voi Dashboard
+            if (dashboard != null && dashboard.MaHocKyLoc != maHocKy)
+            {
+                dashboard.MaHocKyLoc = maHocKy;
+            }
+
+            // 2. Dong bo voi QuanLyDiem (So diem)
+            if (quanLyDiem != null && quanLyDiem.MaHocKyLocBang != maHocKy)
+            {
+                quanLyDiem.MaHocKyLocBang = maHocKy;
+            }
+
+            // 3. Dong bo voi PhanTich (GPA)
+            if (phanTich != null && phanTich.MaHocKyLoc != maHocKy)
+            {
+                phanTich.MaHocKyLoc = maHocKy;
+                if (mucDangChon == "PhanTich")
+                {
+                    phanTich.LocDuLieuCommand?.Execute(null);
+                }
+            }
+
+            // 4. Dong bo voi ThongKeCanhBao
+            if (thongKeCanhBao != null && thongKeCanhBao.MaHocKyLoc != maHocKy)
+            {
+                thongKeCanhBao.MaHocKyLoc = maHocKy;
+                if (mucDangChon == "CanhBao")
+                {
+                    thongKeCanhBao.LocDuLieuCommand?.Execute(null);
+                }
             }
         }
 
@@ -359,6 +450,12 @@ namespace RESULT_ANALYTICS.ViewModels
             MucDangChon = "Dashboard";
             DangODashboard = true;
             NoiDungHienTai = dashboard;
+            if (dashboard != null)
+            {
+                dashboard.MaHocKyLoc = MaHocKyToanHeThong;
+                dashboard.TaiDuLieu(MaHocKyToanHeThong);
+            }
+            CapNhatThongTinHeThong();
         }
 
         private void MoQuanLySinhVien()
@@ -368,6 +465,8 @@ namespace RESULT_ANALYTICS.ViewModels
             MucDangChon = "SinhVienLop";
             DangODashboard = false;
             NoiDungHienTai = quanLySinhVien;
+            quanLySinhVien?.LamMoiCommand?.Execute(null);
+            quanLySinhVien?.LamMoiLopCommand?.Execute(null);
         }
     }
 }

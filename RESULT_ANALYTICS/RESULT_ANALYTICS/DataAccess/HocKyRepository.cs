@@ -1,14 +1,44 @@
-﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using RESULT_ANALYTICS.Models;
 
 namespace RESULT_ANALYTICS.DataAccess
 {
     internal class HocKyRepository
     {
+        // Lay danh sach cac muc chon hoc ky cho ComboBox
+        public List<MucChonHocKy> LayDanhSachMucChon(bool kemMucTatCa = true)
+        {
+            List<MucChonHocKy> danhSach = new List<MucChonHocKy>();
+            if (kemMucTatCa)
+            {
+                danhSach.Add(new MucChonHocKy
+                {
+                    MaHocKy = "",
+                    TenHienThi = "⭐ Tất cả học kỳ (Toàn khóa)"
+                });
+            }
+
+            var danhSachHk = LayDanhSach()
+                .OrderByDescending(x => x.NamHoc)
+                .ThenByDescending(x => x.TenHocKy)
+                .ToList();
+
+            foreach (var hk in danhSachHk)
+            {
+                danhSach.Add(new MucChonHocKy
+                {
+                    MaHocKy = hk.MaHocKy,
+                    TenHienThi = $"{hk.TenHocKy} ({hk.NamHoc})"
+                });
+            }
+
+            return danhSach;
+        }
+
         // Lay danh sach hoc ky tu SQL Server
         public List<HocKy> LayDanhSach()
         {
@@ -17,7 +47,7 @@ namespace RESULT_ANALYTICS.DataAccess
             string sql = @"SELECT MaHocKy, TenHocKy, NamHoc,
                                   NgayBatDau, NgayKetThuc
                            FROM dbo.HocKy
-                           ORDER BY MaHocKy";
+                           ORDER BY NamHoc DESC, TenHocKy DESC";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {

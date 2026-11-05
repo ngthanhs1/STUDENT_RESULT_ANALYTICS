@@ -22,6 +22,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     mh.TenMonHoc,
                     kq.MaHocKy,
                     hk.TenHocKy,
+                    hk.NamHoc,
                     ISNULL(kq.TyLeDiem, '10-30-60') AS TyLeDiem,
                     kq.DiemChuyenCan,
                     kq.DiemGiuaKy,
@@ -34,7 +35,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     ON kq.MaMonHoc = mh.MaMonHoc
                 INNER JOIN dbo.HocKy hk
                     ON kq.MaHocKy = hk.MaHocKy
-                ORDER BY kq.MaKetQua";
+                ORDER BY hk.NamHoc DESC, hk.TenHocKy DESC, sv.MaSV ASC, mh.MaMonHoc ASC";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
@@ -55,6 +56,7 @@ namespace RESULT_ANALYTICS.DataAccess
                             ketQua.TenMonHoc = reader["TenMonHoc"].ToString();
                             ketQua.MaHocKy = reader["MaHocKy"].ToString();
                             ketQua.TenHocKy = reader["TenHocKy"].ToString();
+                            ketQua.NamHoc = reader["NamHoc"] != DBNull.Value ? reader["NamHoc"].ToString() : "";
                             ketQua.TyLeDiem = reader["TyLeDiem"] != DBNull.Value ? reader["TyLeDiem"].ToString() : "10-30-60";
 
                             ketQua.DiemChuyenCan = DocDiem(reader, "DiemChuyenCan");

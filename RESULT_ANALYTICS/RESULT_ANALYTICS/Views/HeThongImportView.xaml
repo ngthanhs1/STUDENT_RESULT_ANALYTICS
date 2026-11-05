@@ -49,8 +49,8 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Grid.Column="0" Height="28" Padding="8,3" Text="{Binding DuongDanFile}" IsReadOnly="True" Background="#F8FAFC" BorderBrush="#CBD5E1" FontSize="12" VerticalContentAlignment="Center" Margin="0,0,8,0"/>
-                    <Button Grid.Column="1" Content="📁 CHỌN FILE..." Command="{Binding ChonFileCommand}" Background="#1976D2" Style="{StaticResource ClassicBtn}" MinWidth="105" Margin="0,0,6,0"/>
-                    <Button Grid.Column="2" Content="⚡ THỰC HIỆN IMPORT" Command="{Binding ImportFileCommand}" Background="#2E7D32" Style="{StaticResource ClassicBtn}" MinWidth="135"/>
+                    <Button Grid.Column="1" Content="CHỌN FILE..." Command="{Binding ChonFileCommand}" Background="#1976D2" Style="{StaticResource ClassicBtn}" MinWidth="95" Margin="0,0,6,0"/>
+                    <Button Grid.Column="2" Content="THỰC HIỆN IMPORT" Command="{Binding ImportFileCommand}" Background="#2E7D32" Style="{StaticResource ClassicBtn}" MinWidth="130"/>
                 </Grid>
 
                 <TextBlock Text="• Hỗ trợ file Excel (.xlsx) hoặc CSV (.csv). Định dạng 6 cột: MaSV, MaMonHoc, MaHocKy, DiemChuyenCan, DiemGiuaKy, DiemCuoiKy (Tối đa 5.000 dòng, thang điểm 0-10)" FontSize="11" Foreground="#64748B" Margin="0,0,0,8"/>
@@ -131,7 +131,7 @@
                         <TextBlock Text="(Hiển thị 100 lần import gần nhất)" FontSize="11" Foreground="#64748B" Margin="8,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <Button HorizontalAlignment="Right" Content="🔄 LÀM MỚI LỊCH SỬ" Command="{Binding LamMoiLichSuCommand}" Background="#0284C7" Style="{StaticResource ClassicBtn}" MinWidth="125"/>
+                    <Button HorizontalAlignment="Right" Content="LÀM MỚI LỊCH SỬ" Command="{Binding LamMoiLichSuCommand}" Background="#0284C7" Style="{StaticResource ClassicBtn}" MinWidth="115"/>
                 </Grid>
 
                 <DataGrid Grid.Row="1" ItemsSource="{Binding DanhSachLichSu}"

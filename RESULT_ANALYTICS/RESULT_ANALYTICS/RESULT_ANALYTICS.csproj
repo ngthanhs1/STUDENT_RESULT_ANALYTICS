@@ -245,5 +245,6 @@
   <ItemGroup>
     <Resource Include="Assets\bg_login.jpg" />
     <Resource Include="Assets\paper_plane.png" />
+    <Resource Include="Assets\logo.png" />
   </ItemGroup>
 </Project>

@@ -20,8 +20,9 @@ namespace RESULT_ANALYTICS.ViewModels
         private decimal diemTBChung;
         private decimal tyLeDatChung;
         private string thongBao;
-        private string nienKhoaHienThi = "Niên khóa: 2025 - 2026 (Học kỳ 1)";
+        private string nienKhoaHienThi = "Niên khóa: 2025 - 2026";
         private string heThongDbHienThi = "🟢 Hệ thống: SQL Server";
+        private string maHocKyLoc = "";
 
         public int TongSinhVien
         {
@@ -93,6 +94,29 @@ namespace RESULT_ANALYTICS.ViewModels
             set { SetProperty(ref heThongDbHienThi, value); }
         }
 
+        public event Action<string> YeuCauDoiHocKy;
+
+        public string MaHocKyLoc
+        {
+            get { return maHocKyLoc; }
+            set
+            {
+                if (SetProperty(ref maHocKyLoc, value))
+                {
+                    OnPropertyChanged(nameof(NhanDiemTB));
+                    OnPropertyChanged(nameof(NhanTyLeDat));
+                    OnPropertyChanged(nameof(NhanCanhBao));
+                    TaiDuLieu();
+                    YeuCauDoiHocKy?.Invoke(value);
+                }
+            }
+        }
+
+        public string NhanDiemTB => string.IsNullOrWhiteSpace(MaHocKyLoc) ? "ĐIỂM TB TOÀN KHÓA" : "ĐIỂM TB HỌC KỲ";
+        public string NhanTyLeDat => string.IsNullOrWhiteSpace(MaHocKyLoc) ? "TỶ LỆ ĐẠT CHUNG" : "TỶ LỆ ĐẠT HỌC KỲ";
+        public string NhanCanhBao => string.IsNullOrWhiteSpace(MaHocKyLoc) ? "CẦN BỔ SUNG ĐIỂM" : "THIẾU ĐIỂM KỲ NÀY";
+
+        public ObservableCollection<MucChonHocKy> DanhSachHocKyLoc { get; private set; }
         public ObservableCollection<PhanBoHocLucDashboard> DanhSachPhanBo { get; private set; }
         public ObservableCollection<ThongKeDatTruot> DanhSachMonHoc { get; private set; }
         public ObservableCollection<CanhBaoThieuDiem> DanhSachCanhBao { get; private set; }
@@ -112,6 +136,7 @@ namespace RESULT_ANALYTICS.ViewModels
         {
             repository = new DashboardRepository();
 
+            DanhSachHocKyLoc = new ObservableCollection<MucChonHocKy>();
             DanhSachPhanBo = new ObservableCollection<PhanBoHocLucDashboard>();
             DanhSachMonHoc = new ObservableCollection<ThongKeDatTruot>();
             DanhSachCanhBao = new ObservableCollection<CanhBaoThieuDiem>();
@@ -123,17 +148,43 @@ namespace RESULT_ANALYTICS.ViewModels
             ChuyenDenSinhVienCommand = new RelayCommand(p => YeuCauDieuHuong?.Invoke("SinhVien"));
             ChuyenDenPhanTichCommand = new RelayCommand(p => YeuCauDieuHuong?.Invoke("PhanTich"));
 
+            TaiDanhSachHocKy();
             TaiDuLieu();
         }
 
-        public void TaiDuLieu()
+        public void TaiDanhSachHocKy()
         {
             try
             {
-                ThongKeTongQuan thongKe = repository.LayThongKe();
-                List<PhanBoHocLucDashboard> phanBo = repository.LayPhanBoHocLuc();
-                List<ThongKeDatTruot> monHoc = repository.LayMonHocDatTruot();
-                List<CanhBaoThieuDiem> canhBao = repository.LayDanhSachCanhBao();
+                var hocKyRepo = new HocKyRepository();
+                var danhSachHk = hocKyRepo.LayDanhSachMucChon(kemMucTatCa: true);
+
+                DanhSachHocKyLoc.Clear();
+                foreach (var hk in danhSachHk)
+                {
+                    DanhSachHocKyLoc.Add(hk);
+                }
+            }
+            catch { }
+        }
+
+        public void TaiDuLieu(string maHocKy = null)
+        {
+            if (maHocKy != null && maHocKy != maHocKyLoc)
+            {
+                maHocKyLoc = maHocKy;
+                OnPropertyChanged(nameof(MaHocKyLoc));
+                OnPropertyChanged(nameof(NhanDiemTB));
+                OnPropertyChanged(nameof(NhanTyLeDat));
+                OnPropertyChanged(nameof(NhanCanhBao));
+            }
+
+            try
+            {
+                ThongKeTongQuan thongKe = repository.LayThongKe(maHocKyLoc);
+                List<PhanBoHocLucDashboard> phanBo = repository.LayPhanBoHocLuc(maHocKyLoc);
+                List<ThongKeDatTruot> monHoc = repository.LayMonHocDatTruot(maHocKyLoc);
+                List<CanhBaoThieuDiem> canhBao = repository.LayDanhSachCanhBao(maHocKyLoc);
 
                 TongSinhVien = thongKe.TongSinhVien;
                 TongLop = thongKe.TongLop;
@@ -169,7 +220,7 @@ namespace RESULT_ANALYTICS.ViewModels
                         var hkMoi = danhSachHk.OrderByDescending(x => x.MaHocKy).FirstOrDefault();
                         if (hkMoi != null)
                         {
-                            NienKhoaHienThi = $"🗓️ Niên khóa: {hkMoi.NamHoc} ({hkMoi.TenHocKy})";
+                            NienKhoaHienThi = $"Niên khóa: {hkMoi.NamHoc} ({hkMoi.TenHocKy})";
                         }
                     }
                     bool ketNoiOk = DatabaseHelper.TestConnection();
@@ -180,7 +231,8 @@ namespace RESULT_ANALYTICS.ViewModels
                     HeThongDbHienThi = "⚪ Hệ thống: SQL Server";
                 }
 
-                ThongBao = $"Đã đồng bộ số liệu thời gian thực từ SQL Server ({DateTime.Now:HH:mm:ss}).";
+                string tenKy = string.IsNullOrWhiteSpace(maHocKyLoc) ? "Tất cả học kỳ" : maHocKyLoc;
+                ThongBao = $"Đã đồng bộ số liệu [{tenKy}] từ SQL Server ({DateTime.Now:HH:mm:ss}).";
             }
             catch (Exception ex)
             {

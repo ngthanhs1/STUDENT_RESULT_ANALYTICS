@@ -135,41 +135,108 @@
             </StackPanel>
         </Border>
 
-        <!-- BANG DANH SACH DIEM -->
+        <!-- BANG DANH SACH DIEM VA BO LOC NHANH -->
         <Border Grid.Row="2" Background="White" CornerRadius="4" Padding="12" BorderBrush="#CBD5E1" BorderThickness="1">
-            <DataGrid ItemsSource="{Binding DanhSachKetQua}"
-                      SelectedItem="{Binding KetQuaDuocChon, Mode=TwoWay}"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single"
-                      SelectionUnit="FullRow"
-                      HeadersVisibility="Column"
-                      RowHeight="28"
-                      ColumnHeaderHeight="32"
-                      GridLinesVisibility="Horizontal"
-                      AlternatingRowBackground="#F8FAFC"
-                      BorderBrush="#CBD5E1"
-                      FontSize="12"
-                      HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã KQ" Binding="{Binding MaKetQua}" Width="55"/>
-                    <DataGridTextColumn Header="Mã SV" Binding="{Binding MaSV}" Width="75"/>
-                    <DataGridTextColumn Header="Họ và tên" Binding="{Binding HoTen}" Width="150"/>
-                    <DataGridTextColumn Header="Học phần" Binding="{Binding TenMonHoc}" MinWidth="140" Width="*"/>
-                    <DataGridTextColumn Header="Học kỳ" Binding="{Binding TenHocKy}" Width="95"/>
-                    <DataGridTextColumn Header="Cơ cấu" Binding="{Binding TyLeHienThi}" Width="90"/>
-                    <DataGridTextColumn Header="Chuyên cần" Binding="{Binding DiemChuyenCan, StringFormat={}{0:N2}}" Width="85"/>
-                    <DataGridTextColumn Header="Giữa kỳ / TH" Binding="{Binding DiemGiuaKy, StringFormat={}{0:N2}}" Width="95"/>
-                    <DataGridTextColumn Header="Cuối kỳ" Binding="{Binding DiemCuoiKy, StringFormat={}{0:N2}}" Width="80"/>
-                    <DataGridTextColumn Header="Tổng kết (10)" Binding="{Binding DiemTongKet, StringFormat={}{0:N2}}" Width="90"/>
-                    <DataGridTextColumn Header="Điểm chữ" Binding="{Binding DiemChu}" Width="70"/>
-                    <DataGridTextColumn Header="GPA (Hệ 4)" Binding="{Binding DiemHe4, StringFormat={}{0:N1}}" Width="80"/>
-                    <DataGridTextColumn Header="Kết quả" Binding="{Binding KetQuaMon}" Width="65"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- THANH CONG CU BO LOC VA TIM KIEM -->
+                <Grid Grid.Row="0" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- LOC THEO HOC KY -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,12,0">
+                        <TextBlock Text="📅 Lọc kỳ:" FontWeight="SemiBold" FontSize="11.5" Foreground="#1E3A5F" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <ComboBox ItemsSource="{Binding DanhSachHocKyLocBang}"
+                                  SelectedValuePath="MaHocKy"
+                                  DisplayMemberPath="TenHienThi"
+                                  SelectedValue="{Binding MaHocKyLocBang, Mode=TwoWay}"
+                                  Height="27"
+                                  MinWidth="185"
+                                  FontSize="11.5"
+                                  VerticalContentAlignment="Center"
+                                  Cursor="Hand"/>
+                    </StackPanel>
+
+                    <!-- LOC THEO MON HOC -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,12,0">
+                        <TextBlock Text="📚 Học phần:" FontWeight="SemiBold" FontSize="11.5" Foreground="#1E3A5F" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <ComboBox ItemsSource="{Binding DanhSachMonHocLocBang}"
+                                  SelectedValuePath="MaMonHoc"
+                                  DisplayMemberPath="TenMonHoc"
+                                  SelectedValue="{Binding MaMonHocLocBang, Mode=TwoWay}"
+                                  Height="27"
+                                  MinWidth="170"
+                                  FontSize="11.5"
+                                  VerticalContentAlignment="Center"
+                                  Cursor="Hand"/>
+                    </StackPanel>
+
+                    <!-- TIM KIEM THEO MA SV HOAC TEN -->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,12,0">
+                        <TextBlock Text="🔍 Tìm kiếm:" FontWeight="SemiBold" FontSize="11.5" Foreground="#1E3A5F" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBox Text="{Binding TuKhoaTimKiem, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="27"
+                                 Width="180"
+                                 Padding="6,2"
+                                 FontSize="11.5"
+                                 VerticalContentAlignment="Center"
+                                 BorderBrush="#CBD5E1"/>
+                        <Button Content="BỎ LỌC" Command="{Binding BoLocCommand}" Background="#64748B" Style="{StaticResource ClassicBtn}" MinWidth="65" Height="27" Margin="6,0,0,0"/>
+                    </StackPanel>
+
+                    <!-- DEM SO DONG HIEN THI -->
+                    <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Border Background="#F1F5F9" CornerRadius="3" Padding="8,4" BorderBrush="#E2E8F0" BorderThickness="1">
+                            <TextBlock Text="{Binding ThongKeSoLuongHienThi}" FontSize="11.5" FontWeight="SemiBold" Foreground="#1E4E79"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <!-- DATA GRID -->
+                <DataGrid Grid.Row="1"
+                          ItemsSource="{Binding DanhSachKetQuaHienThi}"
+                          SelectedItem="{Binding KetQuaDuocChon, Mode=TwoWay}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          HeadersVisibility="Column"
+                          RowHeight="28"
+                          ColumnHeaderHeight="32"
+                          GridLinesVisibility="Horizontal"
+                          AlternatingRowBackground="#F8FAFC"
+                          BorderBrush="#CBD5E1"
+                          FontSize="12"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã KQ" Binding="{Binding MaKetQua}" Width="55"/>
+                        <DataGridTextColumn Header="Mã SV" Binding="{Binding MaSV}" Width="75"/>
+                        <DataGridTextColumn Header="Họ và tên" Binding="{Binding HoTen}" Width="150"/>
+                        <DataGridTextColumn Header="Học phần" Binding="{Binding TenMonHoc}" MinWidth="140" Width="*"/>
+                        <DataGridTextColumn Header="Học kỳ" Binding="{Binding HocKyHienThi}" Width="120"/>
+                        <DataGridTextColumn Header="Cơ cấu" Binding="{Binding TyLeHienThi}" Width="90"/>
+                        <DataGridTextColumn Header="Chuyên cần" Binding="{Binding DiemChuyenCan, StringFormat={}{0:N2}}" Width="85"/>
+                        <DataGridTextColumn Header="Giữa kỳ / TH" Binding="{Binding DiemGiuaKy, StringFormat={}{0:N2}}" Width="95"/>
+                        <DataGridTextColumn Header="Cuối kỳ" Binding="{Binding DiemCuoiKy, StringFormat={}{0:N2}}" Width="80"/>
+                        <DataGridTextColumn Header="Tổng kết (10)" Binding="{Binding DiemTongKet, StringFormat={}{0:N2}}" Width="90"/>
+                        <DataGridTextColumn Header="Điểm chữ" Binding="{Binding DiemChu}" Width="70"/>
+                        <DataGridTextColumn Header="GPA (Hệ 4)" Binding="{Binding DiemHe4, StringFormat={}{0:N1}}" Width="80"/>
+                        <DataGridTextColumn Header="Kết quả" Binding="{Binding KetQuaMon}" Width="65"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </Border>
 
     </Grid>

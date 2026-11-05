@@ -11,23 +11,31 @@ namespace RESULT_ANALYTICS.DataAccess
 {
     internal class DashboardRepository
     {
-        // 1. Lay chi so KPI tong quan toan dien
-        public ThongKeTongQuan LayThongKe()
+        // 1. Lay chi so KPI tong quan toan dien (Co ho tro loc theo hoc ky)
+        public ThongKeTongQuan LayThongKe(string maHocKy = null)
         {
             ThongKeTongQuan thongKe = new ThongKeTongQuan();
+            bool coHocKy = !string.IsNullOrWhiteSpace(maHocKy);
 
             string sql = @"
                 SELECT
-                    (SELECT COUNT(*) FROM dbo.SinhVien) AS TongSinhVien,
+                    CASE WHEN @MaHocKy IS NOT NULL 
+                         THEN (SELECT COUNT(DISTINCT MaSV) FROM dbo.KetQua WHERE MaHocKy = @MaHocKy)
+                         ELSE (SELECT COUNT(*) FROM dbo.SinhVien) END AS TongSinhVien,
                     (SELECT COUNT(*) FROM dbo.Lop) AS TongLop,
-                    (SELECT COUNT(*) FROM dbo.MonHoc) AS TongMonHoc,
-                    (SELECT COUNT(DISTINCT MaSV) FROM dbo.vw_SinhVienThieuDiem) AS SoSinhVienThieuDiem,
+                    CASE WHEN @MaHocKy IS NOT NULL 
+                         THEN (SELECT COUNT(DISTINCT MaMonHoc) FROM dbo.KetQua WHERE MaHocKy = @MaHocKy)
+                         ELSE (SELECT COUNT(*) FROM dbo.MonHoc) END AS TongMonHoc,
+                    (SELECT COUNT(DISTINCT MaSV) FROM dbo.vw_SinhVienThieuDiem 
+                     WHERE (@MaHocKy IS NULL OR MaHocKy = @MaHocKy)) AS SoSinhVienThieuDiem,
                     (SELECT ISNULL(CAST(AVG(DiemTrungBinh) AS DECIMAL(4,2)), 0) 
-                     FROM dbo.vw_PhanLoaiHocLuc WHERE DiemTrungBinh > 0) AS DiemTBChung,
+                     FROM dbo.vw_PhanLoaiHocLuc 
+                     WHERE DiemTrungBinh > 0 AND (@MaHocKy IS NULL OR MaHocKy = @MaHocKy)) AS DiemTBChung,
                     (SELECT CASE WHEN (SUM(SoSinhVienDat) + SUM(SoSinhVienTruot)) > 0 
                                  THEN CAST(SUM(SoSinhVienDat) * 100.0 / (SUM(SoSinhVienDat) + SUM(SoSinhVienTruot)) AS DECIMAL(5,1)) 
                                  ELSE 0 END 
-                     FROM dbo.vw_ThongKeDatTruot) AS TyLeDatChung";
+                     FROM dbo.vw_ThongKeDatTruot 
+                     WHERE (@MaHocKy IS NULL OR MaHocKy = @MaHocKy)) AS TyLeDatChung";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
@@ -35,16 +43,19 @@ namespace RESULT_ANALYTICS.DataAccess
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.Add("@MaHocKy", SqlDbType.VarChar, 20)
+                        .Value = coHocKy ? (object)maHocKy.Trim() : DBNull.Value;
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            thongKe.TongSinhVien = Convert.ToInt32(reader["TongSinhVien"]);
-                            thongKe.TongLop = Convert.ToInt32(reader["TongLop"]);
-                            thongKe.TongMonHoc = Convert.ToInt32(reader["TongMonHoc"]);
-                            thongKe.SoSinhVienThieuDiem = Convert.ToInt32(reader["SoSinhVienThieuDiem"]);
-                            thongKe.DiemTBChung = reader["DiemTBChung"] != DBNull.Value ? Convert.ToDecimal(reader["DiemTBChung"]) : 0;
-                            thongKe.TyLeDatChung = reader["TyLeDatChung"] != DBNull.Value ? Convert.ToDecimal(reader["TyLeDatChung"]) : 0;
+                            thongKe.TongSinhVien = DocSoNguyen(reader, "TongSinhVien");
+                            thongKe.TongLop = DocSoNguyen(reader, "TongLop");
+                            thongKe.TongMonHoc = DocSoNguyen(reader, "TongMonHoc");
+                            thongKe.SoSinhVienThieuDiem = DocSoNguyen(reader, "SoSinhVienThieuDiem");
+                            thongKe.DiemTBChung = DocSoThapPhan(reader, "DiemTBChung");
+                            thongKe.TyLeDatChung = DocSoThapPhan(reader, "TyLeDatChung");
                         }
                     }
                 }
@@ -53,14 +64,16 @@ namespace RESULT_ANALYTICS.DataAccess
             return thongKe;
         }
 
-        // 2. Lay phan bo hoc luc toan khoa
-        public List<PhanBoHocLucDashboard> LayPhanBoHocLuc()
+        // 2. Lay phan bo hoc luc toan khoa hoac theo hoc ky
+        public List<PhanBoHocLucDashboard> LayPhanBoHocLuc(string maHocKy = null)
         {
             List<PhanBoHocLucDashboard> danhSach = new List<PhanBoHocLucDashboard>();
+            bool coHocKy = !string.IsNullOrWhiteSpace(maHocKy);
 
             string sql = @"
                 SELECT XepLoai, COUNT(*) AS SoLuong
                 FROM dbo.vw_PhanLoaiHocLuc
+                WHERE (@MaHocKy IS NULL OR MaHocKy = @MaHocKy)
                 GROUP BY XepLoai
                 ORDER BY 
                     CASE XepLoai 
@@ -82,12 +95,15 @@ namespace RESULT_ANALYTICS.DataAccess
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.Add("@MaHocKy", SqlDbType.VarChar, 20)
+                        .Value = coHocKy ? (object)maHocKy.Trim() : DBNull.Value;
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             string loai = reader["XepLoai"] != DBNull.Value ? reader["XepLoai"].ToString() : "Chưa đủ điểm";
-                            int sl = Convert.ToInt32(reader["SoLuong"]);
+                            int sl = DocSoNguyen(reader, "SoLuong");
                             data[loai] = sl;
                             tong += sl;
                         }
@@ -123,10 +139,11 @@ namespace RESULT_ANALYTICS.DataAccess
             return danhSach;
         }
 
-        // 3. Lay danh sach ket qua Dat / Truot theo hoc phan
-        public List<ThongKeDatTruot> LayMonHocDatTruot()
+        // 3. Lay danh sach ket qua Dat / Truot theo hoc phan (hoac theo hoc ky)
+        public List<ThongKeDatTruot> LayMonHocDatTruot(string maHocKy = null)
         {
             List<ThongKeDatTruot> danhSach = new List<ThongKeDatTruot>();
+            bool coHocKy = !string.IsNullOrWhiteSpace(maHocKy);
 
             string sql = @"
                 SELECT TOP (8)
@@ -142,6 +159,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     SoSinhVienThieuDiem,
                     TyLeDat
                 FROM dbo.vw_ThongKeDatTruot
+                WHERE (@MaHocKy IS NULL OR MaHocKy = @MaHocKy)
                 ORDER BY TyLeDat ASC, MaMonHoc";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -150,23 +168,26 @@ namespace RESULT_ANALYTICS.DataAccess
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.Add("@MaHocKy", SqlDbType.VarChar, 20)
+                        .Value = coHocKy ? (object)maHocKy.Trim() : DBNull.Value;
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             ThongKeDatTruot item = new ThongKeDatTruot
                             {
-                                MaMonHoc = reader["MaMonHoc"].ToString(),
-                                TenMonHoc = reader["TenMonHoc"].ToString(),
-                                SoTinChi = Convert.ToInt32(reader["SoTinChi"]),
-                                MaHocKy = reader["MaHocKy"].ToString(),
-                                TenHocKy = reader["TenHocKy"].ToString(),
-                                NamHoc = reader["NamHoc"].ToString(),
-                                TongSinhVien = Convert.ToInt32(reader["TongSinhVien"]),
-                                SoSinhVienDat = Convert.ToInt32(reader["SoSinhVienDat"]),
-                                SoSinhVienTruot = Convert.ToInt32(reader["SoSinhVienTruot"]),
-                                SoSinhVienThieuDiem = Convert.ToInt32(reader["SoSinhVienThieuDiem"]),
-                                TyLeDat = Convert.ToDecimal(reader["TyLeDat"])
+                                MaMonHoc = DocChuoi(reader, "MaMonHoc"),
+                                TenMonHoc = DocChuoi(reader, "TenMonHoc"),
+                                SoTinChi = DocSoNguyen(reader, "SoTinChi"),
+                                MaHocKy = DocChuoi(reader, "MaHocKy"),
+                                TenHocKy = DocChuoi(reader, "TenHocKy"),
+                                NamHoc = DocChuoi(reader, "NamHoc"),
+                                TongSinhVien = DocSoNguyen(reader, "TongSinhVien"),
+                                SoSinhVienDat = DocSoNguyen(reader, "SoSinhVienDat"),
+                                SoSinhVienTruot = DocSoNguyen(reader, "SoSinhVienTruot"),
+                                SoSinhVienThieuDiem = DocSoNguyen(reader, "SoSinhVienThieuDiem"),
+                                TyLeDat = DocSoThapPhan(reader, "TyLeDat")
                             };
 
                             danhSach.Add(item);
@@ -178,10 +199,11 @@ namespace RESULT_ANALYTICS.DataAccess
             return danhSach;
         }
 
-        // 4. Lay danh sach sinh vien thieu diem / canh bao
-        public List<CanhBaoThieuDiem> LayDanhSachCanhBao()
+        // 4. Lay danh sach sinh vien thieu diem / canh bao (hoac theo hoc ky)
+        public List<CanhBaoThieuDiem> LayDanhSachCanhBao(string maHocKy = null)
         {
             List<CanhBaoThieuDiem> danhSach = new List<CanhBaoThieuDiem>();
+            bool coHocKy = !string.IsNullOrWhiteSpace(maHocKy);
 
             string sql = @"
                 SELECT TOP (10)
@@ -192,6 +214,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     MaHocKy,
                     NoiDungCanhBao
                 FROM dbo.vw_SinhVienThieuDiem
+                WHERE (@MaHocKy IS NULL OR MaHocKy = @MaHocKy)
                 ORDER BY MaSV, MaMonHoc, MaHocKy";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -200,18 +223,21 @@ namespace RESULT_ANALYTICS.DataAccess
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.Add("@MaHocKy", SqlDbType.VarChar, 20)
+                        .Value = coHocKy ? (object)maHocKy.Trim() : DBNull.Value;
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             CanhBaoThieuDiem canhBao = new CanhBaoThieuDiem
                             {
-                                MaSV = reader["MaSV"].ToString(),
-                                HoTen = reader["HoTen"].ToString(),
-                                MaMonHoc = reader["MaMonHoc"].ToString(),
-                                TenMonHoc = reader["TenMonHoc"].ToString(),
-                                MaHocKy = reader["MaHocKy"].ToString(),
-                                NoiDungCanhBao = reader["NoiDungCanhBao"].ToString()
+                                MaSV = DocChuoi(reader, "MaSV"),
+                                HoTen = DocChuoi(reader, "HoTen"),
+                                MaMonHoc = DocChuoi(reader, "MaMonHoc"),
+                                TenMonHoc = DocChuoi(reader, "TenMonHoc"),
+                                MaHocKy = DocChuoi(reader, "MaHocKy"),
+                                NoiDungCanhBao = DocChuoi(reader, "NoiDungCanhBao")
                             };
 
                             danhSach.Add(canhBao);
@@ -221,6 +247,24 @@ namespace RESULT_ANALYTICS.DataAccess
             }
 
             return danhSach;
+        }
+
+        // =========================================
+        // HELPER FUNCTIONS DOC DU LIEU AN TOAN VOI DBNULL
+        // =========================================
+        private static string DocChuoi(SqlDataReader reader, string tenCot)
+        {
+            return reader[tenCot] == DBNull.Value ? "" : Convert.ToString(reader[tenCot]);
+        }
+
+        private static int DocSoNguyen(SqlDataReader reader, string tenCot)
+        {
+            return reader[tenCot] == DBNull.Value ? 0 : Convert.ToInt32(reader[tenCot]);
+        }
+
+        private static decimal DocSoThapPhan(SqlDataReader reader, string tenCot)
+        {
+            return reader[tenCot] == DBNull.Value ? 0m : Convert.ToDecimal(reader[tenCot]);
         }
     }
 }

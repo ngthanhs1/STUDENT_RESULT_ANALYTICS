@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,8 @@ namespace RESULT_ANALYTICS.DataAccess
                     sv.GioiTinh,
                     sv.Email,
                     sv.MaLop,
-                    l.TenLop
+                    l.TenLop,
+                    l.Khoa
                 FROM dbo.SinhVien sv
                 LEFT JOIN dbo.Lop l ON sv.MaLop = l.MaLop
                 ORDER BY sv.MaSV";
@@ -126,7 +127,8 @@ namespace RESULT_ANALYTICS.DataAccess
                     sv.GioiTinh,
                     sv.Email,
                     sv.MaLop,
-                    l.TenLop
+                    l.TenLop,
+                    l.Khoa
                 FROM dbo.SinhVien sv
                 LEFT JOIN dbo.Lop l ON sv.MaLop = l.MaLop
                 WHERE
@@ -135,6 +137,7 @@ namespace RESULT_ANALYTICS.DataAccess
                     OR sv.Email LIKE @TuKhoa
                     OR sv.MaLop LIKE @TuKhoa
                     OR l.TenLop LIKE @TuKhoa
+                    OR l.Khoa LIKE @TuKhoa
                 ORDER BY sv.MaSV";
 
             return DocDanhSach(sql, tuKhoa);
@@ -188,6 +191,11 @@ namespace RESULT_ANALYTICS.DataAccess
                                 reader["TenLop"] == DBNull.Value
                                 ? null
                                 : reader["TenLop"].ToString();
+
+                            sinhVien.Khoa =
+                                reader["Khoa"] == DBNull.Value
+                                ? ""
+                                : reader["Khoa"].ToString();
 
                             danhSach.Add(sinhVien);
                         }
@@ -271,11 +279,27 @@ namespace RESULT_ANALYTICS.DataAccess
                     "Mã lớp tối đa 20 ký tự!");
             }
 
-            if (!string.IsNullOrWhiteSpace(sinhVien.Email) &&
-                sinhVien.Email.Trim().Length > 100)
+            if (!string.IsNullOrWhiteSpace(sinhVien.Email))
             {
-                throw new ArgumentException(
-                    "Email tối đa 100 ký tự!");
+                string email = sinhVien.Email.Trim();
+                if (email.Length > 100)
+                {
+                    throw new ArgumentException("Email tối đa 100 ký tự!");
+                }
+
+                int atIndex = email.IndexOf('@');
+                if (atIndex <= 0 || atIndex == email.Length - 1 || !email.Substring(atIndex + 1).Contains("."))
+                {
+                    throw new ArgumentException(
+                        $"Email '{email}' không đúng định dạng!\nEmail sinh viên phải có dạng: {sinhVien.MaSV.Trim()}@domain (Ví dụ: {sinhVien.MaSV.Trim()}@phenikaa-uni.edu.vn)");
+                }
+
+                string phanDau = email.Substring(0, atIndex).Trim();
+                if (!string.Equals(phanDau, sinhVien.MaSV.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new ArgumentException(
+                        $"Phần đầu của email ('{phanDau}') không khớp với Mã sinh viên ('{sinhVien.MaSV.Trim()}')!\nEmail sinh viên bắt buộc phải có dạng: {sinhVien.MaSV.Trim()}@<tên_miền> (Ví dụ: {sinhVien.MaSV.Trim()}@phenikaa-uni.edu.vn).");
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(sinhVien.GioiTinh) &&

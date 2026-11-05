@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using RESULT_ANALYTICS.DataAccess;
@@ -25,10 +26,64 @@ namespace RESULT_ANALYTICS.ViewModels
 
         // Danh sach hien thi
         public ObservableCollection<KetQua> DanhSachKetQua { get; private set; }
+        public ObservableCollection<KetQua> DanhSachKetQuaHienThi { get; private set; }
         public ObservableCollection<SinhVien> DanhSachSinhVien { get; private set; }
         public ObservableCollection<MonHoc> DanhSachMonHoc { get; private set; }
         public ObservableCollection<HocKy> DanhSachHocKy { get; private set; }
         public ObservableCollection<TyLeDiemOption> DanhSachTyLeDiem { get; private set; }
+
+        // Danh sach bo loc bang diem
+        public ObservableCollection<MucChonHocKy> DanhSachHocKyLocBang { get; private set; }
+        public ObservableCollection<MonHoc> DanhSachMonHocLocBang { get; private set; }
+
+        // Thong tin bo loc bang diem
+        private string maHocKyLocBang = "";
+        public string MaHocKyLocBang
+        {
+            get { return maHocKyLocBang; }
+            set
+            {
+                if (SetProperty(ref maHocKyLocBang, value))
+                {
+                    ApDungBoLoc();
+                }
+            }
+        }
+
+        private string maMonHocLocBang = "";
+        public string MaMonHocLocBang
+        {
+            get { return maMonHocLocBang; }
+            set
+            {
+                if (SetProperty(ref maMonHocLocBang, value))
+                {
+                    ApDungBoLoc();
+                }
+            }
+        }
+
+        private string tuKhoaTimKiem = "";
+        public string TuKhoaTimKiem
+        {
+            get { return tuKhoaTimKiem; }
+            set
+            {
+                if (SetProperty(ref tuKhoaTimKiem, value))
+                {
+                    ApDungBoLoc();
+                }
+            }
+        }
+
+        private string thongKeSoLuongHienThi = "Hiển thị: 0 bản ghi";
+        public string ThongKeSoLuongHienThi
+        {
+            get { return thongKeSoLuongHienThi; }
+            set { SetProperty(ref thongKeSoLuongHienThi, value); }
+        }
+
+        public ICommand BoLocCommand { get; private set; }
 
         // Ket qua dang duoc chon
         private KetQua ketQuaDuocChon;
@@ -149,9 +204,12 @@ namespace RESULT_ANALYTICS.ViewModels
             hocKyRepository = new HocKyRepository();
 
             DanhSachKetQua = new ObservableCollection<KetQua>();
+            DanhSachKetQuaHienThi = new ObservableCollection<KetQua>();
             DanhSachSinhVien = new ObservableCollection<SinhVien>();
             DanhSachMonHoc = new ObservableCollection<MonHoc>();
             DanhSachHocKy = new ObservableCollection<HocKy>();
+            DanhSachHocKyLocBang = new ObservableCollection<MucChonHocKy>();
+            DanhSachMonHocLocBang = new ObservableCollection<MonHoc>();
 
             DanhSachTyLeDiem = new ObservableCollection<TyLeDiemOption>
             {
@@ -164,6 +222,13 @@ namespace RESULT_ANALYTICS.ViewModels
             XoaDiemCommand = new RelayCommand(p => XoaDiem());
             LamTrongCommand = new RelayCommand(p => LamTrong());
             LamMoiCommand = new RelayCommand(p => LamMoi());
+            BoLocCommand = new RelayCommand(p =>
+            {
+                MaHocKyLocBang = "";
+                MaMonHocLocBang = "";
+                TuKhoaTimKiem = "";
+                ApDungBoLoc();
+            });
 
             try
             {
@@ -196,6 +261,19 @@ namespace RESULT_ANALYTICS.ViewModels
                 DanhSachHocKy.Add(hk);
             }
 
+            DanhSachHocKyLocBang.Clear();
+            foreach (var hk in hocKyRepository.LayDanhSachMucChon(kemMucTatCa: true))
+            {
+                DanhSachHocKyLocBang.Add(hk);
+            }
+
+            DanhSachMonHocLocBang.Clear();
+            DanhSachMonHocLocBang.Add(new MonHoc { MaMonHoc = "", TenMonHoc = "⭐ Tất cả học phần" });
+            foreach (MonHoc mh in DanhSachMonHoc)
+            {
+                DanhSachMonHocLocBang.Add(mh);
+            }
+
             TaiDanhSachDiem();
         }
 
@@ -207,6 +285,43 @@ namespace RESULT_ANALYTICS.ViewModels
             {
                 DanhSachKetQua.Add(kq);
             }
+
+            ApDungBoLoc();
+        }
+
+        public void ApDungBoLoc()
+        {
+            if (DanhSachKetQuaHienThi == null || DanhSachKetQua == null) return;
+
+            var filtered = DanhSachKetQua.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(MaHocKyLocBang))
+            {
+                filtered = filtered.Where(k => string.Equals(k.MaHocKy, MaHocKyLocBang, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(MaMonHocLocBang))
+            {
+                filtered = filtered.Where(k => string.Equals(k.MaMonHoc, MaMonHocLocBang, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(TuKhoaTimKiem))
+            {
+                string tuKhoa = TuKhoaTimKiem.Trim().ToLower();
+                filtered = filtered.Where(k =>
+                    (!string.IsNullOrEmpty(k.MaSV) && k.MaSV.ToLower().Contains(tuKhoa)) ||
+                    (!string.IsNullOrEmpty(k.HoTen) && k.HoTen.ToLower().Contains(tuKhoa))
+                );
+            }
+
+            var list = filtered.ToList();
+            DanhSachKetQuaHienThi.Clear();
+            foreach (var item in list)
+            {
+                DanhSachKetQuaHienThi.Add(item);
+            }
+
+            ThongKeSoLuongHienThi = $"Hiển thị: {DanhSachKetQuaHienThi.Count} / {DanhSachKetQua.Count} bản ghi";
         }
 
         // Chuyen diem thanh chuoi de hien thi

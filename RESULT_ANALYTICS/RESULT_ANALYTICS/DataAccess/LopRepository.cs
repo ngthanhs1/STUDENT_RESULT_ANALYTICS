@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace RESULT_ANALYTICS.DataAccess
         {
             List<Lop> danhSach = new List<Lop>();
 
-            string sql = @"SELECT MaLop, TenLop, KhoaHoc
+            string sql = @"SELECT MaLop, TenLop, KhoaHoc, Khoa
                            FROM dbo.Lop
                            ORDER BY MaLop";
 
@@ -40,6 +39,10 @@ namespace RESULT_ANALYTICS.DataAccess
                                 ? null
                                 : reader["KhoaHoc"].ToString();
 
+                            lop.Khoa = reader["Khoa"] == DBNull.Value
+                                ? ""
+                                : reader["Khoa"].ToString();
+
                             danhSach.Add(lop);
                         }
                     }
@@ -55,9 +58,9 @@ namespace RESULT_ANALYTICS.DataAccess
             KiemTraDuLieu(lop);
 
             string sql = @"INSERT INTO dbo.Lop
-                           (MaLop, TenLop, KhoaHoc)
+                           (MaLop, TenLop, KhoaHoc, Khoa)
                            VALUES
-                           (@MaLop, @TenLop, @KhoaHoc)";
+                           (@MaLop, @TenLop, @KhoaHoc, @Khoa)";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
@@ -66,13 +69,17 @@ namespace RESULT_ANALYTICS.DataAccess
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.Add("@MaLop", SqlDbType.VarChar, 20).Value = lop.MaLop.Trim();
-
                     cmd.Parameters.Add("@TenLop", SqlDbType.NVarChar, 100).Value = lop.TenLop.Trim();
 
-                    cmd.Parameters.Add("@KhoaHoc", SqlDbType.VarChar, 20).Value =
+                    cmd.Parameters.Add("@KhoaHoc", SqlDbType.NVarChar, 20).Value =
                         string.IsNullOrWhiteSpace(lop.KhoaHoc)
                         ? (object)DBNull.Value
                         : lop.KhoaHoc.Trim();
+
+                    cmd.Parameters.Add("@Khoa", SqlDbType.NVarChar, 100).Value =
+                        string.IsNullOrWhiteSpace(lop.Khoa)
+                        ? (object)DBNull.Value
+                        : lop.Khoa.Trim();
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -86,7 +93,8 @@ namespace RESULT_ANALYTICS.DataAccess
 
             string sql = @"UPDATE dbo.Lop
                            SET TenLop = @TenLop,
-                               KhoaHoc = @KhoaHoc
+                               KhoaHoc = @KhoaHoc,
+                               Khoa = @Khoa
                            WHERE MaLop = @MaLop";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -96,13 +104,17 @@ namespace RESULT_ANALYTICS.DataAccess
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.Add("@MaLop", SqlDbType.VarChar, 20).Value = lop.MaLop.Trim();
-
                     cmd.Parameters.Add("@TenLop", SqlDbType.NVarChar, 100).Value = lop.TenLop.Trim();
 
-                    cmd.Parameters.Add("@KhoaHoc", SqlDbType.VarChar, 20).Value =
+                    cmd.Parameters.Add("@KhoaHoc", SqlDbType.NVarChar, 20).Value =
                         string.IsNullOrWhiteSpace(lop.KhoaHoc)
                         ? (object)DBNull.Value
                         : lop.KhoaHoc.Trim();
+
+                    cmd.Parameters.Add("@Khoa", SqlDbType.NVarChar, 100).Value =
+                        string.IsNullOrWhiteSpace(lop.Khoa)
+                        ? (object)DBNull.Value
+                        : lop.Khoa.Trim();
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -133,16 +145,17 @@ namespace RESULT_ANALYTICS.DataAccess
             }
         }
 
-        // Tim kiem lop theo ma, ten va khoa hoc
+        // Tim kiem lop theo ma, ten, khoa hoc va khoa
         public List<Lop> TimKiem(string tuKhoa)
         {
             List<Lop> danhSach = new List<Lop>();
 
-            string sql = @"SELECT MaLop, TenLop, KhoaHoc
+            string sql = @"SELECT MaLop, TenLop, KhoaHoc, Khoa
                            FROM dbo.Lop
                            WHERE MaLop LIKE @TuKhoa
                               OR TenLop LIKE @TuKhoa
                               OR KhoaHoc LIKE @TuKhoa
+                              OR Khoa LIKE @TuKhoa
                            ORDER BY MaLop";
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -166,6 +179,10 @@ namespace RESULT_ANALYTICS.DataAccess
                             lop.KhoaHoc = reader["KhoaHoc"] == DBNull.Value
                                 ? null
                                 : reader["KhoaHoc"].ToString();
+
+                            lop.Khoa = reader["Khoa"] == DBNull.Value
+                                ? ""
+                                : reader["Khoa"].ToString();
 
                             danhSach.Add(lop);
                         }
@@ -208,6 +225,12 @@ namespace RESULT_ANALYTICS.DataAccess
                 lop.KhoaHoc.Trim().Length > 20)
             {
                 throw new ArgumentException("Khóa học tối đa 20 ký tự!");
+            }
+
+            if (!string.IsNullOrWhiteSpace(lop.Khoa) &&
+                lop.Khoa.Trim().Length > 100)
+            {
+                throw new ArgumentException("Tên khoa tối đa 100 ký tự!");
             }
         }
     }

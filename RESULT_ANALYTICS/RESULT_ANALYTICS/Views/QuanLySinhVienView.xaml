@@ -123,13 +123,16 @@
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,6">
-                                <TextBlock Text="Email liên hệ" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Email liên hệ (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                    <TextBlock Text=" (Tự động: [MãSV]@st.phenikaa-uni.edu.vn)" Foreground="#64748B" FontSize="11" Margin="4,0,0,3" FontStyle="Italic"/>
+                                </StackPanel>
                                 <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ClassicTextBox}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,0,6">
                                 <TextBlock Text="Lớp sinh hoạt (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
-                                <ComboBox ItemsSource="{Binding DanhSachLop}" DisplayMemberPath="TenLop" SelectedValuePath="MaLop" SelectedValue="{Binding MaLop, Mode=TwoWay}" Height="28" BorderBrush="#CBD5E1" FontSize="12"/>
+                                <ComboBox ItemsSource="{Binding DanhSachLop}" DisplayMemberPath="TenHienThi" SelectedValuePath="MaLop" SelectedValue="{Binding MaLop, Mode=TwoWay}" Height="28" BorderBrush="#CBD5E1" FontSize="12"/>
                             </StackPanel>
                         </Grid>
 
@@ -157,12 +160,13 @@
                         <DataGrid Grid.Row="3" ItemsSource="{Binding DanhSachSinhVien}" SelectedItem="{Binding SinhVienDuocChon, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" HeadersVisibility="Column" RowHeight="28" ColumnHeaderHeight="32" GridLinesVisibility="Horizontal" AlternatingRowBackground="#F8FAFC" BorderBrush="#CBD5E1" FontSize="12">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Mã SV" Binding="{Binding MaSV}" Width="90"/>
-                                <DataGridTextColumn Header="Họ và tên" Binding="{Binding HoTen}" Width="160"/>
-                                <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh, StringFormat=dd/MM/yyyy}" Width="100"/>
-                                <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}" Width="80"/>
+                                <DataGridTextColumn Header="Họ và tên" Binding="{Binding HoTen}" Width="150"/>
+                                <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh, StringFormat=dd/MM/yyyy}" Width="95"/>
+                                <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}" Width="75"/>
                                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="190"/>
-                                <DataGridTextColumn Header="Mã lớp" Binding="{Binding MaLop}" Width="90"/>
-                                <DataGridTextColumn Header="Tên lớp sinh hoạt" Binding="{Binding TenLop}" Width="*"/>
+                                <DataGridTextColumn Header="Mã lớp" Binding="{Binding MaLop}" Width="80"/>
+                                <DataGridTextColumn Header="Tên lớp sinh hoạt" Binding="{Binding TenLop}" Width="150"/>
+                                <DataGridTextColumn Header="Khoa / Viện quản lý" Binding="{Binding Khoa}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -183,9 +187,10 @@
                         <!-- FORM NHAP LOP -->
                         <Grid Grid.Row="0" Margin="0,0,0,6">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.1*"/>
+                                <ColumnDefinition Width="1.8*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.8*"/>
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" Margin="0,0,8,0">
@@ -198,9 +203,14 @@
                                 <TextBox Text="{Binding TenLopNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ClassicTextBox}"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Column="2">
+                            <StackPanel Grid.Column="2" Margin="0,0,8,0">
                                 <TextBlock Text="Khóa học" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
                                 <TextBox Text="{Binding KhoaHocNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ClassicTextBox}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Text="Khoa / Viện quản lý (*)" FontWeight="SemiBold" FontSize="11.5" Margin="0,0,0,3"/>
+                                <ComboBox ItemsSource="{Binding DanhSachGoiYKhoa}" Text="{Binding KhoaNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" Height="28" BorderBrush="#CBD5E1" FontSize="12"/>
                             </StackPanel>
                         </Grid>
 
@@ -216,9 +226,10 @@
                         <!-- BANG DANH SACH LOP -->
                         <DataGrid Grid.Row="2" ItemsSource="{Binding DanhSachLop}" SelectedItem="{Binding LopDuocChon, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" HeadersVisibility="Column" RowHeight="28" ColumnHeaderHeight="32" GridLinesVisibility="Horizontal" AlternatingRowBackground="#F8FAFC" BorderBrush="#CBD5E1" FontSize="12">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã lớp" Binding="{Binding MaLop}" Width="140"/>
+                                <DataGridTextColumn Header="Mã lớp" Binding="{Binding MaLop}" Width="120"/>
                                 <DataGridTextColumn Header="Tên lớp học" Binding="{Binding TenLop}" Width="*"/>
-                                <DataGridTextColumn Header="Khóa học" Binding="{Binding KhoaHoc}" Width="140"/>
+                                <DataGridTextColumn Header="Khóa học" Binding="{Binding KhoaHoc}" Width="100"/>
+                                <DataGridTextColumn Header="Khoa / Viện quản lý" Binding="{Binding Khoa}" Width="220"/>
                             </DataGrid.Columns>
                         </DataGrid>
 

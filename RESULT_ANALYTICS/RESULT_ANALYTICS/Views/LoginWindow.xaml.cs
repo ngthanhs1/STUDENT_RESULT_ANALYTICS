@@ -15,6 +15,7 @@ namespace RESULT_ANALYTICS.Views
     public partial class LoginWindow : Window
     {
         private readonly LoginViewModel viewModel;
+        private bool dangHienThiMatKhau = false;
 
         public LoginWindow()
         {
@@ -31,14 +32,63 @@ namespace RESULT_ANALYTICS.Views
 
         private void BtnDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            string matKhau = txtMatKhau.Password;
+            string matKhau = dangHienThiMatKhau ? txtMatKhauHienThi.Text : txtMatKhau.Password;
 
             viewModel.DangNhapCommand.Execute(matKhau);
 
             if (viewModel.CoLoi)
             {
-                txtMatKhau.SelectAll();
+                if (dangHienThiMatKhau)
+                {
+                    txtMatKhauHienThi.SelectAll();
+                    txtMatKhauHienThi.Focus();
+                }
+                else
+                {
+                    txtMatKhau.SelectAll();
+                    txtMatKhau.Focus();
+                }
+            }
+        }
+
+        private void BtnToggleMatKhau_Click(object sender, RoutedEventArgs e)
+        {
+            dangHienThiMatKhau = !dangHienThiMatKhau;
+
+            if (dangHienThiMatKhau)
+            {
+                txtMatKhauHienThi.Text = txtMatKhau.Password;
+                txtMatKhau.Visibility = Visibility.Collapsed;
+                txtMatKhauHienThi.Visibility = Visibility.Visible;
+                txtIconMatKhau.Text = "🙈";
+                btnToggleMatKhau.ToolTip = "Ẩn mật khẩu (chuyển sang dạng dấu chấm)";
+                txtMatKhauHienThi.Focus();
+                txtMatKhauHienThi.CaretIndex = txtMatKhauHienThi.Text.Length;
+            }
+            else
+            {
+                txtMatKhau.Password = txtMatKhauHienThi.Text;
+                txtMatKhauHienThi.Visibility = Visibility.Collapsed;
+                txtMatKhau.Visibility = Visibility.Visible;
+                txtIconMatKhau.Text = "👁";
+                btnToggleMatKhau.ToolTip = "Hiện mật khẩu";
                 txtMatKhau.Focus();
+            }
+        }
+
+        private void TxtMatKhau_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!dangHienThiMatKhau)
+            {
+                txtMatKhauHienThi.Text = txtMatKhau.Password;
+            }
+        }
+
+        private void TxtMatKhauHienThi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (dangHienThiMatKhau)
+            {
+                txtMatKhau.Password = txtMatKhauHienThi.Text;
             }
         }
 
@@ -46,7 +96,14 @@ namespace RESULT_ANALYTICS.Views
         {
             if (e.Key == Key.Enter)
             {
-                txtMatKhau.Focus();
+                if (dangHienThiMatKhau)
+                {
+                    txtMatKhauHienThi.Focus();
+                }
+                else
+                {
+                    txtMatKhau.Focus();
+                }
             }
         }
 

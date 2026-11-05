@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 
 namespace RESULT_ANALYTICS.Models
 {
@@ -24,5 +23,12 @@ namespace RESULT_ANALYTICS.Models
         // Ngay ket thuc
         public DateTime? NgayKetThuc { get; set; }
     }
-}
 
+    internal class MucChonHocKy
+    {
+        public string MaHocKy { get; set; }
+        public string TenHienThi { get; set; }
+
+        public override string ToString() => TenHienThi;
+    }
+}

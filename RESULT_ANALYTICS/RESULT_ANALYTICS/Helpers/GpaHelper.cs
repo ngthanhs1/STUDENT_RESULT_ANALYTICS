@@ -8,13 +8,14 @@ namespace RESULT_ANALYTICS.Helpers
     internal static class GpaHelper
     {
         /// <summary>
-        /// Quy doi diem thang 10 sang diem chu (A, B+, B, C+, C, D+, D, F)
+        /// Quy doi diem thang 10 sang diem chu (A+, A, B+, B, C+, C, D+, D, F)
         /// </summary>
         public static string QuyDoiDiemChu(decimal? diem10)
         {
             if (!diem10.HasValue) return "";
 
             decimal d = diem10.Value;
+            if (d >= 9.0m) return "A+";
             if (d >= 8.5m) return "A";
             if (d >= 8.0m) return "B+";
             if (d >= 7.0m) return "B";
@@ -26,14 +27,15 @@ namespace RESULT_ANALYTICS.Helpers
         }
 
         /// <summary>
-        /// Quy doi diem thang 10 sang diem he 4 (4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.0)
+        /// Quy doi diem thang 10 sang diem he 4 (4.0, 3.7, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.0)
         /// </summary>
         public static decimal? QuyDoiDiemHe4(decimal? diem10)
         {
             if (!diem10.HasValue) return null;
 
             decimal d = diem10.Value;
-            if (d >= 8.5m) return 4.0m;
+            if (d >= 9.0m) return 4.0m;
+            if (d >= 8.5m) return 3.7m;
             if (d >= 8.0m) return 3.5m;
             if (d >= 7.0m) return 3.0m;
             if (d >= 6.5m) return 2.5m;

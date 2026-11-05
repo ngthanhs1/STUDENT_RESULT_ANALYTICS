@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:RESULT_ANALYTICS.Views"
         Title="Hệ thống Quản lý Đào tạo và Kết quả Học tập Đại học - Student Result Analytics"
+        Icon="/Assets/logo.png"
         Height="740" Width="1240"
         MinHeight="620" MinWidth="1050"
         WindowStartupLocation="CenterScreen"
@@ -40,11 +41,11 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="btnBorder" Property="Background" Value="#1E3E62"/>
+                                <Setter TargetName="btnBorder" Property="Background" Value="#255280"/>
                                 <Setter Property="Foreground" Value="#FFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="btnBorder" Property="Background" Value="#0E2A4A"/>
+                                <Setter TargetName="btnBorder" Property="Background" Value="#123356"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -56,7 +57,7 @@
         <Style x:Key="MenuBtn_Dashboard" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsDashboardSelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -68,7 +69,7 @@
         <Style x:Key="MenuBtn_SinhVienLop" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsSinhVienLopSelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -80,7 +81,7 @@
         <Style x:Key="MenuBtn_MonHocHocKy" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsMonHocHocKySelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -92,7 +93,7 @@
         <Style x:Key="MenuBtn_NhapDiem" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsNhapDiemSelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -104,7 +105,7 @@
         <Style x:Key="MenuBtn_ImportDiem" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsImportDiemSelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -116,7 +117,7 @@
         <Style x:Key="MenuBtn_PhanTich" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsPhanTichSelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -128,7 +129,7 @@
         <Style x:Key="MenuBtn_CanhBao" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsCanhBaoSelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -140,7 +141,7 @@
         <Style x:Key="MenuBtn_HeThong" TargetType="Button" BasedOn="{StaticResource ClassicMenuBtn}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsHeThongSelected}" Value="True">
-                    <Setter Property="Background" Value="#16385F"/>
+                    <Setter Property="Background" Value="#123356"/>
                     <Setter Property="BorderBrush" Value="#38BDF8"/>
                     <Setter Property="BorderThickness" Value="3.5,0,0,0"/>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -196,7 +197,7 @@
         <!-- ============================= -->
         <!-- SIDEBAR BEN TRAI (CO THE THU GON / MO RONG) -->
         <!-- ============================= -->
-        <Border x:Name="SidebarBorder" Grid.Column="0" Width="230" Background="#0F243A" ClipToBounds="True">
+        <Border x:Name="SidebarBorder" Grid.Column="0" Width="230" Background="#1B426E" ClipToBounds="True">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="58"/>
@@ -205,7 +206,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- LOGO, BAN QUYEN & NUT 3 GACH (HAMBURGER) -->
-                <Border Grid.Row="0" BorderBrush="#1E3A5F" BorderThickness="0,0,0,1" Padding="0,0">
+                <Border Grid.Row="0" BorderBrush="#254F77" BorderThickness="0,0,0,1" Padding="0,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60"/>
@@ -221,11 +222,11 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="b" Property="Background" Value="#1E3E62"/>
+                                            <Setter TargetName="b" Property="Background" Value="#255280"/>
                                             <Setter Property="Foreground" Value="#FFFFFF"/>
                                         </Trigger>
                                         <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="b" Property="Background" Value="#0E2A4A"/>
+                                            <Setter TargetName="b" Property="Background" Value="#123356"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -233,12 +234,12 @@
                         </Button>
 
                         <!-- LOGO VA TIEU DE (CHI HIEN THI KHI MO RONG) -->
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,8,0" Visibility="{Binding HienThiChuThanhBen}">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <TextBlock Text="🎓" FontSize="14" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                                <TextBlock Text="RESULT ANALYTICS" Foreground="White" FontSize="12.5" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,8,0" Visibility="{Binding HienThiChuThanhBen}">
+                            <Image Source="/Assets/logo.png" Height="28" Margin="0,0,8,0" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="RESULT ANALYTICS" Foreground="White" FontSize="12" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Text="CỔNG QUẢN LÝ ĐÀO TẠO" Foreground="#93C5FD" FontSize="8.5" FontWeight="SemiBold" Margin="0,1,0,0"/>
                             </StackPanel>
-                            <TextBlock Text="CỔNG QUẢN LÝ ĐÀO TẠO" Foreground="#7E9AB5" FontSize="8.5" FontWeight="SemiBold" Margin="20,1,0,0"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -248,20 +249,20 @@
                     <StackPanel Margin="0,6,0,10">
 
                         <!-- NHOM 1: TONG QUAN -->
-                        <TextBlock Text="TỔNG QUAN" Foreground="#647E99" FontSize="10" FontWeight="Bold" Margin="14,6,0,3"
+                        <TextBlock Text="TỔNG QUAN" Foreground="#97B8D9" FontSize="10" FontWeight="Bold" Margin="14,6,0,3"
                                    Visibility="{Binding HienThiChuThanhBen}"/>
-                        <Button Command="{Binding TrangChuCommand}" ToolTip="Bàn làm việc (Dashboard)" Style="{StaticResource MenuBtn_Dashboard}">
+                        <Button Command="{Binding TrangChuCommand}" ToolTip="Tổng quan" Style="{StaticResource MenuBtn_Dashboard}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <TextBlock Text="📊" FontSize="15" Width="24" TextAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Text="Bàn làm việc (Dashboard)" Margin="8,0,0,0" VerticalAlignment="Center"
+                                <TextBlock Text="Tổng quan" Margin="8,0,0,0" VerticalAlignment="Center"
                                            Visibility="{Binding DataContext.HienThiChuThanhBen, RelativeSource={RelativeSource AncestorType=Window}}"/>
                             </StackPanel>
                         </Button>
 
-                        <Border Height="1" Background="#162E4A" Margin="8,6"/>
+                        <Border Height="1" Background="#254F77" Margin="8,6"/>
 
                         <!-- NHOM 2: QUAN LY DAO TAO -->
-                        <TextBlock Text="QUẢN LÝ ĐÀO TẠO" Foreground="#647E99" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
+                        <TextBlock Text="QUẢN LÝ ĐÀO TẠO" Foreground="#97B8D9" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
                                    Visibility="{Binding HienThiChuThanhBen}"/>
                         <Button Command="{Binding QuanLyLopSinhVienCommand}" ToolTip="Hồ sơ Sinh viên &amp; Lớp học" Style="{StaticResource MenuBtn_SinhVienLop}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -278,10 +279,10 @@
                             </StackPanel>
                         </Button>
 
-                        <Border Height="1" Background="#162E4A" Margin="8,6"/>
+                        <Border Height="1" Background="#254F77" Margin="8,6"/>
 
                         <!-- NHOM 3: KHAO THI & DIEM SO -->
-                        <TextBlock Text="KHẢO THÍ &amp; ĐIỂM SỐ" Foreground="#647E99" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
+                        <TextBlock Text="KHẢO THÍ &amp; ĐIỂM SỐ" Foreground="#97B8D9" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
                                    Visibility="{Binding HienThiChuThanhBen}"/>
                         <Button Command="{Binding NhapDiemCommand}" ToolTip="Sổ điểm học phần" Style="{StaticResource MenuBtn_NhapDiem}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -298,10 +299,10 @@
                             </StackPanel>
                         </Button>
 
-                        <Border Height="1" Background="#162E4A" Margin="8,6"/>
+                        <Border Height="1" Background="#254F77" Margin="8,6"/>
 
                         <!-- NHOM 4: HOC VU & BAO CAO -->
-                        <TextBlock Text="HỌC VỤ &amp; BÁO CÁO" Foreground="#647E99" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
+                        <TextBlock Text="HỌC VỤ &amp; BÁO CÁO" Foreground="#97B8D9" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
                                    Visibility="{Binding HienThiChuThanhBen}"/>
                         <Button Command="{Binding PhanTichCommand}" ToolTip="Tra cứu GPA &amp; Học lực" Style="{StaticResource MenuBtn_PhanTich}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -320,8 +321,8 @@
 
                         <!-- NHOM 5: QUAN TRI HE THONG (CHI HIEN THI KHI LA ADMIN) -->
                         <StackPanel Visibility="{Binding LaAdmin, Converter={StaticResource BoolToVis}}">
-                            <Border Height="1" Background="#162E4A" Margin="8,6"/>
-                            <TextBlock Text="QUẢN TRỊ HỆ THỐNG" Foreground="#647E99" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
+                            <Border Height="1" Background="#254F77" Margin="8,6"/>
+                            <TextBlock Text="QUẢN TRỊ HỆ THỐNG" Foreground="#97B8D9" FontSize="10" FontWeight="Bold" Margin="14,4,0,3"
                                        Visibility="{Binding HienThiChuThanhBen}"/>
                             <Button Command="{Binding HeThongCommand}" ToolTip="Quản trị &amp; Phân quyền" Style="{StaticResource MenuBtn_HeThong}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -338,7 +339,7 @@
                 <!-- ==================================== -->
                 <!-- THONG TIN TAI KHOAN VA DANG XUAT (NHỎ GỌN) -->
                 <!-- ==================================== -->
-                <Border Grid.Row="2" Background="#091A2C" BorderBrush="#1E3A5F" BorderThickness="0,1,0,0" Padding="8,8">
+                <Border Grid.Row="2" Background="#143457" BorderBrush="#254F77" BorderThickness="0,1,0,0" Padding="8,8">
                     <Grid>
                         <!-- KHI MO RONG (EXPANDED): AVATAR + TEN/QUYEN + NUT DANG XUAT NHO GON -->
                         <Grid Visibility="{Binding HienThiChuThanhBen}">
@@ -349,7 +350,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- AVATAR -->
-                            <Border Grid.Column="0" Width="28" Height="28" CornerRadius="14" Background="#1E3E62" Margin="0,0,8,0" VerticalAlignment="Center">
+                            <Border Grid.Column="0" Width="28" Height="28" CornerRadius="14" Background="#255280" Margin="0,0,8,0" VerticalAlignment="Center">
                                 <TextBlock Text="👤" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
 
@@ -385,7 +386,7 @@
                         <!-- KHI THU GON (COLLAPSED): AVATAR VA NUT ICON DANG XUAT CAN GIUA -->
                         <StackPanel Visibility="{Binding HienThiIconThanhBen}" HorizontalAlignment="Center">
                             <!-- AVATAR NHO -->
-                            <Border Width="28" Height="28" CornerRadius="14" Background="#1E3E62" Margin="0,0,0,6" ToolTip="{Binding ThongTinNguoiDung}">
+                            <Border Width="28" Height="28" CornerRadius="14" Background="#255280" Margin="0,0,0,6" ToolTip="{Binding ThongTinNguoiDung}">
                                 <TextBlock Text="👤" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
 
@@ -443,8 +444,24 @@
 
                     <!-- BADGE NAM HOC & TRANG THAI KET NOI (DONG) -->
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Border Background="#F1F5F9" CornerRadius="4" Padding="10,4" Margin="0,0,10,0" BorderBrush="#E2E8F0" BorderThickness="1">
-                            <TextBlock Text="{Binding NienKhoaHienThi}" FontSize="11" Foreground="#475569" FontWeight="SemiBold"/>
+                        <!-- BO LOC HOC KY TOAN HE THONG -->
+                        <Border Background="White" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="4" Padding="8,2" Margin="0,0,10,0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="📅 Kỳ xét:" FontSize="11" FontWeight="SemiBold" Foreground="#475569" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <ComboBox ItemsSource="{Binding DanhSachHocKyHeThong}"
+                                          SelectedValuePath="MaHocKy"
+                                          DisplayMemberPath="TenHienThi"
+                                          SelectedValue="{Binding MaHocKyToanHeThong, Mode=TwoWay}"
+                                          FontSize="11"
+                                          FontWeight="SemiBold"
+                                          Foreground="#0F243A"
+                                          Height="24"
+                                          MinWidth="200"
+                                          BorderThickness="0"
+                                          Background="Transparent"
+                                          VerticalContentAlignment="Center"
+                                          Cursor="Hand"/>
+                            </StackPanel>
                         </Border>
 
                         <Border Background="{Binding MauNenTrangThaiKetNoi}" CornerRadius="4" Padding="8,4" BorderBrush="#CBD5E1" BorderThickness="1">

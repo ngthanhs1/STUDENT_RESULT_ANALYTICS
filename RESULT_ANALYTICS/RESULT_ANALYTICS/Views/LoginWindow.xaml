@@ -74,8 +74,25 @@
                             <ColumnDefinition Width="38"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="🔑" FontSize="14" Foreground="#64748B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <PasswordBox x:Name="txtMatKhau" Grid.Column="1" BorderThickness="0" Background="Transparent" FontSize="13.5" VerticalContentAlignment="Center" Padding="2,0,4,0" KeyDown="TxtMatKhau_KeyDown"/>
-                        <TextBlock Grid.Column="2" Text="👁" FontSize="13" Foreground="#94A3B8" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Mật khẩu được bảo vệ an toàn"/>
+                        <PasswordBox x:Name="txtMatKhau" Grid.Column="1" BorderThickness="0" Background="Transparent" FontSize="13.5" VerticalContentAlignment="Center" Padding="2,0,4,0" KeyDown="TxtMatKhau_KeyDown" PasswordChanged="TxtMatKhau_PasswordChanged"/>
+                        <TextBox x:Name="txtMatKhauHienThi" Grid.Column="1" Visibility="Collapsed" BorderThickness="0" Background="Transparent" FontSize="13.5" VerticalContentAlignment="Center" Padding="2,0,4,0" KeyDown="TxtMatKhau_KeyDown" TextChanged="TxtMatKhauHienThi_TextChanged"/>
+                        <Button x:Name="btnToggleMatKhau" Grid.Column="2" Click="BtnToggleMatKhau_Click" BorderThickness="0" Cursor="Hand" ToolTip="Hiện / Ẩn mật khẩu" Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="Transparent" Padding="4">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                            <TextBlock x:Name="txtIconMatKhau" Text="👁" FontSize="14" Foreground="#64748B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>
                     </Grid>
                 </Border>
 

@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +22,8 @@ namespace RESULT_ANALYTICS.Models
 
         // Thuoc tinh hien thi ten lop
         public string TenLop { get; set; }
+
+        // Khoa / Vien quan ly (tham chieu tu Lop sinh hoat)
+        public string Khoa { get; set; }
     }
 }
