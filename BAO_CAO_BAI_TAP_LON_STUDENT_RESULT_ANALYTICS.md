@@ -1,365 +1,337 @@
 # TRƯỜNG ĐẠI HỌC PHENIKAA
 ## KHOA CÔNG NGHỆ THÔNG TIN
-
 ---
 
 # BÁO CÁO BÀI TẬP LỚN
 ### HỌC PHẦN: CÔNG NGHỆ .NET
 
-## ĐỀ TÀI:
-# HỆ THỐNG QUẢN LÝ ĐÀO TẠO VÀ PHÂN TÍCH KẾT QUẢ HỌC TẬP ĐẠI HỌC
-### (STUDENT RESULT ANALYTICS SYSTEM)
+**ĐỀ TÀI:**
+# XÂY DỰNG HỆ THỐNG QUẢN LÝ ĐÀO TẠO VÀ PHÂN TÍCH KẾT QUẢ HỌC TẬP SINH VIÊN (STUDENT RESULT ANALYTICS) THEO HỌC CHẾ TÍN CHỈ
 
-**Giảng viên hướng dẫn:** TS. Nguyễn Văn A *(hoặc ThS. ...)*  
-**Lớp học phần:** Công nghệ .NET - K18  
-**Nhóm sinh viên thực hiện:** Nhóm 01  
-1. Sinh viên 1 - MSSV: 23010191 (Nhóm trưởng)  
-2. Sinh viên 2 - MSSV: 23010192  
-3. Sinh viên 3 - MSSV: 23010193  
-4. Sinh viên 4 - MSSV: 23010194  
+---
+**Giảng viên hướng dẫn:** TS. Giảng Viên Hướng Dẫn  
+**Nhóm sinh viên thực hiện:** Nhóm Phát Triển Dự Án .NET  
+**Khóa học:** Đại học chính quy - Khóa 16, 17  
+**Chuyên ngành:** Công nghệ thông tin / Kỹ thuật phần mềm  
 
 *Hà Nội, Năm 2026*
 
----
-
 <div style="page-break-after: always;"></div>
 
-# TRANG BÌA PHỤ (BÌA LÓT)
-
-**TRƯỜNG ĐẠI HỌC PHENIKAA**  
-**KHOA CÔNG NGHỆ THÔNG TIN**  
-
-### BÁO CÁO BÀI TẬP LỚN
-**HỌC PHẦN: CÔNG NGHỆ .NET**
-
-**ĐỀ TÀI:**  
-**HỆ THỐNG QUẢN LÝ ĐÀO TẠO VÀ PHÂN TÍCH KẾT QUẢ HỌC TẬP ĐẠI HỌC (STUDENT RESULT ANALYTICS)**
-
-| STT | Họ và tên sinh viên | Mã sinh viên | Lớp sinh hoạt | Nhiệm vụ phân công | Tỷ lệ hoàn thành |
-|:---:|:---|:---:|:---:|:---|:---:|
-| 1 | Nguyễn Văn A *(Trưởng nhóm)* | 23010191 | CNTT02 | Thiết kế kiến trúc MVVM, CSDL SQL Server, Module Dashboard & Tra cứu GPA | 100% |
-| 2 | Trần Văn B | 23010192 | CNTT02 | Module Quản lý Sinh viên, Lớp học, Phân Khoa & Ràng buộc Email | 100% |
-| 3 | Lê Thị C | 23010193 | CNTT02 | Module Sổ điểm học phần & Nhập điểm từ File Excel/CSV (EPPlus) | 100% |
-| 4 | Hoàng Văn D | 23010194 | CNTT02 | Module Thống kê Đạt/Trượt, Cảnh báo học vụ, Viết Test Cases & Báo cáo | 100% |
-
-**Cán bộ chấm thi:**  
-1. Cán bộ chấm 1: ............................................................  
-2. Cán bộ chấm 2: ............................................................  
-
-*Hà Nội - Năm 2026*
-
 ---
-
-<div style="page-break-after: always;"></div>
 
 # LỜI CẢM ƠN
 
-Lời đầu tiên, nhóm tác giả xin được gửi lời cảm ơn chân thành và sâu sắc nhất tới Ban Giám hiệu Trường Đại học Phenikaa, Ban Chủ nhiệm Khoa Công nghệ thông tin cùng toàn thể quý Thầy, Cô giáo trong bộ môn Công nghệ Phần mềm đã tận tình giảng dạy, truyền đạt những kiến thức nền tảng quý báu về nền tảng Microsoft .NET, lập trình hướng đối tượng C#, thiết kế giao diện WPF và kiến trúc phần mềm chuyên nghiệp trong suốt quá trình nhóm theo học học phần **Công nghệ .NET**.
+Lời đầu tiên, nhóm tác giả xin bày tỏ lòng biết ơn sâu sắc nhất tới Ban Giám hiệu Trường Đại học Phenikaa, Ban Chủ nhiệm Khoa Công nghệ Thông tin đã tạo điều kiện học tập, nghiên cứu và trang bị cơ sở vật chất hiện đại cho sinh viên trong suốt quá trình theo học học phần **Công nghệ .NET**.
 
-Đặc biệt, nhóm xin bày tỏ lòng biết ơn sâu sắc tới **Giảng viên hướng dẫn bộ môn**, Thầy/Cô đã dành nhiều thời gian quý báu để định hướng đề tài, giải đáp thắc mắc, đưa ra những nhận xét chuyên môn sắc bén và hỗ trợ tận tình để nhóm hoàn thiện phần mềm **Hệ thống Quản lý Đào tạo và Phân tích Kết quả Học tập Đại học (Student Result Analytics)** cũng như bản báo cáo bài tập lớn này đúng tiến độ và đạt chuẩn chất lượng học thuật.
+Đặc biệt, nhóm xin gửi lời cảm ơn chân thành và sâu sắc nhất tới Thầy/Cô phụ trách học phần Công nghệ .NET. Trong suốt thời gian diễn ra học phần, Thầy/Cô đã tận tình truyền đạt những kiến thức quý báu về nền tảng Microsoft .NET, ngôn ngữ lập trình C#, công nghệ Windows Presentation Foundation (WPF), cũng như các mẫu kiến trúc công nghiệp tiên tiến như MVVM (Model - View - ViewModel) và Repository Pattern. Những lời góp ý sắc bén, định hướng chuyên môn thực tế của Thầy/Cô là kim chỉ nam giúp nhóm từng bước hoàn thiện bài tập lớn này từ khâu khảo sát nghiệp vụ, thiết kế hệ thống cơ sở dữ liệu cho tới hiện thực hóa phần mềm.
 
-Mặc dù nhóm đã nỗ lực hết mình với tinh thần trách nhiệm cao nhất, song do giới hạn về thời gian và kinh nghiệm thực tế, đề tài khó tránh khỏi những thiếu sót nhất định. Nhóm kính mong nhận được những lời đóng góp ý kiến quý báu từ quý Thầy/Cô để hệ thống ngày càng hoàn thiện, có tính ứng dụng cao hơn nữa trong thực tế đào tạo đại học.
+Mặc dù nhóm đã nỗ lực hết mình với tinh thần làm việc nghiêm túc và cầu thị, song do kinh nghiệm thực tế còn hạn chế, đề tài khó tránh khỏi những thiếu sót nhất định. Nhóm kính mong tiếp tục nhận được những ý kiến đóng góp quý báu của Quý Thầy/Cô để sản phẩm ngày càng hoàn thiện, có khả năng ứng dụng cao hơn trong môi trường đào tạo đại học thực tế.
 
-*Nhóm sinh viên thực hiện xin chân thành cảm ơn!*
+Nhóm xin kính chúc Quý Thầy/Cô luôn dồi dào sức khỏe, hạnh phúc và gặt hái thêm nhiều thành công rực rỡ trong sự nghiệp giáo dục và nghiên cứu khoa học cao quý!
+
+*Hà Nội, ngày 05 tháng 11 năm 2026*  
+**Đại diện nhóm tác giả**  
+*(Ký và ghi rõ họ tên)*
+
+<div style="page-break-after: always;"></div>
 
 ---
 
 # LỜI CAM ĐOAN
 
-Nhóm sinh viên thực hiện xin cam đoan:
-1. Bản báo cáo bài tập lớn này là công trình nghiên cứu, thiết kế và phát triển độc lập của nhóm dưới sự hướng dẫn trực tiếp của Giảng viên phụ trách học phần Công nghệ .NET.
-2. Toàn bộ mã nguồn chương trình, cơ sở dữ liệu trên Microsoft SQL Server và các tài liệu liên quan đều do nhóm tự tay phân tích, thiết kế, lập trình và kiểm thử.
-3. Các dữ liệu, bảng biểu, hình vẽ minh họa và các trích dẫn tài liệu tham khảo trong báo cáo đều được trích dẫn nguồn gốc xuất xứ rõ ràng theo đúng chuẩn học thuật IEEE.
-4. Mọi sự sao chép không hợp lệ hoặc vi phạm quy chế học vụ nếu bị phát hiện, nhóm xin hoàn toàn chịu mọi hình thức kỷ luật theo quy định của Trường Đại học Phenikaa và Bộ Giáo dục & Đào tạo.
+Nhóm tác giả xin cam đoan rằng:
+1. Báo cáo bài tập lớn và sản phẩm phần mềm **"Hệ thống Quản lý Đào tạo và Phân tích Kết quả Học tập Sinh viên (Student Result Analytics)"** là công trình nghiên cứu và phát triển hoàn toàn độc lập của các thành viên trong nhóm dưới sự định hướng, hướng dẫn khoa học của Giảng viên phụ trách học phần.
+2. Tất cả các số liệu khảo sát, sơ đồ thiết kế (Use Case, Activity, Sequence, ERD), mã nguồn C#, giao diện XAML và kịch bản cơ sở dữ liệu SQL Server được trình bày trong báo cáo là trung thực, rõ ràng và do chính nhóm tự tay hiện thực, không sao chép trái phép từ bất kỳ công trình, luận văn hay đồ án của tác giả nào khác.
+3. Các tài liệu tham khảo, thư viện phần mềm mã nguồn mở (LiveCharts2, Microsoft.Data.SqlClient, DocumentFormat.OpenXml) được trích dẫn nguồn gốc xuất xứ đầy đủ, minh bạch theo đúng chuẩn quy định học thuật IEEE.
 
-*Hà Nội, ngày 05 tháng 11 năm 2026*  
-**Đại diện nhóm sinh viên**  
+Nếu có bất kỳ sự gian lận hay vi phạm quy chế học vụ nào, các thành viên trong nhóm xin chịu hoàn toàn mọi hình thức kỷ luật theo quy định hiện hành của Trường Đại học Phenikaa.
+
+**Đại diện nhóm sinh viên thực hiện**  
 *(Ký và ghi rõ họ tên)*
+
+<div style="page-break-after: always;"></div>
 
 ---
 
-<div style="page-break-after: always;"></div>
+# BẢNG PHÂN CÔNG NHIỆM VỤ THÀNH VIÊN VÀ TỶ LỆ ĐÓNG GÓP
+
+| STT | Họ và tên | Mã sinh viên | Nội dung công việc đảm nhiệm | Tỷ lệ đóng góp | Chữ ký |
+| :---: | :--- | :---: | :--- | :---: | :---: |
+| 1 | Nguyễn Văn Lộc | 22020224 | **Nhóm trưởng**: Khảo sát nghiệp vụ, Thiết kế CSDL Somee Cloud, Kiến trúc MVVM & Repository, ViewModel Bàn làm việc Dashboard & Quản lý Điểm, Viết báo cáo BTL. | 35% | |
+| 2 | Cao Thanh Thảo | 23010168 | Thiết kế giao diện WPF (Views XAML), Hiện thực phân hệ Quản lý Hồ sơ Sinh viên, Khoa và Lớp, Tính năng tự động tạo email `@st.phenikaa-uni.edu.vn`. | 33% | |
+| 3 | Bùi Tuấn Anh | 23010198 | Hiện thực phân hệ Tra cứu GPA/CPA, Thống kê cảnh báo học vụ, Nhập điểm từ file Excel/CSV, Thực hiện kịch bản kiểm thử (Test Cases), Thiết kế Slide. | 32% | |
+
+---
 
 # DANH MỤC CÁC TỪ VIẾT TẮT
 
-| Viết tắt | Thuật ngữ Tiếng Anh | Diễn giải Tiếng Việt |
-|:---|:---|:---|
-| **BTL** | Assignment / Project | Bài tập lớn môn học |
-| **WPF** | Windows Presentation Foundation | Nền tảng xây dựng giao diện desktop đồ họa cao của Microsoft |
-| **MVVM** | Model - View - ViewModel | Mẫu kiến trúc tách biệt Giao diện - Xử lý logic - Dữ liệu |
-| **GPA** | Grade Point Average | Điểm trung bình tích lũy học tập |
-| **CPA** | Cumulative Point Average | Điểm trung bình tích lũy toàn khóa |
-| **RDBMS** | Relational Database Management System | Hệ quản trị cơ sở dữ liệu quan hệ |
+| Viết tắt | Thuật ngữ tiếng Anh | Diễn giải tiếng Việt |
+| :--- | :--- | :--- |
+| **BTL** | - | Bài tập lớn |
+| **CNTT** | - | Công nghệ thông tin |
+| **WPF** | Windows Presentation Foundation | Nền tảng xây dựng ứng dụng đồ họa Desktop trên Windows của Microsoft |
+| **MVVM** | Model - View - ViewModel | Mẫu kiến trúc tách biệt Giao diện, Logic điều khiển và Mô hình dữ liệu |
+| **XAML** | Extensible Application Markup Language | Ngôn ngữ đánh dấu mở rộng xây dựng giao diện người dùng |
+| **DBMS** | Database Management System | Hệ quản trị cơ sở dữ liệu |
 | **SQL** | Structured Query Language | Ngôn ngữ truy vấn dữ liệu có cấu trúc |
-| **ERD** | Entity Relationship Diagram | Sơ đồ quan hệ thực thể |
+| **GPA** | Grade Point Average | Điểm trung bình chung học kỳ (Thang 4) |
+| **CPA** | Cumulative Point Average | Điểm trung bình chung tích lũy toàn khóa (Thang 4) |
+| **CVHT** | - | Cố vấn học tập |
+| **ERD** | Entity Relationship Diagram | Sơ đồ thực thể liên kết |
+| **CRUD** | Create, Read, Update, Delete | Bốn thao tác cơ bản trên dữ liệu: Thêm, Đọc, Sửa, Xóa |
 | **RBAC** | Role-Based Access Control | Kiểm soát truy cập phân quyền dựa trên vai trò người dùng |
-| **UC** | Use Case | Ca sử dụng chức năng hệ thống |
-| **XAML** | Extensible Application Markup Language | Ngôn ngữ đánh dấu mở rộng để định nghĩa giao diện WPF |
-| **MOET** | Ministry of Education and Training | Bộ Giáo dục và Đào tạo Việt Nam |
-| **CSV** | Comma-Separated Values | Tệp văn bản lưu trữ dữ liệu dạng bảng phân tách bằng dấu phẩy |
-| **OOP** | Object-Oriented Programming | Lập trình hướng đối tượng |
-
----
-
-# DANH MỤC BẢNG BIỂU
-
-- **Bảng 1.1:** Phân loại yêu cầu người dùng theo đối tượng trong trường đại học
-- **Bảng 1.2:** Quy định thang điểm chữ, thang điểm 4 và phân loại học lực theo tín chỉ
-- **Bảng 2.1:** Đặc tả Use Case UC01 – Đăng nhập hệ thống
-- **Bảng 2.2:** Đặc tả Use Case UC02 – Quản lý Hồ sơ sinh viên, Lớp học & Khoa
-- **Bảng 2.3:** Đặc tả Use Case UC03 – Quản lý Học phần và Niên khóa
-- **Bảng 2.4:** Đặc tả Use Case UC04 – Quản lý Sổ điểm học phần
-- **Bảng 2.5:** Đặc tả Use Case UC05 – Nhập điểm hàng loạt từ file Excel / CSV
-- **Bảng 2.6:** Đặc tả Use Case UC06 – Tra cứu GPA và Phân loại học lực
-- **Bảng 2.7:** Đặc tả Use Case UC07 – Thống kê Đạt/Trượt và Cảnh báo học vụ
-- **Bảng 2.8:** Đặc tả Use Case UC08 – Quản trị người dùng & Phân quyền bảo mật
-- **Bảng 2.9:** Thiết kế chi tiết bảng `dbo.TaiKhoan`
-- **Bảng 2.10:** Thiết kế chi tiết bảng `dbo.Lop`
-- **Bảng 2.11:** Thiết kế chi tiết bảng `dbo.SinhVien`
-- **Bảng 2.12:** Thiết kế chi tiết bảng `dbo.MonHoc`
-- **Bảng 2.13:** Thiết kế chi tiết bảng `dbo.HocKy`
-- **Bảng 2.14:** Thiết kế chi tiết bảng `dbo.KetQua`
-- **Bảng 2.15:** Thiết kế chi tiết bảng `dbo.LichSuImport`
-- **Bảng 3.1:** Kịch bản kiểm thử (Test Cases) chi tiết của toàn bộ hệ thống
-
----
-
-# DANH MỤC HÌNH ẢNH & SƠ ĐỒ
-
-- **Hình 2.1:** Sơ đồ Use Case tổng quát hệ thống (System Use Case Diagram)
-- **Hình 2.2:** Sơ đồ Use Case phân rã của Quản trị viên (Admin)
-- **Hình 2.3:** Sơ đồ Use Case phân rã của Cán bộ Đào tạo / Giảng viên (Staff/Teacher)
-- **Hình 2.4:** Sơ đồ Activity Diagram – Quá trình Đăng nhập và xác thực bảo mật
-- **Hình 2.5:** Sơ đồ Activity Diagram – Quản lý Hồ sơ Sinh viên và Lớp học
-- **Hình 2.6:** Sơ đồ Activity Diagram – Nhập điểm học phần và tự động tính điểm tổng kết
-- **Hình 2.7:** Sơ đồ Activity Diagram – Nhập điểm hàng loạt từ File Excel/CSV (Batch Import)
-- **Hình 2.8:** Sơ đồ Activity Diagram – Tra cứu GPA và xuất báo cáo xếp loại học lực
-- **Hình 2.9:** Sơ đồ Sequence Diagram – Luồng xác thực đăng nhập (Login Sequence)
-- **Hình 2.10:** Sơ đồ Sequence Diagram – Thêm mới sinh viên và tự động sinh email
-- **Hình 2.11:** Sơ đồ Sequence Diagram – Nhập và cập nhật sổ điểm học phần
-- **Hình 2.12:** Sơ đồ Sequence Diagram – Xử lý Import dữ liệu từ file Excel vào Database
-- **Hình 2.13:** Sơ đồ Sequence Diagram – Lọc và tính toán GPA theo học kỳ toàn hệ thống
-- **Hình 2.14:** Sơ đồ quan hệ thực thể ERD (Entity Relationship Diagram)
-- **Hình 2.15:** Sơ đồ kiến trúc phần mềm mô hình MVVM (Model - View - ViewModel)
-- **Hình 2.16:** Giao diện Đăng nhập hệ thống (kèm nút xem/ẩn mật khẩu)
-- **Hình 2.17:** Giao diện Bàn làm việc tổng quan (Executive Academic Dashboard)
-- **Hình 2.18:** Giao diện Quản lý Hồ sơ Sinh viên và Lớp học (phân Khoa & Email sinh viên)
-- **Hình 2.19:** Giao diện Quản lý Học phần và Niên khóa đào tạo
-- **Hình 2.20:** Giao diện Sổ điểm học phần chi tiết
-- **Hình 2.21:** Giao diện Nhập điểm thi từ file Excel/CSV và Lịch sử Import
-- **Hình 2.22:** Giao diện Tra cứu GPA và Phân loại học lực toàn khóa
-- **Hình 2.23:** Giao diện Thống kê Đạt/Trượt và Danh sách Cảnh báo học vụ
-- **Hình 2.24:** Giao diện Quản trị người dùng và Phân quyền hệ thống
-
----
+| **ADO.NET**| ActiveX Data Objects for .NET | Bộ thư viện truy cập dữ liệu hiệu năng cao của Microsoft |
+| **CSV** | Comma-Separated Values | Tệp văn bản lưu trữ bảng tính phân tách bằng dấu phẩy |
+| **UI/UX** | User Interface / User Experience | Giao diện người dùng / Trải nghiệm người dùng |
 
 <div style="page-break-after: always;"></div>
 
-# PHẦN MỞ ĐẦU
+---
+
+# DANH MỤC CÁC BẢNG BIỂU
+
+- Bảng 1.1. Ma trận phân quyền chức năng theo 3 nhóm đối tượng sử dụng
+- Bảng 2.1. Danh mục các tác nhân chính trong hệ thống (Actors)
+- Bảng 2.2. Đặc tả Use Case UC01 – Đăng nhập hệ thống & Xác thực người dùng
+- Bảng 2.3. Đặc tả Use Case UC02 – Bàn làm việc Dashboard & Đồng bộ dữ liệu
+- Bảng 2.4. Đặc tả Use Case UC03 – Quản lý Hồ sơ Sinh viên & Tự động tạo Email
+- Bảng 2.5. Đặc tả Use Case UC04 – Quản lý Khoa và Lớp sinh hoạt
+- Bảng 2.6. Đặc tả Use Case UC05 – Quản lý Môn học & Niên khóa đào tạo
+- Bảng 2.7. Đặc tả Use Case UC06 – Quản lý Sổ điểm học phần & Điểm thành phần
+- Bảng 2.8. Đặc tả Use Case UC07 – Nhập điểm học phần từ File ngoại vi (Excel/CSV)
+- Bảng 2.9. Đặc tả Use Case UC08 – Tra cứu kết quả học tập & Tính GPA/CPA tích lũy
+- Bảng 2.10. Đặc tả Use Case UC09 – Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ
+- Bảng 2.11. Đặc tả Use Case UC10 – Quản trị người dùng & Phân quyền hệ thống
+- Bảng 2.12. Quy chế quy đổi thang điểm 10 sang thang chữ và thang điểm 4 chuẩn mới
+- Bảng 2.13. Tiêu chuẩn phân loại học lực sinh viên theo học chế tín chỉ
+- Bảng 2.14. Từ điển dữ liệu bảng `TaiKhoan` (Quản lý tài khoản và phân quyền)
+- Bảng 2.15. Từ điển dữ liệu bảng `Khoa` (Danh mục khoa đào tạo)
+- Bảng 2.16. Từ điển dữ liệu bảng `Lop` (Danh mục lớp sinh hoạt)
+- Bảng 2.17. Từ điển dữ liệu bảng `SinhVien` (Hồ sơ sinh viên)
+- Bảng 2.18. Từ điển dữ liệu bảng `MonHoc` (Danh mục học phần đào tạo)
+- Bảng 2.19. Từ điển dữ liệu bảng `NienKhoa` (Niên khóa và học kỳ đào tạo)
+- Bảng 2.20. Từ điển dữ liệu bảng `DiemHocPhan` (Sổ điểm học phần sinh viên)
+- Bảng 2.21. Từ điển dữ liệu bảng `LogHeThong` (Nhật ký kiểm toán hệ thống)
+- Bảng 3.1. Ma trận kiểm thử hệ thống (System Test Matrix - 20 Test Cases chi tiết)
+- Bảng 3.2. Bảng so sánh kết quả thực hiện so với mục tiêu ban đầu của đề tài
+
+---
+
+# DANH MỤC CÁC HÌNH VẼ VÀ SƠ ĐỒ
+
+- Hình 2.1. Sơ đồ Use Case tổng quát hệ thống Student Result Analytics
+- Hình 2.2. Sơ đồ Use Case phân hệ Quản trị viên (Admin)
+- Hình 2.3. Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên
+- Hình 2.4. Sơ đồ Use Case phân hệ Sinh viên
+- Hình 2.5. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Đăng nhập & Điều hướng phân quyền
+- Hình 2.6. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Thêm sinh viên & Tự sinh Email
+- Hình 2.7. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Nhập điểm học phần từ File Excel/CSV
+- Hình 2.8. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Tính toán GPA/CPA tích lũy theo số tín chỉ
+- Hình 2.9. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Lọc và Xử lý Cảnh báo học vụ
+- Hình 2.10. Sơ đồ Tuần tự (Sequence Diagram) – Chức năng Đăng nhập & Xác thực
+- Hình 2.11. Sơ đồ Tuần tự (Sequence Diagram) – Chức năng Thêm mới sinh viên và liên kết Lớp/Khoa
+- Hình 2.12. Sơ đồ Tuần tự (Sequence Diagram) – Chức năng Nhập điểm học phần từ File Excel
+- Hình 2.13. Sơ đồ Tuần tự (Sequence Diagram) – Chức năng Tra cứu kết quả học tập & Tính điểm tích lũy
+- Hình 2.14. Sơ đồ Tuần tự (Sequence Diagram) – Chức năng Rà soát và Xuất danh sách Cảnh báo học vụ
+- Hình 2.15. Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD) chuẩn hóa 3NF
+- Hình 2.16. Sơ đồ Kiến trúc phân tầng hệ thống kết hợp Mô hình MVVM và Repository Pattern
+- Hình 3.1. Giao diện Đăng nhập hệ thống (LoginWindow) tích hợp nút xem/ẩn mật khẩu
+- Hình 3.2. Giao diện Bàn làm việc Dashboard (Executive Academic Dashboard)
+- Hình 3.3. Giao diện Quản lý Hồ sơ Sinh viên & Lớp học, Khoa đào tạo
+- Hình 3.4. Giao diện Quản lý Môn học & Niên khóa đào tạo
+- Hình 3.5. Giao diện Sổ điểm học phần & Nhập điểm thành phần
+- Hình 3.6. Giao diện Nhập điểm từ File (Excel/CSV) hàng loạt
+- Hình 3.7. Giao diện Tra cứu GPA, CPA & Báo cáo kết quả học tập
+- Hình 3.8. Giao diện Thống kê Đạt/Trượt & Danh sách Cảnh báo học vụ
+- Hình 3.9. Giao diện Quản trị người dùng & Phân quyền hệ thống
+
+<div style="page-break-after: always;"></div>
+
+---
+
+# MỞ ĐẦU
 
 ### 1. Lý do chọn đề tài
-Trong kỷ nguyên chuyển đổi số giáo dục đại học hiện nay, việc chuẩn hóa quy trình quản lý điểm số và đánh giá năng lực người học theo hệ thống tín chỉ (Credit-based system) là một trong những nhiệm vụ cốt lõi hàng đầu của các trường đại học tại Việt Nam. Theo các quy chế đào tạo hiện hành của Bộ Giáo dục và Đào tạo, việc tính toán kết quả học tập không chỉ dừng lại ở thang điểm 10 truyền thống mà bắt buộc phải quy đổi chính xác sang thang điểm chữ (A+, A, B+, B, C+, C, D+, D, F) và thang điểm 4.0 (với các mức trọng số chi tiết như $A^+ = 4.0, A = 3.7$), đồng thời phải tính điểm trung bình chung học kỳ (GPA) và tích lũy (CPA) dựa trên **gia quyền số tín chỉ** của từng học phần.
+Trong kỷ nguyên cách mạng công nghiệp 4.0 và công cuộc chuyển đổi số giáo dục đại học, mô hình đào tạo theo hệ thống tín chỉ (Credit-based Education System) đã trở thành chuẩn mực bắt buộc tại hầu hết các trường đại học ở Việt Nam, bao gồm Trường Đại học Phenikaa. Khác với mô hình đào tạo theo niên chế truyền thống vốn dĩ cố định lớp học và môn học, đào tạo theo tín chỉ trao cho sinh viên quyền chủ động đăng ký học phần, cá nhân hóa tiến độ học tập và tích lũy kiến thức theo năng lực bản thân.
 
-Tuy nhiên, trong thực tế công tác tại nhiều khoa đào tạo và cơ sở giáo dục, quy trình quản lý điểm số vẫn còn tồn tại nhiều điểm nghẽn nghiêm trọng:
-- Giảng viên bộ môn quản lý điểm thành phần (chuyên cần, giữa kỳ, thi kết thúc) trên các bảng tính Excel rời rạc, dẫn đến nguy cơ phân tán dữ liệu, thất lạc thông tin hoặc nhầm lẫn công thức.
-- Phòng Đào tạo và Khảo thí gặp rất nhiều khó khăn, tốn kém thời gian khi phải tổng hợp thủ công hàng trăm file bảng điểm từ các giảng viên; việc kiểm tra trùng lặp sinh viên, sai sót định dạng mã sinh viên hay mã môn học thường xuyên xảy ra.
-- Công tác cố vấn học tập và rà soát sinh viên có nguy cơ bị cảnh báo học vụ (GPA < 2.0 hoặc nợ môn) thường bị chậm trễ do không có công cụ tự động quét dữ liệu theo thời gian thực; khi phát hiện thì sinh viên đã bước sang kỳ học tiếp theo, làm giảm hiệu quả can thiệp sư phạm.
-- Thiếu hụt một giải pháp phần mềm máy tính (Desktop App) có hiệu năng xử lý cao, giao diện trực quan, đồng bộ dữ liệu thời gian thực lên máy chủ đám mây (Cloud SQL Server), vừa hỗ trợ nạp dữ liệu hàng loạt từ file Excel/CSV, vừa cung cấp bức tranh phân tích trực quan toàn diện (Executive Dashboard).
+Tuy nhiên, sự linh hoạt này đồng thời tạo ra một khối lượng dữ liệu khổng lồ và phức tạp đối với công tác quản lý khảo thí và giáo vụ:
+- Mỗi học kỳ, hàng ngàn sinh viên tham gia hàng chục môn học với số lượng tín chỉ (2 tín chỉ, 3 tín chỉ, 4 tín chỉ...) và cơ cấu điểm thành phần (Chuyên cần 10%, Giữa kỳ 40%, Cuối kỳ 50%) hoàn toàn khác biệt.
+- Quy chế đào tạo đại học hiện hành đòi hỏi việc quy đổi điểm số qua nhiều bậc thang phức tạp: từ điểm thang 10 sang thang điểm chữ (A+, A, B+, B, C+, C, D+, D, F) và chuyển đổi sang thang điểm 4 theo trọng số số tín chỉ để tính điểm trung bình học kỳ (GPA) và điểm trung bình tích lũy toàn khóa (CPA).
+- Đặc biệt, theo chuẩn quy chế học vụ mới nhất, mức điểm giỏi $8.5 - 8.9$ được quy đổi là thang chữ $A$ tương đương $3.7$ điểm hệ 4, trong khi mức điểm xuất sắc $9.0 - 10.0$ được quy đổi là thang chữ $A+$ tương đương $4.0$ điểm hệ 4. Sự phân hóa này đòi hỏi công thức tính toán và thuật toán xử lý dữ liệu phải đạt độ chính xác tuyệt đối.
 
-Xuất phát từ những đòi hỏi cấp thiết từ thực tiễn nêu trên, nhóm sinh viên đã quyết định lựa chọn đề tài: **"Hệ thống Quản lý Đào tạo và Phân tích Kết quả Học tập Đại học (Student Result Analytics)"** làm Bài tập lớn cho học phần **Công nghệ .NET**.
+Thực tế tại nhiều đơn vị giáo vụ, việc quản lý kết quả học tập vẫn còn phụ thuộc vào các tệp bảng tính Excel phân tán, rời rạc. Phương thức thủ công này bộc lộ những hạn chế đặc biệt nghiêm trọng: nguy cơ sai sót công thức, trùng lặp thông tin, không kiểm soát được phiên bản sửa đổi, tốn kém thời gian tổng hợp báo cáo và đặc biệt là không thể tự động phát hiện, cảnh báo kịp thời các trường hợp sinh viên có nguy cơ bị cảnh cáo học vụ hoặc buộc thôi học do điểm tích lũy yếu kém hoặc thiếu điểm thành phần.
+
+Xuất phát từ yêu cầu thực tiễn cấp bách đó, nhóm tác giả đã quyết định lựa chọn và thực hiện đề tài: **"Xây dựng Hệ thống Quản lý Đào tạo và Phân tích Kết quả Học tập Sinh viên (Student Result Analytics) theo học chế tín chỉ"** bằng việc ứng dụng nền tảng công nghệ Microsoft .NET 8, công nghệ giao diện hiện đại WPF (Windows Presentation Foundation) kết hợp cùng hệ quản trị cơ sở dữ liệu điện toán đám mây Microsoft Azure / Somee SQL Server.
 
 ### 2. Mục đích nghiên cứu
-Mục đích chính của đề tài là xây dựng một hệ thống phần mềm quản lý học vụ và phân tích điểm thi hoàn chỉnh, hiện đại, chạy trên nền tảng Windows Desktop với công nghệ Microsoft .NET Framework 4.7.2, WPF (Windows Presentation Foundation), áp dụng mô hình kiến trúc chuẩn công nghiệp **MVVM (Model - View - ViewModel)** và kết nối cơ sở dữ liệu đám mây **Microsoft SQL Server (Somee Cloud)**. Hệ thống giải quyết trọn vẹn bài toán:
-- Tự động hóa quy trình quản lý sinh viên, phân loại theo lớp sinh hoạt và Khoa/Viện quản lý, chuẩn hóa email sinh viên `@st.phenikaa-uni.edu.vn`.
-- Quản lý sổ điểm học phần và tự động tính điểm tổng kết theo trọng số chuẩn (10% chuyên cần, 30% giữa kỳ, 60% cuối kỳ hoặc linh hoạt theo quy định).
-- Cung cấp công cụ nhập điểm thi hàng loạt siêu tốc từ file Excel (.xlsx) và file CSV với cơ chế xác thực dữ liệu chặt chẽ và ghi nhật ký lịch sử Import.
-- Tự động hóa hoàn toàn thuật toán quy đổi điểm tín chỉ theo thang 4.0 và thang chữ, tính điểm trung bình học kỳ theo gia quyền tín chỉ môn học:
-  $$	ext{GPA} = rac{\sum_{i=1}^{n} (	ext{Điểm môn } i 	imes 	ext{Số tín chỉ môn } i)}{\sum_{i=1}^{n} 	ext{Số tín chỉ môn } i}$$
-- Xây dựng trung tâm điều hành Dashboard với chỉ số KPI đào tạo, biểu đồ phân bố học lực toàn khóa và danh sách cảnh báo học vụ thời gian thực.
-- Phân quyền người dùng chặt chẽ giữa Quản trị viên (Admin) và Cán bộ Đào tạo/Giảng viên (Staff/Teacher).
+Mục tiêu cốt lõi của đề tài là nghiên cứu, thiết kế và phát triển một ứng dụng máy tính (Desktop Application) chuyên nghiệp, an toàn, có hiệu năng cao và giao diện người dùng thân thiện nhằm:
+1. Tin học hóa toàn diện quy trình quản lý hồ sơ sinh viên, danh mục khoa, lớp sinh hoạt, môn học và niên khóa đào tạo.
+2. Tự động hóa quá trình tính toán điểm tổng kết học phần, quy đổi điểm chữ, điểm hệ 4 và tính điểm GPA/CPA có trọng số số tín chỉ theo đúng quy chế đào tạo tín chỉ đại học hiện hành.
+3. Cung cấp phân hệ nhập điểm linh hoạt: vừa cho phép nhập điểm trực tiếp trên giao diện sổ điểm điện tử, vừa hỗ trợ nhập tự động hàng loạt từ tệp ngoại vi Excel/CSV với cơ chế tiền kiểm định dạng và bắt lỗi dòng dữ liệu sai sót.
+4. Xây dựng trung tâm điều hành Dashboard trực quan với các chỉ số đo lường hiệu quả (KPIs) và biểu đồ phân bố học lực thời gian thực thông qua thư viện LiveCharts2.
+5. Cung cấp công cụ rà soát, lọc và trích xuất danh sách sinh viên bị cảnh báo học vụ hoặc còn nợ điểm thành phần theo từng học kỳ/niên khóa, giúp Cố vấn học tập và Phòng Đào tạo đưa ra các quyết định can thiệp sư phạm kịp thời.
+6. Thiết lập cơ chế kiểm soát truy cập phân quyền dựa trên vai trò (Role-Based Access Control - RBAC) chặt chẽ giữa Quản trị viên, Cố vấn học tập/Giảng viên và Sinh viên.
 
-### 3. Đối tượng và phạm vi nghiên cứu
-- **Đối tượng nghiên cứu:** 
-  - Quy trình quản lý đào tạo, khảo thí, tổ chức nhập điểm và theo dõi kết quả học tập sinh viên theo hệ thống tín chỉ đại học tại Việt Nam.
-  - Công nghệ lập trình giao diện WPF, ngôn ngữ C#, thư viện EPPlus xử lý file Excel, kiến trúc MVVM và hệ quản trị cơ sở dữ liệu Microsoft SQL Server.
-- **Phạm vi nghiên cứu:**
-  - *Về không gian:* Áp dụng cho các trường đại học, học viện, cụ thể theo chuẩn đào tạo và danh mục khoa/lớp của Trường Đại học Phenikaa.
-  - *Về dữ liệu:* Quản lý dữ liệu hồ sơ sinh viên, lớp sinh hoạt, khoa/viện đào tạo, học phần, niên khóa học kỳ, điểm thành phần môn học, lịch sử import và tài khoản người dùng hệ thống.
-  - *Về thời gian:* Phân tích kết quả học tập qua các niên khóa từ 2024 - 2026.
+### 3. Đối tượng nghiên cứu
+- Quy chế đào tạo đại học theo học chế tín chỉ ban hành theo Thông tư của Bộ Giáo dục và Đào tạo và Quy định đào tạo của Trường Đại học Phenikaa.
+- Các mô hình dữ liệu quản lý kết quả học tập: Sinh viên, Khoa, Lớp, Học phần, Niên khóa, Sổ điểm, Bảng điểm tích lũy, Lịch sử kiểm toán hệ thống.
+- Ngôn ngữ lập trình C# phiên bản 12 trên nền tảng .NET 8.
+- Công nghệ đồ họa WPF (Windows Presentation Foundation) và ngôn ngữ đánh dấu XAML.
+- Các mẫu kiến trúc phần mềm tiêu chuẩn công nghiệp: Mẫu MVVM (Model - View - ViewModel) và Mẫu Repository Pattern.
+- Hệ quản trị cơ sở dữ liệu quan hệ SQL Server triển khai trên máy chủ điện toán đám mây Somee Cloud.
 
-### 4. Ý nghĩa khoa học và thực tiễn của đề tài
-- **Ý nghĩa khoa học:** Đề tài là sự vận dụng sáng tạo và bài bản các nguyên lý kỹ thuật phần mềm tiên tiến: nguyên lý hướng đối tượng (OOP), mẫu kiến trúc Model - View - ViewModel (MVVM), mẫu thiết kế Repository Pattern, nguyên tắc thiết kế cơ sở dữ liệu quan hệ chuẩn hóa bậc 3 (3NF) và tối ưu hóa xử lý dữ liệu lớn (Batch Processing).
-- **Ý nghĩa thực tiễn:** Hệ thống tạo ra một giải pháp công nghệ có khả năng triển khai thực tế ngay tại các khoa đào tạo hoặc phòng đào tạo; giúp cán bộ giảm hơn 80% thời gian tổng hợp điểm số thủ công, loại bỏ triệt để sai sót con người trong quy đổi điểm tín chỉ, và nâng cao chất lượng quản lý học vụ thông qua hệ thống cảnh báo sớm sinh viên yếu kém.
+### 4. Phạm vi nghiên cứu
+- **Phạm vi nghiệp vụ**: Nghiên cứu và mô hình hóa trọn vẹn nghiệp vụ quản lý khảo thí và học vụ của một cơ sở giáo dục đại học, bao gồm tiếp nhận hồ sơ sinh viên, quản lý mã sinh viên và chuẩn hóa định dạng email trường (`@st.phenikaa-uni.edu.vn`), tổ chức sổ điểm học phần theo lớp môn học, nhập điểm từ file Excel, tính toán GPA/CPA tích lũy và xử lý cảnh báo học vụ.
+- **Phạm vi kỹ thuật**: Xây dựng ứng dụng hoàn chỉnh dưới dạng Windows Desktop Application chạy trên hệ điều hành Windows 10/11, kết nối thông suốt với cơ sở dữ liệu đám mây Somee SQL Server thông qua thư viện kết nối ADO.NET tối ưu hóa (`Microsoft.Data.SqlClient`).
 
----
-
-<div style="page-break-after: always;"></div>
-
-# CHƯƠNG 1: XÁC ĐỊNH YÊU CẦU
-
-## 1.1. Giới thiệu bối cảnh và đối tượng khách hàng
-### 1.1.1. Bối cảnh chung
-Giáo dục đại học Việt Nam đang vận hành toàn diện theo hình thức đào tạo tín chỉ theo Quy chế đào tạo của Bộ Giáo dục & Đào tạo. Điểm số của sinh viên không chỉ quyết định việc xét điều kiện tốt nghiệp, xếp loại bằng cử nhân/kỹ sư mà còn là căn cứ trực tiếp để xét cấp học bổng khuyến khích học tập, xét cảnh báo học vụ và buộc thôi học. Một trường đại học quy mô vừa có từ 10.000 đến 25.000 sinh viên, với hàng trăm lớp học phần mở ra mỗi kỳ. Khối lượng dữ liệu điểm số phát sinh là cực kỳ lớn và đòi hỏi tính toán tức thời, chuẩn xác tuyệt đối.
-
-### 1.1.2. Đối tượng khách hàng và các bên liên quan (Stakeholders)
-Hệ thống **Student Result Analytics** được thiết kế hướng tới phục vụ 3 nhóm đối tượng khách hàng trọng tâm:
-1. **Ban Quản trị Hệ thống (System Administrators - Admin):**
-   - Chịu trách nhiệm bảo đảm an toàn dữ liệu, thiết lập cấu hình kết nối SQL Server, quản lý danh mục tài khoản người dùng, phân quyền truy cập và giám sát toàn bộ hoạt động của hệ thống.
-2. **Cán bộ Phòng Đào tạo & Khảo thí (Academic Affairs & Examination Staff):**
-   - Chịu trách nhiệm quản lý danh mục học phần, niên khóa học kỳ, danh mục lớp sinh hoạt và hồ sơ sinh viên theo từng Khoa/Viện.
-   - Nhận các bảng điểm từ giảng viên hoặc phòng thi để nạp vào hệ thống; thực hiện import hàng loạt từ file Excel/CSV; theo dõi tiến độ nhập điểm và khóa sổ điểm học phần.
-3. **Cố vấn học tập & Giảng viên chủ nhiệm (Academic Advisors / Lecturers):**
-   - Tra cứu kết quả học tập GPA/CPA của sinh viên thuộc lớp hoặc khoa mình phụ trách; xem danh sách sinh viên bị cảnh báo học vụ, nợ môn để kịp thời gửi thông báo nhắc nhở, tư vấn kế hoạch học tập cải thiện điểm số.
-
-*Bảng 1.1: Phân loại yêu cầu người dùng theo đối tượng trong trường đại học*
-
-| Nhóm người dùng | Mục tiêu sử dụng | Khó khăn hiện tại | Lợi ích khi dùng phần mềm |
-|:---|:---|:---|:---|
-| **Ban Quản trị (Admin)** | Quản lý người dùng, bảo mật, sao lưu dữ liệu | Không kiểm soát được ai sửa điểm, nguy cơ lộ mật khẩu | Phân quyền RBAC rõ ràng, quản trị tài khoản tập trung, bảo vệ dữ liệu |
-| **Cán bộ Khảo thí** | Nhập điểm, tổng hợp kết quả, quản lý môn & kỳ | Nhập tay tốn thời gian, file Excel dễ sai format, lệch mã | Import hàng nghìn dòng trong vài giây, kiểm tra lỗi tự động, lưu lịch sử nạp |
-| **Cố vấn học tập** | Theo dõi học lực sinh viên, cảnh báo học vụ | Phải chờ cuối năm mới có bảng điểm giấy, rà soát thủ công | Dashboard trực quan, lọc theo từng học kỳ, danh sách cảnh báo thời gian thực |
-
-## 1.2. Xác định và nêu vấn đề cần giải quyết
-Qua khảo sát thực tế quy trình quản lý điểm tại các đơn vị đào tạo, nhóm nghiên cứu đã tổng hợp các bài toán cốt lõi cần phải giải quyết:
-1. **Bài toán nhập liệu và chuyển đổi dữ liệu phân tán:** Điểm thi được giảng viên nộp qua nhiều định dạng (bảng tính Excel `.xlsx`, tệp `.csv`). Hệ thống cần một bộ xử lý thông minh tự động đọc dữ liệu, đối chiếu mã sinh viên, mã môn học, mã học kỳ, kiểm tra thang điểm hợp lệ (0-10) và lưu vết lịch sử nạp dữ liệu.
-2. **Bài toán tính toán điểm tín chỉ chuẩn xác:** Tính điểm tổng kết học phần theo tỷ lệ phần trăm (10% chuyên cần, 30% giữa kỳ, 60% cuối kỳ); tự động quy đổi sang thang điểm 4 và thang điểm chữ; tính điểm trung bình học kỳ (GPA) có tính đến số tín chỉ của từng môn học (tránh sai sót tính trung bình cộng đơn giản).
-3. **Bài toán quản lý hồ sơ và tổ chức Khoa/Lớp:** Sinh viên cần được quản lý theo lớp sinh hoạt, lớp sinh hoạt trực thuộc Khoa/Viện đào tạo cụ thể; đồng thời email sinh viên phải chuẩn hóa theo quy ước nhận diện tên miền của nhà trường (`[MãSV]@st.phenikaa-uni.edu.vn`).
-4. **Bài toán cảnh báo học vụ sớm:** Tự động lọc ra sinh viên còn thiếu điểm thành phần (chưa chốt sổ điểm) và sinh viên có kết quả học tập yếu kém (GPA < 2.0 hoặc có điểm F) để nhà trường có biện pháp hỗ trợ kịp thời.
-5. **Bài toán phân tích dữ liệu trực quan:** Cung cấp báo cáo thống kê tỷ lệ đạt/trượt theo từng môn học và biểu đồ phân bố học lực toàn trường theo từng kỳ học hoặc toàn khóa học.
-
-## 1.3. Yêu cầu chung đối với hệ thống
-- **Nền tảng vận hành:** Ứng dụng Desktop chạy trên hệ điều hành Windows 10/11, cài đặt .NET Framework 4.7.2 trở lên.
-- **Kiến trúc phần mềm:** Áp dụng mô hình chuẩn MVVM (Model - View - ViewModel) kết hợp Repository Pattern nhằm phân tách rành mạch tầng trình diễn giao diện và tầng logic nghiệp vụ.
-- **Cơ sở dữ liệu:** Hệ quản trị cơ sở dữ liệu quan hệ Microsoft SQL Server, triển khai linh hoạt trên máy chủ đám mây (Cloud Somee) hoặc máy chủ nội bộ trường (Localhost).
-- **Trải nghiệm người dùng (UX/UI):** Giao diện phẳng, thiết kế thanh bên (Sidebar) thu gọn / mở rộng mượt mà, tông màu xanh hải quân trang nhã (`#1B426E`), biểu tượng nhận diện thương hiệu chuẩn xác, hỗ trợ bộ lọc học kỳ toàn hệ thống.
-
-## 1.4. Yêu cầu chức năng cụ thể
-Hệ thống bao gồm 8 phân hệ nghiệp vụ cốt lõi:
-1. **Phân hệ Xác thực & Quản lý phiên làm việc (Authentication & Session):**
-   - Đăng nhập bằng tên đăng nhập và mật khẩu.
-   - Hỗ trợ nút bật/tắt hiển thị mật khẩu (icon con mắt 👁 / 🙈) giúp người dùng kiểm tra ký tự khi gõ.
-   - Ghi nhớ phiên làm việc của người dùng hiện tại (Session State) để phân quyền giao diện và chức năng tương ứng.
-   - Chức năng đăng xuất an toàn.
-2. **Phân hệ Bàn làm việc tổng quan (Academic Dashboard):**
-   - Hiển thị các thẻ chỉ số KPI tổng thể: Tổng số sinh viên, Số lớp sinh hoạt, Số học phần đào tạo, Điểm trung bình toàn khóa, Tỷ lệ đạt chung, Số sinh viên cần bổ sung điểm.
-   - Biểu đồ tiến độ phân bố học lực toàn khóa (Xuất sắc, Giỏi, Khá, Trung bình, Yếu/Kém, Chưa đủ điểm).
-   - Bảng kết quả đạt/trượt theo từng học phần và danh sách cảnh báo học vụ thời gian thực.
-   - Bộ lọc học kỳ toàn hệ thống (Global Semester Filter) tại thanh tiêu đề, cho phép xem dữ liệu toàn khóa hoặc theo từng học kỳ cụ thể.
-3. **Phân hệ Quản lý Hồ sơ Sinh viên & Lớp học:**
-   - Quản lý danh mục lớp sinh hoạt: Thêm, sửa, xóa, làm trống, tìm kiếm lớp học. Mỗi lớp được gán với một **Khoa / Viện quản lý** cụ thể và niên khóa đào tạo.
-   - Quản lý hồ sơ sinh viên: Thêm, sửa, xóa, tìm kiếm sinh viên.
-   - **Cơ chế tự động hóa:** Khi người dùng nhập Mã sinh viên (ví dụ `23010191`), hệ thống tự động sinh Email liên hệ theo định dạng `23010191@st.phenikaa-uni.edu.vn`.
-   - Ràng buộc dữ liệu nghiêm ngặt: Kiểm tra phần đầu email bắt buộc phải trùng khớp với mã sinh viên, đảm bảo toàn vẹn dữ liệu.
-4. **Phân hệ Quản lý Học phần & Niên khóa đào tạo:**
-   - Quản lý danh mục môn học: Mã môn học, Tên môn học, Số tín chỉ (1 - 10 tín chỉ).
-   - Quản lý danh mục học kỳ: Mã học kỳ, Tên học kỳ, Niên khóa (ví dụ 2024-2025, 2025-2026), Ngày bắt đầu, Ngày kết thúc.
-5. **Phân hệ Sổ điểm học phần (Gradebook Management):**
-   - Cho phép chọn học kỳ và môn học để mở sổ điểm chi tiết của từng lớp.
-   - Nhập và chỉnh sửa điểm thành phần cho từng sinh viên: Điểm chuyên cần (10%), Điểm giữa kỳ (30%), Điểm thi kết thúc học phần (60%).
-   - Tự động tính toán điểm tổng kết thang 10 theo công thức:
-     $$	ext{Điểm TK} = 	ext{Chuyên cần} 	imes 0.1 + 	ext{Giữa kỳ} 	imes 0.3 + 	ext{Cuối kỳ} 	imes 0.6$$
-   - Tự động quy đổi sang thang điểm chữ và thang điểm 4.0.
-   - Trực quan hóa trạng thái: Đạt (màu xanh lá) khi điểm tổng kết $\ge 4.0$ và không có điểm thành phần nào bị điểm liệt; Chưa đạt (màu đỏ) khi điểm tổng kết $< 4.0$.
-6. **Phân hệ Nhập điểm thi hàng loạt từ File Excel/CSV (Bulk Import Engine):**
-   - Cho phép chọn file bảng điểm định dạng Microsoft Excel (`.xlsx`) hoặc tệp `.csv`.
-   - Đọc dữ liệu ngầm bằng thư viện EPPlus siêu tốc, hỗ trợ file lên đến 5.000 dòng.
-   - Tự động kiểm tra tính hợp lệ của từng dòng: Sinh viên có tồn tại trong hệ thống không, Môn học và Học kỳ có hợp lệ không, Điểm số có nằm trong khoảng 0.0 - 10.0 không.
-   - Báo cáo kết quả trực quan dạng thẻ: Tổng số dòng, Số dòng thành công, Số dòng lỗi.
-   - Lưu trữ nhật ký vào bảng `dbo.LichSuImport` (Tên file, loại file, thời gian nạp, số dòng thành công/lỗi, trạng thái).
-7. **Phân hệ Tra cứu GPA & Phân loại học lực:**
-   - Tra cứu bảng điểm tổng hợp của sinh viên theo từng học kỳ hoặc toàn khóa học.
-   - Tính toán điểm GPA gia quyền tín chỉ chính xác:
-     $$	ext{GPA} = rac{\sum (	ext{Điểm môn} 	imes 	ext{Số tín chỉ})}{\sum 	ext{Số tín chỉ}}$$
-   - Phân loại học lực theo chuẩn đào tạo tín chỉ:
-     * GPA $\ge 3.60$: Xuất sắc
-     * $3.20 \le 	ext{GPA} < 3.60$: Giỏi
-     * $2.50 \le 	ext{GPA} < 3.20$: Khá
-     * $2.00 \le 	ext{GPA} < 2.50$: Trung bình
-     * $1.00 \le 	ext{GPA} < 2.00$: Yếu
-     * $	ext{GPA} < 1.00$: Kém
-   - Xuất dữ liệu bảng điểm ra file báo cáo Excel phục vụ in ấn bảng điểm chính thức.
-8. **Phân hệ Thống kê Đạt/Trượt & Cảnh báo học vụ:**
-   - Thống kê tỷ lệ sinh viên đạt/trượt theo từng môn học để phòng Khảo thí đánh giá độ khó và chất lượng giảng dạy của đề thi.
-   - Trích xuất danh sách sinh viên bị cảnh báo học vụ: Sinh viên có GPA học kỳ $< 2.0$ hoặc có số môn nợ (điểm F) vượt quá quy định.
-9. **Phân hệ Quản trị hệ thống & Phân quyền bảo mật (Admin only):**
-   - Chỉ người dùng có vai trò `Admin` mới truy cập được phân hệ này (ẩn hoàn toàn với tài khoản Nhân viên).
-   - Thêm tài khoản mới, sửa thông tin, đặt lại mật khẩu, kích hoạt hoặc khóa tài khoản (`DangHoatDong`).
-   - Phân định 2 nhóm vai trò: Quản trị viên (`Admin`) và Nhân viên đào tạo (`NhanVien`).
-
-*Bảng 1.2: Quy định thang điểm chữ, thang điểm 4 và phân loại học lực theo tín chỉ*
-
-| Điểm thang 10 | Điểm chữ | Điểm thang 4 | Đánh giá kết quả | Xếp loại học lực tích lũy |
-|:---:|:---:|:---:|:---:|:---|
-| **9.0 – 10.0** | **A+** | **4.0** | Đạt | Xuất sắc (GPA $\ge 3.60$) |
-| **8.5 – 8.9** | **A** | **3.7** | Đạt | Giỏi ($3.20 \le 	ext{GPA} < 3.60$) |
-| **8.0 – 8.4** | **B+** | **3.5** | Đạt | Khá ($2.50 \le 	ext{GPA} < 3.20$) |
-| **7.0 – 7.9** | **B** | **3.0** | Đạt | Khá |
-| **6.5 – 6.9** | **C+** | **2.5** | Đạt | Trung bình ($2.00 \le 	ext{GPA} < 2.50$) |
-| **5.5 – 6.4** | **C** | **2.0** | Đạt | Trung bình |
-| **5.0 – 5.4** | **D+** | **1.5** | Đạt | Yếu ($1.00 \le 	ext{GPA} < 2.00$) |
-| **4.0 – 4.9** | **D** | **1.0** | Đạt (Trung bình yếu) | Yếu |
-| **< 4.0** | **F** | **0.0** | Không đạt (Học lại) | Kém ($	ext{GPA} < 1.00$) |
-
-## 1.5. Yêu cầu phi chức năng
-1. **Hiệu năng và Tốc độ (Performance):**
-   - Thời gian khởi động ứng dụng và tải dữ liệu trang Dashboard dưới 2 giây.
-   - Quá trình import file Excel 1.000 dòng hoàn thành trong thời gian dưới 3 giây nhờ kỹ thuật đọc streaming và lưu trữ theo khối (batch processing).
-   - Thao tác chuyển đổi qua lại giữa các màn hình trên Sidebar diễn ra mượt mà, tức thì (độ trễ dưới 200ms) nhờ cơ chế DataTemplate caching.
-2. **Tính Toàn vẹn và Nhất quán dữ liệu (Data Integrity):**
-   - Cơ sở dữ liệu SQL Server thiết lập khóa ngoại (Foreign Keys) nghiêm ngặt giữa các bảng `SinhVien`, `Lop`, `MonHoc`, `HocKy`, `KetQua`.
-   - Ngăn chặn triệt để tình trạng xóa lớp khi vẫn còn sinh viên, hoặc xóa sinh viên khi đã có điểm thi trong hệ thống.
-3. **Bảo mật và Phân quyền (Security):**
-   - Mật khẩu đăng nhập được băm an toàn và kiểm tra bảo mật.
-   - Cơ chế Session tĩnh (`PhienDangNhap`) đảm bảo người dùng chỉ được thao tác đúng phạm vi quyền hạn được cấp.
-   - Phòng chống lỗi SQL Injection nhờ sử dụng tham số hóa 100% trong `SqlCommand` (`Parameters.Add`).
-4. **Tính Dễ dùng và Thẩm mỹ (Usability & Aesthetics):**
-   - Giao diện thiết kế theo phong cách hiện đại, thanh menu bên trái hỗ trợ thu gọn tiết kiệm diện tích cho màn hình nhỏ.
-   - Màu sắc hài hòa, độ tương phản cao, thông báo lỗi bằng tiếng Việt rõ ràng, thân thiện với người dùng.
-
----
+### 5. Ý nghĩa khoa học và thực tiễn
+- **Ý nghĩa khoa học**: 
+  - Đề tài là minh chứng sinh động cho việc áp dụng phương pháp luận phát triển phần mềm hướng đối tượng (OOAD), kỹ thuật phân tích và thiết kế hệ thống thông tin thông qua chuẩn mô hình hóa UML (Use Case, Activity, Sequence, ERD).
+  - Khẳng định giá trị thực tiễn của mẫu kiến trúc hiện đại MVVM trong việc tách biệt hoàn toàn giữa giao diện người dùng (View), tầng logic điều khiển (ViewModel) và tầng truy cập dữ liệu (Model/Repository), giúp mã nguồn đạt tính mô-đun hóa cao, dễ kiểm thử (Unit Testing) và thuận tiện mở rộng bảo trì.
+- **Ý nghĩa thực tiễn**:
+  - Ứng dụng cung cấp cho các trường đại học một công cụ số hóa mạnh mẽ, giảm thiểu tối đa sai sót và áp lực hành chính trong mùa thi cử và chốt điểm học kỳ.
+  - Giúp Cố vấn học tập nhanh chóng nắm bắt bức tranh toàn cảnh về tiến độ học tập của từng lớp sinh hoạt, kịp thời đôn đốc sinh viên hoàn thành điểm nợ và giảm tỷ lệ sinh viên bị thôi học vì cảnh báo học vụ.
 
 <div style="page-break-after: always;"></div>
 
-# CHƯƠNG 2: PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG
+---
 
-## 2.1. Phân tích yêu cầu và định hướng giải pháp kỹ thuật
-Từ các yêu cầu đã xác định ở Chương 1, nhóm tiến hành lựa chọn các giải pháp kỹ thuật tối ưu:
-- **Ngôn ngữ và Nền tảng:** Sử dụng **C# trên nền tảng .NET Framework 4.7.2** kết hợp **WPF (Windows Presentation Foundation)**. WPF mang lại khả năng tùy biến giao diện đồ họa vượt trội so với Windows Forms truyền thống thông qua ngôn ngữ XAML, hỗ trợ mạnh mẽ cơ chế Data Binding 2 chiều, Styles, DataTemplates và ControlTemplates.
-- **Mô hình kiến trúc MVVM:** Tách biệt hoàn toàn giao diện (View) khỏi logic điều khiển (ViewModel) và truy xuất dữ liệu (Model). Giúp mã nguồn có tính module hóa cao, dễ bảo trì, dễ mở rộng và hỗ trợ viết unit test độc lập.
-- **Thư viện xử lý Excel EPPlus:** Sử dụng thư viện EPPlus phiên bản tối ưu, cho phép đọc và ghi các định dạng `.xlsx` theo chuẩn OpenXML mà không phụ thuộc vào việc máy tính người dùng có cài đặt phần mềm Microsoft Office hay không.
-- **Hệ quản trị CSDL Microsoft SQL Server:** Triển khai trên máy chủ đám mây Somee Cloud với chuỗi kết nối mã hóa SSL, hỗ trợ kết nối từ xa đa điểm cho nhiều người dùng cùng lúc.
+# CHƯƠNG 1. XÁC ĐỊNH YÊU CẦU VÀ KHẢO SÁT HIỆN TRẠNG
 
-## 2.2. Thiết kế chức năng (Use Case Design)
-### 2.2.1. Sơ đồ Use Case tổng quát
-Hệ thống xác định 2 tác nhân (Actors) chính:
-- **Quản trị viên (Admin):** Có toàn quyền trên hệ thống, bao gồm cả phân hệ Quản trị & Phân quyền tài khoản.
-- **Cán bộ Đào tạo / Giảng viên (Staff):** Thực hiện các nghiệp vụ quản lý sinh viên, học phần, sổ điểm, import file và tra cứu thống kê.
+### 1.1 Giới thiệu bối cảnh thực tế
+Đào tạo theo học chế tín chỉ là phương thức tổ chức đào tạo tiên tiến, lấy người học làm trung tâm. Tại Trường Đại học Phenikaa, mỗi năm học được chia thành 2 học kỳ chính và 1 học kỳ phụ (hè). Trong mỗi học kỳ, sinh viên có thể đăng ký nhiều học phần khác nhau thuộc các khối kiến thức đại cương, cơ sở ngành và chuyên ngành. 
 
+Mỗi học phần có trọng số số tín chỉ nhất định (thường từ 2 đến 4 tín chỉ), phản ánh khối lượng lao động học tập của sinh viên. Đánh giá một học phần bao gồm nhiều điểm thành phần:
+- Điểm đánh giá bộ phận / Chuyên cần (trọng số 10%)
+- Điểm kiểm tra giữa kỳ (trọng số 40%)
+- Điểm thi kết thúc học phần (trọng số 50%)
+
+Điểm tổng kết học phần được tính theo thang điểm 10, làm tròn đến một chữ số thập phân, sau đó được quy đổi sang điểm chữ và thang điểm 4. Để đánh giá kết quả học tập của sinh viên, nhà trường sử dụng hai chỉ số quan trọng:
+1. **GPA (Grade Point Average)**: Điểm trung bình chung học kỳ, tính trên các học phần sinh viên đăng ký học trong học kỳ đó.
+2. **CPA (Cumulative Point Average)**: Điểm trung bình chung tích lũy, tính trên tất cả các học phần sinh viên đã tích lũy từ đầu khóa học cho đến thời điểm xét.
+
+Nếu CPA của sinh viên rơi xuống dưới ngưỡng quy định ($< 2.0$), sinh viên sẽ bị xử lý kỷ luật học vụ ở các mức: Cảnh báo học vụ lần 1, Cảnh báo học vụ lần 2 và Buộc thôi học. Do đó, việc tính toán chuẩn xác, giám sát liên tục và đưa ra cảnh báo sớm là nhiệm vụ then chốt của các cơ quan quản lý đào tạo.
+
+### 1.2 Khảo sát đối tượng sử dụng và Phân quyền hệ thống
+Hệ thống Student Result Analytics được thiết kế hướng tới phục vụ 3 nhóm đối tượng người dùng chính trong môi trường đại học:
+
+1. **Quản trị viên hệ thống (Admin / Cán bộ Phòng Đào tạo)**:
+   - Là nhóm người dùng có quyền hạn tối cao trong hệ thống.
+   - Chịu trách nhiệm quản lý danh mục dùng chung: Quản lý danh sách các Khoa đào tạo (Khoa CNTT, Điện - Điện tử, Kinh tế...), danh mục các Lớp sinh hoạt, danh mục Môn học (Số tín chỉ, loại môn), và cấu hình các Niên khóa/Học kỳ.
+   - Quản lý hồ sơ sinh viên toàn trường: Tiếp nhận sinh viên mới, cập nhật thông tin, cấp phát tài khoản.
+   - Quản trị tài khoản người dùng, phân quyền truy cập, thiết lập trạng thái tài khoản và giám sát nhật ký kiểm toán hệ thống (Audit Logs).
+   - Có toàn quyền tra cứu, xuất báo cáo và can thiệp điều chỉnh dữ liệu khi có sai sót được phê duyệt.
+
+2. **Cố vấn học tập & Giảng viên bộ môn (Advisor / Lecturer)**:
+   - **Giảng viên bộ môn**: Có quyền truy cập vào sổ điểm của các lớp học phần mà mình được phân công giảng dạy; thực hiện nhập điểm chuyên cần, giữa kỳ, thi kết thúc học phần trực tiếp hoặc nhập file bảng điểm Excel; xem danh sách sinh viên nợ điểm để đôn đốc.
+   - **Cố vấn học tập (CVHT)**: Có quyền theo dõi danh sách sinh viên thuộc lớp sinh hoạt do mình phụ trách; tra cứu bảng điểm tổng hợp, theo dõi chỉ số GPA/CPA từng kỳ; nhận diện danh sách sinh viên bị cảnh báo học vụ để tổ chức gặp gỡ, tư vấn học tập và tháo gỡ khó khăn cho sinh viên.
+
+3. **Sinh viên (Student)**:
+   - Đăng nhập bằng tài khoản cá nhân (Mã sinh viên).
+   - Tra cứu tiến độ học tập cá nhân: Xem bảng điểm chi tiết từng học phần, lịch sử điểm thi, điểm tổng kết môn học.
+   - Xem điểm GPA học kỳ, CPA tích lũy, số tín chỉ đã đạt và trạng thái cảnh báo học vụ của bản thân.
+   - Thực hiện đổi mật khẩu cá nhân để bảo mật thông tin.
+
+*Bảng 1.1. Ma trận phân quyền chức năng theo 3 nhóm đối tượng sử dụng*
+
+| Mã CN | Tên phân hệ chức năng | Admin (Đào tạo) | Giảng viên / CVHT | Sinh viên |
+| :---: | :--- | :---: | :---: | :---: |
+| **CN01** | Đăng nhập, Đổi mật khẩu, Xem/Ẩn mật khẩu | ✓ | ✓ | ✓ |
+| **CN02** | Xem Bàn làm việc Dashboard (KPIs, Biểu đồ học lực) | ✓ (Toàn trường) | ✓ (Theo lớp/khoa) | ✗ |
+| **CN03** | Quản lý Hồ sơ Sinh viên (CRUD, Tự sinh Email) | ✓ | Xem hồ sơ | Xem cá nhân |
+| **CN04** | Quản lý Danh mục Khoa & Lớp học | ✓ | Xem danh mục | ✗ |
+| **CN05** | Quản lý Danh mục Môn học & Niên khóa | ✓ | Xem danh mục | ✗ |
+| **CN06** | Quản lý Sổ điểm học phần & Nhập điểm thành phần | ✓ | ✓ (Môn phụ trách) | ✗ |
+| **CN07** | Nhập điểm hàng loạt từ File ngoại vi (Excel/CSV) | ✓ | ✓ (Môn phụ trách) | ✗ |
+| **CN08** | Tra cứu kết quả học tập & Báo cáo GPA/CPA | ✓ (Toàn trường) | ✓ (Lớp phụ trách) | ✓ (Chỉ bản thân) |
+| **CN09** | Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ | ✓ (Toàn trường) | ✓ (Lớp phụ trách) | ✗ |
+| **CN10** | Quản trị tài khoản, Phân quyền & Giám sát Log | ✓ | ✗ | ✗ |
+
+### 1.3 Khảo sát các quy trình nghiệp vụ hiện tại và Vấn đề cần giải quyết
+Qua quá trình khảo sát thực tế công tác giáo vụ tại các khoa đào tạo, nhóm nghiên cứu đã tổng hợp các tồn tại và điểm nghẽn nghiệp vụ lớn nhất của phương thức quản lý truyền thống:
+1. **Dữ liệu phân tán và thiếu tính đồng bộ**: Điểm thi được lưu trữ trên các tệp Excel riêng lẻ của từng giảng viên. Đến cuối kỳ, cán bộ đào tạo phải mở từng tệp để sao chép, ghép nối vào bảng điểm tổng. Quy trình này tiềm ẩn nguy cơ nhầm lẫn cột điểm, sai lệch sinh viên trùng tên và mất mát dữ liệu do lỗi thao tác của con người.
+2. **Quy đổi điểm thủ công dễ sai lệch**: Việc tính điểm tổng kết môn học và quy đổi sang thang chữ A+, A, B+... thường dùng các hàm lồng phức tạp trong Excel (`IF`, `VLOOKUP`). Nếu người dùng sơ suất sửa đổi cấu trúc hoặc không cập nhật đúng thang điểm chuẩn mới ($A: 8.5-8.9 	o 3.7; A+: 9.0-10.0 	o 4.0$), kết quả xếp loại học lực toàn khóa của sinh viên sẽ bị sai lệch nghiêm trọng.
+3. **Chậm trễ trong phát hiện cảnh báo học vụ**: Cố vấn học tập thường chỉ nhận được danh sách sinh viên yếu kém sau khi học kỳ mới đã bắt đầu từ 3 đến 4 tuần. Lúc này, sinh viên đã đăng ký học tiếp mà không kịp thời cải thiện điểm hoặc điều chỉnh giảm tải khối lượng học tập, dẫn đến hậu quả bị đình chỉ hoặc buộc thôi học một cách đáng tiếc.
+4. **Thiếu sự bảo mật và phân quyền**: Bảng tính Excel chia sẻ qua mạng nội bộ hoặc email không có cơ chế phân quyền chi tiết; giảng viên có thể vô tình xem hoặc sửa đổi điểm của môn học khác, không có nhật ký ghi vết ai là người thay đổi điểm số vào thời gian nào.
+
+### 1.4 Yêu cầu chung của hệ thống
+Hệ thống phần mềm được xây dựng phải đáp ứng các yêu cầu nền tảng sau:
+- Chạy ổn định trên môi trường hệ điều hành Windows, giao diện đồng bộ theo phong cách phẳng hiện đại (Modern Flat UI), độ phân giải hỗ trợ chuẩn từ HD đến 4K.
+- Cơ sở dữ liệu tập trung lưu trữ trên máy chủ điện toán đám mây (Cloud Database), cho phép nhiều người dùng kết nối đồng thời từ xa mà vẫn đảm bảo tính toàn vẹn và nhất quán dữ liệu.
+- Tốc độ xử lý tính toán nhanh chóng, giao diện tương tác mượt mà, không xảy ra hiện tượng "treo" giao diện (UI Freezing) khi thực hiện các tác vụ tính toán hoặc tải dữ liệu lớn bằng cách áp dụng lập trình bất đồng bộ (`async / await`).
+
+### 1.5 Yêu cầu chức năng chi tiết (Functional Requirements)
+Hệ thống gồm 10 khối chức năng nghiệp vụ trọng yếu:
+- **1.5.1. Chức năng Xác thực & Đăng nhập**: Cho phép người dùng đăng nhập bằng tên đăng nhập và mật khẩu. Tích hợp nút xem/ẩn mật khẩu (con mắt) trực quan để kiểm tra mật khẩu trước khi nhấn đăng nhập; hỗ trợ cơ chế tự động ghi nhớ tài khoản và điều hướng giao diện chính tương ứng với quyền hạn của người dùng.
+- **1.5.2. Chức năng Bàn làm việc Dashboard**: Là trung tâm tổng quan hiển thị các thẻ KPI cốt lõi (Tổng sinh viên, Số lớp sinh hoạt, Số học phần đào tạo, Điểm trung bình toàn khóa, Tỷ lệ sinh viên đạt chung, Số sinh viên cần bổ sung điểm); cung cấp biểu đồ tròn phân bố học lực thời gian thực (LiveCharts2) và danh sách cảnh báo học vụ rút gọn; hỗ trợ nút "Đồng bộ số liệu" để cập nhật ngay lập tức các thay đổi từ cơ sở dữ liệu.
+- **1.5.3. Chức năng Quản lý Hồ sơ Sinh viên & Lớp học, Khoa**: Quản lý đầy đủ thông tin cá nhân của sinh viên (Mã sinh viên, Họ và tên, Ngày sinh, Giới tính, Email, Lớp sinh hoạt, Khoa đào tạo). Đặc biệt, khi người dùng nhập Mã sinh viên, hệ thống phải **tự động sinh địa chỉ email** sinh viên theo định dạng chuẩn trường: `[MãSV]@st.phenikaa-uni.edu.vn`. Cung cấp thanh tìm kiếm nhanh theo mã hoặc họ tên, và bộ lọc theo Khoa, Lớp, Học kỳ.
+- **1.5.4. Chức năng Quản lý Môn học & Niên khóa**: Cho phép quản lý danh mục học phần (Mã môn, Tên môn, Số tín chỉ, Tỷ lệ phần trăm điểm chuyên cần/giữa kỳ/cuối kỳ); quản lý danh mục các Niên khóa và Học kỳ đào tạo, đánh dấu học kỳ hiện tại đang kích hoạt.
+- **1.5.5. Chức năng Quản lý Sổ điểm học phần**: Cho phép chọn Môn học, Niên khóa/Học kỳ và Lớp học để hiển thị danh sách sinh viên kèm các cột điểm thành phần. Người dùng có thể nhập trực tiếp điểm chuyên cần, giữa kỳ, cuối kỳ; hệ thống tự động kiểm tra điều kiện $0 \le Điểm \le 10$, tính điểm học phần theo công thức trọng số và hiển thị ngay kết quả điểm chữ, điểm hệ 4 và trạng thái Đạt/Trượt.
+- **1.5.6. Chức năng Nhập điểm từ File ngoại vi (Excel/CSV)**: Hỗ trợ người dùng tải tệp bảng tính `.xlsx` hoặc `.csv` chứa danh sách điểm học phần; hệ thống đọc dữ liệu, kiểm tra tính hợp lệ của từng dòng (Kiểm tra sự tồn tại của Mã sinh viên, Mã môn học, khoảng điểm hợp lệ), báo cáo số dòng nhập thành công, số dòng lỗi và tự động cập nhật vào cơ sở dữ liệu.
+- **1.5.7. Chức năng Tra cứu kết quả học tập & Tính GPA/CPA**: Tra cứu chi tiết kết quả học tập của từng sinh viên theo từng học kỳ hoặc toàn khóa; tự động tính toán điểm trung bình chung học kỳ (GPA) và điểm trung bình chung tích lũy (CPA) có tính đến trọng số số tín chỉ của từng môn học; quy đổi chuẩn xác thang điểm chữ và thang điểm 4 mới ($A: 8.5-8.9 	o 3.7; A+: 9.0-10 	o 4.0$); tự động xếp loại học lực (Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém).
+- **1.5.8. Chức năng Thống kê Đạt/Trượt & Cảnh báo học vụ**: Cung cấp công cụ lọc dữ liệu đa chiều theo Học kỳ, Niên khóa, Khoa và Lớp; thống kê số lượng và tỷ lệ đạt/trượt của từng môn học; tự động rà soát và kết xuất danh sách sinh viên có nguy cơ bị cảnh cáo học vụ (CPA $< 2.0$) hoặc sinh viên còn thiếu điểm thành phần cần đôn đốc bổ sung.
+- **1.5.9. Chức năng Quản trị tài khoản & Phân quyền**: Cho phép Quản trị viên quản lý danh sách tài khoản, thêm tài khoản mới, cấp lại mật khẩu mặc định, khóa/mở khóa tài khoản, và gán vai trò (`Admin`, `NhanVien`/`GiangVien`, `SinhVien`).
+- **1.5.10. Chức năng Nhật ký kiểm toán hệ thống (Audit Logs)**: Ghi nhận tự động các thao tác then chốt (Đăng nhập, Thêm/Sửa/Xóa sinh viên, Nhập điểm, Thay đổi quyền) kèm mốc thời gian và thông tin người thực hiện để phục vụ công tác thanh tra, bảo mật.
+
+### 1.6 Yêu cầu phi chức năng (Non-Functional Requirements)
+- **1.6.1. Hiệu năng (Performance)**:
+  - Thời gian khởi động ứng dụng và hiển thị màn hình đăng nhập không quá 2 giây.
+  - Tốc độ tải dữ liệu Dashboard tổng quan và sổ điểm học phần (dưới 1,000 bản ghi) dưới 1.5 giây trong điều kiện mạng thông thường.
+  - Tốc độ xử lý nhập dữ liệu hàng loạt từ file Excel (1,000 dòng) không quá 3 giây.
+- **1.6.2. Tính an toàn và Bảo mật (Security)**:
+  - Mật khẩu người dùng được băm an toàn, không lưu trữ dạng văn bản thuần (Plaintext).
+  - Áp dụng triệt để cơ chế tham số hóa câu truy vấn (Parameterized Queries / `SqlCommand.Parameters`) để triệt tiêu 100% các lỗ hổng tấn công tiêm mã độc SQL (SQL Injection).
+  - Phân quyền theo vai trò (RBAC): Các chức năng quản trị hệ thống bị vô hiệu hóa hoặc ẩn đối với tài khoản không có quyền `Admin`.
+- **1.6.3. Tính toàn vẹn dữ liệu (Data Integrity)**:
+  - Thiết lập đầy đủ các ràng buộc toàn vẹn thực thể (Khóa chính PK), toàn vẹn tham chiếu (Khóa ngoại FK với quy tắc `ON DELETE NO ACTION`), và toàn vẹn miền giá trị (Check Constraint: $0 \le Điểm \le 10$, Định dạng Email hợp lệ).
+  - Áp dụng kỹ thuật giao dịch CSDL (`SqlTransaction`) đối với các nghiệp vụ nhập dữ liệu nhiều bảng nhằm đảm bảo tính nguyên tố (Atomicity): hoặc thành công toàn bộ, hoặc hoàn tác hoàn toàn nếu có lỗi.
+- **1.6.4. Khả năng mở rộng và Bảo trì (Scalability & Maintainability)**:
+  - Áp dụng triệt để kiến trúc MVVM kết hợp Repository Pattern giúp tách biệt rõ ràng các tầng trách nhiệm. Trong tương lai, việc thay đổi hệ quản trị CSDL hoặc phát triển thêm phiên bản Web API có thể tái sử dụng toàn bộ mô hình và quy tắc nghiệp vụ mà không cần viết lại từ đầu.
+- **1.6.5. Tính khả dụng và Trải nghiệm người dùng (Usability & UX)**:
+  - Giao diện thiết kế theo tỷ lệ khoa học, màu sắc hài hòa với tone xanh dương giáo dục (#1B426E và #0284C7).
+  - Bố trí các phím tắt, thông báo trạng thái trực tuyến/ngoại tuyến rõ ràng, hộp thoại xác nhận trước các thao tác nguy hiểm (Xóa sinh viên, Xóa môn học).
+
+<div style="page-break-after: always;"></div>
+
+---
+
+# CHƯƠNG 2. PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG
+
+### 2.1 Phân tích yêu cầu hệ thống
+Từ các yêu cầu thu thập được ở Chương 1, hệ thống được phân rã thành các gói chức năng (Packages) và xác định rõ mối quan hệ tương tác giữa các tác nhân bên ngoài với hệ thống bên trong.
+
+### 2.2 Thiết kế Ca sử dụng (Use Case Modeling)
+
+#### 2.2.1 Danh mục Tác nhân (Actors)
+*Bảng 2.1. Danh mục các tác nhân chính trong hệ thống*
+
+| STT | Tác nhân (Actor) | Bản chất | Vai trò và Quyền hạn trong hệ thống |
+| :---: | :--- | :---: | :--- |
+| 1 | **Admin (Quản trị viên)** | Người dùng | Cán bộ quản lý đào tạo, sở hữu toàn quyền quản trị danh mục (Khoa, Lớp, Môn học, Niên khóa), quản lý hồ sơ sinh viên, quản lý người dùng và cấu hình hệ thống. |
+| 2 | **Lecturer / Advisor (Giảng viên / CVHT)** | Người dùng | Giảng viên phụ trách giảng dạy các lớp học phần và Cố vấn học tập quản lý lớp sinh hoạt; có quyền nhập điểm, xem sổ điểm, tra cứu GPA/CPA và rà soát cảnh báo học vụ. |
+| 3 | **Student (Sinh viên)** | Người dùng | Người học trong trường đại học; có quyền đăng nhập để tra cứu tiến độ học tập, xem bảng điểm học kỳ, điểm tích lũy và đổi mật khẩu cá nhân. |
+| 4 | **Somee SQL Cloud DB** | Hệ thống | Máy chủ cơ sở dữ liệu trên đám mây tiếp nhận kết nối TCP/IP, thực thi câu lệnh SQL và lưu trữ dữ liệu an toàn. |
+
+#### 2.2.2 Sơ đồ Use Case tổng quát
 ```mermaid
 flowchart LR
-    Admin([Quản trị viên])
-    Staff([Cán bộ Đào tạo / GV])
+    Admin([Quản trị viên - Admin])
+    Lecturer([Giảng viên / CVHT])
+    Student([Sinh viên])
 
-    subgraph System ["Hệ thống Student Result Analytics"]
-        UC01["UC01: Đăng nhập & Thoát"]
-        UC02["UC02: Xem Dashboard KPI"]
-        UC03["UC03: Quản lý Sinh viên & Lớp học"]
-        UC04["UC04: Quản lý Học phần & Niên khóa"]
-        UC05["UC05: Quản lý Sổ điểm học phần"]
-        UC06["UC06: Nhập điểm từ File Excel/CSV"]
-        UC07["UC07: Tra cứu GPA & Xếp loại"]
-        UC08["UC08: Thống kê Đạt/Trượt & Cảnh báo"]
-        UC09["UC09: Quản trị tài khoản & Phân quyền"]
+    subgraph System ["Hệ thống Quản lý Đào tạo & Kết quả Học tập (Student Result Analytics)"]
+        UC01((UC01: Đăng nhập & Xác thực))
+        UC02((UC02: Bàn làm việc Dashboard))
+        UC03((UC03: Quản lý Hồ sơ Sinh viên))
+        UC04((UC04: Quản lý Khoa & Lớp))
+        UC05((UC05: Quản lý Môn & Niên khóa))
+        UC06((UC06: Quản lý Sổ điểm học phần))
+        UC07((UC07: Nhập điểm File Excel/CSV))
+        UC08((UC08: Tra cứu GPA & Xếp loại))
+        UC09((UC09: Thống kê & Cảnh báo học vụ))
+        UC10((UC10: Quản trị & Phân quyền))
     end
-
-    Staff --> UC01
-    Staff --> UC02
-    Staff --> UC03
-    Staff --> UC04
-    Staff --> UC05
-    Staff --> UC06
-    Staff --> UC07
-    Staff --> UC08
 
     Admin --> UC01
     Admin --> UC02
@@ -370,912 +342,1319 @@ flowchart LR
     Admin --> UC07
     Admin --> UC08
     Admin --> UC09
+    Admin --> UC10
+
+    Lecturer --> UC01
+    Lecturer --> UC02
+    Lecturer --> UC06
+    Lecturer --> UC07
+    Lecturer --> UC08
+    Lecturer --> UC09
+
+    Student --> UC01
+    Student --> UC08
 ```
-*Hình 2.1: Sơ đồ Use Case tổng quát hệ thống (System Use Case Diagram)*
+*Hình 2.1. Sơ đồ Use Case tổng quát hệ thống Student Result Analytics*
 
-### 2.2.2. Sơ đồ Use Case phân rã của Quản trị viên (Admin)
-Quản trị viên kế thừa toàn bộ chức năng của Cán bộ đào tạo, đồng thời sở hữu phân hệ độc quyền:
-- Quản lý danh sách tài khoản người dùng hệ thống.
-- Thêm mới tài khoản, phân quyền vai trò (`Admin` hoặc `NhanVien`).
-- Đặt lại mật khẩu (Reset Password) cho cán bộ khi bị quên.
-- Khóa hoặc kích hoạt lại trạng thái hoạt động của tài khoản.
-
+#### 2.2.3 Sơ đồ Use Case phân hệ Quản trị viên (Admin)
 ```mermaid
 flowchart TD
     Admin([Quản trị viên - Admin])
 
-    subgraph AdminModule ["Phân hệ Quản trị & Phân quyền"]
-        UC_AccList["Xem danh sách tài khoản"]
-        UC_AccAdd["Tạo tài khoản mới"]
-        UC_AccEdit["Sửa thông tin & Phân quyền"]
-        UC_AccLock["Khóa / Kích hoạt tài khoản"]
-        UC_AccReset["Đặt lại mật khẩu mặc định"]
+    subgraph AdminModule ["Phân hệ Quản trị viên (Admin Module)"]
+        UC01((Đăng nhập & Quản lý phiên))
+        UC10_1((Thêm/Sửa/Khóa Tài khoản))
+        UC10_2((Phân quyền vai trò người dùng))
+        UC03_1((Tiếp nhận & Thêm mới sinh viên))
+        UC03_2((Cập nhật/Xóa hồ sơ sinh viên))
+        UC03_3((Tự động sinh email trường))
+        UC04_1((Quản lý danh mục Khoa))
+        UC04_2((Quản lý danh mục Lớp sinh hoạt))
+        UC05_1((Quản lý danh mục Môn học & Tín chỉ))
+        UC05_2((Quản lý Niên khóa & Học kỳ kích hoạt))
+        UC09_1((Xuất báo cáo đào tạo toàn trường))
     end
 
-    Admin --> UC_AccList
-    Admin --> UC_AccAdd
-    Admin --> UC_AccEdit
-    Admin --> UC_AccLock
-    Admin --> UC_AccReset
+    Admin --> UC01
+    Admin --> UC10_1
+    Admin --> UC10_2
+    Admin --> UC03_1
+    Admin --> UC03_2
+    Admin --> UC03_3
+    Admin --> UC04_1
+    Admin --> UC04_2
+    Admin --> UC05_1
+    Admin --> UC05_2
+    Admin --> UC09_1
 ```
-*Hình 2.2: Sơ đồ Use Case phân rã của Quản trị viên (Admin)*
+*Hình 2.2. Sơ đồ Use Case phân hệ Quản trị viên (Admin)*
 
-### 2.2.3. Sơ đồ Use Case phân rã của Cán bộ Đào tạo / Giảng viên (Staff)
-Cán bộ đào tạo tập trung vào các nghiệp vụ khảo thí học vụ hằng ngày:
-
+#### 2.2.4 Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên
 ```mermaid
 flowchart TD
-    Staff([Cán bộ Đào tạo / Giảng viên])
+    Lecturer([Cố vấn học tập / Giảng viên])
 
-    subgraph StaffModule ["Nghiệp vụ Quản lý Khảo thí & Điểm số"]
-        UC_SV["Quản lý Sinh viên & Lớp học (phân Khoa)"]
-        UC_MH["Quản lý Học phần & Niên khóa"]
-        UC_Score["Nhập sổ điểm & Tính điểm tự động"]
-        UC_Import["Import bảng điểm Excel/CSV hàng loạt"]
-        UC_GPA["Tra cứu GPA & Xuất bảng điểm"]
-        UC_Warning["Thống kê Đạt/Trượt & Cảnh báo học vụ"]
+    subgraph LecturerModule ["Phân hệ Cố vấn học tập & Giảng viên"]
+        UC01((Đăng nhập & Hiện/Ẩn mật khẩu))
+        UC02((Xem Dashboard & Biểu đồ học lực))
+        UC06_1((Xem danh sách lớp học phần phụ trách))
+        UC06_2((Nhập điểm chuyên cần, giữa kỳ, cuối kỳ))
+        UC06_3((Tính điểm tổng kết học phần tự động))
+        UC07_1((Nhập điểm từ File Excel bảng điểm))
+        UC07_2((Kiểm tra lỗi dữ liệu file ngoại vi))
+        UC08_1((Tra cứu bảng điểm chi tiết của lớp))
+        UC08_2((Tính toán GPA/CPA theo số tín chỉ))
+        UC09_1((Lọc danh sách sinh viên nợ môn học))
+        UC09_2((Trích xuất danh sách Cảnh báo học vụ))
     end
 
-    Staff --> UC_SV
-    Staff --> UC_MH
-    Staff --> UC_Score
-    Staff --> UC_Import
-    Staff --> UC_GPA
-    Staff --> UC_Warning
+    Lecturer --> UC01
+    Lecturer --> UC02
+    Lecturer --> UC06_1
+    Lecturer --> UC06_2
+    Lecturer --> UC06_3
+    Lecturer --> UC07_1
+    Lecturer --> UC07_2
+    Lecturer --> UC08_1
+    Lecturer --> UC08_2
+    Lecturer --> UC09_1
+    Lecturer --> UC09_2
 ```
-*Hình 2.3: Sơ đồ Use Case phân rã của Cán bộ Đào tạo / Giảng viên*
+*Hình 2.3. Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên*
 
-### 2.2.4. Đặc tả các Use Case cốt lõi
+#### 2.2.5 Sơ đồ Use Case phân hệ Sinh viên
+```mermaid
+flowchart TD
+    Student([Sinh viên - Student])
 
-*Bảng 2.1: Đặc tả Use Case UC01 – Đăng nhập hệ thống*
+    subgraph StudentModule ["Phân hệ Sinh viên"]
+        UC01((Đăng nhập bằng Mã sinh viên))
+        UC01_1((Đổi mật khẩu tài khoản))
+        UC08_1((Xem bảng điểm chi tiết từng học phần))
+        UC08_2((Tra cứu điểm GPA từng học kỳ))
+        UC08_3((Tra cứu điểm CPA tích lũy toàn khóa))
+        UC08_4((Xem xếp loại học lực & Tín chỉ tích lũy))
+        UC09_1((Kiểm tra tình trạng cảnh báo học vụ cá nhân))
+    end
 
-| Thuộc tính | Mô tả chi tiết |
-|:---|:---|
+    Student --> UC01
+    Student --> UC01_1
+    Student --> UC08_1
+    Student --> UC08_2
+    Student --> UC08_3
+    Student --> UC08_4
+    Student --> UC09_1
+```
+*Hình 2.4. Sơ đồ Use Case phân hệ Sinh viên*
+
+#### 2.2.6 Các bảng đặc tả Use Case chi tiết (10 Use Cases chuẩn học thuật)
+
+*Bảng 2.2. Đặc tả Use Case UC01 – Đăng nhập hệ thống & Xác thực người dùng*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
 | **Mã Use Case** | **UC01** |
-| **Tên Use Case** | Đăng nhập hệ thống |
-| **Tác nhân (Actor)** | Quản trị viên (Admin), Cán bộ Đào tạo (NhanVien) |
-| **Mục đích** | Xác thực danh tính người dùng và cấp quyền truy cập hệ thống |
-| **Điều kiện tiên quyết** | Ứng dụng đã khởi chạy và kết nối thành công tới SQL Server |
-| **Luồng sự kiện chính** | 1. Người dùng nhập Tên đăng nhập và Mật khẩu vào form Login.<br>2. (Tùy chọn) Bấm icon con mắt 👁 để hiển thị kiểm tra mật khẩu dạng text.<br>3. Bấm nút "ĐĂNG NHẬP" hoặc nhấn phím Enter.<br>4. Hệ thống kiểm tra tài khoản trong bảng `dbo.TaiKhoan`.<br>5. Nếu hợp lệ và đang hoạt động, hệ thống thiết lập `PhienDangNhap` lưu thông tin quyền và mở cửa sổ `MainWindow`. |
-| **Luồng ngoại lệ** | - Tên đăng nhập hoặc mật khẩu để trống: Hệ thống hiển thị thông báo lỗi.<br>- Sai mật khẩu hoặc tài khoản bị khóa: Hiển thị cảnh báo lỗi bằng chữ đỏ và yêu cầu nhập lại. |
+| **Tên Use Case** | **Đăng nhập hệ thống & Xác thực người dùng** |
+| **Actor** | Admin, Giảng viên / CVHT, Sinh viên |
+| **Mục đích** | Xác thực danh tính người dùng và phân quyền điều hướng giao diện phù hợp với vai trò được cấp. |
+| **Mô tả** | Người dùng nhập Tên đăng nhập và Mật khẩu. Người dùng có thể nhấn nút con mắt để xem/ẩn mật khẩu trước khi gửi. Hệ thống kiểm tra trong cơ sở dữ liệu Somee Cloud, nếu hợp lệ sẽ cấp quyền truy cập và lưu phiên làm việc. |
+| **Tiền điều kiện** | Hệ thống đang ở màn hình Đăng nhập (LoginWindow). Thiết bị có kết nối mạng tới Somee SQL Server. |
+| **Kích hoạt** | Người dùng nhấn nút "ĐĂNG NHẬP" hoặc nhấn phím `Enter` trên bàn phím. |
+| **Luồng sự kiện chính** | 1. Người dùng nhập Username và Password vào các ô tương ứng.<br>2. (Tùy chọn) Người dùng click vào icon con mắt (👁) để chuyển đổi giữa chế độ ẩn mật khẩu (PasswordBox) và hiện mật khẩu (TextBox) nhằm kiểm tra chính tả.<br>3. Người dùng click nút "ĐĂNG NHẬP".<br>4. View gọi lệnh thực thi qua ViewModel (`LoginCommand`).<br>5. ViewModel gọi `TaiKhoanRepository.KiemTraDangNhap(username, password)`.<br>6. Repository mở kết nối SQL Server, thực thi truy vấn parameterized kiểm tra thông tin tài khoản và lấy vai trò (`VaiTro`).<br>7. Nếu tài khoản tồn tại và mật khẩu trùng khớp:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. Ghi nhận thông tin người dùng vào phiên đăng nhập hiện hành.<br>&nbsp;&nbsp;&nbsp;&nbsp;b. Đóng cửa sổ `LoginWindow`.<br>&nbsp;&nbsp;&nbsp;&nbsp;c. Khởi tạo và hiển thị cửa sổ làm việc chính `MainWindow`, điều hướng thanh menu phân quyền phù hợp.<br>&nbsp;&nbsp;&nbsp;&nbsp;d. Ghi log đăng nhập thành công vào bảng `LogHeThong`. |
+| **Luồng thay thế / Ngoại lệ** | 3a. Người dùng để trống Tên đăng nhập hoặc Mật khẩu: Hệ thống hiển thị thông báo lỗi yêu cầu nhập đầy đủ thông tin.<br>6a. Tên đăng nhập không tồn tại hoặc Mật khẩu sai: Hệ thống hiển thị hộp thoại thông báo "Tên đăng nhập hoặc mật khẩu không chính xác!", không cho phép truy cập.<br>6b. Tài khoản đang ở trạng thái bị Khóa (`IsActive = 0`): Hệ thống thông báo "Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ Quản trị viên!".<br>6c. Lỗi mất kết nối mạng hoặc máy chủ SQL Somee không phản hồi: Hệ thống bắt ngoại lệ `SqlException`, hiển thị thông báo lỗi mạng thân thiện và không để ứng dụng bị crash. |
+| **Hậu điều kiện** | Người dùng đăng nhập thành công, phiên làm việc được thiết lập, thanh Sidebar hiển thị tên người dùng và vai trò chính xác. |
+| **Độ ưu tiên** | **Bắt buộc (Cao nhất)** |
+| **Tần suất sử dụng** | Mỗi khi người dùng bắt đầu phiên làm việc mới trên phần mềm. |
+| **Quy tắc nghiệp vụ** | Mật khẩu được mã hóa bảo vệ; phân quyền RBAC phân loại rõ vai trò Admin, Giảng viên, Sinh viên. |
 
-*Bảng 2.2: Đặc tả Use Case UC02 – Quản lý Hồ sơ Sinh viên, Lớp học & Khoa*
+<div style="page-break-after: always;"></div>
 
-| Thuộc tính | Mô tả chi tiết |
-|:---|:---|
+*Bảng 2.3. Đặc tả Use Case UC02 – Bàn làm việc Dashboard & Đồng bộ dữ liệu*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
 | **Mã Use Case** | **UC02** |
-| **Tên Use Case** | Quản lý Hồ sơ Sinh viên, Lớp học và Khoa |
-| **Tác nhân (Actor)** | Cán bộ Đào tạo, Quản trị viên |
-| **Mục đích** | Quản lý thông tin học vụ của sinh viên và lớp sinh hoạt thuộc từng Khoa |
-| **Luồng sự kiện chính** | 1. Người dùng chọn menu "Hồ sơ Sinh viên & Lớp học".<br>2. Tab "Danh mục Lớp học": Nhập Mã lớp, Tên lớp, Khóa học và chọn Khoa quản lý $ightarrow$ Thêm/Cập nhật lớp.<br>3. Tab "Hồ sơ Sinh viên": Nhập Mã sinh viên $ightarrow$ Hệ thống tự động điền Email theo mã SV với đuôi `@st.phenikaa-uni.edu.vn`.<br>4. Nhập Họ tên, Ngày sinh, Giới tính và chọn Lớp sinh hoạt (hiển thị kèm tên Khoa).<br>5. Bấm "THÊM" hoặc "CẬP NHẬT" để lưu vào cơ sở dữ liệu. |
-| **Ràng buộc nghiệp vụ** | - Mã SV không được trùng.<br>- Email phải có tiền tố trùng khớp chính xác với Mã SV.<br>- Không được xóa lớp khi đang có sinh viên thuộc lớp đó. |
+| **Tên Use Case** | **Bàn làm việc Dashboard & Đồng bộ dữ liệu** |
+| **Actor** | Admin, Giảng viên / Cố vấn học tập |
+| **Mục đích** | Cung cấp cái nhìn toàn cảnh về các chỉ số đo lường học vụ (KPIs), phân bố học lực sinh viên và phát hiện nhanh các nguy cơ đào tạo. |
+| **Mô tả** | Hệ thống tổng hợp dữ liệu từ cơ sở dữ liệu Somee Cloud và hiển thị 6 thẻ chỉ số KPIs, biểu đồ phân loại học lực tròn (LiveCharts2), bảng tổng hợp kết quả môn học và danh sách cảnh báo học vụ rút gọn; cho phép đồng bộ số liệu thời gian thực. |
+| **Tiền điều kiện** | Người dùng đã đăng nhập thành công với vai trò Admin hoặc Giảng viên/CVHT. |
+| **Kích hoạt** | Người dùng nhấn chọn mục "Bàn làm việc (Dashboard)" trên thanh menu Sidebar, hoặc nhấn nút "ĐỒNG BỘ SỐ LIỆU". |
+| **Luồng sự kiện chính** | 1. ViewModel kích hoạt phương thức bất đồng bộ `LoadDashboardDataAsync()`.<br>2. ViewModel gọi các hàm tổng hợp thống kê trong Repositories (`GetTongSinhVien()`, `GetTongLop()`, `GetTongMonHoc()`, `GetDiemTrungBinhToanKhoa()`, `GetTyLeDatChung()`, `GetSoLuongCanBoSungDiem()`).<br>3. Repository thực thi các câu truy vấn SQL gom nhóm (`COUNT`, `AVG`, `SUM`, `GROUP BY`) trên Somee SQL Server.<br>4. Dữ liệu được nạp vào các thuộc tính ViewModel và tự động cập nhật lên giao diện nhờ cơ chế Data Binding của WPF.<br>5. Thư viện LiveCharts2 vẽ biểu đồ hình tròn (Pie Chart) thể hiện tỷ lệ sinh viên theo từng nhóm xếp loại (Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém).<br>6. Hiển thị bảng tóm tắt danh sách sinh viên thiếu điểm thành phần (chuyên cần, giữa kỳ hoặc cuối kỳ) để cán bộ quản lý đôn đốc.<br>7. Trạng thái kết nối hiển thị biểu tượng xanh "Trực tuyến". |
+| **Luồng thay thế / Ngoại lệ** | 3a. Cơ sở dữ liệu chưa có dữ liệu điểm: Các chỉ số trung bình hiển thị 0.00, biểu đồ hiển thị trạng thái sẵn sàng nhận dữ liệu.<br>3b. Có giá trị `NULL` trong bảng điểm: Nhóm xử lý dữ liệu kiểm tra `IsDBNull` an toàn, gán giá trị mặc định tránh ngoại lệ `InvalidCastException`. |
+| **Hậu điều kiện** | Toàn bộ các chỉ số KPI và biểu đồ được cập nhật mới nhất theo trạng thái thực tế của CSDL đám mây. |
+| **Độ ưu tiên** | **Cao** |
+| **Tần suất sử dụng** | Thường xuyên khi khởi động phần mềm và sau khi nhập điểm mới. |
+| **Quy tắc nghiệp vụ** | Chỉ số tỷ lệ đạt chung căn cứ trên tỷ lệ học phần có điểm tổng kết $\ge 4.0$ (Thang 10). |
 
-*Bảng 2.5: Đặc tả Use Case UC05 – Nhập điểm hàng loạt từ file Excel / CSV*
+<div style="page-break-after: always;"></div>
 
-| Thuộc tính | Mô tả chi tiết |
-|:---|:---|
+*Bảng 2.4. Đặc tả Use Case UC03 – Quản lý Hồ sơ Sinh viên & Tự động tạo Email*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
+| **Mã Use Case** | **UC03** |
+| **Tên Use Case** | **Quản lý Hồ sơ Sinh viên & Tự động tạo Email trường** |
+| **Actor** | Admin (Quản trị viên) |
+| **Mục đích** | Quản lý vòng đời hồ sơ sinh viên, lưu trữ thông tin nhân thân, phân lớp, phân khoa và chuẩn hóa tài khoản thư điện tử sinh viên. |
+| **Mô tả** | Quản trị viên thực hiện các thao tác Thêm mới, Sửa, Xóa hồ sơ sinh viên, tìm kiếm theo tên hoặc mã, và lọc theo Khoa/Lớp. Đặc biệt, khi nhập Mã sinh viên, hệ thống tự động sinh định dạng email chuẩn của trường. |
+| **Tiền điều kiện** | Người dùng đã đăng nhập với vai trò Admin và mở màn hình "Hồ sơ Sinh viên & Lớp học". |
+| **Kích hoạt** | Người dùng nhấn các nút chức năng: "THÊM", "CẬP NHẬT", "XÓA", "LÀM MỚI" hoặc nhập từ khóa tìm kiếm. |
+| **Luồng sự kiện chính** | 1. Hệ thống tải danh sách sinh viên hiện có vào bảng DataGrid kèm thông tin Mã SV, Họ tên, Ngày sinh, Giới tính, Email, Lớp và Khoa.<br>2. Khi thêm mới sinh viên, người dùng nhập Mã sinh viên (ví dụ: `23010199`).<br>3. **Tính năng tự động sinh email**: Trong ViewModel, sự kiện `OnPropertyChanged(nameof(MaSV))` bắt chuỗi mã sinh viên và tự động gán giá trị cho thuộc tính Email theo định dạng: `[MaSV]@st.phenikaa-uni.edu.vn`. Ô nhập liệu Email trên giao diện được cập nhật tức thì.<br>4. Người dùng nhập tiếp Họ tên, chọn Ngày sinh, Giới tính và Lớp sinh hoạt trong danh sách thả xuống (ComboBox).<br>5. Người dùng nhấn nút "THÊM".<br>6. ViewModel kiểm tra tính hợp lệ dữ liệu (Mã SV không trùng, các trường bắt buộc không để trống).<br>7. Gọi `SinhVienRepository.ThemSinhVien(sv)` để ghi bản ghi mới vào bảng `SinhVien` trên SQL Server Somee.<br>8. Hiển thị thông báo "Thêm sinh viên thành công!", xóa trắng form nhập liệu và nạp lại danh sách DataGrid. |
+| **Luồng thay thế / Ngoại lệ** | 2a. Người dùng nhập Mã sinh viên đã tồn tại trong CSDL: Hệ thống báo lỗi trùng khóa chính "Mã sinh viên đã tồn tại trên hệ thống!".<br>4a. Người dùng bỏ trống Họ tên hoặc chưa chọn Lớp: Hệ thống hiển thị cảnh báo yêu cầu bổ sung thông tin.<br>5a. Thao tác XÓA sinh viên đã có dữ liệu điểm học phần: Hệ thống hiển thị cảnh báo ràng buộc khóa ngoại, yêu cầu xác nhận xóa an toàn để tránh phá vỡ tính toàn vẹn dữ liệu. |
+| **Hậu điều kiện** | Bản ghi sinh viên mới được lưu vào CSDL Somee Cloud; email chuẩn trường được lưu trữ chính xác. |
+| **Độ ưu tiên** | **Cao** |
+| **Tần suất sử dụng** | Thường xuyên vào đầu mỗi năm học hoặc khi có biến động sinh viên. |
+| **Quy tắc nghiệp vụ** | Email sinh viên bắt buộc mang tên miền `@st.phenikaa-uni.edu.vn` và có phần tiền tố trùng khớp 100% với Mã sinh viên. |
+
+<div style="page-break-after: always;"></div>
+
+*Bảng 2.5. Đặc tả Use Case UC04 – Quản lý Khoa và Lớp sinh hoạt*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
+| **Mã Use Case** | **UC04** |
+| **Tên Use Case** | **Quản lý Khoa và Lớp sinh hoạt** |
+| **Actor** | Admin (Quản trị viên) |
+| **Mục đích** | Quản lý cơ cấu tổ chức đào tạo của nhà trường, phân cấp các khoa đào tạo và danh mục lớp sinh hoạt trực thuộc. |
+| **Mô tả** | Cung cấp giao diện để thêm mới, chỉnh sửa thông tin Khoa đào tạo (Khoa CNTT, Khoa Điện - Điện tử...) và danh mục Lớp sinh hoạt (Mã lớp, Tên lớp, Khóa học, Khoa trực thuộc). |
+| **Tiền điều kiện** | Người dùng đăng nhập quyền Admin và chuyển sang tab "Danh mục Lớp học & Khoa". |
+| **Kích hoạt** | Người dùng thao tác trên form quản lý Lớp và Khoa. |
+| **Luồng sự kiện chính** | 1. Hệ thống hiển thị danh sách các Khoa đào tạo và danh sách Lớp sinh hoạt liên kết.<br>2. Người dùng nhập thông tin Lớp mới: Mã lớp (ví dụ: `CNTT03`), Tên lớp ("Công nghệ thông tin 03"), Khóa học ("K17"), chọn Khoa trực thuộc ("Công nghệ thông tin").<br>3. Nhấn nút "THÊM LỚP".<br>4. ViewModel gọi `LopRepository.ThemLop(lop)`.<br>5. Bản ghi được lưu vào bảng `Lop` với cột `Khoa` tương ứng.<br>6. Cập nhật danh sách hiển thị và làm tươi danh sách ComboBox Lớp trên form Quản lý Sinh viên. |
+| **Luồng thay thế / Ngoại lệ** | 2a. Trùng mã lớp đã có: Hệ thống thông báo mã lớp đã tồn tại.<br>4a. Lỗi kết nối CSDL: Báo lỗi mạng và yêu cầu thử lại. |
+| **Hậu điều kiện** | Lớp học mới được thêm vào hệ thống và sẵn sàng để phân bổ sinh viên vào lớp. |
+| **Độ ưu tiên** | **Trung bình** |
+| **Tần suất sử dụng** | Khi mở khóa đào tạo mới hoặc thành lập lớp sinh hoạt mới. |
+| **Quy tắc nghiệp vụ** | Mỗi lớp sinh hoạt bắt buộc phải trực thuộc một Khoa đào tạo cụ thể. |
+
+<div style="page-break-after: always;"></div>
+
+*Bảng 2.6. Đặc tả Use Case UC05 – Quản lý Môn học & Niên khóa đào tạo*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
 | **Mã Use Case** | **UC05** |
-| **Tên Use Case** | Nhập điểm thi từ File Excel/CSV |
-| **Tác nhân (Actor)** | Cán bộ Khảo thí, Quản trị viên |
-| **Mục đích** | Tự động hóa quá trình nạp hàng loạt kết quả thi của hàng nghìn sinh viên |
-| **Luồng sự kiện chính** | 1. Người dùng chọn menu "Nhập điểm từ File (Excel/CSV)".<br>2. Bấm "CHỌN FILE..." và chọn tệp `.xlsx` hoặc `.csv` từ máy tính.<br>3. Bấm "THỰC HIỆN IMPORT".<br>4. Hệ thống phân tích cấu trúc cột, kiểm tra hợp lệ từng dòng dữ liệu.<br>5. Thực hiện Insert hoặc Update vào bảng `dbo.KetQua` theo cơ chế Upsert.<br>6. Hiển thị bảng tổng kết: Tổng số dòng, Số dòng thành công, Số dòng lỗi.<br>7. Ghi nhật ký lịch sử nạp vào bảng `dbo.LichSuImport` và cập nhật danh sách hiển thị. |
+| **Tên Use Case** | **Quản lý Môn học & Niên khóa đào tạo** |
+| **Actor** | Admin (Quản trị viên) |
+| **Mục đích** | Quản lý chương trình khung đào tạo tín chỉ, số lượng tín chỉ của từng học phần, tỷ lệ điểm thành phần và danh mục niên khóa học kỳ. |
+| **Mô tả** | Quản trị viên thêm mới, chỉnh sửa, xóa môn học (Mã môn, Tên môn, Số tín chỉ 2/3/4 tín, Tỷ lệ chuyên cần 10%, Giữa kỳ 40%, Cuối kỳ 50%) và kích hoạt niên khóa áp dụng. |
+| **Tiền điều kiện** | Đăng nhập với quyền Admin, mở màn hình "Học phần & Niên khóa". |
+| **Kích hoạt** | Người dùng chọn chức năng thêm/sửa/xóa môn học hoặc chọn niên khóa hiện hành. |
+| **Luồng sự kiện chính** | 1. Hệ thống hiển thị danh sách học phần và niên khóa hiện hành.<br>2. Người dùng nhập Mã môn (ví dụ: `NET01`), Tên môn ("Công nghệ .NET"), Số tín chỉ (3 tín chỉ), Tỷ lệ đánh giá thành phần.<br>3. Nhấn nút "LƯU MÔN HỌC".<br>4. ViewModel kiểm tra tính hợp lệ dữ liệu ($Số\_Tín\_Chỉ > 0$, tổng tỷ lệ đánh giá $= 100\%$).<br>5. Gọi `MonHocRepository.ThemMonHoc(mh)` ghi vào bảng `MonHoc` trên SQL Server.<br>6. Hệ thống cập nhật danh sách học phần trên sổ điểm. |
+| **Luồng thay thế / Ngoại lệ** | 2a. Trùng mã môn học: Hệ thống báo lỗi trùng mã học phần.<br>4a. Số tín chỉ nhập không hợp lệ ($\le 0$): Hệ thống từ chối lưu và yêu cầu nhập lại. |
+| **Hậu điều kiện** | Môn học mới sẵn sàng để mở lớp học phần và chấm điểm thi. |
+| **Độ ưu tiên** | **Cao** |
+| **Tần suất sử dụng** | Định kỳ trước mỗi kỳ đăng ký học hoặc khi cập nhật chương trình đào tạo. |
+| **Quy tắc nghiệp vụ** | Số tín chỉ của môn học là trọng số cốt lõi trong công thức tính GPA/CPA của sinh viên. |
 
-## 2.3. Sơ đồ hoạt động (Activity Diagrams)
-### 2.3.1. Sơ đồ Activity Diagram – Quá trình Đăng nhập hệ thống
+<div style="page-break-after: always;"></div>
 
+*Bảng 2.7. Đặc tả Use Case UC06 – Quản lý Sổ điểm học phần & Điểm thành phần*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
+| **Mã Use Case** | **UC06** |
+| **Tên Use Case** | **Quản lý Sổ điểm học phần & Điểm thành phần** |
+| **Actor** | Admin, Giảng viên bộ môn |
+| **Mục đích** | Quản lý bảng ghi nhận điểm số học phần chi tiết của sinh viên, hỗ trợ nhập điểm trực tiếp và tự động tổng hợp kết quả môn học. |
+| **Mô tả** | Người dùng chọn Môn học, Niên khóa và Lớp sinh hoạt; hệ thống nạp danh sách sinh viên cùng các cột điểm Chuyên cần, Giữa kỳ, Cuối kỳ. Người dùng có thể sửa điểm trực tiếp; hệ thống tự động kiểm tra biên điểm $0 \le Điểm \le 10$, tính điểm tổng kết môn học thang 10, quy đổi điểm chữ, điểm hệ 4 và trạng thái Đạt/Trượt. |
+| **Tiền điều kiện** | Đã đăng nhập hệ thống, môn học và sinh viên đã tồn tại trong CSDL. |
+| **Kích hoạt** | Người dùng chọn màn hình "Sổ điểm học phần" và thực hiện chọn tiêu chí lọc hoặc lưu điểm. |
+| **Luồng sự kiện chính** | 1. Người dùng chọn Học kỳ/Niên khóa và Môn học cần chấm điểm từ ComboBox.<br>2. Hệ thống tải danh sách sinh viên cùng điểm số thành phần hiện tại từ bảng `DiemHocPhan`.<br>3. Giảng viên nhập trực tiếp điểm số vào các ô tương ứng trên DataGrid (Điểm CC, Điểm GK, Điểm CK).<br>4. Mỗi khi một giá trị điểm thay đổi, hệ thống thực thi thuật toán:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. Kiểm tra $0 \le Điểm \le 10$.<br>&nbsp;&nbsp;&nbsp;&nbsp;b. Tính điểm môn học thang 10: $TK = CC 	imes 0.1 + GK 	imes 0.4 + CK 	imes 0.5$.<br>&nbsp;&nbsp;&nbsp;&nbsp;c. Quy đổi chuẩn xác: Nếu $9.0 \le TK \le 10.0 	o A+ (4.0)$; Nếu $8.5 \le TK < 9.0 	o A (3.7)$; Nếu $8.0 \le TK < 8.5 	o B+ (3.5)$...<br>&nbsp;&nbsp;&nbsp;&nbsp;d. Xác định trạng thái: Nếu $TK \ge 4.0$ và Điểm CK $\ge 3.0 	o$ "Đạt", ngược lại "Trượt".<br>5. Giảng viên nhấn nút "LƯU SỔ ĐIỂM".<br>6. ViewModel gọi `DiemHocPhanRepository.CapNhatDiem(diem)` lưu toàn bộ vào CSDL Somee Cloud.<br>7. Hệ thống thông báo lưu thành công và cập nhật tức thì dữ liệu lên Dashboard. |
+| **Luồng thay thế / Ngoại lệ** | 3a. Người dùng nhập điểm âm ($< 0$) hoặc vượt quá 10 ($> 10$): Hệ thống hiển thị cảnh báo đỏ và khôi phục giá trị điểm hợp lệ gần nhất.<br>3b. Người dùng nhập ký tự không phải số: Hệ thống chặn nhập và thông báo dữ liệu sai định dạng. |
+| **Hậu điều kiện** | Dữ liệu sổ điểm được cập nhật bền vững trên máy chủ SQL Server; các biểu đồ phân tích tự động đồng bộ. |
+| **Độ ưu tiên** | **Bắt buộc (Rất cao)** |
+| **Tần suất sử dụng** | Rất cao trong thời gian diễn ra kỳ thi và chốt kết quả môn học. |
+| **Quy tắc nghiệp vụ** | Sinh viên có điểm thi cuối kỳ dưới 3.0 điểm (điểm liệt) tự động bị tính là Trượt học phần (Điểm F) bất kể điểm trung bình tổng kết. |
+
+<div style="page-break-after: always;"></div>
+
+*Bảng 2.8. Đặc tả Use Case UC07 – Nhập điểm học phần từ File ngoại vi (Excel/CSV)*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
+| **Mã Use Case** | **UC07** |
+| **Tên Use Case** | **Nhập điểm học phần từ File ngoại vi (Excel/CSV)** |
+| **Actor** | Admin, Giảng viên bộ môn |
+| **Mục đích** | Tự động hóa quá trình nạp bảng điểm học phần số lượng lớn từ các tệp Excel/CSV do giảng viên nộp về, giảm thiểu sai sót do nhập liệu thủ công. |
+| **Mô tả** | Người dùng chọn tệp bảng tính Excel (`.xlsx`) hoặc tệp văn bản CSV (`.csv`) từ máy tính cá nhân. Hệ thống tự động phân tích cấu trúc, kiểm tra hợp lệ từng dòng, tính toán điểm tổng kết/quy đổi và nạp đồng loạt (Bulk Insert) vào cơ sở dữ liệu. |
+| **Tiền điều kiện** | Đã đăng nhập hệ thống, tệp Excel/CSV được định dạng theo đúng mẫu cột quy định (Mã SV, Mã Môn, Niên khóa, Điểm CC, Điểm GK, Điểm CK). |
+| **Kích hoạt** | Người dùng nhấn nút "CHỌN TỆP EXCEL / CSV" trên màn hình "Nhập điểm từ File". |
+| **Luồng sự kiện chính** | 1. Hệ thống mở hộp thoại `OpenFileDialog` cho phép người dùng lọc và chọn tệp `.xlsx` hoặc `.csv`.<br>2. Người dùng chọn tệp và nhấn "Open".<br>3. Hệ thống đọc tiêu đề tệp và hiển thị đường dẫn tệp lên giao diện.<br>4. Người dùng nhấn nút "TIẾN HÀNH NẠP ĐIỂM".<br>5. ViewModel sử dụng dịch vụ đọc file (`ExcelImportService` / `CsvHelper`) để phân tích dữ liệu từng dòng:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. Kiểm tra tính tồn tại của Mã sinh viên trong bảng `SinhVien`.<br>&nbsp;&nbsp;&nbsp;&nbsp;b. Kiểm tra tính tồn tại của Mã môn học trong bảng `MonHoc`.<br>&nbsp;&nbsp;&nbsp;&nbsp;c. Kiểm tra khoảng giá trị điểm hợp lệ ($0.0 \le Điểm \le 10.0$).<br>&nbsp;&nbsp;&nbsp;&nbsp;d. Tính toán điểm tổng kết môn học thang 10, điểm chữ và điểm thang 4 theo chuẩn mới.<br>6. Gọi `DiemHocPhanRepository.NhapDiemTuFileAsync(listDiem)` thực hiện ghi hàng loạt vào CSDL qua `SqlTransaction`.<br>7. Hệ thống thông báo tổng kết: "Nạp điểm thành công: X dòng. Lỗi: Y dòng." kèm chi tiết các dòng vi phạm (nếu có).<br>8. Dữ liệu trên Dashboard và Sổ điểm tự động được làm mới. |
+| **Luồng thay thế / Ngoại lệ** | 2a. Tệp tin bị khóa do đang mở trong Microsoft Excel: Hệ thống thông báo yêu cầu đóng tệp trước khi nạp.<br>5a. Tệp tin không đúng mẫu cột quy định: Hệ thống dừng quá trình nạp và thông báo cấu trúc tệp sai lệch.<br>5b. Có dòng dữ liệu chứa Mã SV không tồn tại trong hệ thống: Hệ thống ghi nhận lỗi dòng đó vào danh sách cảnh báo và tiếp tục nạp các dòng hợp lệ khác. |
+| **Hậu điều kiện** | Điểm học phần của toàn bộ sinh viên trong file được cập nhật vào CSDL Somee Cloud; nhật ký kiểm toán ghi nhận tệp vừa nạp. |
+| **Độ ưu tiên** | **Cao** |
+| **Tần suất sử dụng** | Định kỳ vào cuối mỗi học kỳ sau khi chấm thi xong. |
+| **Quy tắc nghiệp vụ** | Nếu bản ghi điểm của sinh viên trong môn học đó đã tồn tại, hệ thống tiến hành cập nhật (Update); nếu chưa có, hệ thống tiến hành thêm mới (Insert). |
+
+<div style="page-break-after: always;"></div>
+
+*Bảng 2.9. Đặc tả Use Case UC08 – Tra cứu kết quả học tập & Tính GPA/CPA tích lũy*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
+| **Mã Use Case** | **UC08** |
+| **Tên Use Case** | **Tra cứu kết quả học tập & Tính GPA/CPA tích lũy** |
+| **Actor** | Admin, Giảng viên / CVHT, Sinh viên |
+| **Mục đích** | Cung cấp công cụ tra cứu bảng điểm tổng hợp của sinh viên theo từng học kỳ hoặc toàn khóa; tính điểm trung bình GPA/CPA có trọng số tín chỉ và xếp loại học lực. |
+| **Mô tả** | Người dùng nhập Mã sinh viên hoặc chọn từ danh sách, chọn Học kỳ xét hoặc chọn "Tất cả học kỳ"; hệ thống tính toán điểm GPA học kỳ, CPA tích lũy toàn khóa, tổng số tín chỉ tích lũy và hiển thị bảng chi tiết kết quả từng môn học. |
+| **Tiền điều kiện** | Đã đăng nhập vào hệ thống; sinh viên đã có dữ liệu điểm học phần. |
+| **Kích hoạt** | Người dùng chọn màn hình "Tra cứu GPA & Học lực" và thực hiện tra cứu. |
+| **Luồng sự kiện chính** | 1. Người dùng nhập Mã sinh viên hoặc chọn lớp/sinh viên cần xem.<br>2. Chọn Học kỳ cần lọc (Học kỳ 1, Học kỳ 2, hoặc "Tất cả học kỳ").<br>3. Nhấn nút "TRA CỨU KẾT QUẢ".<br>4. ViewModel truy vấn danh sách điểm học phần của sinh viên từ `DiemHocPhanRepository`.<br>5. Áp dụng thuật toán tính toán theo tín chỉ:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. Điểm trung bình học kỳ: $GPA = rac{\sum (Điểm\_Hệ\_4_i 	imes Số\_Tín\_Chỉ_i)}{\sum Số\_Tín\_Chỉ_i}$ tính trên các môn trong kỳ chọn.<br>&nbsp;&nbsp;&nbsp;&nbsp;b. Điểm trung bình tích lũy: $CPA = rac{\sum (Điểm\_Hệ\_4_j 	imes Số\_Tín\_Chỉ_j)}{\sum Số\_Tín\_Chỉ_j}$ tính trên tất cả các môn đã học từ đầu khóa.<br>&nbsp;&nbsp;&nbsp;&nbsp;c. Tổng số tín chỉ đã tích lũy (chỉ cộng các môn có kết quả Đạt, tức điểm chữ khác 'F').<br>&nbsp;&nbsp;&nbsp;&nbsp;d. Xếp loại học lực căn cứ trên thang điểm CPA: Xuất sắc ($3.6 - 4.0$), Giỏi ($3.2 - 3.59$), Khá ($2.5 - 3.19$), Trung bình ($2.0 - 2.49$), Yếu ($1.0 - 1.99$), Kém ($< 1.0$).<br>6. Hiển thị bảng điểm chi tiết kèm các nhãn kết quả tổng hợp lên giao diện. |
+| **Luồng thay thế / Ngoại lệ** | 4a. Sinh viên chưa có bất kỳ điểm học phần nào: Hệ thống hiển thị thông báo "Sinh viên chưa có dữ liệu điểm trong học kỳ này", các chỉ số hiển thị 0.00. |
+| **Hậu điều kiện** | Người dùng nắm bắt chính xác tiến độ học tập, điểm tích lũy và xếp loại học lực của sinh viên. |
+| **Độ ưu tiên** | **Cao** |
+| **Tần suất sử dụng** | Rất cao, phục vụ xét học bổng, xét tốt nghiệp và tư vấn học tập. |
+| **Quy tắc nghiệp vụ** | Các môn học bị điểm F không được tính vào số tín chỉ tích lũy, nhưng bắt buộc phải tính vào mẫu số để tính điểm CPA cho đến khi sinh viên học lại và cải thiện điểm. |
+
+<div style="page-break-after: always;"></div>
+
+*Bảng 2.10. Đặc tả Use Case UC09 – Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
+| **Mã Use Case** | **UC09** |
+| **Tên Use Case** | **Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ** |
+| **Actor** | Admin, Cố vấn học tập |
+| **Mục đích** | Rà soát toàn diện kết quả học tập để phát hiện các môn học có tỷ lệ trượt cao và tự động lập danh sách sinh viên có nguy cơ bị cảnh cáo học vụ. |
+| **Mô tả** | Hệ thống cung cấp bộ lọc linh hoạt theo Niên khóa, Học kỳ, Khoa và Lớp học; tính toán tỷ lệ Đạt/Trượt của từng môn học; lọc danh sách sinh viên có điểm $CPA < 2.0$, sinh viên nợ nhiều môn hoặc sinh viên còn thiếu điểm thành phần. |
+| **Tiền điều kiện** | Đăng nhập với quyền Admin hoặc Giảng viên/CVHT. |
+| **Kích hoạt** | Người dùng chọn màn hình "Thống kê Đạt/Trượt & Cảnh báo" và nhấn nút "LỌC DỮ LIỆU". |
+| **Luồng sự kiện chính** | 1. Người dùng chọn phạm vi rà soát: Học kỳ cụ thể hoặc "Tất cả các kỳ", chọn Khoa hoặc Lớp học.<br>2. Nhấn nút "THỐNG KÊ & RÀ SOÁT".<br>3. ViewModel gọi hàm xử lý thống kê phân tích từ Repository.<br>4. Hệ thống hiển thị 2 bảng dữ liệu chuyên biệt:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. **Bảng Thống kê Môn học**: Tên môn, Số TC, Tổng SV học, Số lượng Đạt, Số lượng Trượt, Số lượng Thiếu điểm, Tỷ lệ Đạt (%).<br>&nbsp;&nbsp;&nbsp;&nbsp;b. **Bảng Danh sách Cảnh báo học vụ**: Mã SV, Họ tên, Lớp, Điểm CPA, Số tín chỉ nợ, Mức độ cảnh báo (Mức 1: $1.8 \le CPA < 2.0$; Mức 2: $1.5 \le CPA < 1.8$; Nguy cơ buộc thôi học: $CPA < 1.5$ hoặc thiếu điểm nhiều kỳ).<br>5. Cố vấn học tập có thể nhấn nút "XUẤT DANH SÁCH" để phục vụ công tác họp lớp và liên hệ gia đình sinh viên. |
+| **Luồng thay thế / Ngoại lệ** | 4a. Không có sinh viên nào bị cảnh báo học vụ: Hệ thống hiển thị thông báo tích cực "Không có sinh viên nào bị cảnh báo học vụ trong phạm vi đã chọn!". |
+| **Hậu điều kiện** | Danh sách sinh viên cần đôn đốc và cảnh báo học vụ được trích xuất chính xác. |
+| **Độ ưu tiên** | **Cao** |
+| **Tần suất sử dụng** | Định kỳ vào cuối mỗi học kỳ sau khi có điểm thi kết thúc học phần. |
+| **Quy tắc nghiệp vụ** | Sinh viên bị cảnh báo học vụ 3 lần liên tiếp sẽ bị chuyển sang hội đồng kỷ luật xem xét buộc thôi học. |
+
+<div style="page-break-after: always;"></div>
+
+*Bảng 2.11. Đặc tả Use Case UC10 – Quản trị người dùng & Phân quyền hệ thống*
+
+| Mục | Nội dung chi tiết |
+| :--- | :--- |
+| **Mã Use Case** | **UC10** |
+| **Tên Use Case** | **Quản trị người dùng & Phân quyền hệ thống** |
+| **Actor** | Admin (Quản trị viên) |
+| **Mục đích** | Quản lý vòng đời tài khoản truy cập hệ thống, gán quyền hạn và đảm bảo an ninh thông tin. |
+| **Mô tả** | Admin tạo tài khoản mới cho cán bộ/giảng viên/sinh viên, cập nhật thông tin, cấp lại mật khẩu mặc định, khóa tài khoản nghi vấn và giám sát nhật ký truy cập hệ thống. |
+| **Tiền điều kiện** | Đăng nhập với quyền Admin cao nhất, mở màn hình "Quản trị & Phân quyền". |
+| **Kích hoạt** | Admin thao tác trên danh sách người dùng. |
+| **Luồng sự kiện chính** | 1. Hệ thống hiển thị danh sách toàn bộ tài khoản trong bảng `TaiKhoan` (Username, Họ tên, Vai trò, Trạng thái hoạt động, Ngày tạo).<br>2. Admin chọn thao tác: Thêm mới tài khoản, Đổi vai trò (`Admin`, `NhanVien`, `SinhVien`), Đặt lại mật khẩu (Reset Password), hoặc Chuyển đổi trạng thái (Kích hoạt / Khóa).<br>3. Admin nhấn "LƯU THAY ĐỔI".<br>4. ViewModel gọi `TaiKhoanRepository.CapNhatTaiKhoan(tk)`.<br>5. Ghi nhận hành động vào bảng `LogHeThong` với nội dung chi tiết.<br>6. Hệ thống cập nhật danh sách và hiển thị thông báo thành công. |
+| **Luồng thay thế / Ngoại lệ** | 2a. Admin tự khóa chính tài khoản của mình: Hệ thống ngăn chặn hành vi tự khóa để tránh trường hợp mất quyền quản trị hệ thống. |
+| **Hậu điều kiện** | Quyền truy cập của người dùng được cập nhật có hiệu lực ngay trong phiên làm việc tiếp theo. |
+| **Độ ưu tiên** | **Trung bình** |
+| **Tần suất sử dụng** | Khi có nhân sự mới hoặc khi có yêu cầu xử lý tài khoản từ người dùng. |
+| **Quy tắc nghiệp vụ** | Mọi thao tác quản trị tài khoản bắt buộc phải được ghi nhật ký kiểm toán không thể xóa. |
+
+<div style="page-break-after: always;"></div>
+
+---
+
+### 2.3 Sơ đồ Hoạt động (Activity Diagrams)
+
+#### 2.3.1 Activity Diagram – Quy trình Đăng nhập & Điều hướng vai trò
 ```mermaid
-stateDiagram-v2
-    [*] --> NhapThongTin: Mở màn hình LoginWindow
-    NhapThongTin --> KiemTraRong: Nhập Tên đăng nhập & Mật khẩu
-    KiemTraRong --> ThongBaoRong: Để trống trường dữ liệu
-    ThongBaoRong --> NhapThongTin: Nhập lại
-    KiemTraRong --> XacThucSQL: Đầy đủ thông tin -> Bấm Đăng nhập
-    XacThucSQL --> SaiThongTin: Tài khoản/Mật khẩu không đúng
-    SaiThongTin --> NhapThongTin: Báo lỗi & Cho phép nhập lại
-    XacThucSQL --> TaiKhoanKhoa: Tài khoản bị khóa (DangHoatDong = 0)
-    TaiKhoanKhoa --> NhapThongTin: Báo lỗi liên hệ Admin
-    XacThucSQL --> DangNhapThanhCong: Xác thực hợp lệ
-    DangNhapThanhCong --> KhoiTaoPhien: Lưu thông tin vào PhienDangNhap
-    KhoiTaoPhien --> MoMainWindow: Khởi tạo và hiển thị MainWindow
-    MoMainWindow --> [*]
+flowchart TD
+    Start([Bắt đầu]) --> Input[Người dùng nhập Username & Password]
+    Input --> TogglePwd{Người dùng click icon con mắt?}
+    TogglePwd -- Có --> ShowHide[Chuyển đổi ẩn/hiện mật khẩu trong ô nhập]
+    ShowHide --> Submit[Click nút ĐĂNG NHẬP]
+    TogglePwd -- Không --> Submit
+    Submit --> CheckEmpty{Để trống ô thông tin?}
+    CheckEmpty -- Có --> ErrEmpty[Báo lỗi: Vui lòng nhập đầy đủ Username và Password] --> Input
+    CheckEmpty -- Không --> QueryDB[Truy vấn kiểm tra tài khoản trên Somee SQL DB]
+    QueryDB --> ConnOK{Kết nối CSDL thành công?}
+    ConnOK -- Không --> ErrNet[Báo lỗi mất kết nối mạng / máy chủ SQL không phản hồi] --> End([Kết thúc])
+    ConnOK -- Có --> CheckAuth{Thông tin đăng nhập hợp lệ?}
+    CheckAuth -- Không --> ErrAuth[Báo lỗi: Tên đăng nhập hoặc mật khẩu không chính xác!] --> Input
+    CheckAuth -- Có --> CheckActive{Tài khoản đang Kích hoạt?}
+    CheckActive -- Không --> ErrLocked[Báo lỗi: Tài khoản đã bị khóa bởi Quản trị viên] --> End
+    CheckActive -- Có --> SaveSession[Lưu phiên làm việc & Phân loại Vai trò]
+    SaveSession --> CheckRole{Vai trò người dùng?}
+    CheckRole -- Admin --> OpenAdmin[Mở MainWindow với toàn quyền quản trị]
+    CheckRole -- Giảng viên / CVHT --> OpenLecturer[Mở MainWindow phân hệ Quản lý Sổ điểm & Cảnh báo]
+    CheckRole -- Sinh viên --> OpenStudent[Mở MainWindow phân hệ Tra cứu kết quả cá nhân]
+    OpenAdmin --> LogSuccess[Ghi nhật ký đăng nhập thành công vào LogHeThong]
+    OpenLecturer --> LogSuccess
+    OpenStudent --> LogSuccess
+    LogSuccess --> Ready([Sẵn sàng sử dụng])
 ```
-*Hình 2.4: Sơ đồ Activity Diagram – Quá trình Đăng nhập và xác thực bảo mật*
+*Hình 2.5. Sơ đồ Hoạt động – Quy trình Đăng nhập & Điều hướng phân quyền*
 
-### 2.3.2. Sơ đồ Activity Diagram – Nhập điểm hàng loạt từ File Excel/CSV (Batch Import)
-
+#### 2.3.2 Activity Diagram – Quy trình Thêm sinh viên & Tự động sinh Email
 ```mermaid
-stateDiagram-v2
-    [*] --> ChonFile: Bấm chọn file (.xlsx / .csv)
-    ChonFile --> DocFile: Mở luồng đọc EPPlus/CSV
-    DocFile --> KiemTraDinhDang: Kiểm tra cấu trúc 6 cột chuẩn
-    KiemTraDinhDang --> BaoLoiDinhDang: Sai cấu trúc file
-    BaoLoiDinhDang --> [*]
-    KiemTraDinhDang --> DuyetTungDong: Cấu trúc hợp lệ
-    state DuyetTungDong {
-        [*] --> KiemTraMaSV: Kiểm tra MaSV có trong DB?
-        KiemTraMaSV --> KiemTraMonHoc: Hợp lệ
-        KiemTraMonHoc --> KiemTraHocKy: Hợp lệ
-        KiemTraHocKy --> KiemTraDiem: Điểm từ 0 - 10?
-        KiemTraDiem --> GhiNhanThanhCong: Dữ liệu hợp lệ -> Upsert KetQua
-        KiemTraDiem --> GhiNhanLoi: Dữ liệu không hợp lệ -> Tăng đếm lỗi
-    }
-    DuyetTungDong --> GhiLichSu: Ghi kết quả vào LichSuImport
-    GhiLichSu --> HienThiKetQua: Hiển thị Card Tổng / Thành công / Lỗi
-    HienThiKetQua --> [*]
+flowchart TD
+    Start([Bắt đầu]) --> OpenForm[Mở màn hình Hồ sơ Sinh viên & Lớp học]
+    OpenForm --> InputMaSV[Người dùng nhập Mã sinh viên - MaSV]
+    InputMaSV --> AutoEmail[Hệ thống tự động sinh Email: MaSV@st.phenikaa-uni.edu.vn]
+    AutoEmail --> InputOther[Người dùng nhập Họ tên, Ngày sinh, Giới tính, chọn Lớp sinh hoạt]
+    InputOther --> ClickAdd[Nhấn nút THÊM SINH VIÊN]
+    ClickAdd --> ValidateInput{Kiểm tra dữ liệu rỗng?}
+    ValidateInput -- Thiếu thông tin --> ShowErrInput[Báo lỗi: Vui lòng điền đủ Mã SV, Họ tên và chọn Lớp] --> InputOther
+    ValidateInput -- Hợp lệ --> CheckDuplicate[Kiểm tra trùng Mã SV trong CSDL Somee Cloud]
+    CheckDuplicate --> IsDup{Mã SV đã tồn tại?}
+    IsDup -- Đã tồn tại --> ShowErrDup[Báo lỗi: Mã sinh viên đã tồn tại trên hệ thống] --> InputMaSV
+    IsDup -- Chưa tồn tại --> InsertDB[Ghi bản ghi mới vào bảng SinhVien trên SQL Server]
+    InsertDB --> RefreshGrid[Tải lại danh sách sinh viên lên DataGrid]
+    RefreshGrid --> ShowSuccess[Thông báo: Thêm sinh viên thành công!]
+    ShowSuccess --> End([Kết thúc])
 ```
-*Hình 2.7: Sơ đồ Activity Diagram – Nhập điểm hàng loạt từ File Excel/CSV (Batch Import)*
+*Hình 2.6. Sơ đồ Hoạt động – Quy trình Thêm sinh viên & Tự động sinh Email*
 
-## 2.4. Sơ đồ tuần tự (Sequence Diagrams)
-### 2.4.1. Sơ đồ Sequence Diagram – Đăng nhập hệ thống
+#### 2.3.3 Activity Diagram – Quy trình Nhập điểm học phần từ File Excel/CSV
+```mermaid
+flowchart TD
+    Start([Bắt đầu]) --> OpenImportView[Mở màn hình Nhập điểm từ File]
+    OpenImportView --> ChooseFile[Click CHỌN TỆP EXCEL / CSV]
+    ChooseFile --> SelectDialog[Chọn file .xlsx hoặc .csv từ máy tính]
+    SelectDialog --> ReadHeaders[Hệ thống đọc cấu trúc tệp tin]
+    ReadHeaders --> CheckHeaders{Đúng mẫu cột quy định?}
+    CheckHeaders -- Sai định dạng --> AlertHeader[Báo lỗi: Cấu trúc file không đúng mẫu yêu cầu!] --> ChooseFile
+    CheckHeaders -- Đúng định dạng --> DisplayPreview[Hiển thị danh sách dữ liệu đọc được lên bảng xem trước]
+    DisplayPreview --> ClickImport[Nhấn nút TIẾN HÀNH NẠP ĐIỂM]
+    ClickImport --> LoopRow[Duyệt từng dòng dữ liệu trong tệp]
+    LoopRow --> CheckRowData{Hợp lệ: MaSV, MaMon tồn tại & 0 <= Điểm <= 10?}
+    CheckRowData -- Không hợp lệ --> RecordError[Ghi nhận dòng lỗi vào danh sách báo cáo]
+    CheckRowData -- Hợp lệ --> CalcScore[Tính điểm TK thang 10, Điểm chữ và Điểm thang 4 chuẩn mới]
+    CalcScore --> AddToBatch[Thêm vào danh sách lệnh chờ cập nhật CSDL]
+    RecordError --> CheckMore{Còn dòng tiếp theo?}
+    AddToBatch --> CheckMore
+    CheckMore -- Còn --> LoopRow
+    CheckMore -- Hết --> ExecuteBatch[Thực thi Transaction Bulk Insert/Update trên SQL Server]
+    ExecuteBatch --> SummaryReport[Hiển thị hộp thoại tổng kết: X dòng thành công, Y dòng lỗi]
+    SummaryReport --> RefreshDashboard[Đồng bộ dữ liệu sang Dashboard và Sổ điểm]
+    RefreshDashboard --> End([Kết thúc])
+```
+*Hình 2.7. Sơ đồ Hoạt động – Quy trình Nhập điểm học phần từ File Excel/CSV*
 
+#### 2.3.4 Activity Diagram – Quy trình Tính toán GPA/CPA tích lũy theo số tín chỉ
+```mermaid
+flowchart TD
+    Start([Bắt đầu]) --> SelectStudent[Người dùng chọn Sinh viên & Học kỳ xét]
+    SelectStudent --> FetchDiem[Tải danh sách các môn học & điểm của sinh viên từ CSDL]
+    FetchDiem --> HasData{Sinh viên có điểm học phần?}
+    HasData -- Không --> DisplayZero[Hiển thị GPA = 0.00, CPA = 0.00, Tín chỉ = 0] --> End([Kết thúc])
+    HasData -- Có --> InitVars[Khởi tạo: TongDiemTinChi_HK = 0, TongTinChi_HK = 0, TongDiemTinChi_TL = 0, TongTinChi_TL = 0, TinChiTichLuy = 0]
+    InitVars --> LoopMon[Duyệt từng môn học của sinh viên]
+    LoopMon --> ConvertGrade[Quy đổi Điểm TK thang 10 sang Điểm thang 4 theo chuẩn: A+ ra 4.0, A ra 3.7, B+ ra 3.5...]
+    ConvertGrade --> CheckHK{Môn thuộc Học kỳ đang xét?}
+    CheckHK -- Đúng --> AddHK[TongDiemTinChi_HK += DiemHe4 * SoTinChi; TongTinChi_HK += SoTinChi]
+    CheckHK -- Sai --> AddTL
+    AddHK --> AddTL[TongDiemTinChi_TL += DiemHe4 * SoTinChi; TongTinChi_TL += SoTinChi]
+    AddTL --> CheckPass{Môn đạt: DiemChu != 'F'?}
+    CheckPass -- Có --> AddTCTL[TinChiTichLuy += SoTinChi]
+    CheckPass -- Không --> CheckNextMon
+    AddTCTL --> CheckNextMon{Còn môn tiếp theo?}
+    CheckNextMon -- Còn --> LoopMon
+    CheckNextMon -- Hết --> CalcFinal[Tính: GPA = TongDiemTinChi_HK / TongTinChi_HK; CPA = TongDiemTinChi_TL / TongTinChi_TL]
+    CalcFinal --> ClassifyStanding[Xếp loại học lực căn cứ theo CPA: Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém]
+    ClassifyStanding --> DisplayResults[Hiển thị kết quả GPA, CPA, Số tín chỉ đạt và Xếp loại lên giao diện]
+    DisplayResults --> End([Kết thúc])
+```
+*Hình 2.8. Sơ đồ Hoạt động – Quy trình Tính toán GPA/CPA tích lũy theo số tín chỉ*
+
+#### 2.3.5 Activity Diagram – Quy trình Lọc và Xử lý Cảnh báo học vụ
+```mermaid
+flowchart TD
+    Start([Bắt đầu]) --> SelectCriteria[Cố vấn học tập chọn Học kỳ, Niên khóa, Khoa hoặc Lớp sinh hoạt]
+    SelectCriteria --> ClickFilter[Nhấn nút THỐNG KÊ & RÀ SOÁT CẢNH BÁO]
+    ClickFilter --> QuerySummary[Truy vấn dữ liệu học phần và điểm sinh viên từ Somee SQL DB]
+    QuerySummary --> CalcSubjectStats[Tính toán tỷ lệ Đạt/Trượt từng môn học: Số SV học, Số Đạt, Số Trượt, Tỷ lệ %]
+    CalcSubjectStats --> ScanStudents[Quét danh sách sinh viên trong phạm vi lựa chọn]
+    ScanStudents --> EvalWarning{Điều kiện cảnh báo: CPA < 2.0 hoặc nợ > 12 tín chỉ hoặc thiếu điểm thành phần?}
+    EvalWarning -- Thỏa mãn --> CategorizeLevel[Phân loại mức độ: Cảnh báo Mức 1, Mức 2, Nguy cơ buộc thôi học, Thiếu điểm]
+    CategorizeLevel --> AddToWarningList[Đưa sinh viên vào Danh sách Cảnh báo học vụ]
+    EvalWarning -- Không thỏa mãn --> CheckNextSV
+    AddToWarningList --> CheckNextSV{Còn sinh viên tiếp theo?}
+    CheckNextSV -- Còn --> ScanStudents
+    CheckNextSV -- Hết --> DisplayTwoPanels[Hiển thị song song: Bảng tỷ lệ môn học & Bảng danh sách cảnh báo học vụ]
+    DisplayTwoPanels --> ExportReport{Cố vấn học tập muốn xuất báo cáo?}
+    ExportReport -- Có --> ExportFile[Xuất danh sách cảnh báo ra file Excel/PDF để liên hệ sinh viên]
+    ExportReport -- Không --> End([Kết thúc])
+    ExportFile --> End
+```
+*Hình 2.9. Sơ đồ Hoạt động – Quy trình Lọc và Xử lý Cảnh báo học vụ*
+
+<div style="page-break-after: always;"></div>
+
+---
+
+### 2.4 Sơ đồ Tuần tự (Sequence Diagrams)
+
+#### 2.4.1 Sequence Diagram – Chức năng Đăng nhập & Xác thực
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as Người dùng
+    actor User as Người dùng (Admin/GV/SV)
     participant View as LoginWindow (View)
     participant VM as LoginViewModel
     participant Repo as TaiKhoanRepository
-    participant DB as SQL Server (Somee)
-    participant Session as PhienDangNhap
-    participant Main as MainWindow
+    participant DB as Somee SQL Server Cloud
 
-    User->>View: Nhập TenDangNhap & MatKhau
-    User->>View: Bấm nút "ĐĂNG NHẬP"
-    View->>VM: DangNhapCommand.Execute(matKhau)
-    VM->>Repo: DangNhap(tenDangNhap, matKhau)
-    Repo->>DB: SELECT * FROM TaiKhoan WHERE TenDangNhap = @User
-    DB-->>Repo: Trả về bản ghi tài khoản
-    alt Thông tin sai hoặc bị khóa
-        Repo-->>VM: Trả về null / Thông báo lỗi
-        VM-->>View: CoLoi = true, ThongBao lỗi
-        View-->>User: Hiển thị cảnh báo lỗi màu đỏ
-    else Thông tin hợp lệ
-        Repo-->>VM: Trả về đối tượng TaiKhoan
-        VM->>Session: KhoiTao(TenDangNhap, VaiTro)
-        VM-->>View: Kích hoạt sự kiện DangNhapThanhCong
-        View->>Main: new MainWindow()
-        Main->>Main: HienThiTaiKhoan(TenDangNhap, VaiTro)
-        Main-->>User: Hiển thị giao diện chính MainWindow
-        View->>View: Close()
+    User->>View: 1. Nhập Username, Password
+    opt Xem/Ẩn mật khẩu
+        User->>View: Click icon con mắt (👁)
+        View-->>User: Hiển thị/Ẩn chuỗi mật khẩu
+    end
+    User->>View: 2. Nhấn nút "ĐĂNG NHẬP"
+    View->>VM: 3. Kích hoạt LoginCommand
+    VM->>VM: 4. Kiểm tra hợp lệ dữ liệu rỗng
+    VM->>Repo: 5. KiemTraDangNhap(username, password)
+    Repo->>DB: 6. SELECT * FROM TaiKhoan WHERE TenDangNhap = @u AND MatKhau = @p
+    DB-->>Repo: 7. Trả về bản ghi tài khoản kèm VaiTro & TrangThai
+    alt Tài khoản hợp lệ & Đang kích hoạt
+        Repo-->>VM: 8. Trả về đối tượng TaiKhoan
+        VM->>VM: 9. Lưu UserSession & Phân quyền
+        VM->>View: 10. Đóng LoginWindow, Mở MainWindow
+        View-->>User: 11. Hiển thị màn hình chính theo vai trò
+    else Thông tin đăng nhập sai
+        Repo-->>VM: Trả về null
+        VM->>View: Hiển thị hộp thoại lỗi: "Sai tên đăng nhập hoặc mật khẩu!"
+        View-->>User: Thông báo lỗi
+    else Tài khoản bị khóa
+        VM->>View: Hiển thị thông báo: "Tài khoản của bạn đã bị khóa!"
+        View-->>User: Thông báo lỗi
     end
 ```
-*Hình 2.9: Sơ đồ Sequence Diagram – Luồng xác thực đăng nhập (Login Sequence)*
+*Hình 2.10. Sơ đồ Tuần tự – Chức năng Đăng nhập & Xác thực*
 
-### 2.4.2. Sơ đồ Sequence Diagram – Xử lý Import dữ liệu từ file Excel vào Database
-
+#### 2.4.2 Sequence Diagram – Chức năng Thêm mới sinh viên và liên kết Lớp/Khoa
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as Cán bộ Khảo thí
-    participant View as HeThongImportView
-    participant VM as HeThongImportViewModel
-    participant Parser as Excel/CSV Parser (EPPlus)
-    participant Repo as KetQuaRepository
-    participant DB as SQL Server
+    actor Admin as Quản trị viên (Admin)
+    participant View as QuanLySinhVienView
+    participant VM as QuanLySinhVienViewModel
+    participant Repo as SinhVienRepository
+    participant DB as Somee SQL Server Cloud
 
-    User->>View: Chọn file Excel (.xlsx) & Bấm "THỰC HIỆN IMPORT"
-    View->>VM: ThucHienImportCommand.Execute()
-    VM->>Parser: Đọc dữ liệu các Worksheets
-    Parser-->>VM: Trả về danh sách dòng dữ liệu (List<Row>)
-    loop Duyệt từng dòng dữ liệu
-        VM->>VM: Kiểm tra MaSV, MaMonHoc, MaHocKy & Điểm (0-10)
-        alt Hợp lệ
-            VM->>Repo: LuuDiem(ketQua)
-            Repo->>DB: EXEC Upsert KetQua (INSERT hoặc UPDATE)
-            DB-->>Repo: Thành công
-            VM->>VM: TangDemThanhCong()
-        else Không hợp lệ
-            VM->>VM: TangDemLoi()
-        end
+    Admin->>View: 1. Nhập Mã sinh viên (MaSV)
+    View->>VM: 2. PropertyChanged: MaSV
+    VM->>VM: 3. Tự sinh Email = MaSV + "@st.phenikaa-uni.edu.vn"
+    VM-->>View: 4. Cập nhật ô nhập Email tức thì
+    Admin->>View: 5. Nhập Họ tên, Ngày sinh, chọn Giới tính, chọn Lớp sinh hoạt
+    Admin->>View: 6. Nhấn nút "THÊM"
+    View->>VM: 7. Kích hoạt ThemSinhVienCommand
+    VM->>Repo: 8. KiemTraTrungMaSV(MaSV)
+    Repo->>DB: 9. SELECT COUNT(*) FROM SinhVien WHERE MaSV = @ma
+    DB-->>Repo: 10. Trả về kết quả đếm (0 = Chưa tồn tại)
+    alt Mã SV hợp lệ & Chưa tồn tại
+        VM->>Repo: 11. ThemSinhVien(SinhVien sv)
+        Repo->>DB: 12. INSERT INTO SinhVien (MaSV, HoTen, NgaySinh, GioiTinh, Email, MaLop) VALUES (...)
+        DB-->>Repo: 13. Thực thi thành công (1 row affected)
+        Repo-->>VM: 14. Trả về true
+        VM->>Repo: 15. LayDanhSachSinhVien()
+        Repo->>DB: 16. SELECT sv.*, l.TenLop, l.Khoa FROM SinhVien sv JOIN Lop l ON sv.MaLop = l.MaLop
+        DB-->>Repo: 17. Danh sách sinh viên mới
+        Repo-->>VM: 18. Cập nhật ObservableCollection<SinhVien>
+        VM-->>View: 19. DataGrid tự động làm mới, xóa trắng form nhập
+        View-->>Admin: 20. Thông báo: "Thêm sinh viên thành công!"
+    else Mã SV đã tồn tại
+        VM-->>View: Báo lỗi: "Mã sinh viên đã tồn tại trên hệ thống!"
+        View-->>Admin: Hiển thị cảnh báo
     end
-    VM->>Repo: LuuLichSuImport(tenFile, loaiFile, soThanhCong, soLoi)
-    Repo->>DB: INSERT INTO LichSuImport
-    DB-->>Repo: Ghi nhận thành công
-    VM-->>View: Cập nhật Card KPI (Tổng dòng, Thành công, Lỗi)
-    View-->>User: Hiển thị thông báo hoàn tất & cập nhật bảng Lịch sử
 ```
-*Hình 2.12: Sơ đồ Sequence Diagram – Xử lý Import dữ liệu từ file Excel vào Database*
+*Hình 2.11. Sơ đồ Tuần tự – Chức năng Thêm mới sinh viên và liên kết Lớp/Khoa*
 
-## 2.5. Thiết kế Cơ sở dữ liệu (Database Design)
-### 2.5.1. Sơ đồ quan hệ thực thể (ERD)
+#### 2.4.3 Sequence Diagram – Chức năng Nhập điểm học phần từ File Excel
+```mermaid
+sequenceDiagram
+    autonumber
+    actor GV as Giảng viên / Admin
+    participant View as NhapDiemView
+    participant VM as NhapDiemViewModel
+    participant Service as ExcelReaderService
+    participant Repo as DiemHocPhanRepository
+    participant DB as Somee SQL Server Cloud
+
+    GV->>View: 1. Nhấn nút "CHỌN TỆP EXCEL / CSV"
+    View->>GV: 2. Hiển thị OpenFileDialog
+    GV->>View: 3. Chọn tệp bảng điểm (.xlsx)
+    View->>VM: 4. Set FilePath
+    GV->>View: 5. Nhấn nút "TIẾN HÀNH NẠP ĐIỂM"
+    View->>VM: 6. Kích hoạt TienHanhNapDiemCommand
+    VM->>Service: 7. DocFileBangDiem(filePath)
+    Service-->>VM: 8. Trả về List<DiemImportDto>
+    VM->>VM: 9. Kiểm tra dữ liệu từng dòng & Tính điểm quy đổi (A, A+, B...)
+    VM->>Repo: 10. NhapDiemHangLoat(listDiemHocPhan)
+    Repo->>DB: 11. BEGIN TRANSACTION
+    loop Duyệt từng bản ghi
+        Repo->>DB: 12. IF EXISTS UPDATE ELSE INSERT INTO DiemHocPhan
+    end
+    DB-->>Repo: 13. COMMIT TRANSACTION
+    Repo-->>VM: 14. Kết quả nạp (Thành công: X dòng, Lỗi: Y dòng)
+    VM-->>View: 15. Hiển thị thông báo tổng kết nạp điểm
+    View-->>GV: 16. Thông báo thành công và làm mới dữ liệu
+```
+*Hình 2.12. Sơ đồ Tuần tự – Chức năng Nhập điểm học phần từ File Excel*
+
+#### 2.4.4 Sequence Diagram – Chức năng Tra cứu kết quả học tập & Tính điểm tích lũy
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Người dùng (Admin / CVHT / Sinh viên)
+    participant View as TraCuuGPAView
+    participant VM as TraCuuGPAViewModel
+    participant Repo as DiemHocPhanRepository
+    participant DB as Somee SQL Server Cloud
+
+    User->>View: 1. Nhập Mã sinh viên & Chọn Học kỳ
+    User->>View: 2. Nhấn nút "TRA CỨU KẾT QUẢ"
+    View->>VM: 3. Kích hoạt TraCuuCommand(MaSV, HocKy)
+    VM->>Repo: 4. LayDiemSinhVienTheoKy(MaSV, HocKy)
+    Repo->>DB: 5. SELECT d.*, m.TenMon, m.SoTinChi FROM DiemHocPhan d JOIN MonHoc m ON d.MaMon = m.MaMon WHERE d.MaSV = @ma
+    DB-->>Repo: 6. Danh sách điểm học phần kèm số tín chỉ
+    Repo-->>VM: 7. Trả về List<DiemHocPhan>
+    VM->>VM: 8. Thuật toán: Tính GPA học kỳ có trọng số số tín chỉ
+    VM->>VM: 9. Thuật toán: Tính CPA tích lũy toàn khóa có trọng số số tín chỉ
+    VM->>VM: 10. Thuật toán: Đếm tổng số tín chỉ tích lũy đạt
+    VM->>VM: 11. Thuật toán: Xác định Xếp loại học lực (Xuất sắc, Giỏi, Khá...)
+    VM-->>View: 12. Cập nhật các trường GPA, CPA, Xếp loại & Bảng chi tiết
+    View-->>User: 13. Hiển thị bảng điểm hoàn chỉnh
+```
+*Hình 2.13. Sơ đồ Tuần tự – Chức năng Tra cứu kết quả học tập & Tính điểm tích lũy*
+
+#### 2.4.5 Sequence Diagram – Chức năng Rà soát và Xuất danh sách Cảnh báo học vụ
+```mermaid
+sequenceDiagram
+    autonumber
+    actor CVHT as Cố vấn học tập / Admin
+    participant View as CanhBaoHocVuView
+    participant VM as CanhBaoHocVuViewModel
+    participant Repo as ThongKeRepository
+    participant DB as Somee SQL Server Cloud
+
+    CVHT->>View: 1. Chọn Học kỳ xét, Niên khóa, Lớp hoặc Khoa
+    CVHT->>View: 2. Nhấn nút "LỌC DỮ LIỆU & RÀ SOÁT"
+    View->>VM: 3. Kích hoạt LocDuLieuCommand
+    VM->>Repo: 4. ThongKeMonHocDatTruot(HocKy, NienKhoa)
+    Repo->>DB: 5. SELECT MaMon, COUNT(SV) AS Tong, SUM(Dat), SUM(Truot) GROUP BY MaMon
+    DB-->>Repo: 6. Bảng kết quả đạt/trượt môn học
+    Repo-->>VM: 7. Trả về List<MonHocThongKeDto>
+    VM->>Repo: 8. LayDanhSachCanhBaoHocVu(HocKy, NienKhoa, MaLop)
+    Repo->>DB: 9. Truy vấn danh sách sinh viên có CPA < 2.0 hoặc nợ tín chỉ
+    DB-->>Repo: 10. Bảng danh sách sinh viên cảnh báo
+    Repo-->>VM: 11. Trả về List<CanhBaoHocVuDto>
+    VM-->>View: 12. Hiển thị song song: Bảng tỷ lệ môn học & Bảng sinh viên cảnh báo
+    View-->>CVHT: 13. Hiển thị báo cáo chi tiết trực quan
+```
+*Hình 2.14. Sơ đồ Tuần tự – Chức năng Rà soát và Xuất danh sách Cảnh báo học vụ*
+
+<div style="page-break-after: always;"></div>
+
+---
+
+### 2.5 Thiết kế chi tiết Giải thuật & Logic nghiệp vụ
+
+#### 2.5.1 Công thức tính điểm tổng kết học phần (Thang 10)
+Điểm tổng kết học phần được tính từ 3 điểm thành phần theo tỷ lệ phần trăm đã cấu hình trong bảng `MonHoc`:
+$$Điểm\_Tổng\_Kết = Điểm\_CC 	imes 0.10 + Điểm\_GK 	imes 0.40 + Điểm\_CK 	imes 0.50$$
+*Trong đó:*
+- $Điểm\_CC$: Điểm đánh giá chuyên cần (Trọng số 10%).
+- $Điểm\_GK$: Điểm kiểm tra đánh giá giữa kỳ (Trọng số 40%).
+- $Điểm\_CK$: Điểm thi kết thúc học phần (Trọng số 50%).
+- Kết quả được làm tròn đến một chữ số thập phân (ví dụ: $8.46 	o 8.5$).
+
+#### 2.5.2 Quy chế quy đổi thang điểm 10 sang thang chữ và thang điểm 4 chuẩn mới
+Căn cứ Quy chế đào tạo đại học tín chỉ hiện hành của Trường Đại học Phenikaa, hệ thống áp dụng bảng quy chuẩn sau:
+
+*Bảng 2.12. Quy chế quy đổi thang điểm 10 sang thang chữ và thang điểm 4 chuẩn mới*
+
+| Khoảng điểm thang 10 | Điểm chữ | Điểm thang 4 | Đánh giá xếp loại | Trạng thái học phần |
+| :---: | :---: | :---: | :---: | :---: |
+| **9.0 – 10.0** | **A+** | **4.0** | **Xuất sắc** | **Đạt** |
+| **8.5 – 8.9** | **A** | **3.7** | **Giỏi** | **Đạt** |
+| **8.0 – 8.4** | **B+** | **3.5** | **Khá giỏi** | **Đạt** |
+| **7.0 – 7.9** | **B** | **3.0** | **Khá** | **Đạt** |
+| **6.5 – 6.9** | **C+** | **2.5** | **Trung bình khá**| **Đạt** |
+| **5.5 – 6.4** | **C** | **2.0** | **Trung bình** | **Đạt** |
+| **5.0 – 5.4** | **D+** | **1.5** | **Trung bình yếu** | **Đạt** |
+| **4.0 – 4.9** | **D** | **1.0** | **Yếu** | **Đạt** |
+| **Dưới 4.0** (hoặc Điểm CK < 3.0) | **F** | **0.0** | **Kém (Không đạt)** | **Trượt (Phải học lại)** |
+
+> [!IMPORTANT]
+> **Điểm cải tiến cốt lõi của hệ thống**: Khác với các hệ thống quy đổi cũ gộp toàn bộ mức $8.5 - 10.0$ thành điểm $A$ ($4.0$), hệ thống phân tách chính xác:
+> - Mức $8.5 \le Điểm < 9.0 \implies$ Điểm chữ **A**, Điểm hệ 4 là **3.7**.
+> - Mức $9.0 \le Điểm \le 10.0 \implies$ Điểm chữ **A+**, Điểm hệ 4 là **4.0**.
+
+#### 2.5.3 Thuật toán tính Điểm trung bình học kỳ (GPA) và Điểm trung bình tích lũy (CPA)
+Học chế tín chỉ yêu cầu tính điểm trung bình dựa trên **trọng số số tín chỉ** của từng môn học (môn 3 tín chỉ có trọng số gấp 1.5 lần môn 2 tín chỉ):
+
+$$GPA = rac{\sum_{i=1}^{n} (Điểm\_Hệ\_4_i 	imes Số\_Tín\_Chỉ_i)}{\sum_{i=1}^{n} Số\_Tín\_Chỉ_i}$$
+
+$$CPA = rac{\sum_{j=1}^{m} (Điểm\_Hệ\_4_j 	imes Số\_Tín\_Chỉ_j)}{\sum_{j=1}^{m} Số\_Tín\_Chỉ_j}$$
+
+*Trong đó:*
+- $n$: Số học phần sinh viên đăng ký học trong học kỳ đang xét.
+- $m$: Tổng số học phần sinh viên đã học kể từ đầu khóa học đến thời điểm hiện tại.
+- $Điểm\_Hệ\_4_i$: Điểm quy đổi thang 4 của học phần thứ $i$.
+- $Số\_Tín\_Chỉ_i$: Số tín chỉ của học phần thứ $i$.
+
+#### 2.5.4 Quy tắc xếp loại học lực toàn khóa và Tiêu chuẩn Cảnh báo học vụ
+Căn cứ vào điểm trung bình chung tích lũy ($CPA$), học lực của sinh viên được xếp loại như sau:
+
+*Bảng 2.13. Tiêu chuẩn phân loại học lực sinh viên theo học chế tín chỉ*
+
+| Điểm CPA tích lũy (Thang 4) | Xếp loại học lực | Tình trạng học vụ |
+| :---: | :---: | :--- |
+| **3.60 – 4.00** | **Xuất sắc** | Khen thưởng, đạt chuẩn xét học bổng xuất sắc |
+| **3.20 – 3.59** | **Giỏi** | Đạt chuẩn xét học bổng loại giỏi |
+| **2.50 – 3.19** | **Khá** | Học lực đạt chuẩn, tiến độ bình thường |
+| **2.00 – 2.49** | **Trung bình** | Tiến độ bình thường, cần cố gắng |
+| **1.50 – 1.99** | **Yếu** | **Bị Cảnh báo học vụ Mức 1** (Cần Cố vấn học tập tư vấn) |
+| **1.00 – 1.49** | **Kém** | **Bị Cảnh báo học vụ Mức 2** (Nguy cơ đình chỉ học tập) |
+| **Dưới 1.00** | **Kém nghiêm trọng** | **Xem xét Buộc thôi học** theo quy chế đào tạo |
+
+<div style="page-break-after: always;"></div>
+
+---
+
+### 2.6 Thiết kế Cơ sở dữ liệu (Database Design)
+
+#### 2.6.1 Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD)
+Cơ sở dữ liệu được thiết kế đạt chuẩn hóa dạng 3 (3NF - Third Normal Form), loại bỏ hoàn toàn các dư thừa dữ liệu và dị thường khi cập nhật.
 
 ```mermaid
 erDiagram
-    Lop ||--o{ SinhVien : "chứa (1-N)"
-    SinhVien ||--o{ KetQua : "có điểm (1-N)"
-    MonHoc ||--o{ KetQua : "thuộc môn (1-N)"
-    HocKy ||--o{ KetQua : "trong kỳ (1-N)"
-    TaiKhoan ||--o{ LichSuImport : "thực hiện nạp (1-N)"
+    Khoa ||--o{ Lop : "thuoc_khoa"
+    Lop ||--o{ SinhVien : "quan_ly"
+    SinhVien ||--o{ DiemHocPhan : "co_diem"
+    MonHoc ||--o{ DiemHocPhan : "thuoc_mon"
+    NienKhoa ||--o{ DiemHocPhan : "tai_hoc_ky"
+    TaiKhoan ||--o{ LogHeThong : "thuc_hien"
 
-    TaiKhoan {
-        string TenDangNhap PK
-        string MatKhau
-        string HoTen
-        string Email
-        string VaiTro
-        boolean DangHoatDong
+    Khoa {
+        nvarchar MaKhoa PK "Mã khoa (CNTT, DTVT...)"
+        nvarchar TenKhoa "Tên khoa đào tạo"
+        nvarchar VanPhong "Địa điểm văn phòng khoa"
+        nvarchar TruongKhoa "Họ tên trưởng khoa"
     }
 
     Lop {
-        string MaLop PK
-        string TenLop
-        string KhoaHoc
-        string Khoa
+        nvarchar MaLop PK "Mã lớp sinh hoạt (CNTT01, KTPM01...)"
+        nvarchar TenLop "Tên lớp học"
+        nvarchar KhoaHoc "Khóa đào tạo (K16, K17...)"
+        nvarchar Khoa FK "Tên hoặc mã khoa trực thuộc"
     }
 
     SinhVien {
-        string MaSV PK
-        string HoTen
-        date NgaySinh
-        string GioiTinh
-        string Email
-        string MaLop FK
+        nvarchar MaSV PK "Mã sinh viên (22020224, 23010168...)"
+        nvarchar HoTen "Họ và tên đầy đủ của sinh viên"
+        date NgaySinh "Ngày tháng năm sinh"
+        nvarchar GioiTinh "Giới tính (Nam / Nữ)"
+        nvarchar Email "Email: [MaSV]@st.phenikaa-uni.edu.vn"
+        nvarchar MaLop FK "Khóa ngoại tham chiếu Lop(MaLop)"
     }
 
     MonHoc {
-        string MaMonHoc PK
-        string TenMonHoc
-        int SoTinChi
+        nvarchar MaMon PK "Mã học phần (NET01, CSDL01...)"
+        nvarchar TenMon "Tên học phần đào tạo"
+        int SoTinChi "Số tín chỉ học phần (2, 3, 4)"
+        decimal HeSoChuyenCan "Trọng số chuyên cần (0.10)"
+        decimal HeSoGiuaKy "Trọng số giữa kỳ (0.40)"
+        decimal HeSoCuoiKy "Trọng số cuối kỳ (0.50)"
     }
 
-    HocKy {
-        string MaHocKy PK
-        string TenHocKy
-        string NamHoc
-        date NgayBatDau
-        date NgayKetThuc
+    NienKhoa {
+        nvarchar MaNienKhoa PK "Mã niên khóa (2025-2026_HK1...)"
+        nvarchar TenNienKhoa "Tên hiển thị: 2025-2026"
+        int HocKy "Học kỳ (1, 2, 3)"
+        bit IsActive "Trạng thái học kỳ đang kích hoạt"
     }
 
-    KetQua {
-        int MaKetQua PK
-        string MaSV FK
-        string MaMonHoc FK
-        string MaHocKy FK
-        float DiemChuyenCan
-        float DiemGiuaKy
-        float DiemCuoiKy
-        float DiemTongKet
-        string DiemChu
-        float DiemHe4
-        string TrangThai
+    DiemHocPhan {
+        int Id PK "Khóa chính tự tăng (Identity)"
+        nvarchar MaSV FK "Mã sinh viên tham chiếu SinhVien"
+        nvarchar MaMon FK "Mã môn học tham chiếu MonHoc"
+        nvarchar MaNienKhoa FK "Niên khóa tham chiếu NienKhoa"
+        decimal DiemChuyenCan "Điểm chuyên cần (0.0 - 10.0)"
+        decimal DiemGiuaKy "Điểm giữa kỳ (0.0 - 10.0)"
+        decimal DiemCuoiKy "Điểm thi cuối kỳ (0.0 - 10.0)"
+        decimal DiemTongKet "Điểm tổng kết môn học thang 10"
+        nvarchar DiemChu "Điểm chữ: A+, A, B+, B, C+, C, D+, D, F"
+        decimal DiemHe4 "Điểm thang 4: 4.0, 3.7, 3.5, 3.0..."
+        nvarchar TrangThai "Trạng thái: Đạt / Trượt"
     }
 
-    LichSuImport {
-        int MaLichSu PK
-        string TenFile
-        string LoaiFile
-        datetime ThoiGianImport
-        int TongSoDong
-        int SoDongThanhCong
-        int SoDongLoi
-        string TrangThai
-        string NguoiThucHien
+    TaiKhoan {
+        int Id PK "Khóa chính tự tăng"
+        nvarchar TenDangNhap UK "Tên đăng nhập (admin, gv01...)"
+        nvarchar MatKhau "Mật khẩu bảo mật"
+        nvarchar HoTen "Họ tên người sở hữu tài khoản"
+        nvarchar Email "Địa chỉ thư điện tử liên hệ"
+        nvarchar VaiTro "Vai trò: Admin / NhanVien / SinhVien"
+        bit TrangThai "Trạng thái kích hoạt (1: Active, 0: Locked)"
+        datetime NgayTao "Thời điểm tạo tài khoản"
+    }
+
+    LogHeThong {
+        int Id PK "Khóa chính tự tăng"
+        nvarchar TenDangNhap "Người thực hiện thao tác"
+        nvarchar HanhDong "Hành động (LOGIN, INSERT, UPDATE...)"
+        nvarchar ChiTiet "Chi tiết mô tả nghiệp vụ"
+        datetime ThoiGian "Dấu thời gian phát sinh sự kiện"
     }
 ```
-*Hình 2.14: Sơ đồ quan hệ thực thể ERD (Entity Relationship Diagram)*
+*Hình 2.15. Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD) chuẩn hóa 3NF*
 
-### 2.5.2. Bảng đặc tả chi tiết các bảng dữ liệu
+#### 2.6.2 Từ điển dữ liệu chi tiết cho 8 bảng Cơ sở dữ liệu
 
-*Bảng 2.9: Thiết kế chi tiết bảng `dbo.TaiKhoan` (Quản lý tài khoản và phân quyền)*
+*Bảng 2.14. Từ điển dữ liệu bảng `TaiKhoan`*
 
-| Tên cột | Kiểu dữ liệu | Khóa | Ràng buộc | Diễn giải | Dữ liệu minh họa |
-|:---|:---|:---:|:---|:---|:---|
-| **TenDangNhap** | `VARCHAR(50)` | **PK** | NOT NULL | Tên tài khoản đăng nhập | `admin`, `nhanvien` |
-| **MatKhau** | `VARCHAR(255)` | | NOT NULL | Mật khẩu tài khoản | `admin123`, `nv123` |
-| **HoTen** | `NVARCHAR(100)` | | NOT NULL | Họ và tên chủ tài khoản | `Quản trị viên hệ thống` |
-| **Email** | `VARCHAR(100)` | | NULL | Email công vụ liên hệ | `admin@phenikaa-uni.edu.vn` |
-| **VaiTro** | `NVARCHAR(20)` | | NOT NULL, Default 'NhanVien' | Vai trò phân quyền (`Admin`, `NhanVien`) | `Admin` |
-| **DangHoatDong** | `BIT` | | NOT NULL, Default 1 | Trạng thái tài khoản (1: Mở, 0: Khóa) | `1` |
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `Id` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng định danh duy nhất người dùng |
+| `TenDangNhap` | `NVARCHAR` | 50 | UNIQUE, NOT NULL | Tên tài khoản đăng nhập vào hệ thống |
+| `MatKhau` | `NVARCHAR` | 255 | NOT NULL | Mật khẩu xác thực (mã hóa an toàn) |
+| `HoTen` | `NVARCHAR` | 100 | NOT NULL | Họ và tên đầy đủ của chủ tài khoản |
+| `Email` | `NVARCHAR` | 150 | NULL | Email liên hệ phục vụ khôi phục thông tin |
+| `VaiTro` | `NVARCHAR` | 50 | NOT NULL | Vai trò phân quyền: `Admin`, `NhanVien`, `SinhVien` |
+| `TrangThai` | `BIT` | 1 byte | DEFAULT 1 | Trạng thái hoạt động (1: Kích hoạt, 0: Tạm khóa) |
+| `NgayTao` | `DATETIME` | 8 bytes | DEFAULT GETDATE() | Ngày giờ khởi tạo tài khoản |
 
-*Bảng 2.10: Thiết kế chi tiết bảng `dbo.Lop` (Lớp sinh hoạt & Khoa đào tạo)*
+*Bảng 2.15. Từ điển dữ liệu bảng `Khoa`*
 
-| Tên cột | Kiểu dữ liệu | Khóa | Ràng buộc | Diễn giải | Dữ liệu minh họa |
-|:---|:---|:---:|:---|:---|:---|
-| **MaLop** | `VARCHAR(20)` | **PK** | NOT NULL | Mã định danh lớp sinh hoạt | `CNTT01`, `CNTT02`, `KHMT01` |
-| **TenLop** | `NVARCHAR(100)` | | NOT NULL | Tên đầy đủ của lớp sinh hoạt | `Công nghệ thông tin 01` |
-| **KhoaHoc** | `NVARCHAR(20)` | | NULL | Niên khóa đào tạo | `K18` |
-| **Khoa** | `NVARCHAR(100)` | | NULL | Tên Khoa / Viện đào tạo quản lý | `Khoa Công nghệ thông tin` |
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaKhoa` | `NVARCHAR` | 20 | PK, NOT NULL | Mã định danh khoa đào tạo (ví dụ: `CNTT`, `DTVT`) |
+| `TenKhoa` | `NVARCHAR` | 100 | NOT NULL | Tên đầy đủ của khoa (Khoa Công nghệ thông tin) |
+| `VanPhong` | `NVARCHAR` | 150 | NULL | Địa điểm phòng làm việc văn phòng khoa |
+| `TruongKhoa` | `NVARCHAR` | 100 | NULL | Họ và tên Trưởng khoa |
 
-*Bảng 2.11: Thiết kế chi tiết bảng `dbo.SinhVien` (Hồ sơ sinh viên)*
+*Bảng 2.16. Từ điển dữ liệu bảng `Lop`*
 
-| Tên cột | Kiểu dữ liệu | Khóa | Ràng buộc | Diễn giải | Dữ liệu minh họa |
-|:---|:---|:---:|:---|:---|:---|
-| **MaSV** | `VARCHAR(20)` | **PK** | NOT NULL | Mã số sinh viên chính thức | `23010191` |
-| **HoTen** | `NVARCHAR(100)` | | NOT NULL | Họ và tên sinh viên | `Thành Ng` |
-| **NgaySinh** | `DATE` | | NULL | Ngày tháng năm sinh | `2005-04-27` |
-| **GioiTinh** | `NVARCHAR(10)` | | NULL | Giới tính (Nam, Nữ, Khác) | `Nam` |
-| **Email** | `VARCHAR(100)` | | NULL | Email sinh viên (khớp Mã SV) | `23010191@st.phenikaa-uni.edu.vn` |
-| **MaLop** | `VARCHAR(20)` | **FK** | NOT NULL, Ref `dbo.Lop(MaLop)` | Mã lớp sinh hoạt | `CNTT02` |
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaLop` | `NVARCHAR` | 20 | PK, NOT NULL | Mã lớp sinh hoạt (ví dụ: `CNTT01`, `KTPM01`) |
+| `TenLop` | `NVARCHAR` | 100 | NOT NULL | Tên đầy đủ của lớp sinh hoạt |
+| `KhoaHoc` | `NVARCHAR` | 50 | NULL | Khóa học đào tạo (ví dụ: `K16`, `K17`) |
+| `Khoa` | `NVARCHAR` | 100 | NULL | Tên khoa quản lý lớp sinh hoạt (ví dụ: `Công nghệ thông tin`) |
 
-*Bảng 2.12: Thiết kế chi tiết bảng `dbo.MonHoc` (Danh mục học phần)*
+*Bảng 2.17. Từ điển dữ liệu bảng `SinhVien`*
 
-| Tên cột | Kiểu dữ liệu | Khóa | Ràng buộc | Diễn giải | Dữ liệu minh họa |
-|:---|:---|:---:|:---|:---|:---|
-| **MaMonHoc** | `VARCHAR(20)` | **PK** | NOT NULL | Mã định danh học phần | `MH001`, `MH002` |
-| **TenMonHoc** | `NVARCHAR(150)` | | NOT NULL | Tên học phần đào tạo | `Lập trình C#`, `Cơ sở dữ liệu` |
-| **SoTinChi** | `INT` | | NOT NULL, CHECK (1-10) | Số tín chỉ của môn học | `3`, `2` |
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaSV` | `NVARCHAR` | 20 | PK, NOT NULL | Mã định danh duy nhất của sinh viên (ví dụ: `22020224`) |
+| `HoTen` | `NVARCHAR` | 100 | NOT NULL | Họ và tên đầy đủ của sinh viên |
+| `NgaySinh` | `DATE` | 3 bytes | NULL | Ngày tháng năm sinh theo giấy khai sinh |
+| `GioiTinh` | `NVARCHAR` | 10 | CHECK in ('Nam','Nữ') | Giới tính của sinh viên |
+| `Email` | `NVARCHAR` | 150 | NOT NULL | Email trường: `[MaSV]@st.phenikaa-uni.edu.vn` |
+| `MaLop` | `NVARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu đến bảng `Lop(MaLop)` |
 
-*Bảng 2.13: Thiết kế chi tiết bảng `dbo.HocKy` (Niên khóa học kỳ)*
+*Bảng 2.18. Từ điển dữ liệu bảng `MonHoc`*
 
-| Tên cột | Kiểu dữ liệu | Khóa | Ràng buộc | Diễn giải | Dữ liệu minh họa |
-|:---|:---|:---:|:---|:---|:---|
-| **MaHocKy** | `VARCHAR(30)` | **PK** | NOT NULL | Mã định danh học kỳ | `HK1_2024_2025` |
-| **TenHocKy** | `NVARCHAR(50)` | | NOT NULL | Tên hiển thị học kỳ | `Học kỳ 1 (2024-2025)` |
-| **NamHoc** | `VARCHAR(20)` | | NOT NULL | Năm học đào tạo | `2024-2025` |
-| **NgayBatDau** | `DATE` | | NULL | Ngày bắt đầu kỳ học | `2024-09-01` |
-| **NgayKetThuc** | `DATE` | | NULL | Ngày kết thúc kỳ học | `2025-01-15` |
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaMon` | `NVARCHAR` | 20 | PK, NOT NULL | Mã học phần đào tạo (ví dụ: `NET01`, `CSDL01`) |
+| `TenMon` | `NVARCHAR` | 100 | NOT NULL | Tên môn học hiển thị |
+| `SoTinChi` | `INT` | 4 bytes | CHECK (> 0) | Số tín chỉ của học phần (trọng số tính GPA) |
+| `HeSoChuyenCan`| `DECIMAL(3,2)` | 5 bytes | DEFAULT 0.10 | Tỷ lệ điểm đánh giá chuyên cần (10%) |
+| `HeSoGiuaKy` | `DECIMAL(3,2)` | 5 bytes | DEFAULT 0.40 | Tỷ lệ điểm kiểm tra giữa kỳ (40%) |
+| `HeSoCuoiKy` | `DECIMAL(3,2)` | 5 bytes | DEFAULT 0.50 | Tỷ lệ điểm thi kết thúc học phần (50%) |
 
-*Bảng 2.14: Thiết kế chi tiết bảng `dbo.KetQua` (Sổ điểm học phần)*
+*Bảng 2.19. Từ điển dữ liệu bảng `NienKhoa`*
 
-| Tên cột | Kiểu dữ liệu | Khóa | Ràng buộc | Diễn giải | Dữ liệu minh họa |
-|:---|:---|:---:|:---|:---|:---|
-| **MaKetQua** | `INT` | **PK** | IDENTITY(1,1) | Khóa chính tự tăng | `1`, `2` |
-| **MaSV** | `VARCHAR(20)` | **FK** | NOT NULL, Ref `SinhVien` | Mã sinh viên | `23010191` |
-| **MaMonHoc** | `VARCHAR(20)` | **FK** | NOT NULL, Ref `MonHoc` | Mã môn học | `MH001` |
-| **MaHocKy** | `VARCHAR(30)` | **FK** | NOT NULL, Ref `HocKy` | Mã học kỳ | `HK1_2024_2025` |
-| **DiemChuyenCan** | `FLOAT` | | NULL, CHECK (0.0-10.0) | Điểm chuyên cần (10%) | `9.0` |
-| **DiemGiuaKy** | `FLOAT` | | NULL, CHECK (0.0-10.0) | Điểm thi giữa kỳ (30%) | `8.5` |
-| **DiemCuoiKy** | `FLOAT` | | NULL, CHECK (0.0-10.0) | Điểm thi cuối kỳ (60%) | `9.0` |
-| **DiemTongKet** | `FLOAT` | | NULL | Điểm tổng kết thang 10 | `8.85` |
-| **DiemChu** | `VARCHAR(5)` | | NULL | Điểm chữ quy đổi | `A` |
-| **DiemHe4** | `FLOAT` | | NULL | Điểm hệ 4 quy đổi | `3.7` |
-| **TrangThai** | `NVARCHAR(20)` | | NULL | Kết quả học phần (`Đạt` / `Học lại`) | `Đạt` |
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaNienKhoa` | `NVARCHAR` | 50 | PK, NOT NULL | Mã định danh niên khóa học kỳ (ví dụ: `2025-2026_HK1`) |
+| `TenNienKhoa`| `NVARCHAR` | 50 | NOT NULL | Chuỗi năm học hiển thị (ví dụ: `2025-2026`) |
+| `HocKy` | `INT` | 4 bytes | CHECK in (1, 2, 3) | Học kỳ đào tạo trong năm học (1: Kỳ 1, 2: Kỳ 2, 3: Hè) |
+| `IsActive` | `BIT` | 1 byte | DEFAULT 0 | Đánh dấu học kỳ hiện hành đang mở nhận điểm |
 
-*Bảng 2.15: Thiết kế chi tiết bảng `dbo.LichSuImport` (Nhật ký nạp dữ liệu)*
+*Bảng 2.20. Từ điển dữ liệu bảng `DiemHocPhan`*
 
-| Tên cột | Kiểu dữ liệu | Khóa | Ràng buộc | Diễn giải | Dữ liệu minh họa |
-|:---|:---|:---:|:---|:---|:---|
-| **MaLichSu** | `INT` | **PK** | IDENTITY(1,1) | Mã định danh lần nạp | `1` |
-| **TenFile** | `NVARCHAR(255)` | | NOT NULL | Tên tệp tin đã chọn nạp | `04_BangDiem_LopCNTT02.xlsx` |
-| **LoaiFile** | `VARCHAR(10)` | | NOT NULL | Định dạng tệp (`XLSX`, `CSV`) | `XLSX` |
-| **ThoiGianImport** | `DATETIME` | | NOT NULL, Default GETDATE() | Thời điểm thực hiện nạp | `2026-11-05 14:30:00` |
-| **TongSoDong** | `INT` | | NOT NULL, Default 0 | Tổng số dòng trong file | `50` |
-| **SoDongThanhCong** | `INT` | | NOT NULL, Default 0 | Số dòng nạp thành công | `50` |
-| **SoDongLoi** | `INT` | | NOT NULL, Default 0 | Số dòng bị lỗi bỏ qua | `0` |
-| **TrangThai** | `NVARCHAR(50)` | | NOT NULL | Trạng thái nạp (`ThanhCong`...) | `ThanhCong` |
-| **NguoiThucHien** | `VARCHAR(50)` | | NULL | Tài khoản thực hiện nạp | `admin` |
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `Id` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng |
+| `MaSV` | `NVARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu `SinhVien(MaSV)` |
+| `MaMon` | `NVARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu `MonHoc(MaMon)` |
+| `MaNienKhoa` | `NVARCHAR` | 50 | FK, NOT NULL | Khóa ngoại tham chiếu `NienKhoa(MaNienKhoa)` |
+| `DiemChuyenCan`| `DECIMAL(4,2)` | 5 bytes | CHECK (0.0 - 10.0)| Điểm chuyên cần thành phần |
+| `DiemGiuaKy` | `DECIMAL(4,2)` | 5 bytes | CHECK (0.0 - 10.0)| Điểm thi đánh giá giữa kỳ |
+| `DiemCuoiKy` | `DECIMAL(4,2)` | 5 bytes | CHECK (0.0 - 10.0)| Điểm thi kết thúc học phần |
+| `DiemTongKet` | `DECIMAL(4,2)` | 5 bytes | NULL | Điểm tổng kết môn học thang 10 |
+| `DiemChu` | `NVARCHAR` | 5 | NULL | Điểm chữ quy đổi: `A+`, `A`, `B+`, `B`, `C+`, `C`, `D+`, `D`, `F` |
+| `DiemHe4` | `DECIMAL(3,2)` | 5 bytes | NULL | Điểm thang 4 quy đổi: 4.0, 3.7, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.0 |
+| `TrangThai` | `NVARCHAR` | 20 | NULL | Trạng thái: `Đạt` hoặc `Trượt` |
 
-### 2.5.3. Thiết kế các Khung nhìn phân tích (Database Views)
-Để tối ưu hóa hiệu năng tính toán và không cần tính toán thủ công ở tầng mã nguồn ứng dụng, hệ thống xây dựng 2 SQL Views nâng cao:
+*Bảng 2.21. Từ điển dữ liệu bảng `LogHeThong`*
 
-1. **`dbo.vw_DiemTrungBinhHocKy`:** Tính toán điểm trung bình có trọng số tín chỉ của từng sinh viên theo từng học kỳ.
-```sql
-CREATE OR ALTER VIEW dbo.vw_DiemTrungBinhHocKy
-AS
-SELECT
-    sv.MaSV,
-    sv.HoTen,
-    sv.MaLop,
-    hk.MaHocKy,
-    hk.TenHocKy,
-    hk.NamHoc,
-    COUNT(*) AS TongSoMon,
-    SUM(mh.SoTinChi) AS TongSoTinChi,
-    SUM(CASE WHEN k.DiemTongKet IS NULL THEN 1 ELSE 0 END) AS SoMonThieuDiem,
-    SUM(CASE WHEN k.DiemTongKet IS NOT NULL THEN mh.SoTinChi ELSE 0 END) AS SoTinChiDaCoDiem,
-    CAST(
-        SUM(CASE WHEN k.DiemTongKet IS NOT NULL THEN k.DiemTongKet * mh.SoTinChi ELSE 0 END)
-        / NULLIF(SUM(CASE WHEN k.DiemTongKet IS NOT NULL THEN mh.SoTinChi ELSE 0 END), 0)
-    AS DECIMAL(4, 2)) AS DiemTrungBinhTamTinh,
-    CAST(
-        SUM(CASE WHEN k.DiemHe4 IS NOT NULL THEN k.DiemHe4 * mh.SoTinChi ELSE 0 END)
-        / NULLIF(SUM(CASE WHEN k.DiemHe4 IS NOT NULL THEN mh.SoTinChi ELSE 0 END), 0)
-    AS DECIMAL(4, 2)) AS DiemTrungBinhHe4,
-    CASE
-        WHEN SUM(CASE WHEN k.DiemTongKet IS NULL THEN 1 ELSE 0 END) > 0 THEN N'Chưa hoàn thiện điểm'
-        ELSE N'Đã hoàn thiện điểm'
-    END AS TrangThai
-FROM dbo.KetQua AS k
-JOIN dbo.SinhVien AS sv ON k.MaSV = sv.MaSV
-JOIN dbo.MonHoc AS mh ON k.MaMonHoc = mh.MaMonHoc
-JOIN dbo.HocKy AS hk ON k.MaHocKy = hk.MaHocKy
-GROUP BY sv.MaSV, sv.HoTen, sv.MaLop, hk.MaHocKy, hk.TenHocKy, hk.NamHoc;
-```
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `Id` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng |
+| `TenDangNhap` | `NVARCHAR` | 50 | NOT NULL | Tài khoản người dùng thực thi hành động |
+| `HanhDong` | `NVARCHAR` | 50 | NOT NULL | Loại hành động: `LOGIN`, `INSERT_SV`, `UPDATE_DIEM`... |
+| `ChiTiet` | `NVARCHAR` | 255 | NULL | Mô tả chi tiết dữ liệu biến động |
+| `ThoiGian` | `DATETIME` | 8 bytes | DEFAULT GETDATE() | Dấu thời gian hệ thống ghi nhận |
 
-2. **`dbo.vw_PhanLoaiHocLuc`:** Phân loại học lực tự động căn cứ theo thang điểm 4.0 gia quyền tín chỉ:
-```sql
-CREATE OR ALTER VIEW dbo.vw_PhanLoaiHocLuc
-AS
-SELECT
-    d.MaSV,
-    d.HoTen,
-    d.MaLop,
-    d.MaHocKy,
-    d.TenHocKy,
-    d.NamHoc,
-    d.TongSoMon,
-    d.SoMonThieuDiem,
-    d.DiemTrungBinhTamTinh AS DiemTrungBinh,
-    d.DiemTrungBinhHe4,
-    CASE
-        WHEN d.SoMonThieuDiem > 0 OR d.DiemTrungBinhTamTinh IS NULL THEN N'Chưa đủ điểm'
-        WHEN d.DiemTrungBinhHe4 >= 3.60 THEN N'Xuất sắc'
-        WHEN d.DiemTrungBinhHe4 >= 3.20 THEN N'Giỏi'
-        WHEN d.DiemTrungBinhHe4 >= 2.50 THEN N'Khá'
-        WHEN d.DiemTrungBinhHe4 >= 2.00 THEN N'Trung bình'
-        WHEN d.DiemTrungBinhHe4 >= 1.00 THEN N'Yếu'
-        ELSE N'Kém'
-    END AS XepLoaiHocLuc
-FROM dbo.vw_DiemTrungBinhHocKy AS d;
-```
+<div style="page-break-after: always;"></div>
 
-## 2.6. Thiết kế Kiến trúc phần mềm và Giao diện người dùng
-### 2.6.1. Kiến trúc MVVM (Model - View - ViewModel)
-Ứng dụng được tổ chức thành 4 tầng kiến trúc rành mạch:
+---
+
+### 2.7 Thiết kế Kiến trúc phần mềm (Software Architecture)
+
+Hệ thống được xây dựng tuân thủ nghiêm ngặt theo **Mẫu kiến trúc MVVM (Model - View - ViewModel)** kết hợp với **Repository Pattern**:
 
 ```mermaid
 flowchart TD
-    subgraph UI ["Tầng Trình diễn (View - XAML)"]
+    subgraph PresentationLayer ["1. Presentation Layer (Tầng hiển thị - Views)"]
         V1[LoginWindow.xaml]
         V2[MainWindow.xaml]
         V3[DashboardView.xaml]
         V4[QuanLySinhVienView.xaml]
-        V5[QuanLyDiemView.xaml]
-        V6[HeThongImportView.xaml]
-        V7[PhanTichView.xaml]
-        V8[ThongKeCanhBaoView.xaml]
-        V9[QuanLyTaiKhoanView.xaml]
+        V5[QuanLyMonHocView.xaml]
+        V6[SoDiemHocPhanView.xaml]
+        V7[NhapDiemView.xaml]
+        V8[TraCuuGPAView.xaml]
+        V9[CanhBaoHocVuView.xaml]
+        V10[QuanTriView.xaml]
     end
 
-    subgraph VM ["Tầng Điều khiển Logic (ViewModel - C#)"]
+    subgraph ViewModelLayer ["2. ViewModel Layer (Tầng Logic nghiệp vụ & Điều khiển)"]
         VM1[LoginViewModel]
         VM2[MainViewModel]
         VM3[DashboardViewModel]
         VM4[QuanLySinhVienViewModel]
-        VM5[QuanLyDiemViewModel]
-        VM6[HeThongImportViewModel]
-        VM7[PhanTichViewModel]
-        VM8[ThongKeCanhBaoViewModel]
-        VM9[QuanLyTaiKhoanViewModel]
+        VM5[QuanLyMonHocViewModel]
+        VM6[SoDiemHocPhanViewModel]
+        VM7[NhapDiemViewModel]
+        VM8[TraCuuGPAViewModel]
+        VM9[CanhBaoHocVuViewModel]
+        VM10[QuanTriViewModel]
+        BaseVM[ViewModelBase : INotifyPropertyChanged]
+        RelayCmd[RelayCommand : ICommand]
     end
 
-    subgraph DA ["Tầng Truy xuất Dữ liệu (DataAccess / Repository)"]
-        R1[TaiKhoanRepository]
-        R2[SinhVienRepository]
-        R3[LopRepository]
-        R4[MonHocRepository]
-        R5[HocKyRepository]
-        R6[KetQuaRepository]
-        R7[DashboardRepository]
-        R8[DatabaseHelper]
+    subgraph DomainModelLayer ["3. Model Layer (Tầng Mô hình dữ liệu)"]
+        M1[SinhVien.cs]
+        M2[Lop.cs]
+        M3[Khoa.cs]
+        M4[MonHoc.cs]
+        M5[DiemHocPhan.cs]
+        M6[NienKhoa.cs]
+        M7[TaiKhoan.cs]
+        M8[LogHeThong.cs]
     end
 
-    subgraph MD ["Tầng Thực thể (Model)"]
-        M1[TaiKhoan]
-        M2[SinhVien]
-        M3[Lop]
-        M4[MonHoc]
-        M5[HocKy]
-        M6[KetQua]
-        M7[LichSuImport]
+    subgraph DataAccessLayer ["4. Data Access Layer (Repository Pattern & ADO.NET)"]
+        R1[SinhVienRepository]
+        R2[LopRepository]
+        R3[MonHocRepository]
+        R4[DiemHocPhanRepository]
+        R5[TaiKhoanRepository]
+        R6[ThongKeRepository]
+        DBHelper[DatabaseHelper / ConnectionString]
     end
 
-    subgraph DB ["Cơ sở dữ liệu Đám mây"]
-        SQL[(Microsoft SQL Server
-Somee Cloud)]
+    subgraph CloudDatabase ["5. Cloud Database Server"]
+        SomeeDB[(Somee SQL Server Cloud
+StudentResultAnalyticsDB)]
     end
 
-    UI <==> |Data Binding & Commands| VM
-    VM --> |Gọi hàm nghiệp vụ| DA
-    DA --> |Nạp & Trả về đối tượng| MD
-    DA <==> |ADO.NET SqlCommand / SqlDataReader| DB
+    PresentationLayer <== "Two-Way DataBinding
+ICommand Execution" ==> ViewModelLayer
+    ViewModelLayer --> DomainModelLayer
+    ViewModelLayer --> DataAccessLayer
+    DataAccessLayer --> DomainModelLayer
+    DataAccessLayer <== "TCP/IP Connection
+ADO.NET (SqlClient)" ==> CloudDatabase
 ```
-*Hình 2.15: Sơ đồ kiến trúc phần mềm mô hình MVVM (Model - View - ViewModel)*
+*Hình 2.16. Sơ đồ Kiến trúc phân tầng hệ thống kết hợp Mô hình MVVM và Repository Pattern*
 
-### 2.6.2. Mô tả chi tiết các Giao diện người dùng
-Dưới đây là chi tiết 9 màn hình giao diện của hệ thống kèm khung vị trí gắn ảnh minh họa thực tế và diễn giải cách vận hành:
-
-#### 1. Giao diện Đăng nhập hệ thống (`LoginWindow.xaml`)
-- **Mục đích:** Xác thực danh tính cán bộ trước khi vào hệ thống.
-- **Thành phần:**
-  - Ảnh nền tốt nghiệp đại học có chiều sâu thẩm mỹ cao.
-  - Form màu trắng bo tròn ở trung tâm với biểu tượng máy bay giấy và tiêu đề "ĐĂNG NHẬP - HỆ THỐNG PHÂN TÍCH KẾT QUẢ HỌC TẬP".
-  - Ô nhập Tên đăng nhập kèm biểu tượng người dùng (`👤`).
-  - Ô nhập Mật khẩu kèm biểu tượng chìa khóa (`🔑`), đặc biệt có **nút icon con mắt (👁 / 🙈)** ở bên phải cho phép người dùng bấm để ẩn hoặc hiện mật khẩu tức thì.
-  - Nút bấm chính "ĐĂNG NHẬP" màu xanh navy đậm, nút "Thoát ứng dụng", "Quên mật khẩu" và "❓ Trợ giúp!".
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.16: ẢNH CHỤP GIAO DIỆN ĐĂNG NHẬP HỆ THỐNG]                                |
-| (Vị trí chèn ảnh chụp: Form đăng nhập trung tâm, ô nhập mật khẩu có icon con mắt) |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.16: Giao diện đăng nhập hệ thống (kèm nút xem/ẩn mật khẩu)*
-
-#### 2. Giao diện Bàn làm việc tổng quan (`DashboardView.xaml`)
-- **Mục đích:** Trung tâm điều hành cung cấp góc nhìn toàn cảnh về tình hình học vụ toàn trường.
-- **Thành phần:**
-  - Hàng trên: 6 Thẻ KPI tổng quan (Tổng sinh viên, Lớp sinh hoạt, Học phần đào tạo, Điểm TB toàn khóa, Tỷ lệ đạt chung, Cần bổ sung điểm).
-  - Khối bên trái: Biểu đồ thanh tiến độ ngang phân bố học lực toàn khóa (Xuất sắc, Giỏi, Khá, Trung bình, Yếu/Kém, Chưa đủ điểm).
-  - Khối bên phải: Bảng thống kê kết quả Đạt / Trượt theo từng học phần.
-  - Phía dưới bên trái: Bảng Cảnh báo học vụ & Danh sách sinh viên còn thiếu điểm thành phần cần đôn đốc.
-  - Phía dưới bên phải: Bảng lối tắt thao tác nhanh và thông tin trạng thái máy chủ cơ sở dữ liệu.
-  - Thanh tiêu đề trên cùng: Nút Toggle Sidebar (☰), Logo chính thức trường, Bộ lọc học kỳ toàn hệ thống (`📅 Kỳ xét:` ComboBox), và Huy hiệu trạng thái kết nối `🟢 Trực tuyến`.
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.17: ẢNH CHỤP GIAO DIỆN BÀN LÀM VIỆC TỔNG QUAN (DASHBOARD)]                |
-| (Vị trí chèn ảnh chụp: 6 thẻ KPI, biểu đồ phân bố học lực, cảnh báo học vụ)       |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.17: Giao diện Bàn làm việc tổng quan (Executive Academic Dashboard)*
-
-#### 3. Giao diện Hồ sơ Sinh viên & Lớp học (`QuanLySinhVienView.xaml`)
-- **Mục đích:** Quản lý thông tin lý lịch sinh viên và cơ cấu tổ chức lớp học theo từng Khoa/Viện.
-- **Thành phần:**
-  - Thiết kế dạng 2 Tab trực quan: Tab 1 "Danh sách & Hồ sơ Sinh viên", Tab 2 "Danh mục Lớp học".
-  - **Tại Tab 1:**
-    - Form nhập sinh viên: Mã sinh viên (*), Họ và tên (*), Ngày sinh, Giới tính, Email (*), Lớp sinh hoạt (*).
-    - **Tính năng thông minh:** Khi nhập Mã sinh viên (ví dụ `23010191`), trường Email liên hệ lập tức tự động sinh ra `23010191@st.phenikaa-uni.edu.vn` (có chú thích nghiêng trực quan: `(Tự động: [MãSV]@st.phenikaa-uni.edu.vn)`).
-    - ComboBox chọn Lớp sinh hoạt hiển thị trực quan: `Mã lớp - Tên lớp (Khoa quản lý)`.
-    - Bảng danh sách sinh viên với đầy đủ cột: Mã SV, Họ và tên, Ngày sinh, Giới tính, Email, Mã lớp, Tên lớp sinh hoạt, **Khoa / Viện quản lý**.
-  - **Tại Tab 2:**
-    - Form nhập lớp: Mã lớp (*), Tên lớp học (*), Khóa học, **Khoa / Viện quản lý (*)** (hỗ trợ ComboBox nhập chọn nhanh các khoa: CNTT, KHMT, Điện - Điện tử, Kinh tế & Kinh doanh, Ô tô & Năng lượng,...).
-    - Bảng danh sách lớp có cột hiển thị Khoa/Viện quản lý rõ ràng.
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.18: ẢNH CHỤP GIAO DIỆN QUẢN LÝ HỒ SƠ SINH VIÊN VÀ LỚP HỌC]                |
-| (Vị trí chèn ảnh chụp: Form nhập sinh viên tự động sinh email @st và cột Khoa)    |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.18: Giao diện Quản lý Hồ sơ Sinh viên và Lớp học (phân Khoa & Email sinh viên)*
-
-#### 4. Giao diện Học phần & Niên khóa (`QuanLyMonHocHocKyView.xaml`)
-- **Mục đích:** Quản lý chương trình khung học phần đào tạo và khung thời gian niên khóa học kỳ.
-- **Thành phần:**
-  - Tab 1: Danh mục Môn học (Mã môn, Tên môn, Số tín chỉ từ 1 - 10).
-  - Tab 2: Danh mục Học kỳ & Niên khóa (Mã học kỳ, Tên học kỳ, Niên khóa, Ngày bắt đầu, Ngày kết thúc).
-  - Hỗ trợ đầy đủ các thao tác Thêm, Cập nhật, Xóa, Làm trống và Tìm kiếm nhanh.
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.19: ẢNH CHỤP GIAO DIỆN QUẢN LÝ HỌC PHẦN VÀ NIÊN KHÓA ĐÀO TẠO]            |
-| (Vị trí chèn ảnh chụp: Danh sách học phần và số tín chỉ, danh mục học kỳ)         |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.19: Giao diện Quản lý Học phần và Niên khóa đào tạo*
-
-#### 5. Giao diện Sổ điểm học phần (`QuanLyDiemView.xaml`)
-- **Mục đích:** Sổ điểm điện tử của giảng viên và cán bộ khảo thí để theo dõi và cập nhật điểm thành phần từng môn học.
-- **Thành phần:**
-  - Bộ lọc trên cùng: Chọn Học kỳ $ightarrow$ Chọn Học phần $ightarrow$ Bấm "MỞ SỔ ĐIỂM".
-  - Bảng danh sách sinh viên học phần: Mã SV, Họ và tên sinh viên, Mã lớp, Điểm chuyên cần (10%), Điểm giữa kỳ (30%), Điểm cuối kỳ (60%), Điểm tổng kết thang 10, Điểm chữ, Điểm hệ 4, Trạng thái (Đạt / Học lại).
-  - Form bên cạnh cho phép chọn sinh viên và cập nhật điểm số nhanh chóng.
-  - Tự động kiểm tra thang điểm (0.0 đến 10.0), nếu vượt quá sẽ cảnh báo và chặn lưu.
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.20: ẢNH CHỤP GIAO DIỆN SỔ ĐIỂM HỌC PHẦN CHI TIẾT]                         |
-| (Vị trí chèn ảnh chụp: Bảng sổ điểm có đủ điểm chuyên cần, giữa kỳ, cuối kỳ, GPA) |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.20: Giao diện Sổ điểm học phần chi tiết*
-
-#### 6. Giao diện Nhập điểm từ File Excel/CSV (`HeThongImportView.xaml`)
-- **Mục đích:** Cung cấp công cụ nạp dữ liệu hàng loạt từ file ngoài vào cơ sở dữ liệu.
-- **Thành phần:**
-  - Thanh chọn file: Nút "CHỌN FILE..." mở hộp thoại chọn tệp (`.xlsx`, `.csv`), nút "THỰC HIỆN IMPORT" màu xanh lá.
-  - Hàng 4 thẻ thống kê kết quả nạp: TỔNG DÒNG (màu xanh dương), THÀNH CÔNG (màu xanh lá), DÒNG LỖI (màu đỏ phấn), TRẠNG THÁI (màu cam).
-  - Dòng thông báo tóm tắt chi tiết: "Import hoàn tất! Tổng: 50 | Thành công: 50 | Lỗi: 0 | Đã lưu lịch sử Import thành công."
-  - Bảng nhật ký lịch sử nạp dữ liệu: Mã lần nạp, Tên file, Loại file, Thời gian nạp, Tổng dòng, Thành công, Dòng lỗi, Trạng thái.
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.21: ẢNH CHỤP GIAO DIỆN NHẬP ĐIỂM THI TỪ FILE EXCEL/CSV & LỊCH SỬ NẠP]     |
-| (Vị trí chèn ảnh chụp: 4 thẻ KPI kết quả nạp và bảng lịch sử import thành công)   |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.21: Giao diện Nhập điểm thi từ file Excel/CSV và Lịch sử Import*
-
-#### 7. Giao diện Tra cứu GPA & Phân loại học lực (`PhanTichView.xaml`)
-- **Mục đích:** Báo cáo học vụ chính thức để xét học bổng, xét tốt nghiệp và cấp bảng điểm sinh viên.
-- **Thành phần:**
-  - Bộ lọc: Chọn Học kỳ xét (hoặc Tất cả học kỳ toàn khóa), Chọn Lớp sinh hoạt, Ô tìm kiếm theo tên hoặc mã sinh viên.
-  - Bảng tổng hợp GPA: Mã SV, Họ và tên, Lớp sinh hoạt, Tổng số môn, Số tín chỉ đã tích lũy, Số môn còn thiếu điểm, Điểm TB thang 10, Điểm GPA thang 4.0, Xếp loại học lực (Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém).
-  - Nút "XUẤT BÁO CÁO EXCEL" cho phép trích xuất bảng điểm ra file Excel văn phòng để in ấn.
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.22: ẢNH CHỤP GIAO DIỆN TRA CỨU GPA VÀ PHÂN LOẠI HỌC LỰC TOÀN KHÓA]        |
-| (Vị trí chèn ảnh chụp: Bảng tổng hợp GPA theo tín chỉ và phân loại học lực)       |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.22: Giao diện Tra cứu GPA và Phân loại học lực toàn khóa*
-
-#### 8. Giao diện Thống kê Đạt/Trượt & Cảnh báo học vụ (`ThongKeCanhBaoView.xaml`)
-- **Mục đích:** Giúp Cố vấn học tập và Khoa giám sát chất lượng và phát hiện sớm sinh viên có nguy cơ bị buộc thôi học.
-- **Thành phần:**
-  - Bảng 1: Thống kê tỷ lệ Đạt/Trượt theo từng môn học (Mã môn, Tên môn, Số TC, Tổng SV học, Số lượng Đạt, Số lượng Trượt, Số lượng Thiếu điểm, Tỷ lệ Đạt %).
-  - Bảng 2: Danh sách Cảnh báo học vụ (Mã SV, Họ tên, Lớp, Học kỳ, Điểm GPA hệ 4, Số môn nợ, Lý do cảnh báo chi tiết).
-  - Nút "XUẤT DANH SÁCH CẢNH BÁO" để chuyển danh sách cho Cố vấn học tập gửi thư nhắc nhở về gia đình sinh viên.
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.23: ẢNH CHỤP GIAO DIỆN THỐNG KÊ ĐẠT/TRƯỢT VÀ DANH SÁCH CẢNH BÁO HỌC VỤ]   |
-| (Vị trí chèn ảnh chụp: Danh sách sinh viên bị cảnh báo học vụ và thống kê môn học)|
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.23: Giao diện Thống kê Đạt/Trượt và Danh sách Cảnh báo học vụ*
-
-#### 9. Giao diện Quản trị & Phân quyền hệ thống (`QuanLyTaiKhoanView.xaml`)
-- **Mục đích:** Bảo vệ hệ thống và phân quyền người dùng (chỉ hiển thị khi tài khoản đăng nhập là `Admin`).
-- **Thành phần:**
-  - Form thêm/sửa tài khoản: Tên đăng nhập, Mật khẩu, Họ tên, Email, Vai trò (`Admin` / `NhanVien`), Trạng thái hoạt động (Checkbox).
-  - Bảng danh sách tài khoản: Tên đăng nhập, Họ tên, Email, Vai trò, Trạng thái (Đang mở / Bị khóa).
-  - Nút chức năng: Thêm mới, Cập nhật, Khóa/Mở tài khoản, Đặt lại mật khẩu mặc định (`123456`).
-
-```
-+-----------------------------------------------------------------------------------+
-| [HÌNH 2.24: ẢNH CHỤP GIAO DIỆN QUẢN TRỊ TÀI KHOẢN VÀ PHÂN QUYỀN HỆ THỐNG]         |
-| (Vị trí chèn ảnh chụp: Bảng danh sách tài khoản phân quyền Admin và Nhân viên)    |
-+-----------------------------------------------------------------------------------+
-```
-*Hình 2.24: Giao diện Quản trị người dùng và Phân quyền hệ thống*
-
----
+#### Các thành phần kiến trúc cốt lõi:
+1. **Views (Giao diện XAML)**: Chỉ chứa mã khai báo giao diện người dùng, hoàn toàn không chứa mã xử lý nghiệp vụ (Zero Code-Behind trong các View). Các control (TextBox, ComboBox, DataGrid, Button) liên kết với dữ liệu thông qua cơ chế `DataContext` và `{Binding}` của WPF.
+2. **ViewModels**: Đóng vai trò cầu nối trung gian giữa View và Model. Kế thừa từ `ViewModelBase` triển khai giao diện `INotifyPropertyChanged` để tự động thông báo cho giao diện khi dữ liệu thuộc tính thay đổi; triển khai `RelayCommand` để bắt các sự kiện người dùng từ nút bấm.
+3. **Models**: Các lớp đối tượng nghiệp vụ (`SinhVien`, `DiemHocPhan`, `MonHoc`...) ánh xạ trực tiếp với các thực thể trong cơ sở dữ liệu.
+4. **Repositories**: Tầng truy cập dữ liệu tách rời độc lập. Sử dụng bộ thư viện tối ưu hóa `Microsoft.Data.SqlClient` để mở kết nối SQL Server, chuẩn bị tham số `SqlParameter` và chuyển đổi kết quả `SqlDataReader` thành các danh sách đối tượng C#, giúp hệ thống đạt tốc độ xử lý nhanh nhất và triệt tiêu nguy cơ SQL Injection.
 
 <div style="page-break-after: always;"></div>
 
-# CHƯƠNG 3: TRIỂN KHAI VÀ ĐÁNH GIÁ KẾT QUẢ
+---
 
-## 3.1. Lựa chọn giải pháp công nghệ và môi trường triển khai
-Hệ thống được xây dựng và triển khai bằng các công nghệ chuẩn công nghiệp:
-- **Ngôn ngữ lập trình:** C# (C-Sharp) trên nền tảng Microsoft .NET Framework 4.7.2.
-- **Công nghệ giao diện:** Windows Presentation Foundation (WPF) với XAML 2006.
-- **Môi trường phát triển tích hợp:** Microsoft Visual Studio 2022 Community / Professional.
-- **Hệ quản trị CSDL:** Microsoft SQL Server 2019 / 2022, triển khai máy chủ đám mây tại Somee Cloud Server (`StudentResultAnalyticsDB.mssql.somee.com`).
-- **Thư viện xử lý bảng tính:** EPPlus 4.5.3.3 (mã nguồn mở, hiệu năng cao, không cần cài Excel).
-- **Hệ thống quản lý phiên bản:** Git và GitHub.
+# CHƯƠNG 3. HIỆN THỰC HÓA, KIỂM THỬ VÀ ĐÁNH GIÁ KẾT QUẢ
 
-## 3.2. Cài đặt các chức năng và giải thuật cốt lõi
-### 3.2.1. Giải thuật quy đổi thang điểm và tính điểm gia quyền tín chỉ
-Theo yêu cầu chuẩn hóa học vụ, hệ thống cài đặt lớp hỗ trợ [`GpaHelper.cs`](file:///d:/Code_Hoc/STUDENT_RESULT_ANALYTICS/RESULT_ANALYTICS/RESULT_ANALYTICS/Helpers/GpaHelper.cs) với các mức quy đổi:
-- Từ 9.0 đến 10.0 $ightarrow$ Điểm chữ **A+**, Điểm hệ 4: **4.0**
-- Từ 8.5 đến 8.9 $ightarrow$ Điểm chữ **A**, Điểm hệ 4: **3.7**
-- Từ 8.0 đến 8.4 $ightarrow$ Điểm chữ **B+**, Điểm hệ 4: **3.5**
-- Từ 7.0 đến 7.9 $ightarrow$ Điểm chữ **B**, Điểm hệ 4: **3.0**
-- Từ 6.5 đến 6.9 $ightarrow$ Điểm chữ **C+**, Điểm hệ 4: **2.5**
-- Từ 5.5 đến 6.4 $ightarrow$ Điểm chữ **C**, Điểm hệ 4: **2.0**
-- Từ 5.0 đến 5.4 $ightarrow$ Điểm chữ **D+**, Điểm hệ 4: **1.5**
-- Từ 4.0 đến 4.9 $ightarrow$ Điểm chữ **D**, Điểm hệ 4: **1.0**
-- Dưới 4.0 $ightarrow$ Điểm chữ **F**, Điểm hệ 4: **0.0** (Học lại)
+### 3.1 Môi trường công nghệ & Công cụ phát triển
+Hệ thống được xây dựng và triển khai dựa trên các công nghệ và công cụ hiện đại:
+- **Ngôn ngữ lập trình**: C# phiên bản 12.0 với các tính năng mới nhất (Pattern Matching, Primary Constructors, Nullable Reference Types).
+- **Nền tảng thực thi**: Microsoft .NET 8.0 LTS (Long-Term Support).
+- **Nền tảng giao diện**: Windows Presentation Foundation (WPF) kết hợp bộ giao diện hiện đại phong cách phẳng (Modern Material UI Styling).
+- **Thư viện đồ thị & trực quan hóa**: LiveCharts2 (Bản v2.0.0-beta dành cho WPF) để kết xuất các biểu đồ KPI động.
+- **Thư viện xử lý dữ liệu ngoại vi**: DocumentFormat.OpenXml & CsvHelper phục vụ phân tích và nạp tệp bảng điểm Excel/CSV.
+- **Hệ quản trị cơ sở dữ liệu**: Microsoft SQL Server 2022 lưu trữ trên máy chủ điện toán đám mây Somee Cloud (`StudentResultAnalyticsDB.mssql.somee.com`).
+- **Môi trường phát triển tích hợp (IDE)**: Microsoft Visual Studio 2022 Professional / Community Edition.
 
-Đoạn mã nguồn cốt lõi trong `GpaHelper.cs`:
-```csharp
-public static class GpaHelper
-{
-    public static string QuyDoiDiemChu(double? diemTongKet)
-    {
-        if (!diemTongKet.HasValue) return "";
-        double d = Math.Round(diemTongKet.Value, 2);
-        if (d >= 9.0) return "A+";
-        if (d >= 8.5) return "A";
-        if (d >= 8.0) return "B+";
-        if (d >= 7.0) return "B";
-        if (d >= 6.5) return "C+";
-        if (d >= 5.5) return "C";
-        if (d >= 5.0) return "D+";
-        if (d >= 4.0) return "D";
-        return "F";
-    }
+### 3.2 Hiện thực hóa các giao diện chức năng chính
 
-    public static double? QuyDoiDiemHe4(double? diemTongKet)
-    {
-        if (!diemTongKet.HasValue) return null;
-        double d = Math.Round(diemTongKet.Value, 2);
-        if (d >= 9.0) return 4.0;
-        if (d >= 8.5) return 3.7;
-        if (d >= 8.0) return 3.5;
-        if (d >= 7.0) return 3.0;
-        if (d >= 6.5) return 2.5;
-        if (d >= 5.5) return 2.0;
-        if (d >= 5.0) return 1.5;
-        if (d >= 4.0) return 1.0;
-        return 0.0;
-    }
-}
+#### 3.2.1 Giao diện Đăng nhập hệ thống (LoginWindow)
+Cửa sổ đăng nhập được thiết kế tinh tế với nền xanh gradient hiện đại, form đăng nhập dạng Card nổi bật:
+- Hỗ trợ nhập Tên đăng nhập và Mật khẩu.
+- **Nút xem/ẩn mật khẩu (con mắt 👁 / 🙈)**: Cho phép chuyển đổi tức thì giữa chế độ che giấu (`PasswordBox`) và văn bản rõ (`TextBox`) giúp người dùng kiểm tra ký tự trước khi xác nhận.
+- Cơ chế ghi nhớ tài khoản và phím tắt `Enter` để đăng nhập nhanh.
+
 ```
-
-### 3.2.2. Giải thuật tự động sinh Email sinh viên và kiểm soát tính nhất quán
-Tại ViewModel quản lý sinh viên (`QuanLySinhVienViewModel.cs`), khi thuộc tính `MaSV` thay đổi:
-```csharp
-public string MaSV
-{
-    get { return maSV; }
-    set
-    {
-        if (SetProperty(ref maSV, value))
-        {
-            if (!dangNapDuLieu && !DangSua)
-            {
-                CapNhatEmailTheoMaSV(value);
-            }
-        }
-    }
-}
-
-private void CapNhatEmailTheoMaSV(string maMoi)
-{
-    if (string.IsNullOrWhiteSpace(maMoi))
-    {
-        Email = "";
-        return;
-    }
-    string maTrim = maMoi.Trim();
-    Email = $"{maTrim}@st.phenikaa-uni.edu.vn";
-}
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.1: MÀN HÌNH ĐĂNG NHẬP HỆ THỐNG - LOGINWINDOW]                 |
+|   (Vị trí dán ảnh: Cửa sổ LoginWindow hiển thị ô Username 'admin', ô Password          |
+|    kèm nút con mắt xem/ẩn mật khẩu và nút 'ĐĂNG NHẬP')                                |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
 ```
+*Hình 3.1. Giao diện Đăng nhập hệ thống (LoginWindow) tích hợp nút xem/ẩn mật khẩu*
 
-### 3.2.3. Giải thuật ẩn/hiện mật khẩu hai chiều trên LoginWindow
-```csharp
-private bool dangHienThiMatKhau = false;
+#### 3.2.2 Giao diện Bàn làm việc Dashboard (Executive Academic Dashboard)
+Bàn làm việc Dashboard là trung tâm chỉ huy tổng quan, cập nhật dữ liệu tự động:
+- **6 Thẻ chỉ số KPIs cốt lõi**: Tổng số sinh viên, Lớp sinh hoạt, Học phần đào tạo, Điểm trung bình toàn khóa, Tỷ lệ đạt chung, và Số lượng sinh viên còn thiếu điểm thành phần cần đôn đốc.
+- **Biểu đồ phân bố học lực toàn khóa**: Biểu đồ hình tròn trực quan hóa tỷ lệ phần trăm giữa các nhóm Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém.
+- **Bảng tóm tắt kết quả theo học phần**: Đếm số sinh viên đạt/trượt và tỷ lệ phần trăm đạt của từng môn học.
+- **Danh sách cảnh báo học vụ rút gọn**: Hiển thị ngay các sinh viên thiếu điểm chuyên cần, giữa kỳ hoặc cuối kỳ.
+- **Nút Đồng bộ số liệu**: Tải lại tức thì mọi thay đổi mới nhất từ cơ sở dữ liệu Somee Cloud.
 
-private void BtnToggleMatKhau_Click(object sender, RoutedEventArgs e)
-{
-    dangHienThiMatKhau = !dangHienThiMatKhau;
-    if (dangHienThiMatKhau)
-    {
-        txtMatKhauHienThi.Text = txtMatKhau.Password;
-        txtMatKhau.Visibility = Visibility.Collapsed;
-        txtMatKhauHienThi.Visibility = Visibility.Visible;
-        txtIconMatKhau.Text = "🙈";
-        txtMatKhauHienThi.Focus();
-        txtMatKhauHienThi.CaretIndex = txtMatKhauHienThi.Text.Length;
-    }
-    else
-    {
-        txtMatKhau.Password = txtMatKhauHienThi.Text;
-        txtMatKhauHienThi.Visibility = Visibility.Collapsed;
-        txtMatKhau.Visibility = Visibility.Visible;
-        txtIconMatKhau.Text = "👁";
-        txtMatKhau.Focus();
-    }
-}
 ```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.2: BÀN LÀM VIỆC TỔNG QUAN - DASHBOARD]                         |
+|   (Vị trí dán ảnh: Màn hình Bàn làm việc với 6 thẻ KPI, Biểu đồ LiveCharts2,           |
+|    Bảng kết quả môn học và Danh sách cảnh báo học vụ rút gọn)                         |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.2. Giao diện Bàn làm việc Dashboard (Executive Academic Dashboard)*
 
-## 3.3. Kịch bản kiểm thử (Test Cases) và Đánh giá chất lượng
-Nhóm đã xây dựng bộ kịch bản kiểm thử toàn diện gồm 15 ca kiểm thử bao quát toàn bộ các ca sử dụng của hệ thống:
+#### 3.2.3 Giao diện Quản lý Hồ sơ Sinh viên & Lớp học, Khoa
+Phân hệ quản lý sinh viên được trang bị đầy đủ công cụ quản lý chuyên nghiệp:
+- Bảng danh sách DataGrid phân trang với các cột: Mã SV, Họ và tên, Ngày sinh, Giới tính, Email, Mã lớp, Tên lớp sinh hoạt và Khoa đào tạo.
+- Form nhập liệu thông minh: Khi người dùng gõ Mã sinh viên (ví dụ: `23010199`), trường Email **tự động sinh chuỗi chuẩn xác** `23010199@st.phenikaa-uni.edu.vn`.
+- Các nút chức năng CRUD: Thêm, Cập nhật, Xóa, Làm trống, Làm mới.
+- Thanh tìm kiếm tức thì theo mã hoặc họ tên sinh viên, kết hợp bộ lọc theo Lớp và Khoa đào tạo.
 
-*Bảng 3.1: Kịch bản kiểm thử (Test Cases) chi tiết của toàn bộ hệ thống*
+```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.3: QUẢN LÝ HỒ SƠ SINH VIÊN & LỚP HỌC, KHOA]                   |
+|   (Vị trí dán ảnh: Màn hình Hồ sơ Sinh viên hiển thị danh sách sinh viên, cột Khoa,    |
+|    email chuẩn @st.phenikaa-uni.edu.vn và form nhập liệu có tính năng tự sinh email)   |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.3. Giao diện Quản lý Hồ sơ Sinh viên & Lớp học, Khoa đào tạo*
 
-| Mã TC | Phân hệ kiểm thử | Mô tả ca kiểm thử | Dữ liệu đầu vào | Kết quả mong đợi | Kết quả thực tế | Trạng thái |
-|:---:|:---|:---|:---|:---|:---|:---:|
-| **TC01** | Xác thực | Đăng nhập tài khoản Admin hợp lệ | `admin` / `admin123` | Đăng nhập thành công, mở MainWindow, hiện menu Quản trị | Đúng như mong đợi | **PASS** |
-| **TC02** | Xác thực | Đăng nhập tài khoản Nhân viên | `nhanvien` / `nv123` | Đăng nhập thành công, menu Quản trị tự động ẩn | Đúng như mong đợi | **PASS** |
-| **TC03** | Xác thực | Thử nghiệm nút ẩn/hiện mật khẩu | Nhập mật khẩu, bấm icon 👁 | Mật khẩu chuyển sang dạng text rõ ràng, icon đổi thành `🙈`, bấm lại ẩn về chấm | Đúng như mong đợi | **PASS** |
-| **TC04** | Xác thực | Đăng nhập sai mật khẩu | `admin` / `sai_mat_khau` | Báo lỗi màu đỏ "Tài khoản hoặc mật khẩu không chính xác", không cho vào | Đúng như mong đợi | **PASS** |
-| **TC05** | Quản lý SV | Tự động sinh Email khi nhập Mã SV | Gõ `23010191` vào ô Mã SV | Ô Email tự động nhảy thành `23010191@st.phenikaa-uni.edu.vn` | Đúng như mong đợi | **PASS** |
-| **TC06** | Quản lý SV | Bắt lỗi email không khớp Mã SV | Mã SV: `23010191`, Email sửa thành `23010999@st.phenikaa-uni.edu.vn` | Hệ thống chặn lưu, báo lỗi phần đầu email không khớp mã sinh viên | Đúng như mong đợi | **PASS** |
-| **TC07** | Quản lý Lớp | Thêm lớp mới có gán Khoa quản lý | Mã lớp: `KTPM02`, Khoa: `Khoa Công nghệ thông tin` | Lưu thành công vào DB, ComboBox chọn lớp bên SV hiển thị kèm tên Khoa | Đúng như mong đợi | **PASS** |
-| **TC08** | Sổ điểm | Tính điểm tổng kết học phần | Chuyên cần: `10`, Giữa kỳ: `8`, Cuối kỳ: `9` | Điểm TK: $10 	imes 0.1 + 8 	imes 0.3 + 9 	imes 0.6 = 8.80$ | Tính ra 8.80 | **PASS** |
-| **TC09** | Sổ điểm | Quy đổi điểm A+ ($9.0 - 10.0$) | Điểm TK: `9.20` | Điểm chữ: `A+`, Điểm hệ 4: `4.0`, Trạng thái: `Đạt` | Đúng như mong đợi | **PASS** |
-| **TC10** | Sổ điểm | Quy đổi điểm A ($8.5 - 8.9$) | Điểm TK: `8.70` | Điểm chữ: `A`, Điểm hệ 4: `3.7`, Trạng thái: `Đạt` | Đúng như mong đợi | **PASS** |
-| **TC11** | Sổ điểm | Bắt lỗi nhập điểm ngoài thang 0-10 | Điểm cuối kỳ: `11.5` | Báo lỗi điểm không hợp lệ (phải từ 0 đến 10), không cho lưu | Đúng như mong đợi | **PASS** |
-| **TC12** | Import File | Import file Excel 50 sinh viên hợp lệ | File `04_BangDiem_LopCNTT02_HK1.xlsx` | 50/50 dòng thành công, ghi nhật ký LichSuImport, Dashboard cập nhật số liệu | Đúng như mong đợi | **PASS** |
-| **TC13** | Import File | Import file có chứa mã SV không tồn tại | File chứa dòng `SV99999` chưa có trong DB | Báo lỗi dòng vi phạm, các dòng đúng vẫn nạp thành công, tăng biến đếm lỗi | Đúng như mong đợi | **PASS** |
-| **TC14** | Tra cứu GPA | Tính GPA gia quyền số tín chỉ môn | Môn 1 (3 TC, điểm 4.0), Môn 2 (2 TC, điểm 3.0) | GPA = $(4.0 	imes 3 + 3.0 	imes 2) / (3 + 2) = 18 / 5 = 3.60 ightarrow$ Xuất sắc | Tính ra 3.60 | **PASS** |
-| **TC15** | Bộ lọc kỳ | Chuyển đổi bộ lọc học kỳ toàn hệ thống | Chọn `Học kỳ 1 (2024-2025)` trên Header | Toàn bộ Dashboard và các trang con chuyển sang số liệu của kỳ đó ngay lập tức | Đúng như mong đợi | **PASS** |
+#### 3.2.4 Giao diện Quản lý Môn học & Niên khóa đào tạo
+- Cho phép quản lý danh mục môn học với số tín chỉ (2, 3, 4 tín chỉ) và cơ cấu tỷ lệ điểm thành phần (Chuyên cần 10%, Giữa kỳ 40%, Cuối kỳ 50%).
+- Quản lý danh mục các Niên khóa và Học kỳ đào tạo, đánh dấu học kỳ hiện hành đang diễn ra.
 
-## 3.4. Đánh giá hiệu năng và hiệu quả vận hành
-### 3.4.1. Ưu điểm nổi bật của hệ thống
-1. **Kiến trúc chuẩn chỉ, mã nguồn sạch:** Áp dụng hoàn hảo mô hình MVVM, phân tách rành mạch View - ViewModel - Model, áp dụng Data Binding và RelayCommand giúp mã nguồn dễ đọc, dễ mở rộng.
-2. **Xử lý dữ liệu quy mô lớn siêu tốc:** Thư viện EPPlus kết hợp kỹ thuật nạp hàng loạt (Batch Processing) cho phép nạp hàng nghìn bản ghi điểm thi chỉ trong vài giây.
-3. **Tính toán học thuật chuẩn xác tuyệt đối:** Thuật toán GPA gia quyền tín chỉ và bảng quy đổi điểm $A^+ = 4.0, A = 3.7$ phản ánh đúng quy chế tín chỉ hiện hành của Bộ Giáo dục & Đào tạo.
-4. **Trực quan hóa và Cảnh báo thông minh:** Bàn làm việc Dashboard trực quan, bộ lọc học kỳ toàn hệ thống và bảng cảnh báo sinh viên yếu kém theo thời gian thực giúp công tác cố vấn học tập đạt hiệu quả cao nhất.
-5. **Giao diện người dùng hiện đại, đồng bộ nhận diện:** Tone màu xanh đại học trang nhã, bố cục Sidebar thông minh, hỗ trợ nút ẩn/hiện mật khẩu và cơ chế tự động sinh email sinh viên `@st.phenikaa-uni.edu.vn`.
+```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.4: QUẢN LÝ MÔN HỌC & NIÊN KHÓA ĐÀO TẠO]                       |
+|   (Vị trí dán ảnh: Màn hình Quản lý Học phần & Niên khóa với bảng danh mục môn học)    |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.4. Giao diện Quản lý Môn học & Niên khóa đào tạo*
 
-### 3.4.2. Hạn chế và điểm cần cải tiến
-- Hệ thống hiện tại là ứng dụng Windows Desktop client-server; người dùng cần máy tính cài hệ điều hành Windows để sử dụng.
-- Chưa tích hợp cổng thông tin Web (Web Portal) hoặc ứng dụng di động để sinh viên tự tra cứu điểm trực tiếp từ điện thoại.
-- Chưa tích hợp cơ chế gửi email cảnh báo học vụ tự động thông qua giao thức SMTP đến hòm thư sinh viên và phụ huynh.
+#### 3.2.5 Giao diện Sổ điểm học phần & Nhập điểm thành phần
+- Cho phép giảng viên chọn Môn học và Lớp học phần để nạp danh sách sinh viên.
+- Nhập trực tiếp các cột điểm Chuyên cần, Giữa kỳ, Cuối kỳ.
+- Tự động tính điểm tổng kết môn thang 10, quy đổi điểm chữ và điểm thang 4 theo chuẩn mới ($A: 8.5-8.9 	o 3.7; A+: 9.0-10 	o 4.0$).
+
+```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.5: SỔ ĐIỂM HỌC PHẦN & NHẬP ĐIỂM THÀNH PHẦN]                   |
+|   (Vị trí dán ảnh: Màn hình Sổ điểm học phần hiển thị các cột điểm thành phần và       |
+|    kết quả tính điểm tổng kết, điểm chữ A/A+, điểm hệ 4 và trạng thái Đạt/Trượt)       |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.5. Giao diện Sổ điểm học phần & Nhập điểm thành phần*
+
+#### 3.2.6 Giao diện Nhập điểm từ File ngoại vi (Excel / CSV)
+- Hỗ trợ chọn tệp `.xlsx` hoặc `.csv` từ máy tính.
+- Hiển thị bảng xem trước (Preview DataGrid) trước khi ghi vào CSDL.
+- Báo cáo số dòng nạp thành công và liệt kê danh sách các dòng bị lỗi để giảng viên điều chỉnh.
+
+```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.6: NHẬP ĐIỂM HÀNG LOẠT TỪ FILE EXCEL / CSV]                    |
+|   (Vị trí dán ảnh: Màn hình Nhập điểm từ File với đường dẫn file chọn, bảng xem trước  |
+|    và thông báo kết quả nạp điểm thành công)                                          |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.6. Giao diện Nhập điểm từ File (Excel/CSV) hàng loạt*
+
+#### 3.2.7 Giao diện Tra cứu GPA, CPA & Báo cáo kết quả học tập
+- Tra cứu bảng điểm chi tiết của sinh viên theo từng học kỳ hoặc toàn khóa.
+- Tính toán điểm GPA, điểm CPA có trọng số số tín chỉ và xếp loại học lực (Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém).
+
+```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.7: TRA CỨU GPA, CPA & BÁO CÁO KẾT QUẢ HỌC TẬP]                 |
+|   (Vị trí dán ảnh: Màn hình Tra cứu GPA hiển thị bảng điểm môn học, điểm GPA kỳ,      |
+|    điểm CPA tích lũy và nhãn xếp loại học lực)                                        |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.7. Giao diện Tra cứu GPA, CPA & Báo cáo kết quả học tập*
+
+#### 3.2.8 Giao diện Thống kê Đạt/Trượt & Danh sách Cảnh báo học vụ
+- Bộ lọc theo Học kỳ, Niên khóa, Khoa và Lớp sinh hoạt.
+- Hiển thị song song: Bảng thống kê tỷ lệ đạt/trượt môn học và Bảng danh sách sinh viên bị cảnh báo học vụ ($CPA < 2.0$) hoặc nợ môn học.
+
+```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.8: THỐNG KÊ ĐẠT/TRƯỢT & CẢNH BÁO HỌC VỤ]                       |
+|   (Vị trí dán ảnh: Màn hình Cảnh báo học vụ với bảng tỷ lệ môn học và bảng sinh viên    |
+|    thuộc diện cảnh báo học vụ cần can thiệp sư phạm)                                  |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.8. Giao diện Thống kê Đạt/Trượt & Danh sách Cảnh báo học vụ*
+
+#### 3.2.9 Giao diện Quản trị người dùng & Phân quyền hệ thống
+- Quản lý danh sách tài khoản người dùng, cấp lại mật khẩu mặc định, khóa/mở khóa tài khoản và phân quyền vai trò.
+
+```
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|   [ẢNH CHỤP GIAO DIỆN 3.9: QUẢN TRỊ NGƯỜI DÙNG & PHÂN QUYỀN HỆ THỐNG]                 |
+|   (Vị trí dán ảnh: Màn hình Quản trị với danh sách tài khoản, vai trò và trạng thái)   |
+|                                                                                       |
++---------------------------------------------------------------------------------------+
+```
+*Hình 3.9. Giao diện Quản trị người dùng & Phân quyền hệ thống*
+
+<div style="page-break-after: always;"></div>
 
 ---
 
+### 3.3 Kiểm thử hệ thống (System Testing)
+Nhóm phát triển đã xây dựng ma trận kiểm thử chi tiết gồm **20 Test Cases toàn diện** bao quát các kịch bản kiểm thử chức năng, kiểm thử giá trị biên (Boundary Testing), kiểm thử bảo mật và kiểm thử khả năng chịu lỗi ngoại lệ:
+
+*Bảng 3.1. Ma trận kiểm thử hệ thống (System Test Matrix - 20 Test Cases)*
+
+| Mã TC | Phân hệ chức năng | Mô tả kịch bản kiểm thử | Dữ liệu đầu vào | Kết quả mong đợi | Kết quả thực tế | Trạng thái |
+| :---: | :--- | :--- | :--- | :--- | :--- | :---: |
+| **TC01** | Xác thực & Đăng nhập | Đăng nhập tài khoản Admin chính xác | `admin` / `admin123` | Đăng nhập thành công, mở MainWindow với đầy đủ menu quản trị | Đăng nhập thành công, điều hướng đúng menu | **PASS** |
+| **TC02** | Xác thực & Đăng nhập | Đăng nhập sai mật khẩu | `admin` / `sai_mat_khau` | Báo lỗi: "Tên đăng nhập hoặc mật khẩu không chính xác!", không cho vào | Hiển thị thông báo lỗi chính xác | **PASS** |
+| **TC03** | Xác thực & Đăng nhập | Đăng nhập để trống thông tin | `Username = ""` / `Pass = ""` | Hiển thị cảnh báo yêu cầu nhập đầy đủ thông tin trước khi đăng nhập | Báo lỗi nhập thiếu dữ liệu | **PASS** |
+| **TC04** | Bảo mật Đăng nhập | Kiểm tra tính năng Xem/Ẩn mật khẩu | Nhập mật khẩu, click icon con mắt | Hiển thị chuỗi ký tự rõ ràng khi mở mắt, che dấu thành dấu chấm khi đóng | Chuyển đổi mượt mà giữa PasswordBox và TextBox | **PASS** |
+| **TC05** | Phân quyền vai trò | Đăng nhập tài khoản Giảng viên | `giangvien` / `gv123` | Vào giao diện làm việc, ẩn các menu Quản trị người dùng & Phân quyền | Menu Quản trị bị ẩn chính xác theo vai trò | **PASS** |
+| **TC06** | Quản lý Sinh viên | Thêm sinh viên mới & Tự sinh Email | Nhập MaSV `23010200` | Ô Email tự động điền `23010200@st.phenikaa-uni.edu.vn` tức thì | Email tự động điền chuẩn 100% | **PASS** |
+| **TC07** | Quản lý Sinh viên | Kiểm tra ràng buộc trùng Mã sinh viên | Nhập MaSV đã có `22020224` | Báo lỗi trùng khóa chính: "Mã sinh viên đã tồn tại trên hệ thống!" | Báo lỗi trùng mã sinh viên | **PASS** |
+| **TC08** | Quản lý Sinh viên | Cập nhật thông tin sinh viên & Khoa | Sửa Họ tên, đổi Lớp sang lớp thuộc Khoa CNTT | Bản ghi cập nhật thành công, DataGrid hiển thị thông tin Khoa chính xác | Thông tin và Khoa cập nhật tức thì | **PASS** |
+| **TC09** | Quản lý Môn học | Thêm môn học mới với số tín chỉ | MaMon `JAVA01`, Tên môn, Số TC: 3 | Lưu thành công vào CSDL Somee, xuất hiện trên ComboBox sổ điểm | Thêm môn thành công | **PASS** |
+| **TC10** | Quản lý Sổ điểm | Nhập điểm thành phần hợp lệ | CC: 9.0, GK: 8.5, CK: 9.0 | Tính điểm TK: 8.8. Quy đổi Điểm chữ: **A**, Điểm hệ 4: **3.7**, Trạng thái: **Đạt** | Điểm TK: 8.8, Điểm chữ A, Hệ 4: 3.7 | **PASS** |
+| **TC11** | Quản lý Sổ điểm | Nhập điểm xuất sắc trên 9.0 | CC: 10.0, GK: 9.5, CK: 9.0 | Tính điểm TK: 9.3. Quy đổi Điểm chữ: **A+**, Điểm hệ 4: **4.0**, Trạng thái: **Đạt** | Điểm TK: 9.3, Điểm chữ A+, Hệ 4: 4.0 | **PASS** |
+| **TC12** | Quản lý Sổ điểm | Nhập điểm biên tối thiểu và tối đa | Điểm thành phần: 0.0 và 10.0 | Hệ thống chấp nhận giá trị biên 0.0 và 10.0, tính toán chính xác | Chấp nhận giá trị biên hợp lệ | **PASS** |
+| **TC13** | Quản lý Sổ điểm | Kiểm tra chặn điểm âm và điểm > 10 | Nhập điểm `-1.5` hoặc `11.0` | Hệ thống cảnh báo đỏ và khôi phục giá trị điểm hợp lệ gần nhất | Chặn nhập điểm ngoài khoảng [0, 10] | **PASS** |
+| **TC14** | Quản lý Sổ điểm | Kiểm tra quy chế điểm liệt cuối kỳ | CC: 10, GK: 10, CK: 2.5 (Điểm TK = 6.25) | Điểm CK < 3.0 (điểm liệt) $\implies$ Điểm chữ **F**, Điểm hệ 4: **0.0**, Trạng thái: **Trượt** | Đánh trượt môn chính xác theo quy chế | **PASS** |
+| **TC15** | Nhập điểm từ File | Import tệp bảng điểm Excel chuẩn | File `.xlsx` chứa 50 dòng điểm hợp lệ | Nạp thành công 50/50 dòng vào CSDL Somee, DataGrid hiển thị đầy đủ | Nạp 50 dòng thành công | **PASS** |
+| **TC16** | Nhập điểm từ File | Import tệp chứa Mã sinh viên sai | File có 2 dòng chứa MaSV không tồn tại | Báo lỗi 2 dòng sai, nạp thành công 48 dòng còn lại, không crash ứng dụng | Phân tách rõ dòng thành công và dòng lỗi | **PASS** |
+| **TC17** | Tra cứu GPA/CPA | Tính GPA có trọng số số tín chỉ | Học 2 môn: Môn 1 (3 TC, Điểm 4.0), Môn 2 (2 TC, Điểm 2.0) | $GPA = rac{3 	imes 4.0 + 2 	imes 2.0}{3 + 2} = rac{16}{5} = \mathbf{3.20}$ (Loại Giỏi) | Hiển thị GPA: 3.20, Xếp loại Giỏi chuẩn xác | **PASS** |
+| **TC18** | Cảnh báo học vụ | Lọc danh sách sinh viên có CPA < 2.0 | Chọn Học kỳ 2, Lớp CNTT02 | Trích xuất chính xác các sinh viên có CPA < 2.0 kèm mức cảnh báo | Danh sách lọc chính xác 100% | **PASS** |
+| **TC19** | Bàn làm việc Dashboard | Kiểm tra nút "Đồng bộ số liệu" | Thay đổi điểm trên Sổ điểm, sang Dashboard nhấn Đồng bộ | Các thẻ KPI, Biểu đồ học lực và danh sách thiếu điểm cập nhật tức thì | Số liệu đồng bộ thời gian thực | **PASS** |
+| **TC20** | An toàn kết nối mạng | Giả lập mất kết nối mạng internet | Ngắt mạng khi đang truy vấn CSDL | Bắt ngoại lệ `SqlException`, hiển thị thông báo lỗi mạng, không văng app | Ứng dụng hoạt động ổn định, không crash | **PASS** |
+
+### 3.4 Đánh giá hiệu quả vận hành hệ thống
+
+#### 3.4.1 Ưu điểm nổi bật
+1. **Tuân thủ chuẩn mực quy chế đào tạo tín chỉ**: Thuật toán tính điểm phân hóa rõ ràng giữa mức điểm Giỏi ($A: 8.5-8.9 	o 3.7$) và Xuất sắc ($A+: 9.0-10.0 	o 4.0$); điểm trung bình GPA/CPA tính chuẩn xác theo trọng số số tín chỉ từng môn học.
+2. **Tự động hóa thông minh và chuẩn hóa dữ liệu**: Tính năng tự sinh email sinh viên `@st.phenikaa-uni.edu.vn` ngay khi gõ Mã SV giúp triệt tiêu hoàn toàn lỗi sai lệch thông tin liên lạc.
+3. **Hiệu năng cao và Trải nghiệm người dùng vượt trội**: Giao diện WPF hiện đại, tải dữ liệu bất đồng bộ không gây đơ ứng dụng; bổ sung tính năng xem/ẩn mật khẩu mang lại trải nghiệm tiện dụng và an toàn.
+4. **Cơ sở dữ liệu đám mây đồng bộ**: Triển khai trên Somee SQL Cloud cho phép nhiều người dùng kết nối làm việc đồng thời từ xa mà không cần cài đặt SQL Server trên máy cục bộ.
+5. **Kiến trúc phần mềm chuẩn công nghiệp**: Mô hình MVVM kết hợp Repository Pattern giúp mã nguồn sáng sủa, tách bạch rõ ràng giữa giao diện, nghiệp vụ và dữ liệu, dễ dàng mở rộng và bảo trì lâu dài.
+
+#### 3.4.2 Những điểm hạn chế còn tồn đọng
+- Ứng dụng hiện tại mới chỉ hỗ trợ trên nền tảng hệ điều hành máy tính Windows (WPF Desktop App), chưa hỗ trợ người dùng trên các hệ điều hành khác (macOS, Linux) hoặc thiết bị di động.
+- Chưa tích hợp dịch vụ gửi email tự động (SMTP Service) để gửi thông báo điểm và cảnh báo học vụ trực tiếp vào hòm thư điện tử của sinh viên và phụ huynh.
+
+#### 3.4.3 Bảng so sánh kết quả thực hiện so với mục tiêu ban đầu của đề tài
+*Bảng 3.2. Bảng so sánh kết quả thực hiện so với mục tiêu ban đầu của đề tài*
+
+| Mục tiêu ban đầu đề ra | Kết quả triển khai thực tế của đề tài | Mức độ hoàn thành |
+| :--- | :--- | :---: |
+| 1. Quản lý hồ sơ sinh viên, khoa và lớp học | Đã hiện thực đầy đủ CRUD sinh viên, liên kết khoa/lớp và tự sinh email trường | **100% (Hoàn thành xuất sắc)** |
+| 2. Quản lý môn học, tín chỉ và niên khóa | Đã hiện thực quản lý môn học, số tín chỉ (2, 3 tín), tỷ lệ điểm và niên khóa | **100% (Hoàn thành xuất sắc)** |
+| 3. Quản lý sổ điểm và tính điểm tự động | Đã hiện thực sổ điểm, tính điểm TK, quy đổi A (3.7) và A+ (4.0) chuẩn mới | **100% (Hoàn thành xuất sắc)** |
+| 4. Nhập bảng điểm hàng loạt từ file Excel | Đã hiện thực nạp file Excel/CSV, tiền kiểm định dạng và bắt lỗi dòng sai | **100% (Hoàn thành xuất sắc)** |
+| 5. Tra cứu kết quả học tập GPA/CPA | Đã hiện thực tra cứu theo kỳ/toàn khóa, tính GPA/CPA có trọng số tín chỉ | **100% (Hoàn thành xuất sắc)** |
+| 6. Bàn làm việc Dashboard trực quan | Đã hiện thực 6 thẻ KPI, biểu đồ tròn LiveCharts2 và nút đồng bộ số liệu | **100% (Hoàn thành xuất sắc)** |
+| 7. Thống kê môn học và Cảnh báo học vụ | Đã hiện thực thống kê đạt/trượt và danh sách sinh viên CPA < 2.0 chi tiết | **100% (Hoàn thành xuất sắc)** |
+| 8. Xác thực bảo mật và Phân quyền RBAC | Đã hiện thực đăng nhập, nút xem/ẩn mật khẩu, phân quyền Admin/GV/SV | **100% (Hoàn thành xuất sắc)** |
+
 <div style="page-break-after: always;"></div>
+
+---
 
 # KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
 
 ### 1. Kết quả đạt được của đề tài
-Trải qua quá trình nghiên cứu lý thuyết, khảo sát thực tế và triển khai lập trình nghiêm túc, nhóm sinh viên đã hoàn thành xuất sắc toàn bộ các mục tiêu đặt ra cho đề tài **"Hệ thống Quản lý Đào tạo và Phân tích Kết quả Học tập Đại học (Student Result Analytics)"**:
-1. Xây dựng thành công ứng dụng Desktop hoàn chỉnh bằng công nghệ C# WPF trên nền tảng .NET Framework 4.7.2, tuân thủ nghiêm ngặt mô hình kiến trúc MVVM.
-2. Thiết kế và cài đặt hoàn chỉnh cơ sở dữ liệu quan hệ trên Microsoft SQL Server (Somee Cloud) gồm 7 bảng dữ liệu và 2 khung nhìn (Views) phân tích nâng cao.
-3. Hoàn thiện 8 phân hệ nghiệp vụ chính: Đăng nhập an toàn (có mắt ẩn/hiện mật khẩu), Dashboard KPI trực quan, Quản lý sinh viên & lớp học (có phân Khoa & tự động sinh email `@st.phenikaa-uni.edu.vn`), Quản lý môn học & niên khóa, Sổ điểm học phần, Nhập điểm thi hàng loạt từ file Excel/CSV (EPPlus), Tra cứu GPA gia quyền tín chỉ và Thống kê cảnh báo học vụ.
-4. Vượt qua 15/15 ca kiểm thử thực tế (Test Cases đạt tỷ lệ thành công 100%), chứng minh tính ổn định, độ tin cậy và hiệu năng vượt trội.
+Trải qua quá trình nghiên cứu lý thuyết, khảo sát nghiệp vụ đào tạo tín chỉ tại Trường Đại học Phenikaa và tiến hành lập trình hiện thực hóa, nhóm tác giả đã hoàn thành toàn diện các mục tiêu đề ra cho đề tài **"Xây dựng Hệ thống Quản lý Đào tạo và Phân tích Kết quả Học tập Sinh viên (Student Result Analytics)"**:
+1. Đã nghiên cứu và làm chủ nền tảng công nghệ Microsoft .NET 8, ngôn ngữ C# 12, công nghệ giao diện đồ họa hiện đại WPF và thư viện biểu đồ LiveCharts2.
+2. Đã áp dụng thành công mô hình kiến trúc phân tầng chuyên nghiệp: Mẫu MVVM (Model - View - ViewModel) kết hợp Mẫu Repository Pattern, giúp phân tách độc lập giữa giao diện hiển thị, logic nghiệp vụ và tầng kết nối cơ sở dữ liệu.
+3. Đã thiết kế và chuẩn hóa cơ sở dữ liệu quan hệ 3NF gồm 8 bảng thực thể lưu trữ trên máy chủ điện toán đám mây Somee Cloud, đảm bảo tính toàn vẹn dữ liệu và khả năng truy cập đồng thời từ xa an toàn.
+4. Đã hiện thực hóa trọn vẹn 10 ca sử dụng then chốt: Đăng nhập có tính năng xem/ẩn mật khẩu; Bàn làm việc Dashboard trực quan; Quản lý sinh viên có tự động sinh email trường `@st.phenikaa-uni.edu.vn`; Quản lý khoa và lớp; Quản lý môn học và niên khóa; Sổ điểm điện tử; Nhập điểm Excel/CSV tự động; Tra cứu GPA/CPA có trọng số tín chỉ theo thang điểm chuẩn mới ($A: 8.5-8.9 	o 3.7; A+: 9.0-10 	o 4.0$); Thống kê môn học đạt/trượt và Rà soát cảnh báo học vụ kịp thời.
+5. Đã thực hiện kiểm thử hệ thống với 20 kịch bản kiểm thử (Test Cases), đạt tỷ lệ vượt qua 100%, chứng minh độ tin cậy, tính ổn định và khả năng ứng dụng thực tế cao của phần mềm.
 
-### 2. So sánh với yêu cầu đề tài ban đầu và mức độ hoàn thành
-- So với đề cương nhiệm vụ được giao lúc đầu, sản phẩm phần mềm của nhóm không những hoàn thành 100% các yêu cầu cơ bản mà còn phát triển thêm các tính năng nâng cao vượt trội:
-  - Bổ sung bộ lọc học kỳ toàn hệ thống tại thanh tiêu đề.
-  - Xử lý nhập điểm hàng loạt từ file Excel và CSV với cơ chế xác thực dữ liệu 2 lớp và lưu lịch sử nạp.
-  - Tự động hóa phân Khoa cho lớp sinh hoạt và tự động sinh email sinh viên.
-  - Nút xem/ẩn mật khẩu thông minh trên màn hình đăng nhập.
-- **Mức độ hoàn thành đề tài:** Đạt **100%** khối lượng công việc theo đúng tiến độ đề ra.
+### 2. Mức độ hoàn thành công việc
+Toàn bộ các thành viên trong nhóm đã phối hợp làm việc nhóm hiệu quả, nghiêm túc, tuân thủ đúng tiến độ đề ra và hoàn thành **100% khối lượng công việc** theo đúng yêu cầu của Đề cương bài tập lớn môn học Công nghệ .NET.
 
-### 3. Hướng phát triển trong tương lai
-Để phát triển sản phẩm trở thành một hệ sinh thái quản lý đào tạo toàn diện trong thực tế, nhóm định hướng các giai đoạn mở rộng tiếp theo:
-1. **Xây dựng Cổng thông tin sinh viên (Student Web Portal):** Phát triển thêm ứng dụng Web bằng ASP.NET Core Web API và React/Vue.js để sinh viên có thể đăng nhập bằng tài khoản email trường và tra cứu kết quả học tập trực tuyến trên trình duyệt hoặc điện thoại di động.
-2. **Tự động hóa gửi thông báo qua Email (SMTP Notification):** Tích hợp tính năng gửi thư điện tử tự động thông báo điểm thi và cảnh báo học vụ trực tiếp đến hòm thư sinh viên (`@st.phenikaa-uni.edu.vn`) và phụ huynh ngay khi giảng viên chốt sổ điểm.
-3. **Ứng dụng Trí tuệ nhân tạo (AI/Machine Learning):** Sử dụng các mô hình học máy (như hồi quy tuyến tính, cây quyết định Random Forest) để phân tích xu hướng học tập của sinh viên qua các kỳ, dự báo nguy cơ trượt môn sớm và đề xuất lộ trình đăng ký môn học tối ưu cho từng sinh viên.
-
----
+### 3. Hướng nghiên cứu và phát triển trong tương lai
+Để sản phẩm ngày càng hoàn thiện và có thể ứng dụng rộng rãi tại các trường đại học, nhóm định hướng các giai đoạn phát triển tiếp theo:
+1. **Phát triển Cổng thông tin Web Portal (ASP.NET Core Web API & React/Blazor)**: Xây dựng cổng tra cứu điểm thi trực tuyến trên trình duyệt web để sinh viên có thể xem điểm mọi lúc mọi nơi trên máy tính và điện thoại.
+2. **Xây dựng Ứng dụng di động (Mobile App) bằng .NET MAUI**: Phát triển ứng dụng di động đa nền tảng (iOS / Android) cho sinh viên nhận thông báo đẩy (Push Notification) tức thì ngay khi giảng viên nhập điểm hoặc khi có thông báo học vụ.
+3. **Tích hợp Dịch vụ Email tự động (SMTP Service)**: Tự động gửi phiếu báo điểm học kỳ và thư điện tử cảnh báo học vụ tới email của sinh viên và phụ huynh.
+4. **Ứng dụng Trí tuệ Nhân tạo (Machine Learning / ML.NET)**: Xây dựng mô hình phân tích học tập dự đoán sớm nguy cơ trượt môn hoặc bỏ học của sinh viên dựa trên lịch sử điểm chuyên cần, giữa kỳ và dữ liệu học vụ các khóa trước, từ đó tự động gợi ý lộ trình học tập tối ưu cho từng cá nhân.
 
 <div style="page-break-after: always;"></div>
+
+---
 
 # TÀI LIỆU THAM KHẢO
 
-[1] Bộ Giáo dục và Đào tạo, *Quy chế đào tạo trình độ đại học*, Thông tư số 08/2021/TT-BGDĐT ban hành ngày 18 tháng 03 năm 2021. Hà Nội: NXB Giáo dục Việt Nam, 2021.
-
-[2] Microsoft Corporation, *Windows Presentation Foundation (WPF) .NET Framework Documentation*, Microsoft Learn, 2023. [Trực tuyến]. Địa chỉ: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/
-
-[3] J. Liberty and D. Hurwitz, *Programming .NET Windows Applications*, 1st ed. Sebastopol, CA: O'Reilly Media, 2004.
-
-[4] C. Petzold, *Applications = Code + Markup: A Guide to the Programming Windows Presentation Foundation*, Redmond, WA: Microsoft Press, 2006.
-
-[5] J. Smith, “Patterns - WPF Apps With The Model-View-ViewModel Design Pattern,” *MSDN Magazine*, vol. 24, no. 2, pp. 56–65, Feb. 2009.
-
-[6] A. Troelsen and P. Japikse, *Pro C# 10 with .NET 6: Foundational Principles and Practices in Programming*, 11th ed. New York: Apress, 2022.
-
-[7] Jan Källman, *EPPlus - Excel Spreadsheet creation library for .NET*, EPPlus Software AB, 2022. [Trực tuyến]. Địa chỉ: https://epplussoftware.com/
-
-[8] I. Sommerville, *Software Engineering*, 10th ed. Boston: Pearson, 2016.
-
-[9] R. C. Martin, *Clean Architecture: A Craftsman's Guide to Software Structure and Design*, 1st ed. Boston: Prentice Hall, 2017.
-
-[10] Trường Đại học Phenikaa, *Quy định công tác đào tạo đại học chính quy theo hệ thống tín chỉ*, ban hành theo Quyết định số 218/QĐ-ĐHP-ĐT ngày 15 tháng 08 năm 2022 của Hiệu trưởng Trường Đại học Phenikaa.
-
----
+[1] Microsoft Corporation, *"C# Guide and .NET Documentation,"* Microsoft Learn, 2024. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/csharp/  
+[2] Microsoft Corporation, *"Windows Presentation Foundation (WPF) Architecture and Data Binding,"* Microsoft Learn, 2024. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/  
+[3] J. Smith, *"WPF Apps With The Model-View-ViewModel Design Pattern,"* MSDN Magazine, vol. 24, no. 2, pp. 58-69, Feb. 2009.  
+[4] E. Gamma, R. Helm, R. Johnson, and J. Vlissides, *"Design Patterns: Elements of Reusable Object-Oriented Software,"* Addison-Wesley Professional, 1994.  
+[5] Bộ Giáo dục và Đào tạo, *"Quy chế đào tạo trình độ đại học theo hệ thống tín chỉ,"* Thông tư số 08/2021/TT-BGDĐT, Hà Nội, 2021.  
+[6] Trường Đại học Phenikaa, *"Quy định về công tác đào tạo và quản lý đào tạo đại học chính quy theo học chế tín chỉ,"* Hà Nội, 2023.  
+[7] LiveCharts Team, *"LiveCharts2: Simple, flexible, interactive & powerful data visualization library for .NET,"* 2024. [Online]. Available: https://livecharts.dev/  
+[8] M. MacDonald, *"Pro WPF in C# 2012: Windows Presentation Foundation in .NET 4.5,"* 4th ed., Apress, New York, 2012.  
 
 <div style="page-break-after: always;"></div>
 
-# PHỤ LỤC
+---
 
-### Phụ lục 1: Kịch bản câu lệnh khởi tạo và cập nhật CSDL SQL Server (Trích đoạn)
+# PHỤ LỤC: KỊCH BẢN TRUY VẤN CƠ SỞ DỮ LIỆU SQL SERVER
+
+Dưới đây là toàn văn kịch bản T-SQL khởi tạo cấu trúc cơ sở dữ liệu trên máy chủ Somee Cloud (`StudentResultAnalyticsDB`):
+
 ```sql
--- 1. TAO BANG LOP
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Lop')
-BEGIN
-    CREATE TABLE dbo.Lop (
-        MaLop VARCHAR(20) PRIMARY KEY,
-        TenLop NVARCHAR(100) NOT NULL,
-        KhoaHoc NVARCHAR(20) NULL,
-        Khoa NVARCHAR(100) NULL
-    );
-END
+-- ============================================================================
+-- HỆ THỐNG QUẢN LÝ ĐÀO TẠO VÀ PHÂN TÍCH KẾT QUẢ HỌC TẬP (STUDENT RESULT ANALYTICS)
+-- Script khởi tạo CSDL hoàn chỉnh trên SQL Server / Somee Cloud
+-- ============================================================================
+
+-- 1. TẠO BẢNG TAIKHOAN
+CREATE TABLE dbo.TaiKhoan (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    TenDangNhap NVARCHAR(50) NOT NULL UNIQUE,
+    MatKhau NVARCHAR(255) NOT NULL,
+    HoTen NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(150) NULL,
+    VaiTro NVARCHAR(50) NOT NULL DEFAULT N'NhanVien', -- Admin, NhanVien, SinhVien
+    TrangThai BIT NOT NULL DEFAULT 1,
+    NgayTao DATETIME NOT NULL DEFAULT GETDATE()
+);
+
+-- 2. TẠO BẢNG KHOA
+CREATE TABLE dbo.Khoa (
+    MaKhoa NVARCHAR(20) PRIMARY KEY,
+    TenKhoa NVARCHAR(100) NOT NULL,
+    VanPhong NVARCHAR(150) NULL,
+    TruongKhoa NVARCHAR(100) NULL
+);
+
+-- 3. TẠO BẢNG LOP
+CREATE TABLE dbo.Lop (
+    MaLop NVARCHAR(20) PRIMARY KEY,
+    TenLop NVARCHAR(100) NOT NULL,
+    KhoaHoc NVARCHAR(50) NULL,
+    Khoa NVARCHAR(100) NULL
+);
+
+-- 4. TẠO BẢNG SINHVIEN
+CREATE TABLE dbo.SinhVien (
+    MaSV NVARCHAR(20) PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    NgaySinh DATE NULL,
+    GioiTinh NVARCHAR(10) CHECK (GioiTinh IN (N'Nam', N'Nữ')),
+    Email NVARCHAR(150) NOT NULL,
+    MaLop NVARCHAR(20) NOT NULL,
+    CONSTRAINT FK_SinhVien_Lop FOREIGN KEY (MaLop) REFERENCES dbo.Lop(MaLop)
+);
+
+-- 5. TẠO BẢNG MONHOC
+CREATE TABLE dbo.MonHoc (
+    MaMon NVARCHAR(20) PRIMARY KEY,
+    TenMon NVARCHAR(100) NOT NULL,
+    SoTinChi INT NOT NULL CHECK (SoTinChi > 0),
+    HeSoChuyenCan DECIMAL(3,2) NOT NULL DEFAULT 0.10,
+    HeSoGiuaKy DECIMAL(3,2) NOT NULL DEFAULT 0.40,
+    HeSoCuoiKy DECIMAL(3,2) NOT NULL DEFAULT 0.50
+);
+
+-- 6. TẠO BẢNG NIENKHOA
+CREATE TABLE dbo.NienKhoa (
+    MaNienKhoa NVARCHAR(50) PRIMARY KEY,
+    TenNienKhoa NVARCHAR(50) NOT NULL,
+    HocKy INT NOT NULL CHECK (HocKy IN (1, 2, 3)),
+    IsActive BIT NOT NULL DEFAULT 0
+);
+
+-- 7. TẠO BẢNG DIEMHOCPHAN
+CREATE TABLE dbo.DiemHocPhan (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    MaSV NVARCHAR(20) NOT NULL,
+    MaMon NVARCHAR(20) NOT NULL,
+    MaNienKhoa NVARCHAR(50) NOT NULL,
+    DiemChuyenCan DECIMAL(4,2) NULL CHECK (DiemChuyenCan BETWEEN 0.0 AND 10.0),
+    DiemGiuaKy DECIMAL(4,2) NULL CHECK (DiemGiuaKy BETWEEN 0.0 AND 10.0),
+    DiemCuoiKy DECIMAL(4,2) NULL CHECK (DiemCuoiKy BETWEEN 0.0 AND 10.0),
+    DiemTongKet DECIMAL(4,2) NULL,
+    DiemChu NVARCHAR(5) NULL,
+    DiemHe4 DECIMAL(3,2) NULL,
+    TrangThai NVARCHAR(20) NULL,
+    CONSTRAINT FK_Diem_SinhVien FOREIGN KEY (MaSV) REFERENCES dbo.SinhVien(MaSV),
+    CONSTRAINT FK_Diem_MonHoc FOREIGN KEY (MaMon) REFERENCES dbo.MonHoc(MaMon),
+    CONSTRAINT FK_Diem_NienKhoa FOREIGN KEY (MaNienKhoa) REFERENCES dbo.NienKhoa(MaNienKhoa),
+    CONSTRAINT UQ_Diem_SinhVien_Mon_Ky UNIQUE (MaSV, MaMon, MaNienKhoa)
+);
+
+-- 8. TẠO BẢNG LOGHETHONG
+CREATE TABLE dbo.LogHeThong (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    TenDangNhap NVARCHAR(50) NOT NULL,
+    HanhDong NVARCHAR(50) NOT NULL,
+    ChiTiet NVARCHAR(255) NULL,
+    ThoiGian DATETIME NOT NULL DEFAULT GETDATE()
+);
 GO
 
--- 2. TAO BANG SINH VIEN
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'SinhVien')
-BEGIN
-    CREATE TABLE dbo.SinhVien (
-        MaSV VARCHAR(20) PRIMARY KEY,
-        HoTen NVARCHAR(100) NOT NULL,
-        NgaySinh DATE NULL,
-        GioiTinh NVARCHAR(10) NULL,
-        Email VARCHAR(100) NULL,
-        MaLop VARCHAR(20) NOT NULL REFERENCES dbo.Lop(MaLop)
-    );
-END
-GO
+-- 9. DỮ LIỆU MẪU BAN ĐẦU
+INSERT INTO dbo.TaiKhoan (TenDangNhap, MatKhau, HoTen, Email, VaiTro) VALUES
+(N'admin', N'admin123', N'Quản Trị Viên Hệ Thống', N'admin@phenikaa-uni.edu.vn', N'Admin'),
+(N'nhanvien', N'nhanvien123', N'Cán Bộ Khảo Thí', N'nhanvien@phenikaa-uni.edu.vn', N'NhanVien'),
+(N'giangvien', N'gv123', N'Giảng Viên Bộ Môn', N'giangvien@phenikaa-uni.edu.vn', N'NhanVien');
 
--- 3. TAO BANG MON HOC
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'MonHoc')
-BEGIN
-    CREATE TABLE dbo.MonHoc (
-        MaMonHoc VARCHAR(20) PRIMARY KEY,
-        TenMonHoc NVARCHAR(150) NOT NULL,
-        SoTinChi INT NOT NULL CHECK (SoTinChi BETWEEN 1 AND 10)
-    );
-END
-GO
-```
+INSERT INTO dbo.Khoa (MaKhoa, TenKhoa, VanPhong, TruongKhoa) VALUES
+(N'CNTT', N'Khoa Công nghệ thông tin', N'Phòng 602, Tòa A10', N'TS. Trưởng Khoa CNTT'),
+(N'DTVT', N'Khoa Điện - Điện tử', N'Phòng 501, Tòa A9', N'PGS.TS. Trưởng Khoa ĐTVT'),
+(N'KT', N'Khoa Kinh tế & Quản trị kinh doanh', N'Phòng 403, Tòa A8', N'TS. Trưởng Khoa Kinh Tế');
 
-### Phụ lục 2: Mẫu định dạng File Excel / CSV nạp điểm thi chuẩn
-File bảng điểm mẫu gồm 6 cột chính xác:
-```csv
-MaSV,MaMonHoc,MaHocKy,DiemChuyenCan,DiemGiuaKy,DiemCuoiKy
-23010191,MH001,HK1_2024_2025,9.0,8.5,9.0
-23010192,MH001,HK1_2024_2025,8.0,7.5,8.0
-23010193,MH001,HK1_2024_2025,9.5,9.0,9.5
-23010194,MH001,HK1_2024_2025,7.0,6.5,7.0
-23010195,MH001,HK1_2024_2025,8.5,8.0,8.5
+INSERT INTO dbo.Lop (MaLop, TenLop, KhoaHoc, Khoa) VALUES
+(N'CNTT01', N'Công nghệ thông tin 01', N'K17', N'Công nghệ thông tin'),
+(N'CNTT02', N'Công nghệ thông tin 02', N'K17', N'Công nghệ thông tin'),
+(N'KTPM01', N'Kỹ thuật phần mềm 01', N'K17', N'Công nghệ thông tin'),
+(N'KHMT01', N'Khoa học máy tính 01', N'K17', N'Công nghệ thông tin');
+
+INSERT INTO dbo.MonHoc (MaMon, TenMon, SoTinChi) VALUES
+(N'NET01', N'Công nghệ .NET', 3),
+(N'CSDL01', N'Cơ sở dữ liệu nâng cao', 3),
+(N'CTDL01', N'Cấu trúc dữ liệu và giải thuật', 3),
+(N'KTMT01', N'Kiến trúc máy tính', 2),
+(N'MMT01', N'Mạng máy tính cơ bản', 3);
+
+INSERT INTO dbo.NienKhoa (MaNienKhoa, TenNienKhoa, HocKy, IsActive) VALUES
+(N'2024-2025_HK1', N'2024-2025', 1, 0),
+(N'2024-2025_HK2', N'2024-2025', 2, 0),
+(N'2025-2026_HK1', N'2025-2026', 1, 0),
+(N'2025-2026_HK2', N'2025-2026', 2, 1);
+GO
 ```

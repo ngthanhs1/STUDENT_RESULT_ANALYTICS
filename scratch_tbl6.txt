@@ -1,0 +1,13 @@
+Mục | Nội dung
+Mã Use Case | UC01
+Tên Use Case | Đăng nhập hệ thống
+Actor | Admin, Doctor
+Mục đích | Xác thực người dùng trước khi cho phép truy cập vào hệ thống và phân quyền theo vai trò.
+Mô tả | Người dùng nhập tên đăng nhập và mật khẩu. Hệ thống kiểm tra thông tin xác thực, nếu hợp lệ sẽ cho phép truy cập vào giao diện tương ứng với quyền của người dùng.
+Tiền điều kiện | Người dùng đã được cấp tài khoản hợp lệ và chưa đăng nhập vào hệ thống.
+Kích hoạt | Người dùng chọn chức năng Đăng nhập.
+Luồng sự kiện chính | 1. Người dùng nhập Username và Password. 2. Nhấn nút Đăng nhập. 3. Hệ thống kiểm tra tính hợp lệ của tài khoản và mật khẩu. 4. Hệ thống xác định quyền truy cập (Admin hoặc Doctor). 5. Hiển thị màn hình chính tương ứng với vai trò của người dùng.
+Luồng thay thế / Ngoại lệ | 3a. Username hoặc Password không đúng → Hệ thống hiển thị thông báo "Tên đăng nhập hoặc mật khẩu không chính xác." và yêu cầu người dùng nhập lại. 3b. Người dùng để trống Username hoặc Password → Hệ thống yêu cầu nhập đầy đủ thông tin trước khi đăng nhập.
+Hậu điều kiện | Người dùng đăng nhập thành công và được chuyển đến giao diện chính theo đúng quyền (Admin hoặc Doctor).
+Độ ưu tiên | Cao
+Tần suất sử dụng | Mỗi lần người dùng truy cập hệ thống.

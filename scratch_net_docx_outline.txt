@@ -1,0 +1,167 @@
+Paragraphs: 1078
+Tables: 24
+
+[28] [Normal] MỤC LỤC
+[38] [Heading 1] MỞ ĐẦU
+[39] [Heading 2] Lý do chọn đề tài
+[43] [Heading 2] Mục đích nghiên cứu
+[50] [Heading 2] Đối tượng nghiên cứu
+[57] [Heading 2] Phạm vi nghiên cứu
+[67] [Heading 2] Ý nghĩa khoa học
+[69] [Heading 2] Ý nghĩa thực tiễn
+[73] [Heading 1] CHƯƠNG 1. XÁC ĐỊNH YÊU CẦU
+[74] [Heading 2] 1.1 Giới thiệu bối cảnh
+[77] [Heading 2] 1.2 Đối tượng khách hàng
+[81] [Heading 2] 1.3 Vấn đề cần giải quyết
+[88] [Heading 2] 1.4 Yêu cầu chung
+[103] [Heading 2] 1.5 Yêu cầu chức năng
+[104] [Heading 3] 1.5.1. Chức năng Đăng nhập
+[122] [Heading 3] 1.5.2. Chức năng Quản lý bệnh nhân
+[142] [Heading 3] 1.5.3. Chức năng Quản lý bác sĩ
+[160] [Heading 3] 1.5.4. Chức năng Quản lý lịch khám
+[179] [Heading 3] 1.5.5. Chức năng Quản lý hồ sơ bệnh án
+[196] [Heading 3] 1.5.6. Chức năng Phân quyền
+[212] [Heading 3] 1.5.7. Chức năng Quản lý tài khoản
+[229] [Heading 3] 1.5.8. Chức năng Đổi mật khẩu
+[252] [Heading 2] 1.6 Yêu cầu phi chức năng
+[275] [Heading 1] CHƯƠNG 2. PHÂN TÍCH THIẾT KẾ HỆ THỐNG
+[276] [Heading 2] 2.1 Phân tích yêu cầu
+[277] [Heading 3] 2.1.1 Functional Requirement (Yêu cầu chức năng)
+[279] [Normal] 1. Đăng nhập hệ thống
+[286] [Normal] 2. Quản lý bệnh nhân
+[300] [Normal] 3. Quản lý bác sĩ
+[313] [Normal] 4. Quản lý phòng ban
+[372] [Heading 3] 2.1.2 Non-functional Requirement (Yêu cầu phi chức năng)
+[374] [Normal] 1. Hiệu năng (Performance)
+[378] [Normal] 2. Bảo mật (Security)
+[384] [Normal] 3. Tính chính xác dữ liệu (Data Integrity)
+[389] [Normal] 4. Khả năng mở rộng (Scalability)
+[412] [Heading 2] 2.2 Use Case
+[413] [Heading 3] 2.2.1 Use Case tổng
+[417] [Heading 4] Hình 1: Sơ đồ Use Case
+[418] [Heading 3] 2.2.2 Use Case của Admin
+[422] [Heading 4] Hình 2.1: Sơ đồ Use Case của Admin
+[425] [Heading 3] 2.2.3 Use Case của Doctor
+[428] [Heading 4] Hình 2.2: Sơ đồ Use Case của Doctor
+[432] [Heading 5] Bảng 2.1. Đặc tả Use Case UC01 – Đăng nhập
+[433] [Heading 5] Bảng 2.2. Đặc tả Use Case UC02 – Quản lý bệnh nhân
+[434] [Heading 5] Bảng 2.3. Đặc tả Use Case UC03 – Quản lý lịch khám
+[435] [Heading 5] Bảng 2.4. Đặc tả Use Case UC04 – Xem lịch khám
+[436] [Heading 5] Bảng 2.5. Đặc tả Use Case UC05 – Tạo hồ sơ bệnh án
+[437] [Heading 5] Bảng 2.6. Đặc tả Use Case UC06 – Xem hồ sơ bệnh án
+[439] [Heading 2] 2.3 Activity Diagram
+[440] [Heading 3] 2.3.1 Activity Diagram – Đăng nhập (Login)
+[445] [Heading 4] Hình 2.3: Sơ đồ Activity Diagram – Đăng nhập
+[446] [Heading 3] 2.3.2 Activity Diagram – Quản lý bệnh nhân (CRUD Patient)
+[451] [Heading 4] Hình 2.4: Sơ đồ Activity Diagram – Quản lý bệnh nhân
+[452] [Heading 3] 2.3.3 Activity Diagram – Quản lý bác sĩ (CRUD Doctor)
+[457] [Heading 4] Hình 2.5: Sơ đồ Activity Diagram – Quản lý bác sĩ
+[458] [Heading 3] 2.3.4 Activity Diagram – Quản lý lịch khám (Appointment)
+[463] [Heading 4] Hình 2.6: Sơ đồ Activity Diagram – Quản lý lịch khám
+[464] [Heading 3] 2.3.5 Activity Diagram – Hồ sơ bệnh án (Medical Record)
+[469] [Heading 4] Hình 2.7: Sơ đồ Activity Diagram – Hồ sơ bệnh án
+[471] [Heading 2] 2.4 Sequence Diagram
+[472] [Heading 3] 2.4.1 Sequence Diagram – Đăng nhập
+[477] [Heading 4] Hình 2.8: Sơ đồ Sequence Diagram – Đăng nhập
+[478] [Heading 3] 2.4.2 Sequence Diagram – Quản lý bệnh nhân
+[483] [Heading 4] Hình 2.9: Sơ đồ Sequence Diagram – Quản lý bệnh nhân
+[484] [Heading 3] 2.4.3 Sequence Diagram – Quản lý lịch khám
+[489] [Heading 4] Hình 2.10: Sơ đồ Sequence Diagram – Quản lý lịch khám
+[490] [Heading 3] 2.4.4 Sequence Diagram – Xem lịch khám
+[495] [Heading 4] Hình 2.11: Sơ đồ Sequence Diagram – Xem lịch khám
+[496] [Heading 3] 2.4.5 Sequence Diagram – Tạo hồ sơ bệnh án
+[501] [Heading 4] Hình 2.12: Sơ đồ Sequence Diagram – Tạo hồ sơ bệnh án
+[503] [Heading 3] 2.4.6 Sequence Diagram – Xem hồ sơ bệnh án
+[508] [Heading 4] Hình 2.13: Sơ đồ Sequence Diagram – Xem hồ sơ bệnh án
+[509] [Heading 2] 2.5 Thiết kế chức năng
+[510] [Heading 3] 2.5.1 Chức năng quản lý bệnh nhân
+[559] [Heading 3] 2.5.2 Chức năng quản lý bác sĩ
+[589] [Heading 3] 2.5.3 Chức năng quản lý lịch khám
+[637] [Heading 3] 2.5.4 Chức năng tạo hồ sơ bệnh án
+[670] [Heading 3] 2.5.5 Chức năng xem hồ sơ bệnh án
+[698] [Heading 2] 2.6 Thiết kế cơ sở dữ liệu
+[700] [Heading 3] 2.6.1 Bảng Users
+[704] [Heading 3] 2.6.2 Bảng Doctors
+[708] [Heading 3] 2.6.3 Bảng Patients
+[712] [Heading 3] 2.6.4 Bảng Appointments
+[717] [Heading 3] 2.6.5 Bảng MedicalRecords
+[722] [Heading 3] 2.6.6 Sơ đồ ERD
+[724] [Heading 4] Hình 2.6.6: Sơ đồ ERD
+[731] [Heading 2] 2.7 Thiết kế giao diện
+[732] [Heading 3] 2.7.1 Giao diện đăng nhập (Login)
+[734] [Heading 4] Hình 2.20. Giao diện đăng nhập hệ thống
+[746] [Heading 2] 2.7.2 Giao diện Dashboard
+[748] [Heading 4] Hình 2.21. Giao diện Dashboard
+[757] [Heading 3] 2.7.3 Giao diện quản lý bệnh nhân (Patient)
+[759] [Heading 4] Hình 2.22. Giao diện quản lý bệnh nhân
+[771] [Heading 3] 2.7.4 Giao diện quản lý bác sĩ (Doctor)
+[773] [Heading 4] Hình 2.23. Giao diện quản lý bác sĩ
+[783] [Heading 3] 2.7.5 Giao diện quản lý lịch khám (Appointment)
+[785] [Heading 4] Hình 2.24. Giao diện quản lý lịch khám
+[797] [Heading 3] 2.7.6 Giao diện quản lý hồ sơ bệnh án (Medical Record)
+[799] [Heading 4] Hình 2.25. Giao diện hồ sơ bệnh án
+[811] [Heading 2] 2.8 Thiết kế API
+[821] [Heading 2] 2.9 Kiến trúc hệ thống
+[831] [Heading 4] Hình 2.26: Sơ đồ kiến trúc hệ thống
+[832] [Heading 3] 2.9.1 Presentation Layer
+[844] [Heading 3] 2.9.2 ViewModel Layer
+[852] [Heading 3] 2.9.3 Service Layer
+[869] [Heading 3] 2.9.4 Repository Layer
+[884] [Heading 3] 2.9.5 Entity Framework
+[892] [Heading 3] 2.9.6 SQL Server
+[903] [Heading 2] 2.10 Bảo mật
+[905] [Heading 3] 2.10.1 Xác thực người dùng (Authentication)
+[913] [Heading 3] 2.10.2 Phân quyền người dùng (Role-based Authorization)
+[916] [Heading 3] 2.10.3 JWT Authentication
+[924] [Heading 3] 2.10.4 Authorize
+[931] [Heading 3] 2.10.5 Mã hóa mật khẩu (Hash Password)
+[938] [Heading 3] 2.10.6 Kiểm tra dữ liệu đầu vào (Validate Input)
+[948] [Heading 3] 2.10.7 Xử lý ngoại lệ (Exception Handling)
+[958] [Heading 1] CHƯƠNG 3. TRIỂN KHAI
+[959] [Heading 2] 3.1 Công nghệ
+[961] [Heading 3] 3.1.1 Công nghệ lập trình giao diện (Frontend)
+[969] [Heading 3] 3.1.2 Công nghệ xử lý nghiệp vụ (Backend)
+[974] [Heading 3] 3.1.3 Công nghệ cơ sở dữ liệu
+[977] [Heading 3] 3.1.4 Quản lý mã nguồn
+[979] [Heading 2] 3.2 Cài đặt và triển khai
+[980] [Heading 3] 3.2.1 Công cụ và môi trường phát triển
+[985] [Heading 3] 3.2.2 Cấu hình kết nối cơ sở dữ liệu
+[989] [Heading 3] 3.2.3 Quy trình Migration cơ sở dữ liệu
+[995] [Heading 3] 3.2.4 Mô hình triển khai tổng thể
+[1000] [Heading 2] 3.3 Thử nghiệm và kiểm thử
+[1003] [Heading 2] 3.4 Đánh giá hiệu quả vận hành
+[1004] [Heading 3] 3.4.1 Ưu điểm
+[1010] [Heading 3] 3.4.2 Nhược điểm
+[1016] [Heading 3] 3.4.3 Hiệu năng vận hành
+[1023] [Heading 1] KẾT LUẬN
+[1024] [Heading 2] 1. Kết quả đạt được
+[1036] [Heading 2] 2. So sánh với yêu cầu đề tài ban đầu
+[1039] [Heading 2] 3. Mức độ hoàn thành
+[1046] [Heading 2] 4. Hướng phát triển
+[1063] [Heading 2] TÀI LIỆU THAM KHẢO
+
+--- TABLES ---
+Table 0: rows=9, cols=1 | Header: ['ĐẠI HỌC PHENIKAA  TRƯỜNG NGHỆ THÔNG TIN PHENIKAA']
+Table 1: rows=3, cols=1 | Header: ['ĐẠI HỌC PHENIKAA  TRƯỜNG KHOA CÔNG NGHỆ THÔNG PHENIKAA']
+Table 2: rows=4, cols=3 | Header: ['Thành viên', 'Nội dung công việc', 'Tỷ lệ đóng góp']
+Table 3: rows=3, cols=2 | Header: ['Tác nhân', 'Mô tả']
+Table 4: rows=10, cols=2 | Header: ['Use Case', 'Mô tả']
+Table 5: rows=7, cols=2 | Header: ['Use Case', 'Mô tả']
+Table 6: rows=13, cols=2 | Header: ['Mục', 'Nội dung']
+Table 7: rows=13, cols=2 | Header: ['Mục', 'Nội dung']
+Table 8: rows=13, cols=2 | Header: ['Mục', 'Nội dung']
+Table 9: rows=13, cols=2 | Header: ['Mục', 'Nội dung']
+Table 10: rows=13, cols=2 | Header: ['Mục', 'Nội dung']
+Table 11: rows=13, cols=2 | Header: ['Mục', 'Nội dung']
+Table 12: rows=6, cols=2 | Header: ['Dữ liệu', 'Mô tả']
+Table 13: rows=6, cols=2 | Header: ['Dữ liệu', 'Mô tả']
+Table 14: rows=5, cols=2 | Header: ['Dữ liệu', 'Mô tả']
+Table 15: rows=6, cols=5 | Header: ['Tên trường', 'Kiểu', 'Độ dài', 'Ràng buộc', 'Ý nghĩa']
+Table 16: rows=6, cols=5 | Header: ['Tên trường', 'Kiểu', 'Độ dài', 'Ràng buộc', 'Ý nghĩa']
+Table 17: rows=7, cols=5 | Header: ['Tên trường', 'Kiểu', 'Độ dài', 'Ràng buộc', 'Ý nghĩa']
+Table 18: rows=6, cols=5 | Header: ['Tên trường', 'Kiểu', 'Độ dài', 'Ràng buộc', 'Ý nghĩa']
+Table 19: rows=6, cols=5 | Header: ['Tên trường', 'Kiểu', 'Độ dài', 'Ràng buộc', 'Ý nghĩa']
+Table 20: rows=35, cols=4 | Header: ['Method', 'API', 'Chức năng', 'Role']
+Table 21: rows=3, cols=2 | Header: ['Vai trò', 'Quyền truy cập']
+Table 22: rows=21, cols=4 | Header: ['STT', 'Chức năng', 'Input', 'Expected']
+Table 23: rows=7, cols=2 | Header: ['Yêu cầu ban đầu', 'Kết quả triển khai']
