@@ -978,173 +978,171 @@ Căn cứ vào điểm trung bình chung tích lũy ($CPA$), học lực của s
 
 ### 2.6 Thiết kế Cơ sở dữ liệu (Database Design)
 
+Cơ sở dữ liệu của hệ thống mang tên **`StudentResultAnalyticsDB`**, được triển khai lưu trữ trên nền tảng điện toán đám mây Microsoft SQL Server (Somee Cloud). CSDL được thiết kế chuẩn hóa đạt dạng chuẩn 3 (3NF - Third Normal Form), loại bỏ hoàn toàn các dư thừa dữ liệu và dị thường khi cập nhật, đồng thời tối ưu hóa cho các thao tác tra cứu điểm số và thống kê học vụ thời gian thực.
+
 #### 2.6.1 Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD)
-Cơ sở dữ liệu được thiết kế đạt chuẩn hóa dạng 3 (3NF - Third Normal Form), loại bỏ hoàn toàn các dư thừa dữ liệu và dị thường khi cập nhật.
+
+Toàn bộ CSDL gồm **7 bảng thực thể nghiệp vụ cốt lõi** và **2 khung nhìn dữ liệu nâng cao (Views)**, phản ánh chính xác cấu trúc bảng được trích xuất trực tiếp từ công cụ SQL Server Management Studio (SSMS):
 
 ```mermaid
 erDiagram
-    Lop ||--o{ SinhVien : "co_sinh_vien"
-    SinhVien ||--o{ KetQua : "thuoc_sinh_vien"
-    MonHoc ||--o{ KetQua : "thuoc_mon_hoc"
-    HocKy ||--o{ KetQua : "thuoc_hoc_ky"
-    TaiKhoan ||--o{ LichSuNhapDuLieu : "thuc_hien_nhap"
-
-    Lop {
-        nvarchar MaLop PK "Mã lớp sinh hoạt (CNTT01, KTPM01...)"
-        nvarchar TenLop "Tên lớp sinh hoạt"
-        nvarchar KhoaHoc "Khóa đào tạo (K16, K17...)"
-        nvarchar Khoa "Khoa trực thuộc (Công nghệ thông tin)"
-    }
+    Lop ||--o{ SinhVien : "FK_SinhVien_Lop (MaLop)"
+    SinhVien ||--o{ KetQua : "FK_KetQua_SinhVien (MaSV)"
+    MonHoc ||--o{ KetQua : "FK_KetQua_MonHoc (MaMonHoc)"
+    HocKy ||--o{ KetQua : "FK_KetQua_HocKy (MaHocKy)"
+    TaiKhoan ||--o{ LichSuNhapDuLieu : "FK_LichSuNhap_TaiKhoan (MaTaiKhoan)"
 
     SinhVien {
-        nvarchar MaSV PK "Mã sinh viên (22020224, 23010168...)"
-        nvarchar HoTen "Họ và tên đầy đủ của sinh viên"
-        date NgaySinh "Ngày sinh"
-        nvarchar GioiTinh "Giới tính (Nam / Nữ)"
-        nvarchar Email "Email: [MaSV]@st.phenikaa-uni.edu.vn"
-        nvarchar MaLop FK "Tham chiếu Lop(MaLop)"
+        varchar(20) MaSV PK "Mã sinh viên (22020224, 23010168...)"
+        nvarchar(100) HoTen "Họ và tên sinh viên"
+        date NgaySinh "Ngày sinh sinh viên"
+        nvarchar(10) GioiTinh "Giới tính (Nam / Nữ)"
+        varchar(100) Email "Email trường: [MaSV]@st.phenikaa-uni.edu.vn"
+        varchar(20) MaLop FK "Tham chiếu Lop(MaLop)"
+    }
+
+    Lop {
+        varchar(20) MaLop PK "Mã lớp sinh hoạt (CNTT01, KTPM01...)"
+        nvarchar(100) TenLop "Tên lớp sinh hoạt"
+        nvarchar(20) KhoaHoc "Khóa đào tạo (K16, K17, K18)"
+        nvarchar(100) Khoa "Khoa trực thuộc (Khoa Công nghệ thông tin...)"
     }
 
     MonHoc {
-        nvarchar MaMonHoc PK "Mã học phần (NET01, CSDL01...)"
-        nvarchar TenMonHoc "Tên môn học"
-        int SoTinChi "Số tín chỉ (2, 3, 4)"
+        varchar(20) MaMonHoc PK "Mã môn học (NET01, CSDL01...)"
+        nvarchar(150) TenMonHoc "Tên môn học đào tạo"
+        int SoTinChi "Số tín chỉ (1 đến 10)"
     }
 
     HocKy {
-        nvarchar MaHocKy PK "Mã học kỳ (2025-2026_HK1...)"
-        nvarchar TenHocKy "Tên học kỳ: Học kỳ 1, Học kỳ 2"
-        nvarchar NamHoc "Năm học: 2025-2026"
-        datetime NgayBatDau "Thời điểm bắt đầu học kỳ"
-        datetime NgayKetThuc "Thời điểm kết thúc học kỳ"
+        varchar(20) MaHocKy PK "Mã học kỳ (2025-2026_HK1...)"
+        nvarchar(50) TenHocKy "Tên học kỳ: Học kỳ 1, Học kỳ 2"
+        varchar(9) NamHoc "Năm học: 2025-2026"
+        date NgayBatDau "Ngày bắt đầu học kỳ"
+        date NgayKetThuc "Ngày kết thúc học kỳ"
     }
 
     KetQua {
-        int MaKetQua PK "Khóa chính tự tăng"
-        nvarchar MaSV FK "Tham chiếu SinhVien(MaSV)"
-        nvarchar MaMonHoc FK "Tham chiếu MonHoc(MaMonHoc)"
-        nvarchar MaHocKy FK "Tham chiếu HocKy(MaHocKy)"
-        decimal DiemChuyenCan "Điểm chuyên cần (10%)"
-        decimal DiemGiuaKy "Điểm giữa kỳ (40%)"
-        decimal DiemCuoiKy "Điểm thi kết thúc (50%)"
-        nvarchar TyLeDiem "Tỷ lệ điểm: 10-40-50"
-        decimal DiemTongKet "Điểm tổng kết môn thang 10"
+        int MaKetQua PK "Khóa chính tự tăng (IDENTITY)"
+        varchar(20) MaSV FK "Tham chiếu SinhVien(MaSV)"
+        varchar(20) MaMonHoc FK "Tham chiếu MonHoc(MaMonHoc)"
+        varchar(20) MaHocKy FK "Tham chiếu HocKy(MaHocKy)"
+        decimal DiemChuyenCan "Điểm chuyên cần (0.0 - 10.0)"
+        decimal DiemGiuaKy "Điểm giữa kỳ (0.0 - 10.0)"
+        decimal DiemCuoiKy "Điểm cuối kỳ (0.0 - 10.0)"
+        varchar(20) TyLeDiem "Tỷ lệ điểm: 10-30-60 hoặc 10-40-50"
+        decimal DiemTongKet "Điểm tổng kết (PERSISTED Calculated Column)"
     }
 
     TaiKhoan {
-        int MaTaiKhoan PK "Khóa chính tự tăng"
-        nvarchar TenDangNhap UK "Tên đăng nhập (admin, nhanvien)"
-        nvarchar MatKhauHash "Mật khẩu đã băm an toàn"
-        nvarchar VaiTro "Vai trò: Admin, NhanVien"
+        int MaTaiKhoan PK "Khóa chính tự tăng (IDENTITY)"
+        varchar(50) TenDangNhap UK "Tên đăng nhập (admin, nhanvien)"
+        nvarchar(255) MatKhauHash "Mật khẩu đã băm an toàn"
+        varchar(20) VaiTro "Vai trò: 'Admin' hoặc 'NhanVien'"
         bit TrangThai "Trạng thái (1: Active, 0: Locked)"
-        datetime NgayTao "Ngày tạo tài khoản"
+        datetime2 NgayTao "Thời điểm tạo tài khoản"
     }
 
     LichSuNhapDuLieu {
-        int MaLichSu PK "Khóa chính tự tăng"
-        nvarchar TenFile "Tên tệp Excel/CSV đã nạp"
-        nvarchar LoaiFile "Loại file (.xlsx, .csv)"
-        datetime ThoiGianNhap "Thời điểm nạp"
-        int TongSoDong "Tổng số dòng dữ liệu"
-        int SoDongThanhCong "Số dòng nạp thành công"
-        int SoDongLoi "Số dòng lỗi"
-        nvarchar TrangThai "Trạng thái xử lý"
-        nvarchar GhiChu "Ghi chú kết quả"
+        int MaLichSu PK "Khóa chính tự tăng (IDENTITY)"
+        nvarchar(255) TenFile "Tên tệp Excel/CSV đã nạp"
+        varchar(10) LoaiFile "Loại file: 'CSV', 'XLS', 'XLSX'"
+        datetime2 ThoiGianNhap "Dấu thời gian import dữ liệu"
+        int TongSoDong "Tổng số dòng bản ghi điểm"
+        int SoDongThanhCong "Số dòng import thành công"
+        int SoDongLoi "Số dòng bị lỗi cú pháp/logic"
+        varchar(20) TrangThai "Trạng thái: 'ThanhCong', 'MotPhan', 'Loi'"
+        nvarchar(500) GhiChu "Ghi chú chi tiết kết quả xử lý"
         int MaTaiKhoan FK "Tham chiếu TaiKhoan(MaTaiKhoan)"
     }
 ```
-*Hình 2.15. Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD) chuẩn hóa 3NF trích xuất trực tiếp từ SQL Server*
+*Hình 2.15. Sơ đồ Thực thể Liên kết (Entity Relationship Diagram - ERD) 7 bảng chuẩn hóa 3NF trích xuất trực tiếp từ SQL Server Management Studio*
 
 
-#### 2.6.2 Từ điển dữ liệu chi tiết cho 8 bảng Cơ sở dữ liệu
+#### 2.6.2 Từ điển dữ liệu chi tiết cho 7 bảng Cơ sở dữ liệu thực tế
 
-*Bảng 2.14. Từ điển dữ liệu bảng `TaiKhoan`*
-
-| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
-| :--- | :--- | :---: | :---: | :--- |
-| `Id` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng định danh duy nhất người dùng |
-| `TenDangNhap` | `NVARCHAR` | 50 | UNIQUE, NOT NULL | Tên tài khoản đăng nhập vào hệ thống |
-| `MatKhau` | `NVARCHAR` | 255 | NOT NULL | Mật khẩu xác thực (mã hóa an toàn) |
-| `HoTen` | `NVARCHAR` | 100 | NOT NULL | Họ và tên đầy đủ của chủ tài khoản |
-| `Email` | `NVARCHAR` | 150 | NULL | Email liên hệ phục vụ khôi phục thông tin |
-| `VaiTro` | `NVARCHAR` | 50 | NOT NULL | Vai trò phân quyền: `Admin`, `NhanVien`, `SinhVien` |
-| `TrangThai` | `BIT` | 1 byte | DEFAULT 1 | Trạng thái hoạt động (1: Kích hoạt, 0: Tạm khóa) |
-| `NgayTao` | `DATETIME` | 8 bytes | DEFAULT GETDATE() | Ngày giờ khởi tạo tài khoản |
-
-*Bảng 2.15. Từ điển dữ liệu bảng `Khoa`*
+*Bảng 2.14. Từ điển dữ liệu bảng `SinhVien` (Hồ sơ sinh viên)*
 
 | Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
 | :--- | :--- | :---: | :---: | :--- |
-| `MaKhoa` | `NVARCHAR` | 20 | PK, NOT NULL | Mã định danh khoa đào tạo (ví dụ: `CNTT`, `DTVT`) |
-| `TenKhoa` | `NVARCHAR` | 100 | NOT NULL | Tên đầy đủ của khoa (Khoa Công nghệ thông tin) |
-| `VanPhong` | `NVARCHAR` | 150 | NULL | Địa điểm phòng làm việc văn phòng khoa |
-| `TruongKhoa` | `NVARCHAR` | 100 | NULL | Họ và tên Trưởng khoa |
-
-*Bảng 2.16. Từ điển dữ liệu bảng `Lop`*
-
-| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
-| :--- | :--- | :---: | :---: | :--- |
-| `MaLop` | `NVARCHAR` | 20 | PK, NOT NULL | Mã lớp sinh hoạt (ví dụ: `CNTT01`, `KTPM01`) |
-| `TenLop` | `NVARCHAR` | 100 | NOT NULL | Tên đầy đủ của lớp sinh hoạt |
-| `KhoaHoc` | `NVARCHAR` | 50 | NULL | Khóa học đào tạo (ví dụ: `K16`, `K17`) |
-| `Khoa` | `NVARCHAR` | 100 | NULL | Tên khoa quản lý lớp sinh hoạt (ví dụ: `Công nghệ thông tin`) |
-
-*Bảng 2.17. Từ điển dữ liệu bảng `SinhVien`*
-
-| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
-| :--- | :--- | :---: | :---: | :--- |
-| `MaSV` | `NVARCHAR` | 20 | PK, NOT NULL | Mã định danh duy nhất của sinh viên (ví dụ: `22020224`) |
+| `MaSV` | `VARCHAR` | 20 | PK, NOT NULL | Mã định danh duy nhất của sinh viên (ví dụ: `22020224`, `23010168`) |
 | `HoTen` | `NVARCHAR` | 100 | NOT NULL | Họ và tên đầy đủ của sinh viên |
-| `NgaySinh` | `DATE` | 3 bytes | NULL | Ngày tháng năm sinh theo giấy khai sinh |
-| `GioiTinh` | `NVARCHAR` | 10 | CHECK in ('Nam','Nữ') | Giới tính của sinh viên |
-| `Email` | `NVARCHAR` | 150 | NOT NULL | Email trường: `[MaSV]@st.phenikaa-uni.edu.vn` |
-| `MaLop` | `NVARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu đến bảng `Lop(MaLop)` |
+| `NgaySinh` | `DATE` | 3 bytes | NULL | Ngày tháng năm sinh theo hồ sơ sinh viên |
+| `GioiTinh` | `NVARCHAR` | 10 | NULL, CHECK in ('Nam','Nữ') | Giới tính của sinh viên |
+| `Email` | `VARCHAR` | 100 | NULL | Email trường chuẩn hóa tự động: `[MaSV]@st.phenikaa-uni.edu.vn` |
+| `MaLop` | `VARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu `Lop(MaLop)` |
 
-*Bảng 2.18. Từ điển dữ liệu bảng `MonHoc`*
-
-| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
-| :--- | :--- | :---: | :---: | :--- |
-| `MaMon` | `NVARCHAR` | 20 | PK, NOT NULL | Mã học phần đào tạo (ví dụ: `NET01`, `CSDL01`) |
-| `TenMon` | `NVARCHAR` | 100 | NOT NULL | Tên môn học hiển thị |
-| `SoTinChi` | `INT` | 4 bytes | CHECK (> 0) | Số tín chỉ của học phần (trọng số tính GPA) |
-| `HeSoChuyenCan`| `DECIMAL(3,2)` | 5 bytes | DEFAULT 0.10 | Tỷ lệ điểm đánh giá chuyên cần (10%) |
-| `HeSoGiuaKy` | `DECIMAL(3,2)` | 5 bytes | DEFAULT 0.40 | Tỷ lệ điểm kiểm tra giữa kỳ (40%) |
-| `HeSoCuoiKy` | `DECIMAL(3,2)` | 5 bytes | DEFAULT 0.50 | Tỷ lệ điểm thi kết thúc học phần (50%) |
-
-*Bảng 2.19. Từ điển dữ liệu bảng `NienKhoa`*
+*Bảng 2.15. Từ điển dữ liệu bảng `Lop` (Danh mục lớp sinh hoạt & Khoa)*
 
 | Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
 | :--- | :--- | :---: | :---: | :--- |
-| `MaNienKhoa` | `NVARCHAR` | 50 | PK, NOT NULL | Mã định danh niên khóa học kỳ (ví dụ: `2025-2026_HK1`) |
-| `TenNienKhoa`| `NVARCHAR` | 50 | NOT NULL | Chuỗi năm học hiển thị (ví dụ: `2025-2026`) |
-| `HocKy` | `INT` | 4 bytes | CHECK in (1, 2, 3) | Học kỳ đào tạo trong năm học (1: Kỳ 1, 2: Kỳ 2, 3: Hè) |
-| `IsActive` | `BIT` | 1 byte | DEFAULT 0 | Đánh dấu học kỳ hiện hành đang mở nhận điểm |
+| `MaLop` | `VARCHAR` | 20 | PK, NOT NULL | Mã định danh lớp sinh hoạt (ví dụ: `CNTT01`, `KTPM01`) |
+| `TenLop` | `NVARCHAR` | 100 | NOT NULL | Tên đầy đủ của lớp sinh hoạt |
+| `KhoaHoc` | `NVARCHAR` | 20 | NULL | Khóa học đào tạo (ví dụ: `K16`, `K17`, `K18`) |
+| `Khoa` | `NVARCHAR` | 100 | NULL | Tên khoa quản lý lớp sinh hoạt (ví dụ: `Khoa Công nghệ thông tin`) |
 
-*Bảng 2.20. Từ điển dữ liệu bảng `DiemHocPhan`*
-
-| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
-| :--- | :--- | :---: | :---: | :--- |
-| `Id` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng |
-| `MaSV` | `NVARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu `SinhVien(MaSV)` |
-| `MaMon` | `NVARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu `MonHoc(MaMon)` |
-| `MaNienKhoa` | `NVARCHAR` | 50 | FK, NOT NULL | Khóa ngoại tham chiếu `NienKhoa(MaNienKhoa)` |
-| `DiemChuyenCan`| `DECIMAL(4,2)` | 5 bytes | CHECK (0.0 - 10.0)| Điểm chuyên cần thành phần |
-| `DiemGiuaKy` | `DECIMAL(4,2)` | 5 bytes | CHECK (0.0 - 10.0)| Điểm thi đánh giá giữa kỳ |
-| `DiemCuoiKy` | `DECIMAL(4,2)` | 5 bytes | CHECK (0.0 - 10.0)| Điểm thi kết thúc học phần |
-| `DiemTongKet` | `DECIMAL(4,2)` | 5 bytes | NULL | Điểm tổng kết môn học thang 10 |
-| `DiemChu` | `NVARCHAR` | 5 | NULL | Điểm chữ quy đổi: `A+`, `A`, `B+`, `B`, `C+`, `C`, `D+`, `D`, `F` |
-| `DiemHe4` | `DECIMAL(3,2)` | 5 bytes | NULL | Điểm thang 4 quy đổi: 4.0, 3.7, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.0 |
-| `TrangThai` | `NVARCHAR` | 20 | NULL | Trạng thái: `Đạt` hoặc `Trượt` |
-
-*Bảng 2.21. Từ điển dữ liệu bảng `LogHeThong`*
+*Bảng 2.16. Từ điển dữ liệu bảng `MonHoc` (Danh mục học phần đào tạo)*
 
 | Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
 | :--- | :--- | :---: | :---: | :--- |
-| `Id` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng |
-| `TenDangNhap` | `NVARCHAR` | 50 | NOT NULL | Tài khoản người dùng thực thi hành động |
-| `HanhDong` | `NVARCHAR` | 50 | NOT NULL | Loại hành động: `LOGIN`, `INSERT_SV`, `UPDATE_DIEM`... |
-| `ChiTiet` | `NVARCHAR` | 255 | NULL | Mô tả chi tiết dữ liệu biến động |
-| `ThoiGian` | `DATETIME` | 8 bytes | DEFAULT GETDATE() | Dấu thời gian hệ thống ghi nhận |
+| `MaMonHoc` | `VARCHAR` | 20 | PK, NOT NULL | Mã học phần đào tạo (ví dụ: `NET01`, `CSDL01`) |
+| `TenMonHoc` | `NVARCHAR` | 150 | NOT NULL | Tên môn học đào tạo (ví dụ: `Công nghệ .NET`, `Cơ sở dữ liệu`) |
+| `SoTinChi` | `INT` | 4 bytes | NOT NULL, CHECK (1-10) | Số tín chỉ của học phần (trọng số để tính điểm tích lũy GPA/CPA) |
+
+*Bảng 2.17. Từ điển dữ liệu bảng `HocKy` (Học kỳ & Niên khóa đào tạo)*
+
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaHocKy` | `VARCHAR` | 20 | PK, NOT NULL | Mã định danh học kỳ niên khóa (ví dụ: `2025-2026_HK1`, `2025-2026_HK2`) |
+| `TenHocKy` | `NVARCHAR` | 50 | NOT NULL | Tên hiển thị học kỳ (ví dụ: `Học kỳ 1`, `Học kỳ 2`) |
+| `NamHoc` | `VARCHAR` | 9 | NOT NULL | Chuỗi năm học niên khóa (ví dụ: `2025-2026`) |
+| `NgayBatDau` | `DATE` | 3 bytes | NULL | Ngày bắt đầu học kỳ đào tạo |
+| `NgayKetThuc` | `DATE` | 3 bytes | NULL | Ngày kết thúc học kỳ đào tạo (ràng buộc `>= NgayBatDau`) |
+
+*Bảng 2.18. Từ điển dữ liệu bảng `KetQua` (Sổ điểm học phần & Điểm thành phần)*
+
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaKetQua` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng của bản ghi điểm |
+| `MaSV` | `VARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu đến sinh viên `SinhVien(MaSV)` |
+| `MaMonHoc` | `VARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu đến môn học `MonHoc(MaMonHoc)` |
+| `MaHocKy` | `VARCHAR` | 20 | FK, NOT NULL | Khóa ngoại tham chiếu đến học kỳ `HocKy(MaHocKy)` |
+| `DiemChuyenCan`| `DECIMAL(4,2)`| 5 bytes | NULL, CHECK (0.0-10.0)| Điểm đánh giá chuyên cần (trọng số 10%) |
+| `DiemGiuaKy` | `DECIMAL(4,2)`| 5 bytes | NULL, CHECK (0.0-10.0)| Điểm kiểm tra giữa kỳ (trọng số 30% - 40%) |
+| `DiemCuoiKy` | `DECIMAL(4,2)`| 5 bytes | NULL, CHECK (0.0-10.0)| Điểm thi kết thúc học phần (trọng số 50% - 60%) |
+| `TyLeDiem` | `VARCHAR` | 20 | NULL | Chuỗi cấu hình tỷ lệ điểm (ví dụ: `10-30-60` hoặc `10-40-50`) |
+| `DiemTongKet` | `DECIMAL(4,2)`| 5 bytes | PERSISTED | Điểm tổng kết thang 10 tự động tính: `ROUND(CC*0.1 + GK*0.3 + CK*0.6, 2)` |
+
+*Bảng 2.19. Từ điển dữ liệu bảng `TaiKhoan` (Tài khoản người dùng & Phân quyền)*
+
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaTaiKhoan` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng định danh tài khoản cán bộ |
+| `TenDangNhap` | `VARCHAR` | 50 | UNIQUE, NOT NULL | Tên tài khoản đăng nhập (ví dụ: `admin`, `nhanvien`) |
+| `MatKhauHash` | `NVARCHAR` | 255 | NOT NULL | Mật khẩu xác thực đã được băm an toàn |
+| `VaiTro` | `VARCHAR` | 20 | NOT NULL, CHECK in ('Admin','NhanVien') | Vai trò phân quyền RBAC: `Admin` hoặc `NhanVien` |
+| `TrangThai` | `BIT` | 1 byte | NOT NULL, DEFAULT 1 | Trạng thái tài khoản (1: Đang hoạt động, 0: Tạm khóa) |
+| `NgayTao` | `DATETIME2(0)`| 6 bytes | NOT NULL, DEFAULT SYSUTCDATETIME() | Thời điểm tạo tài khoản trên hệ thống |
+
+*Bảng 2.20. Từ điển dữ liệu bảng `LichSuNhapDuLieu` (Nhật ký kiểm toán import Excel/CSV)*
+
+| Tên trường (Column) | Kiểu dữ liệu | Độ dài | Ràng buộc | Ý nghĩa và Diễn giải nghiệp vụ |
+| :--- | :--- | :---: | :---: | :--- |
+| `MaLichSu` | `INT` | 4 bytes | PK, IDENTITY(1,1) | Khóa chính tự tăng của phiên import bảng điểm |
+| `TenFile` | `NVARCHAR` | 255 | NOT NULL | Tên tệp bảng điểm ngoại vi (Excel hoặc CSV) đã nạp |
+| `LoaiFile` | `VARCHAR` | 10 | NOT NULL, CHECK in ('CSV','XLS','XLSX') | Định dạng tệp nạp vào hệ thống |
+| `ThoiGianNhap` | `DATETIME2(0)`| 6 bytes | NOT NULL, DEFAULT SYSDATETIME() | Thời điểm cán bộ thực hiện thao tác nạp tệp |
+| `TongSoDong` | `INT` | 4 bytes | NOT NULL, DEFAULT 0 | Tổng số dòng dữ liệu điểm thi đọc được từ file |
+| `SoDongThanhCong`| `INT` | 4 bytes | NOT NULL, DEFAULT 0 | Số dòng dữ liệu hợp lệ được lưu vào bảng `KetQua` |
+| `SoDongLoi` | `INT` | 4 bytes | NOT NULL, DEFAULT 0 | Số dòng bị từ chối do sai format, thiếu điểm hoặc trùng |
+| `TrangThai` | `VARCHAR` | 20 | NOT NULL, CHECK in ('ThanhCong','MotPhan','Loi') | Trạng thái xử lý tổng quan của phiên nạp dữ liệu |
+| `GhiChu` | `NVARCHAR` | 500 | NULL | Chi tiết mô tả lỗi hoặc thông điệp xử lý |
+| `MaTaiKhoan` | `INT` | 4 bytes | FK, NULL | Khóa ngoại liên kết tài khoản cán bộ thực hiện |
+
+#### 2.6.3 Khung nhìn dữ liệu nâng cao (Database Views)
+Nhằm tối ưu hóa hiệu năng truy vấn cho Bàn làm việc Dashboard, Sổ điểm điện tử và Phân hệ Cảnh báo học vụ, hệ thống cài đặt sẵn 2 Views mức cơ sở dữ liệu:
+1. **`dbo.vw_DiemTrungBinhHocKy`**: Thực hiện phép kết (`JOIN`) giữa `SinhVien`, `KetQua`, `MonHoc` và `HocKy`. Tự động tính toán tổng số môn đã học, tổng số tín chỉ tích lũy, điểm trung bình học kỳ theo thang điểm 10 và thang điểm 4 theo đúng quy chế tín chỉ của Bộ Giáo dục & Đào tạo.
+2. **`dbo.vw_SinhVienThieuDiem`**: Lọc và chỉ ra các học phần mà sinh viên bị thiếu một trong các điểm thành phần (Điểm Chuyên cần, Điểm Giữa kỳ hoặc Điểm Cuối kỳ), hỗ trợ cán bộ phòng đào tạo phát hiện nhanh các hồ sơ điểm thi chưa hoàn chỉnh để kịp thời đôn đốc bộ môn.
 
 <div style="page-break-after: always;"></div>
 
@@ -1184,24 +1182,27 @@ flowchart TD
         RelayCmd[RelayCommand : ICommand]
     end
 
-    subgraph DomainModelLayer ["3. Model Layer (Tầng Mô hình dữ liệu)"]
+    subgraph DomainModelLayer ["3. Model Layer (Tầng Mô hình dữ liệu thực tế)"]
         M1[SinhVien.cs]
         M2[Lop.cs]
-        M3[Khoa.cs]
-        M4[MonHoc.cs]
-        M5[DiemHocPhan.cs]
-        M6[NienKhoa.cs]
-        M7[TaiKhoan.cs]
-        M8[LogHeThong.cs]
+        M3[MonHoc.cs]
+        M4[HocKy.cs]
+        M5[KetQua.cs]
+        M6[TaiKhoan.cs]
+        M7[LichSuNhapDuLieu.cs]
+        M8[DiemTrungBinhHocKy.cs]
+        M9[SinhVienThieuDiem.cs]
     end
 
     subgraph DataAccessLayer ["4. Data Access Layer (Repository Pattern & ADO.NET)"]
         R1[SinhVienRepository]
         R2[LopRepository]
         R3[MonHocRepository]
-        R4[DiemHocPhanRepository]
-        R5[TaiKhoanRepository]
-        R6[ThongKeRepository]
+        R4[HocKyRepository]
+        R5[KetQuaRepository]
+        R6[TaiKhoanRepository]
+        R7[LichSuNhapDuLieuRepository]
+        R8[DashboardRepository / ThongKeCanhBaoRepository]
         DBHelper[DatabaseHelper / ConnectionString]
     end
 
@@ -1216,19 +1217,14 @@ ICommand Execution" ==> ViewModelLayer
     ViewModelLayer --> DataAccessLayer
     DataAccessLayer --> DomainModelLayer
     DataAccessLayer <== "TCP/IP Connection
-ADO.NET (SqlClient)" ==> CloudDatabase
+Raw SQL / Parameters" ==> CloudDatabase
 ```
-*Hình 2.16. Sơ đồ Kiến trúc phân tầng hệ thống kết hợp Mô hình MVVM và Repository Pattern*
+*Hình 2.16. Sơ đồ Kiến trúc phân tầng hệ thống kết hợp Mẫu thiết kế MVVM và Repository Pattern*
 
-#### Các thành phần kiến trúc cốt lõi:
-1. **Views (Giao diện XAML)**: Chỉ chứa mã khai báo giao diện người dùng, hoàn toàn không chứa mã xử lý nghiệp vụ (Zero Code-Behind trong các View). Các control (TextBox, ComboBox, DataGrid, Button) liên kết với dữ liệu thông qua cơ chế `DataContext` và `{Binding}` của WPF.
-2. **ViewModels**: Đóng vai trò cầu nối trung gian giữa View và Model. Kế thừa từ `ViewModelBase` triển khai giao diện `INotifyPropertyChanged` để tự động thông báo cho giao diện khi dữ liệu thuộc tính thay đổi; triển khai `RelayCommand` để bắt các sự kiện người dùng từ nút bấm.
-3. **Models**: Các lớp đối tượng nghiệp vụ (`SinhVien`, `DiemHocPhan`, `MonHoc`...) ánh xạ trực tiếp với các thực thể trong cơ sở dữ liệu.
-4. **Repositories**: Tầng truy cập dữ liệu tách rời độc lập. Sử dụng bộ thư viện tối ưu hóa `Microsoft.Data.SqlClient` để mở kết nối SQL Server, chuẩn bị tham số `SqlParameter` và chuyển đổi kết quả `SqlDataReader` thành các danh sách đối tượng C#, giúp hệ thống đạt tốc độ xử lý nhanh nhất và triệt tiêu nguy cơ SQL Injection.
-
-<div style="page-break-after: always;"></div>
-
----
+Mẫu kiến trúc MVVM mang lại những ưu điểm vượt trội:
+1. **Tách biệt giao diện và logic (Separation of Concerns)**: Mã giao diện XAML hoàn toàn độc lập với mã C# điều khiển.
+2. **Khả năng kiểm thử (Testability)**: Các ViewModel có thể được Unit Test độc lập mà không cần khởi tạo cửa sổ UI.
+3. **Hiệu năng truy xuất cơ sở dữ liệu cao**: Các lớp Repository thao tác qua ADO.NET với `SqlConnection`, `SqlCommand` và tham số hóa chống tấn công SQL Injection triệt để.
 
 # CHƯƠNG 3. HIỆN THỰC HÓA, KIỂM THỬ VÀ ĐÁNH GIÁ KẾT QUẢ
 
