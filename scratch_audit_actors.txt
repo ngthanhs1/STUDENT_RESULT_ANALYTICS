@@ -1,0 +1,67 @@
+Line 12: **Giảng viên hướng dẫn:** TS. Giảng Viên Hướng Dẫn
+Line 44: 1. Báo cáo bài tập lớn và sản phẩm phần mềm **"Hệ thống Quản lý Đào tạo và Phân tích Kết quả Học tập Sinh viên (Student Result Analytics)"** là công trình nghiên cứu và phát triển hoàn toàn độc lập của các thành viên trong nhóm dưới sự định hướng, hướng dẫn khoa học của Giảng viên phụ trách học phần.
+Line 80: | **CVHT** | - | Cố vấn học tập |
+Line 95: - Bảng 2.1. Danh mục các tác nhân chính trong hệ thống (Actors)
+Line 125: - Hình 2.3. Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên
+Line 126: - Hình 2.4. Sơ đồ Use Case phân hệ Sinh viên
+Line 173: 5. Cung cấp công cụ rà soát, lọc và trích xuất danh sách sinh viên bị cảnh báo học vụ hoặc còn nợ điểm thành phần theo từng học kỳ/niên khóa, giúp Cố vấn học tập và Phòng Đào tạo đưa ra các quyết định can thiệp sư phạm kịp thời.
+Line 174: 6. Thiết lập cơ chế kiểm soát truy cập phân quyền dựa trên vai trò (Role-Based Access Control - RBAC) chặt chẽ giữa Quản trị viên, Cố vấn học tập/Giảng viên và Sinh viên.
+Line 194: - Giúp Cố vấn học tập nhanh chóng nắm bắt bức tranh toàn cảnh về tiến độ học tập của từng lớp sinh hoạt, kịp thời đôn đốc sinh viên hoàn thành điểm nợ và giảm tỷ lệ sinh viên bị thôi học vì cảnh báo học vụ.
+Line 219: Trong quy trình vận hành thực tế tại các trường đại học (như Đại học Phenikaa), giảng viên bộ môn và sinh viên không sử dụng chung phần mềm quản trị nội bộ này (vì giảng viên tuyệt đối không được phép can thiệp vào hồ sơ sinh viên hay cấu hình môn học). Thay vào đó, toàn bộ nghiệp vụ quản lý sinh viên, tiếp nhận bảng điểm thi từ giảng viên, tính toán điểm tích lũy và rà soát học vụ đều do đội ngũ cán bộ Phòng Đào tạo phụ trách.
+Line 233: - **Khảo thí & Nhập điểm**: Tiếp nhận bảng điểm từ giảng viên các khoa/bộ môn nộp về sau kỳ thi; thực hiện nhập trực tiếp vào Sổ điểm điện tử hoặc sử dụng tính năng nạp bảng điểm hàng loạt từ tệp Excel/CSV có cơ chế tự động kiểm tra lỗi.
+Line 246: | **CN06** | Quản lý Sổ điểm học phần & Điểm thành phần | ✓ | ✓ | Nhập điểm từ bảng điểm giảng viên gửi |
+Line 254: 1. **Dữ liệu phân tán và thiếu tính đồng bộ**: Điểm thi được lưu trữ trên các tệp Excel riêng lẻ của từng giảng viên. Đến cuối kỳ, cán bộ đào tạo phải mở từng tệp để sao chép, ghép nối vào bảng điểm tổng. Quy trình này tiềm ẩn nguy cơ nhầm lẫn cột điểm, sai lệch sinh viên trùng tên và mất mát dữ liệu do lỗi thao tác của con người.
+Line 256: 3. **Chậm trễ trong phát hiện cảnh báo học vụ**: Cố vấn học tập thường chỉ nhận được danh sách sinh viên yếu kém sau khi học kỳ mới đã bắt đầu từ 3 đến 4 tuần. Lúc này, sinh viên đã đăng ký học tiếp mà không kịp thời cải thiện điểm hoặc điều chỉnh giảm tải khối lượng học tập, dẫn đến hậu quả bị đình chỉ hoặc buộc thôi học một cách đáng tiếc.
+Line 257: 4. **Thiếu sự bảo mật và phân quyền**: Bảng tính Excel chia sẻ qua mạng nội bộ hoặc email không có cơ chế phân quyền chi tiết; giảng viên có thể vô tình xem hoặc sửa đổi điểm của môn học khác, không có nhật ký ghi vết ai là người thay đổi điểm số vào thời gian nào.
+Line 307: #### 2.2.1 Danh mục Tác nhân (Actors)
+Line 310: | STT | Tác nhân (Actor) | Bản chất | Vai trò và Quyền hạn trong hệ thống |
+Line 313: | 2 | **NhanVien (Cán bộ Phòng Đào tạo & Khảo thí)** | Người dùng | Cán bộ nghiệp vụ tại Phòng Đào tạo; thực hiện tiếp nhận hồ sơ sinh viên, tự sinh email trường, quản lý khoa/lớp/môn học, nhập điểm sổ học phần từ bảng điểm giảng viên gửi về, nạp file Excel điểm thi, tra cứu GPA/CPA và rà soát cảnh báo học vụ. |
+Line 394: Lecturer([Cố vấn học tập / Giảng viên])
+Line 396: subgraph LecturerModule ["Phân hệ Cố vấn học tập & Giảng viên"]
+Line 410: Lecturer --> UC01
+Line 411: Lecturer --> UC02
+Line 412: Lecturer --> UC06_1
+Line 413: Lecturer --> UC06_2
+Line 414: Lecturer --> UC06_3
+Line 415: Lecturer --> UC07_1
+Line 416: Lecturer --> UC07_2
+Line 417: Lecturer --> UC08_1
+Line 418: Lecturer --> UC08_2
+Line 419: Lecturer --> UC09_1
+Line 420: Lecturer --> UC09_2
+Line 422: *Hình 2.3. Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên*
+Line 427: Student([Sinh viên - Student])
+Line 429: subgraph StudentModule ["Phân hệ Sinh viên"]
+Line 447: *Hình 2.4. Sơ đồ Use Case phân hệ Sinh viên*
+Line 457: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 467: | **Quy tắc nghiệp vụ** | Mật khẩu được mã hóa bảo vệ; phân quyền RBAC phân loại rõ vai trò Admin, Giảng viên, Sinh viên. |
+Line 477: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 480: | **Tiền điều kiện** | Người dùng đã đăng nhập thành công với vai trò Admin hoặc Giảng viên/CVHT. |
+Line 497: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 517: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 537: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 557: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo & Khảo thí) |
+Line 562: | **Luồng sự kiện chính** | 1. Người dùng chọn Học kỳ/Niên khóa và Môn học cần chấm điểm từ ComboBox.<br>2. Hệ thống tải danh sách sinh viên cùng điểm số thành phần hiện tại từ bảng `DiemHocPhan`.<br>3. Giảng viên nhập trực tiếp điểm số vào các ô tương ứng trên DataGrid (Điểm CC, Điểm GK, Điểm CK).<br>4. Mỗi khi một giá trị điểm thay đổi, hệ thống thực thi thuật toán:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. Kiểm tra $0 \le Điểm \le 10$.<br>&nbsp;&nbsp;&nbsp;&nbsp;b. Tính điểm môn học thang 10: $TK = CC 	imes 0.1 + GK 	imes 0.4 + CK 	imes 0.5$.<br>&nbsp;&nbsp;&nbsp;&nbsp;c. Quy đổi chuẩn xác: Nếu $9.0 \le TK \le 10.0 	o A+ (4.0)$; Nếu $8.5 \le TK < 9.0 	o A (3.7)$; Nếu $8.0 \le TK < 8.5 	o B+ (3.5)$...<br>&nbsp;&nbsp;&nbsp;&nbsp;d. Xác định trạng thái: Nếu $TK \ge 4.0$ và Điểm CK $\ge 3.0 	o$ "Đạt", ngược lại "Trượt".<br>5. Giảng viên nhấn nút "LƯU SỔ ĐIỂM".<br>6. ViewModel gọi `DiemHocPhanRepository.CapNhatDiem(diem)` lưu toàn bộ vào CSDL Somee Cloud.<br>7. Hệ thống thông báo lưu thành công và cập nhật tức thì dữ liệu lên Dashboard. |
+Line 577: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo & Khảo thí) |
+Line 578: | **Mục đích** | Tự động hóa quá trình nạp bảng điểm học phần số lượng lớn từ các tệp Excel/CSV do giảng viên nộp về, giảm thiểu sai sót do nhập liệu thủ công. |
+Line 597: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 617: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 620: | **Tiền điều kiện** | Đăng nhập với quyền Admin hoặc Giảng viên/CVHT. |
+Line 622: | **Luồng sự kiện chính** | 1. Người dùng chọn phạm vi rà soát: Học kỳ cụ thể hoặc "Tất cả các kỳ", chọn Khoa hoặc Lớp học.<br>2. Nhấn nút "THỐNG KÊ & RÀ SOÁT".<br>3. ViewModel gọi hàm xử lý thống kê phân tích từ Repository.<br>4. Hệ thống hiển thị 2 bảng dữ liệu chuyên biệt:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. **Bảng Thống kê Môn học**: Tên môn, Số TC, Tổng SV học, Số lượng Đạt, Số lượng Trượt, Số lượng Thiếu điểm, Tỷ lệ Đạt (%).<br>&nbsp;&nbsp;&nbsp;&nbsp;b. **Bảng Danh sách Cảnh báo học vụ**: Mã SV, Họ tên, Lớp, Điểm CPA, Số tín chỉ nợ, Mức độ cảnh báo (Mức 1: $1.8 \le CPA < 2.0$; Mức 2: $1.5 \le CPA < 1.8$; Nguy cơ buộc thôi học: $CPA < 1.5$ hoặc thiếu điểm nhiều kỳ).<br>5. Cố vấn học tập có thể nhấn nút "XUẤT DANH SÁCH" để phục vụ công tác họp lớp và liên hệ gia đình sinh viên. |
+Line 637: | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+Line 639: | **Mô tả** | Admin tạo tài khoản mới cho cán bộ/giảng viên/sinh viên, cập nhật thông tin, cấp lại mật khẩu mặc định, khóa tài khoản nghi vấn và giám sát nhật ký truy cập hệ thống. |
+Line 675: CheckRole -- Giảng viên / CVHT --> OpenLecturer[Mở MainWindow phân hệ Quản lý Sổ điểm & Cảnh báo]
+Line 678: OpenLecturer --> LogSuccess
+Line 759: Start([Bắt đầu]) --> SelectCriteria[Cố vấn học tập chọn Học kỳ, Niên khóa, Khoa hoặc Lớp sinh hoạt]
+Line 771: DisplayTwoPanels --> ExportReport{Cố vấn học tập muốn xuất báo cáo?}
+Line 788: actor User as Người dùng (Admin/GV/SV)
+Line 825: actor Admin as Quản trị viên (Admin)
+Line 863: actor GV as Giảng viên / Admin
+Line 895: actor User as Người dùng (Admin / CVHT / Sinh viên)
+Line 921: actor CVHT as Cố vấn học tập / Admin
+Line 1004: | **1.50 – 1.99** | **Yếu** | **Bị Cảnh báo học vụ Mức 1** (Cần Cố vấn học tập tư vấn) |
+Line 1349: - Cho phép giảng viên chọn Môn học và Lớp học phần để nạp danh sách sinh viên.
+Line 1367: - Báo cáo số dòng nạp thành công và liệt kê danh sách các dòng bị lỗi để giảng viên điều chỉnh.
+Line 1438: | **TC05** | Phân quyền vai trò | Đăng nhập tài khoản Giảng viên | `giangvien` / `gv123` | Vào giao diện làm việc, ẩn các menu Quản trị người dùng & Phân quyền | Menu Quản trị bị ẩn chính xác theo vai trò | **PASS** |
+Line 1502: 2. **Xây dựng Ứng dụng di động (Mobile App) bằng .NET MAUI**: Phát triển ứng dụng di động đa nền tảng (iOS / Android) cho sinh viên nhận thông báo đẩy (Push Notification) tức thì ngay khi giảng viên nhập điểm hoặc khi có thông báo học vụ.
+Line 1625: (N'giangvien', N'gv123', N'Giảng Viên Bộ Môn', N'giangvien@phenikaa-uni.edu.vn', N'NhanVien');

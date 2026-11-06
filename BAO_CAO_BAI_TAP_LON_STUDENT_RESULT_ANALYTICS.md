@@ -77,7 +77,6 @@ Nếu có bất kỳ sự gian lận hay vi phạm quy chế học vụ nào, c�
 | **SQL** | Structured Query Language | Ngôn ngữ truy vấn dữ liệu có cấu trúc |
 | **GPA** | Grade Point Average | Điểm trung bình chung học kỳ (Thang 4) |
 | **CPA** | Cumulative Point Average | Điểm trung bình chung tích lũy toàn khóa (Thang 4) |
-| **CVHT** | - | Cố vấn học tập |
 | **ERD** | Entity Relationship Diagram | Sơ đồ thực thể liên kết |
 | **CRUD** | Create, Read, Update, Delete | Bốn thao tác cơ bản trên dữ liệu: Thêm, Đọc, Sửa, Xóa |
 | **RBAC** | Role-Based Access Control | Kiểm soát truy cập phân quyền dựa trên vai trò người dùng |
@@ -122,8 +121,7 @@ Nếu có bất kỳ sự gian lận hay vi phạm quy chế học vụ nào, c�
 
 - Hình 2.1. Sơ đồ Use Case tổng quát hệ thống Student Result Analytics
 - Hình 2.2. Sơ đồ Use Case phân hệ Quản trị viên (Admin)
-- Hình 2.3. Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên
-- Hình 2.4. Sơ đồ Use Case phân hệ Sinh viên
+- Hình 2.3. Sơ đồ Use Case phân hệ Cán bộ Đào tạo & Khảo thí (NhanVien)
 - Hình 2.5. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Đăng nhập & Điều hướng phân quyền
 - Hình 2.6. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Thêm sinh viên & Tự sinh Email
 - Hình 2.7. Sơ đồ Hoạt động (Activity Diagram) – Quy trình Nhập điểm học phần từ File Excel/CSV
@@ -170,8 +168,8 @@ Mục tiêu cốt lõi của đề tài là nghiên cứu, thiết kế và phá
 2. Tự động hóa quá trình tính toán điểm tổng kết học phần, quy đổi điểm chữ, điểm hệ 4 và tính điểm GPA/CPA có trọng số số tín chỉ theo đúng quy chế đào tạo tín chỉ đại học hiện hành.
 3. Cung cấp phân hệ nhập điểm linh hoạt: vừa cho phép nhập điểm trực tiếp trên giao diện sổ điểm điện tử, vừa hỗ trợ nhập tự động hàng loạt từ tệp ngoại vi Excel/CSV với cơ chế tiền kiểm định dạng và bắt lỗi dòng dữ liệu sai sót.
 4. Xây dựng trung tâm điều hành Dashboard trực quan với các chỉ số đo lường hiệu quả (KPIs) và biểu đồ phân bố học lực thời gian thực thông qua thư viện LiveCharts2.
-5. Cung cấp công cụ rà soát, lọc và trích xuất danh sách sinh viên bị cảnh báo học vụ hoặc còn nợ điểm thành phần theo từng học kỳ/niên khóa, giúp Cố vấn học tập và Phòng Đào tạo đưa ra các quyết định can thiệp sư phạm kịp thời.
-6. Thiết lập cơ chế kiểm soát truy cập phân quyền dựa trên vai trò (Role-Based Access Control - RBAC) chặt chẽ giữa Quản trị viên, Cố vấn học tập/Giảng viên và Sinh viên.
+5. Cung cấp công cụ rà soát, lọc và trích xuất danh sách sinh viên bị cảnh báo học vụ hoặc còn nợ điểm thành phần theo từng học kỳ/niên khóa, giúp Cán bộ Phòng Đào tạo phát hiện sớm nguy cơ để báo cáo Hội đồng đào tạo.
+6. Thiết lập cơ chế kiểm soát truy cập phân quyền dựa trên vai trò (Role-Based Access Control - RBAC) chặt chẽ giữa Quản trị viên (Admin) và Cán bộ Giáo vụ/Khảo thí (NhanVien).
 
 ### 3. Đối tượng nghiên cứu
 - Quy chế đào tạo đại học theo học chế tín chỉ ban hành theo Thông tư của Bộ Giáo dục và Đào tạo và Quy định đào tạo của Trường Đại học Phenikaa.
@@ -191,7 +189,7 @@ Mục tiêu cốt lõi của đề tài là nghiên cứu, thiết kế và phá
   - Khẳng định giá trị thực tiễn của mẫu kiến trúc hiện đại MVVM trong việc tách biệt hoàn toàn giữa giao diện người dùng (View), tầng logic điều khiển (ViewModel) và tầng truy cập dữ liệu (Model/Repository), giúp mã nguồn đạt tính mô-đun hóa cao, dễ kiểm thử (Unit Testing) và thuận tiện mở rộng bảo trì.
 - **Ý nghĩa thực tiễn**:
   - Ứng dụng cung cấp cho các trường đại học một công cụ số hóa mạnh mẽ, giảm thiểu tối đa sai sót và áp lực hành chính trong mùa thi cử và chốt điểm học kỳ.
-  - Giúp Cố vấn học tập nhanh chóng nắm bắt bức tranh toàn cảnh về tiến độ học tập của từng lớp sinh hoạt, kịp thời đôn đốc sinh viên hoàn thành điểm nợ và giảm tỷ lệ sinh viên bị thôi học vì cảnh báo học vụ.
+  - Giúp Cán bộ Phòng Đào tạo nhanh chóng nắm bắt bức tranh toàn cảnh về tiến độ học tập của từng lớp sinh hoạt, kịp thời đôn đốc hoàn thành điểm nợ và giảm tỷ lệ sinh viên bị thôi học vì cảnh báo học vụ.
 
 <div style="page-break-after: always;"></div>
 
@@ -253,7 +251,7 @@ Hệ thống phân định 2 nhóm người dùng nghiệp vụ cốt lõi (kh�
 Qua quá trình khảo sát thực tế công tác giáo vụ tại các khoa đào tạo, nhóm nghiên cứu đã tổng hợp các tồn tại và điểm nghẽn nghiệp vụ lớn nhất của phương thức quản lý truyền thống:
 1. **Dữ liệu phân tán và thiếu tính đồng bộ**: Điểm thi được lưu trữ trên các tệp Excel riêng lẻ của từng giảng viên. Đến cuối kỳ, cán bộ đào tạo phải mở từng tệp để sao chép, ghép nối vào bảng điểm tổng. Quy trình này tiềm ẩn nguy cơ nhầm lẫn cột điểm, sai lệch sinh viên trùng tên và mất mát dữ liệu do lỗi thao tác của con người.
 2. **Quy đổi điểm thủ công dễ sai lệch**: Việc tính điểm tổng kết môn học và quy đổi sang thang chữ A+, A, B+... thường dùng các hàm lồng phức tạp trong Excel (`IF`, `VLOOKUP`). Nếu người dùng sơ suất sửa đổi cấu trúc hoặc không cập nhật đúng thang điểm chuẩn mới ($A: 8.5-8.9 	o 3.7; A+: 9.0-10.0 	o 4.0$), kết quả xếp loại học lực toàn khóa của sinh viên sẽ bị sai lệch nghiêm trọng.
-3. **Chậm trễ trong phát hiện cảnh báo học vụ**: Cố vấn học tập thường chỉ nhận được danh sách sinh viên yếu kém sau khi học kỳ mới đã bắt đầu từ 3 đến 4 tuần. Lúc này, sinh viên đã đăng ký học tiếp mà không kịp thời cải thiện điểm hoặc điều chỉnh giảm tải khối lượng học tập, dẫn đến hậu quả bị đình chỉ hoặc buộc thôi học một cách đáng tiếc.
+3. **Chậm trễ trong phát hiện cảnh báo học vụ**: Cán bộ Phòng Đào tạo thường chỉ tổng hợp được danh sách sinh viên yếu kém sau khi học kỳ mới đã bắt đầu từ 3 đến 4 tuần. Lúc này, sinh viên đã đăng ký học tiếp mà không kịp thời cải thiện điểm hoặc điều chỉnh giảm tải khối lượng học tập, dẫn đến hậu quả bị đình chỉ hoặc buộc thôi học một cách đáng tiếc.
 4. **Thiếu sự bảo mật và phân quyền**: Bảng tính Excel chia sẻ qua mạng nội bộ hoặc email không có cơ chế phân quyền chi tiết; giảng viên có thể vô tình xem hoặc sửa đổi điểm của môn học khác, không có nhật ký ghi vết ai là người thay đổi điểm số vào thời gian nào.
 
 ### 1.4 Yêu cầu chung của hệ thống
@@ -388,65 +386,36 @@ flowchart TD
 ```
 *Hình 2.2. Sơ đồ Use Case phân hệ Quản trị viên (Admin)*
 
-#### 2.2.4 Sơ đồ Use Case phân hệ Cán bộ Đào tạo (NhanVien)
+#### 2.2.4 Sơ đồ Use Case phân hệ Cán bộ Đào tạo & Khảo thí (NhanVien)
 ```mermaid
 flowchart TD
-    Lecturer([Cố vấn học tập / Giảng viên])
+    Staff([Cán bộ Đào tạo & Khảo thí - NhanVien])
 
-    subgraph LecturerModule ["Phân hệ Cố vấn học tập & Giảng viên"]
-        UC01((Đăng nhập & Hiện/Ẩn mật khẩu))
-        UC02((Xem Dashboard & Biểu đồ học lực))
-        UC06_1((Xem danh sách lớp học phần phụ trách))
-        UC06_2((Nhập điểm chuyên cần, giữa kỳ, cuối kỳ))
-        UC06_3((Tính điểm tổng kết học phần tự động))
-        UC07_1((Nhập điểm từ File Excel bảng điểm))
-        UC07_2((Kiểm tra lỗi dữ liệu file ngoại vi))
-        UC08_1((Tra cứu bảng điểm chi tiết của lớp))
-        UC08_2((Tính toán GPA/CPA theo số tín chỉ))
-        UC09_1((Lọc danh sách sinh viên nợ môn học))
-        UC09_2((Trích xuất danh sách Cảnh báo học vụ))
+    subgraph StaffModule ["Phân hệ Nghiệp vụ Cán bộ Đào tạo (NhanVien)"]
+        UC01((UC01: Đăng nhập & Hiện/Ẩn mật khẩu))
+        UC02((UC02: Xem Dashboard & Đồng bộ số liệu))
+        UC03((UC03: Quản lý Hồ sơ Sinh viên & Tự sinh Email))
+        UC04((UC04: Quản lý Danh mục Khoa & Lớp sinh hoạt))
+        UC05((UC05: Quản lý Môn học, Tín chỉ & Niên khóa))
+        UC06((UC06: Quản lý Sổ điểm & Nhập điểm thành phần))
+        UC07((UC07: Nhập bảng điểm từ File Excel/CSV))
+        UC08((UC08: Tra cứu GPA/CPA & Xếp loại học lực))
+        UC09((UC09: Thống kê Đạt/Trượt & Rà soát Cảnh báo học vụ))
     end
 
-    Lecturer --> UC01
-    Lecturer --> UC02
-    Lecturer --> UC06_1
-    Lecturer --> UC06_2
-    Lecturer --> UC06_3
-    Lecturer --> UC07_1
-    Lecturer --> UC07_2
-    Lecturer --> UC08_1
-    Lecturer --> UC08_2
-    Lecturer --> UC09_1
-    Lecturer --> UC09_2
+    Staff --> UC01
+    Staff --> UC02
+    Staff --> UC03
+    Staff --> UC04
+    Staff --> UC05
+    Staff --> UC06
+    Staff --> UC07
+    Staff --> UC08
+    Staff --> UC09
 ```
-*Hình 2.3. Sơ đồ Use Case phân hệ Cố vấn học tập & Giảng viên*
+*Hình 2.3. Sơ đồ Use Case phân hệ Cán bộ Đào tạo & Khảo thí (NhanVien)*
 
-#### 2.2.5 Sơ đồ Use Case phân hệ Sinh viên
-```mermaid
-flowchart TD
-    Student([Sinh viên - Student])
-
-    subgraph StudentModule ["Phân hệ Sinh viên"]
-        UC01((Đăng nhập bằng Mã sinh viên))
-        UC01_1((Đổi mật khẩu tài khoản))
-        UC08_1((Xem bảng điểm chi tiết từng học phần))
-        UC08_2((Tra cứu điểm GPA từng học kỳ))
-        UC08_3((Tra cứu điểm CPA tích lũy toàn khóa))
-        UC08_4((Xem xếp loại học lực & Tín chỉ tích lũy))
-        UC09_1((Kiểm tra tình trạng cảnh báo học vụ cá nhân))
-    end
-
-    Student --> UC01
-    Student --> UC01_1
-    Student --> UC08_1
-    Student --> UC08_2
-    Student --> UC08_3
-    Student --> UC08_4
-    Student --> UC09_1
-```
-*Hình 2.4. Sơ đồ Use Case phân hệ Sinh viên*
-
-#### 2.2.6 Các bảng đặc tả Use Case chi tiết (10 Use Cases chuẩn học thuật)
+#### 2.2.5 Các bảng đặc tả Use Case chi tiết (10 Use Cases chuẩn học thuật)
 
 *Bảng 2.2. Đặc tả Use Case UC01 – Đăng nhập hệ thống & Xác thực người dùng*
 
@@ -464,7 +433,7 @@ flowchart TD
 | **Hậu điều kiện** | Người dùng đăng nhập thành công, phiên làm việc được thiết lập, thanh Sidebar hiển thị tên người dùng và vai trò chính xác. |
 | **Độ ưu tiên** | **Bắt buộc (Cao nhất)** |
 | **Tần suất sử dụng** | Mỗi khi người dùng bắt đầu phiên làm việc mới trên phần mềm. |
-| **Quy tắc nghiệp vụ** | Mật khẩu được mã hóa bảo vệ; phân quyền RBAC phân loại rõ vai trò Admin, Giảng viên, Sinh viên. |
+| **Quy tắc nghiệp vụ** | Mật khẩu được mã hóa bảo vệ; phân quyền RBAC phân loại rõ 2 vai trò Admin và NhanVien. |
 
 <div style="page-break-after: always;"></div>
 
@@ -477,7 +446,7 @@ flowchart TD
 | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Cung cấp cái nhìn toàn cảnh về các chỉ số đo lường học vụ (KPIs), phân bố học lực sinh viên và phát hiện nhanh các nguy cơ đào tạo. |
 | **Mô tả** | Hệ thống tổng hợp dữ liệu từ cơ sở dữ liệu Somee Cloud và hiển thị 6 thẻ chỉ số KPIs, biểu đồ phân loại học lực tròn (LiveCharts2), bảng tổng hợp kết quả môn học và danh sách cảnh báo học vụ rút gọn; cho phép đồng bộ số liệu thời gian thực. |
-| **Tiền điều kiện** | Người dùng đã đăng nhập thành công với vai trò Admin hoặc Giảng viên/CVHT. |
+| **Tiền điều kiện** | Người dùng đã đăng nhập thành công với vai trò Admin hoặc NhanVien. |
 | **Kích hoạt** | Người dùng nhấn chọn mục "Bàn làm việc (Dashboard)" trên thanh menu Sidebar, hoặc nhấn nút "ĐỒNG BỘ SỐ LIỆU". |
 | **Luồng sự kiện chính** | 1. ViewModel kích hoạt phương thức bất đồng bộ `LoadDashboardDataAsync()`.<br>2. ViewModel gọi các hàm tổng hợp thống kê trong Repositories (`GetTongSinhVien()`, `GetTongLop()`, `GetTongMonHoc()`, `GetDiemTrungBinhToanKhoa()`, `GetTyLeDatChung()`, `GetSoLuongCanBoSungDiem()`).<br>3. Repository thực thi các câu truy vấn SQL gom nhóm (`COUNT`, `AVG`, `SUM`, `GROUP BY`) trên Somee SQL Server.<br>4. Dữ liệu được nạp vào các thuộc tính ViewModel và tự động cập nhật lên giao diện nhờ cơ chế Data Binding của WPF.<br>5. Thư viện LiveCharts2 vẽ biểu đồ hình tròn (Pie Chart) thể hiện tỷ lệ sinh viên theo từng nhóm xếp loại (Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém).<br>6. Hiển thị bảng tóm tắt danh sách sinh viên thiếu điểm thành phần (chuyên cần, giữa kỳ hoặc cuối kỳ) để cán bộ quản lý đôn đốc.<br>7. Trạng thái kết nối hiển thị biểu tượng xanh "Trực tuyến". |
 | **Luồng thay thế / Ngoại lệ** | 3a. Cơ sở dữ liệu chưa có dữ liệu điểm: Các chỉ số trung bình hiển thị 0.00, biểu đồ hiển thị trạng thái sẵn sàng nhận dữ liệu.<br>3b. Có giá trị `NULL` trong bảng điểm: Nhóm xử lý dữ liệu kiểm tra `IsDBNull` an toàn, gán giá trị mặc định tránh ngoại lệ `InvalidCastException`. |
@@ -559,7 +528,7 @@ flowchart TD
 | **Mô tả** | Người dùng chọn Môn học, Niên khóa và Lớp sinh hoạt; hệ thống nạp danh sách sinh viên cùng các cột điểm Chuyên cần, Giữa kỳ, Cuối kỳ. Người dùng có thể sửa điểm trực tiếp; hệ thống tự động kiểm tra biên điểm $0 \le Điểm \le 10$, tính điểm tổng kết môn học thang 10, quy đổi điểm chữ, điểm hệ 4 và trạng thái Đạt/Trượt. |
 | **Tiền điều kiện** | Đã đăng nhập hệ thống, môn học và sinh viên đã tồn tại trong CSDL. |
 | **Kích hoạt** | Người dùng chọn màn hình "Sổ điểm học phần" và thực hiện chọn tiêu chí lọc hoặc lưu điểm. |
-| **Luồng sự kiện chính** | 1. Người dùng chọn Học kỳ/Niên khóa và Môn học cần chấm điểm từ ComboBox.<br>2. Hệ thống tải danh sách sinh viên cùng điểm số thành phần hiện tại từ bảng `DiemHocPhan`.<br>3. Giảng viên nhập trực tiếp điểm số vào các ô tương ứng trên DataGrid (Điểm CC, Điểm GK, Điểm CK).<br>4. Mỗi khi một giá trị điểm thay đổi, hệ thống thực thi thuật toán:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. Kiểm tra $0 \le Điểm \le 10$.<br>&nbsp;&nbsp;&nbsp;&nbsp;b. Tính điểm môn học thang 10: $TK = CC 	imes 0.1 + GK 	imes 0.4 + CK 	imes 0.5$.<br>&nbsp;&nbsp;&nbsp;&nbsp;c. Quy đổi chuẩn xác: Nếu $9.0 \le TK \le 10.0 	o A+ (4.0)$; Nếu $8.5 \le TK < 9.0 	o A (3.7)$; Nếu $8.0 \le TK < 8.5 	o B+ (3.5)$...<br>&nbsp;&nbsp;&nbsp;&nbsp;d. Xác định trạng thái: Nếu $TK \ge 4.0$ và Điểm CK $\ge 3.0 	o$ "Đạt", ngược lại "Trượt".<br>5. Giảng viên nhấn nút "LƯU SỔ ĐIỂM".<br>6. ViewModel gọi `DiemHocPhanRepository.CapNhatDiem(diem)` lưu toàn bộ vào CSDL Somee Cloud.<br>7. Hệ thống thông báo lưu thành công và cập nhật tức thì dữ liệu lên Dashboard. |
+| **Luồng sự kiện chính** | 1. Người dùng chọn Học kỳ/Niên khóa và Môn học cần chấm điểm từ ComboBox.<br>2. Hệ thống tải danh sách sinh viên cùng điểm số thành phần hiện tại từ bảng `DiemHocPhan`.<br>3. Cán bộ đào tạo nhập trực tiếp điểm số vào các ô tương ứng trên DataGrid (Điểm CC, Điểm GK, Điểm CK).<br>4. Mỗi khi một giá trị điểm thay đổi, hệ thống thực thi thuật toán:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. Kiểm tra $0 \le Điểm \le 10$.<br>&nbsp;&nbsp;&nbsp;&nbsp;b. Tính điểm môn học thang 10: $TK = CC 	imes 0.1 + GK 	imes 0.4 + CK 	imes 0.5$.<br>&nbsp;&nbsp;&nbsp;&nbsp;c. Quy đổi chuẩn xác: Nếu $9.0 \le TK \le 10.0 	o A+ (4.0)$; Nếu $8.5 \le TK < 9.0 	o A (3.7)$; Nếu $8.0 \le TK < 8.5 	o B+ (3.5)$...<br>&nbsp;&nbsp;&nbsp;&nbsp;d. Xác định trạng thái: Nếu $TK \ge 4.0$ và Điểm CK $\ge 3.0 	o$ "Đạt", ngược lại "Trượt".<br>5. Cán bộ đào tạo nhấn nút "LƯU SỔ ĐIỂM".<br>6. ViewModel gọi `DiemHocPhanRepository.CapNhatDiem(diem)` lưu toàn bộ vào CSDL Somee Cloud.<br>7. Hệ thống thông báo lưu thành công và cập nhật tức thì dữ liệu lên Dashboard. |
 | **Luồng thay thế / Ngoại lệ** | 3a. Người dùng nhập điểm âm ($< 0$) hoặc vượt quá 10 ($> 10$): Hệ thống hiển thị cảnh báo đỏ và khôi phục giá trị điểm hợp lệ gần nhất.<br>3b. Người dùng nhập ký tự không phải số: Hệ thống chặn nhập và thông báo dữ liệu sai định dạng. |
 | **Hậu điều kiện** | Dữ liệu sổ điểm được cập nhật bền vững trên máy chủ SQL Server; các biểu đồ phân tích tự động đồng bộ. |
 | **Độ ưu tiên** | **Bắt buộc (Rất cao)** |
@@ -617,9 +586,9 @@ flowchart TD
 | **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
 | **Mục đích** | Rà soát toàn diện kết quả học tập để phát hiện các môn học có tỷ lệ trượt cao và tự động lập danh sách sinh viên có nguy cơ bị cảnh cáo học vụ. |
 | **Mô tả** | Hệ thống cung cấp bộ lọc linh hoạt theo Niên khóa, Học kỳ, Khoa và Lớp học; tính toán tỷ lệ Đạt/Trượt của từng môn học; lọc danh sách sinh viên có điểm $CPA < 2.0$, sinh viên nợ nhiều môn hoặc sinh viên còn thiếu điểm thành phần. |
-| **Tiền điều kiện** | Đăng nhập với quyền Admin hoặc Giảng viên/CVHT. |
+| **Tiền điều kiện** | Đăng nhập với quyền Admin hoặc NhanVien. |
 | **Kích hoạt** | Người dùng chọn màn hình "Thống kê Đạt/Trượt & Cảnh báo" và nhấn nút "LỌC DỮ LIỆU". |
-| **Luồng sự kiện chính** | 1. Người dùng chọn phạm vi rà soát: Học kỳ cụ thể hoặc "Tất cả các kỳ", chọn Khoa hoặc Lớp học.<br>2. Nhấn nút "THỐNG KÊ & RÀ SOÁT".<br>3. ViewModel gọi hàm xử lý thống kê phân tích từ Repository.<br>4. Hệ thống hiển thị 2 bảng dữ liệu chuyên biệt:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. **Bảng Thống kê Môn học**: Tên môn, Số TC, Tổng SV học, Số lượng Đạt, Số lượng Trượt, Số lượng Thiếu điểm, Tỷ lệ Đạt (%).<br>&nbsp;&nbsp;&nbsp;&nbsp;b. **Bảng Danh sách Cảnh báo học vụ**: Mã SV, Họ tên, Lớp, Điểm CPA, Số tín chỉ nợ, Mức độ cảnh báo (Mức 1: $1.8 \le CPA < 2.0$; Mức 2: $1.5 \le CPA < 1.8$; Nguy cơ buộc thôi học: $CPA < 1.5$ hoặc thiếu điểm nhiều kỳ).<br>5. Cố vấn học tập có thể nhấn nút "XUẤT DANH SÁCH" để phục vụ công tác họp lớp và liên hệ gia đình sinh viên. |
+| **Luồng sự kiện chính** | 1. Người dùng chọn phạm vi rà soát: Học kỳ cụ thể hoặc "Tất cả các kỳ", chọn Khoa hoặc Lớp học.<br>2. Nhấn nút "THỐNG KÊ & RÀ SOÁT".<br>3. ViewModel gọi hàm xử lý thống kê phân tích từ Repository.<br>4. Hệ thống hiển thị 2 bảng dữ liệu chuyên biệt:<br>&nbsp;&nbsp;&nbsp;&nbsp;a. **Bảng Thống kê Môn học**: Tên môn, Số TC, Tổng SV học, Số lượng Đạt, Số lượng Trượt, Số lượng Thiếu điểm, Tỷ lệ Đạt (%).<br>&nbsp;&nbsp;&nbsp;&nbsp;b. **Bảng Danh sách Cảnh báo học vụ**: Mã SV, Họ tên, Lớp, Điểm CPA, Số tín chỉ nợ, Mức độ cảnh báo (Mức 1: $1.8 \le CPA < 2.0$; Mức 2: $1.5 \le CPA < 1.8$; Nguy cơ buộc thôi học: $CPA < 1.5$ hoặc thiếu điểm nhiều kỳ).<br>5. Cán bộ đào tạo có thể nhấn nút "XUẤT DANH SÁCH" để lập báo cáo gửi Ban Giám hiệu và Hội đồng đào tạo. |
 | **Luồng thay thế / Ngoại lệ** | 4a. Không có sinh viên nào bị cảnh báo học vụ: Hệ thống hiển thị thông báo tích cực "Không có sinh viên nào bị cảnh báo học vụ trong phạm vi đã chọn!". |
 | **Hậu điều kiện** | Danh sách sinh viên cần đôn đốc và cảnh báo học vụ được trích xuất chính xác. |
 | **Độ ưu tiên** | **Cao** |
@@ -634,9 +603,9 @@ flowchart TD
 | :--- | :--- |
 | **Mã Use Case** | **UC10** |
 | **Tên Use Case** | **Quản trị người dùng & Phân quyền hệ thống** |
-| **Actor** | Admin, NhanVien (Cán bộ Phòng Đào tạo) |
+| **Actor** | Admin (Quản trị viên) - NhanVien không có quyền |
 | **Mục đích** | Quản lý vòng đời tài khoản truy cập hệ thống, gán quyền hạn và đảm bảo an ninh thông tin. |
-| **Mô tả** | Admin tạo tài khoản mới cho cán bộ/giảng viên/sinh viên, cập nhật thông tin, cấp lại mật khẩu mặc định, khóa tài khoản nghi vấn và giám sát nhật ký truy cập hệ thống. |
+| **Mô tả** | Admin tạo tài khoản mới cho cán bộ giáo vụ và nhân viên đào tạo, cập nhật thông tin, cấp lại mật khẩu mặc định, khóa tài khoản nghi vấn và giám sát nhật ký truy cập hệ thống. |
 | **Tiền điều kiện** | Đăng nhập với quyền Admin cao nhất, mở màn hình "Quản trị & Phân quyền". |
 | **Kích hoạt** | Admin thao tác trên danh sách người dùng. |
 | **Luồng sự kiện chính** | 1. Hệ thống hiển thị danh sách toàn bộ tài khoản trong bảng `TaiKhoan` (Username, Họ tên, Vai trò, Trạng thái hoạt động, Ngày tạo).<br>2. Admin chọn thao tác: Thêm mới tài khoản, Đổi vai trò (`Admin`, `NhanVien`, `SinhVien`), Đặt lại mật khẩu (Reset Password), hoặc Chuyển đổi trạng thái (Kích hoạt / Khóa).<br>3. Admin nhấn "LƯU THAY ĐỔI".<br>4. ViewModel gọi `TaiKhoanRepository.CapNhatTaiKhoan(tk)`.<br>5. Ghi nhận hành động vào bảng `LogHeThong` với nội dung chi tiết.<br>6. Hệ thống cập nhật danh sách và hiển thị thông báo thành công. |
@@ -671,12 +640,10 @@ flowchart TD
     CheckActive -- Không --> ErrLocked[Báo lỗi: Tài khoản đã bị khóa bởi Quản trị viên] --> End
     CheckActive -- Có --> SaveSession[Lưu phiên làm việc & Phân loại Vai trò]
     SaveSession --> CheckRole{Vai trò người dùng?}
-    CheckRole -- Admin --> OpenAdmin[Mở MainWindow với toàn quyền quản trị]
-    CheckRole -- Giảng viên / CVHT --> OpenLecturer[Mở MainWindow phân hệ Quản lý Sổ điểm & Cảnh báo]
-    CheckRole -- Sinh viên --> OpenStudent[Mở MainWindow phân hệ Tra cứu kết quả cá nhân]
+    CheckRole -- Admin --> OpenAdmin[Mở MainWindow hiển thị đầy đủ 5 nhóm menu bao gồm Quản trị hệ thống]
+    CheckRole -- NhanVien --> OpenStaff[Mở MainWindow các phân hệ đào tạo & khảo thí, tự động ẩn menu Quản trị]
     OpenAdmin --> LogSuccess[Ghi nhật ký đăng nhập thành công vào LogHeThong]
-    OpenLecturer --> LogSuccess
-    OpenStudent --> LogSuccess
+    OpenStaff --> LogSuccess
     LogSuccess --> Ready([Sẵn sàng sử dụng])
 ```
 *Hình 2.5. Sơ đồ Hoạt động – Quy trình Đăng nhập & Điều hướng phân quyền*
@@ -756,7 +723,7 @@ flowchart TD
 #### 2.3.5 Activity Diagram – Quy trình Lọc và Xử lý Cảnh báo học vụ
 ```mermaid
 flowchart TD
-    Start([Bắt đầu]) --> SelectCriteria[Cố vấn học tập chọn Học kỳ, Niên khóa, Khoa hoặc Lớp sinh hoạt]
+    Start([Bắt đầu]) --> SelectCriteria[Cán bộ đào tạo chọn Học kỳ, Niên khóa, Khoa hoặc Lớp sinh hoạt]
     SelectCriteria --> ClickFilter[Nhấn nút THỐNG KÊ & RÀ SOÁT CẢNH BÁO]
     ClickFilter --> QuerySummary[Truy vấn dữ liệu học phần và điểm sinh viên từ Somee SQL DB]
     QuerySummary --> CalcSubjectStats[Tính toán tỷ lệ Đạt/Trượt từng môn học: Số SV học, Số Đạt, Số Trượt, Tỷ lệ %]
@@ -768,7 +735,7 @@ flowchart TD
     AddToWarningList --> CheckNextSV{Còn sinh viên tiếp theo?}
     CheckNextSV -- Còn --> ScanStudents
     CheckNextSV -- Hết --> DisplayTwoPanels[Hiển thị song song: Bảng tỷ lệ môn học & Bảng danh sách cảnh báo học vụ]
-    DisplayTwoPanels --> ExportReport{Cố vấn học tập muốn xuất báo cáo?}
+    DisplayTwoPanels --> ExportReport{Cán bộ đào tạo muốn xuất báo cáo?}
     ExportReport -- Có --> ExportFile[Xuất danh sách cảnh báo ra file Excel/PDF để liên hệ sinh viên]
     ExportReport -- Không --> End([Kết thúc])
     ExportFile --> End
@@ -785,7 +752,7 @@ flowchart TD
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as Người dùng (Admin/GV/SV)
+    actor User as Cán bộ (Admin / NhanVien)
     participant View as LoginWindow (View)
     participant VM as LoginViewModel
     participant Repo as TaiKhoanRepository
@@ -860,18 +827,18 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     autonumber
-    actor GV as Giảng viên / Admin
+    actor Staff as Cán bộ Khảo thí / Admin
     participant View as NhapDiemView
     participant VM as NhapDiemViewModel
     participant Service as ExcelReaderService
     participant Repo as DiemHocPhanRepository
     participant DB as Somee SQL Server Cloud
 
-    GV->>View: 1. Nhấn nút "CHỌN TỆP EXCEL / CSV"
-    View->>GV: 2. Hiển thị OpenFileDialog
-    GV->>View: 3. Chọn tệp bảng điểm (.xlsx)
+    Staff->>View: 1. Nhấn nút "CHỌN TỆP EXCEL / CSV"
+    View->>Staff: 2. Hiển thị OpenFileDialog
+    Staff->>View: 3. Chọn tệp bảng điểm (.xlsx)
     View->>VM: 4. Set FilePath
-    GV->>View: 5. Nhấn nút "TIẾN HÀNH NẠP ĐIỂM"
+    Staff->>View: 5. Nhấn nút "TIẾN HÀNH NẠP ĐIỂM"
     View->>VM: 6. Kích hoạt TienHanhNapDiemCommand
     VM->>Service: 7. DocFileBangDiem(filePath)
     Service-->>VM: 8. Trả về List<DiemImportDto>
@@ -884,7 +851,7 @@ sequenceDiagram
     DB-->>Repo: 13. COMMIT TRANSACTION
     Repo-->>VM: 14. Kết quả nạp (Thành công: X dòng, Lỗi: Y dòng)
     VM-->>View: 15. Hiển thị thông báo tổng kết nạp điểm
-    View-->>GV: 16. Thông báo thành công và làm mới dữ liệu
+    View-->>Staff: 16. Thông báo thành công và làm mới dữ liệu
 ```
 *Hình 2.12. Sơ đồ Tuần tự – Chức năng Nhập điểm học phần từ File Excel*
 
@@ -892,7 +859,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as Người dùng (Admin / CVHT / Sinh viên)
+    actor User as Cán bộ Đào tạo (Admin / NhanVien)
     participant View as TraCuuGPAView
     participant VM as TraCuuGPAViewModel
     participant Repo as DiemHocPhanRepository
@@ -918,14 +885,14 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     autonumber
-    actor CVHT as Cố vấn học tập / Admin
+    actor Staff as Cán bộ Đào tạo / Admin
     participant View as CanhBaoHocVuView
     participant VM as CanhBaoHocVuViewModel
     participant Repo as ThongKeRepository
     participant DB as Somee SQL Server Cloud
 
-    CVHT->>View: 1. Chọn Học kỳ xét, Niên khóa, Lớp hoặc Khoa
-    CVHT->>View: 2. Nhấn nút "LỌC DỮ LIỆU & RÀ SOÁT"
+    Staff->>View: 1. Chọn Học kỳ xét, Niên khóa, Lớp hoặc Khoa
+    Staff->>View: 2. Nhấn nút "LỌC DỮ LIỆU & RÀ SOÁT"
     View->>VM: 3. Kích hoạt LocDuLieuCommand
     VM->>Repo: 4. ThongKeMonHocDatTruot(HocKy, NienKhoa)
     Repo->>DB: 5. SELECT MaMon, COUNT(SV) AS Tong, SUM(Dat), SUM(Truot) GROUP BY MaMon
@@ -936,7 +903,7 @@ sequenceDiagram
     DB-->>Repo: 10. Bảng danh sách sinh viên cảnh báo
     Repo-->>VM: 11. Trả về List<CanhBaoHocVuDto>
     VM-->>View: 12. Hiển thị song song: Bảng tỷ lệ môn học & Bảng sinh viên cảnh báo
-    View-->>CVHT: 13. Hiển thị báo cáo chi tiết trực quan
+    View-->>Staff: 13. Hiển thị báo cáo chi tiết trực quan
 ```
 *Hình 2.14. Sơ đồ Tuần tự – Chức năng Rà soát và Xuất danh sách Cảnh báo học vụ*
 
@@ -1001,7 +968,7 @@ Căn cứ vào điểm trung bình chung tích lũy ($CPA$), học lực của s
 | **3.20 – 3.59** | **Giỏi** | Đạt chuẩn xét học bổng loại giỏi |
 | **2.50 – 3.19** | **Khá** | Học lực đạt chuẩn, tiến độ bình thường |
 | **2.00 – 2.49** | **Trung bình** | Tiến độ bình thường, cần cố gắng |
-| **1.50 – 1.99** | **Yếu** | **Bị Cảnh báo học vụ Mức 1** (Cần Cố vấn học tập tư vấn) |
+| **1.50 – 1.99** | **Yếu** | **Bị Cảnh báo học vụ Mức 1** (Cần cán bộ đôn đốc cải thiện kết quả) |
 | **1.00 – 1.49** | **Kém** | **Bị Cảnh báo học vụ Mức 2** (Nguy cơ đình chỉ học tập) |
 | **Dưới 1.00** | **Kém nghiêm trọng** | **Xem xét Buộc thôi học** theo quy chế đào tạo |
 
@@ -1346,7 +1313,7 @@ Phân hệ quản lý sinh viên được trang bị đầy đủ công cụ qu�
 *Hình 3.4. Giao diện Quản lý Môn học & Niên khóa đào tạo*
 
 #### 3.2.5 Giao diện Sổ điểm học phần & Nhập điểm thành phần
-- Cho phép giảng viên chọn Môn học và Lớp học phần để nạp danh sách sinh viên.
+- Cho phép cán bộ khảo thí chọn Môn học và Lớp học phần để nạp danh sách sinh viên.
 - Nhập trực tiếp các cột điểm Chuyên cần, Giữa kỳ, Cuối kỳ.
 - Tự động tính điểm tổng kết môn thang 10, quy đổi điểm chữ và điểm thang 4 theo chuẩn mới ($A: 8.5-8.9 	o 3.7; A+: 9.0-10 	o 4.0$).
 
@@ -1435,7 +1402,7 @@ Nhóm phát triển đã xây dựng ma trận kiểm thử chi tiết gồm **2
 | **TC02** | Xác thực & Đăng nhập | Đăng nhập sai mật khẩu | `admin` / `sai_mat_khau` | Báo lỗi: "Tên đăng nhập hoặc mật khẩu không chính xác!", không cho vào | Hiển thị thông báo lỗi chính xác | **PASS** |
 | **TC03** | Xác thực & Đăng nhập | Đăng nhập để trống thông tin | `Username = ""` / `Pass = ""` | Hiển thị cảnh báo yêu cầu nhập đầy đủ thông tin trước khi đăng nhập | Báo lỗi nhập thiếu dữ liệu | **PASS** |
 | **TC04** | Bảo mật Đăng nhập | Kiểm tra tính năng Xem/Ẩn mật khẩu | Nhập mật khẩu, click icon con mắt | Hiển thị chuỗi ký tự rõ ràng khi mở mắt, che dấu thành dấu chấm khi đóng | Chuyển đổi mượt mà giữa PasswordBox và TextBox | **PASS** |
-| **TC05** | Phân quyền vai trò | Đăng nhập tài khoản Giảng viên | `giangvien` / `gv123` | Vào giao diện làm việc, ẩn các menu Quản trị người dùng & Phân quyền | Menu Quản trị bị ẩn chính xác theo vai trò | **PASS** |
+| **TC05** | Phân quyền vai trò | Đăng nhập tài khoản Nhân viên Đào tạo | `nhanvien` / `nhanvien123` | Vào giao diện làm việc, ẩn phân hệ Quản trị & Phân quyền cán bộ | Menu Quản trị bị ẩn chính xác theo vai trò NhanVien | **PASS** |
 | **TC06** | Quản lý Sinh viên | Thêm sinh viên mới & Tự sinh Email | Nhập MaSV `23010200` | Ô Email tự động điền `23010200@st.phenikaa-uni.edu.vn` tức thì | Email tự động điền chuẩn 100% | **PASS** |
 | **TC07** | Quản lý Sinh viên | Kiểm tra ràng buộc trùng Mã sinh viên | Nhập MaSV đã có `22020224` | Báo lỗi trùng khóa chính: "Mã sinh viên đã tồn tại trên hệ thống!" | Báo lỗi trùng mã sinh viên | **PASS** |
 | **TC08** | Quản lý Sinh viên | Cập nhật thông tin sinh viên & Khoa | Sửa Họ tên, đổi Lớp sang lớp thuộc Khoa CNTT | Bản ghi cập nhật thành công, DataGrid hiển thị thông tin Khoa chính xác | Thông tin và Khoa cập nhật tức thì | **PASS** |
@@ -1622,7 +1589,7 @@ GO
 INSERT INTO dbo.TaiKhoan (TenDangNhap, MatKhau, HoTen, Email, VaiTro) VALUES
 (N'admin', N'admin123', N'Quản Trị Viên Hệ Thống', N'admin@phenikaa-uni.edu.vn', N'Admin'),
 (N'nhanvien', N'nhanvien123', N'Cán Bộ Khảo Thí', N'nhanvien@phenikaa-uni.edu.vn', N'NhanVien'),
-(N'giangvien', N'gv123', N'Giảng Viên Bộ Môn', N'giangvien@phenikaa-uni.edu.vn', N'NhanVien');
+(N'nhanvien', N'nhanvien123', N'Cán bộ Khảo thí & Đào tạo', N'nhanvien@phenikaa-uni.edu.vn', N'NhanVien');
 
 INSERT INTO dbo.Khoa (MaKhoa, TenKhoa, VanPhong, TruongKhoa) VALUES
 (N'CNTT', N'Khoa Công nghệ thông tin', N'Phòng 602, Tòa A10', N'TS. Trưởng Khoa CNTT'),

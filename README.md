@@ -22,7 +22,7 @@ Hệ thống được thiết kế theo phong cách giao diện hiện đại v�
 - **Nút icon con mắt (👁 / 🙈)** cho phép bật/tắt hiển thị mật khẩu hai chiều tức thì, hỗ trợ gõ phím Enter nhanh chóng.
 - Phân quyền chặt chẽ giữa 2 nhóm người dùng:
   - **Quản trị viên (`Admin`):** Toàn quyền quản trị tài khoản, đặt lại mật khẩu, khóa/mở người dùng và giám sát hệ thống.
-  - **Cán bộ Đào tạo / Giảng viên (`NhanVien`):** Thực hiện các nghiệp vụ quản lý sinh viên, học phần, sổ điểm, import và tra cứu thống kê. Phân hệ Quản trị tài khoản được tự động ẩn để đảm bảo an toàn.
+  - **Cán bộ Đào tạo & Khảo thí (`NhanVien`):** Thực hiện các nghiệp vụ quản lý sinh viên, học phần, sổ điểm, import và tra cứu thống kê. Phân hệ Quản trị tài khoản được tự động ẩn để đảm bảo an toàn.
 
 ### 2.2. Bàn làm việc tổng quan (Executive Academic Dashboard)
 - 6 Thẻ KPI đào tạo toàn trường: Tổng sinh viên, Lớp sinh hoạt, Học phần đào tạo, Điểm TB toàn khóa, Tỷ lệ đạt chung, Số sinh viên cần bổ sung điểm.
